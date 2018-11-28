@@ -19,16 +19,17 @@
 #' object = resample(task, learner, resampling)
 #'
 #' library(ggplot2)
+#' fortify(object)
 #' autoplot(object)
 #' autoplot(object, type = "histogram", binwidth = 0.01)
 autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, ...) {
-  measure = assert_measure(measure %??% object$measures[[1L]])
+  measure = assert_measure(measure %??% object$measures$measure[[1L]])
 
   switch(type,
     "boxplot" =
-      ggplot(object, measure = measure, aes_string(x = "measure_id", y = "performance")) + geom_boxplot(...),
+      ggplot(object, measure = measure, aes_string(y = measure$id)) + geom_boxplot(...),
     "histogram" =
-      ggplot(object, measure = measure, aes_string(x = "performance")) + geom_histogram(...) + xlab(measure$id),
+      ggplot(object, measure = measure, aes_string(x = measure$id)) + geom_histogram(...),
     stop("Unknown type")
   )
 }
@@ -37,7 +38,5 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, ...
 fortify.ResampleResult = function(model, data, measure = NULL, ...) {
   measure = assert_measure(measure %??% model$measures$measure[[1L]])
 
-  data = unnest(model$data[, c("iteration", "performance")], "performance")
-  melt(data, measure.vars = ids(model$measures),
-    variable.name = "measure_id", value.name = "performance")[get("measure_id") == measure$id]
+  unnest(model$data[, c("iteration", "performance"), with = FALSE], "performance")[, c("iteration", measure$id), with = FALSE]
 }

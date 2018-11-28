@@ -22,15 +22,13 @@
 autoplot.BenchmarkResult = function(object, measure = NULL) {
   measure = assert_measure(measure %??% object$measures$measure[[1L]])
 
-  ggplot(object, measure = measure, aes_string("learner_id", "performance")) +
-    geom_boxplot() + facet_wrap("task_id") + ylab(measure$id)
+  ggplot(object, measure = measure, aes_string("learner_id", measure$id)) +
+    geom_boxplot() + facet_wrap("task_id")
 }
 
 #' @export
 fortify.BenchmarkResult = function(model, data = NULL, measure = NULL) {
   measure = assert_measure(measure %??% model$measures$measure[[1L]])
 
-  data = as.data.table(model)[, c("hash", "task_id", "learner_id", "resampling_id", measure$id), with = FALSE]
-  melt(data, measure.vars = measure$id,
-    variable.name = "measure_id", value.name = "performance")[get("measure_id") == measure$id]
+  as.data.table(model)[, c("hash", "task_id", "learner_id", "resampling_id", measure$id), with = FALSE]
 }
