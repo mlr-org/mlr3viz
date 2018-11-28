@@ -20,8 +20,7 @@
 #' fortify(object)
 #' autoplot(object)
 autoplot.BenchmarkResult = function(object, measure = NULL) {
-  measure = measure %??% object$measures$measure[[1L]]
-  assert_measure(measure)
+  measure = assert_measure(measure %??% object$measures$measure[[1L]])
 
   ggplot(object, measure = measure, aes_string("learner_id", "performance")) +
     geom_boxplot() + facet_wrap("task_id") + ylab(measure$id)
@@ -29,8 +28,7 @@ autoplot.BenchmarkResult = function(object, measure = NULL) {
 
 #' @export
 fortify.BenchmarkResult = function(model, data = NULL, measure = NULL) {
-  measure = measure %??% model$measures$measure[[1L]]
-  assert_measure(measure)
+  measure = assert_measure(measure %??% model$measures$measure[[1L]])
 
   data = as.data.table(model)[, c("hash", "task_id", "learner_id", "resampling_id", measure$id), with = FALSE]
   melt(data, measure.vars = measure$id,
