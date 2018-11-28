@@ -1,0 +1,33 @@
+Package: mlr3viz
+Title: Vizualizations for mlr3
+Version: 0.1.0-9000
+Authors@R:
+    c(person(given = "Michel",
+             family = "Lang",
+             role = c("cre", "aut"),
+             email = "michellang@gmail.com",
+             comment = c(ORCID = "0000-0001-9754-0393")))
+Description: Provides visualizations for mlr3 objects.
+License: MIT + file LICENSE
+Depends:
+    R (>= 3.1.0)
+Imports:
+    checkmate,
+    data.table,
+    mlr3,
+    mlr3misc,
+    ggplot2
+Suggests:
+    mlbench,
+    rpart,
+    testthat
+Remotes:
+    mllg/checkmate
+ByteCompile: true
+Encoding: UTF-8
+LazyData: true
+NeedsCompilation: no
+Roxygen: list(markdown = TRUE)
+URL: https://github.com/mlr-org/mlrviz
+BugReports: https://github.com/mlr-org/mlrviz/issues
+RoxygenNote: 6.1.1
