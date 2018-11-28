@@ -27,16 +27,23 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, ...
 
   switch(type,
     "boxplot" =
-      ggplot(object, measure = measure, aes_string(y = measure$id)) + geom_boxplot(...),
+      ggplot(object, measure = measure, aes_string(y = "performance")) + geom_boxplot(...) + ylab(measure$id),
     "histogram" =
-      ggplot(object, measure = measure, aes_string(x = measure$id)) + geom_histogram(...),
+      ggplot(object, measure = measure, aes_string(x = "performance")) + geom_histogram(...) + xlab(measure$id),
     stop("Unknown type")
   )
 }
 
 #' @export
 fortify.ResampleResult = function(model, data, measure = NULL, ...) {
-  measure = assert_measure(measure %??% model$measures$measure[[1L]])
+  mids = model$measures$measure_id
+  data = as.data.table(model)[, c("iteration", mids), with = FALSE]
+  data = melt(data, measure.vars = mids,
+    variable.name = "measure_id", value.name = "performance")
 
-  unnest(model$data[, c("iteration", "performance"), with = FALSE], "performance")[, c("iteration", measure$id), with = FALSE]
+  if (!is.null(measure)) {
+    assert_measure(measure)
+    data = data[get("measure_id") == measure$id]
+  }
+  data
 }
