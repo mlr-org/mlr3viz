@@ -3,11 +3,11 @@
 #' @description
 #' Generates plots for [mlr3::ResampleResult].
 #'
-#' @param object \[[mlr3::ResampleResult]\].
-#' @param type \[character(1)\]: Type of the plot.
-#' @param measure \[[mlr3::Measure]\]. If NULL, defaults to first measure, i.e.
+#' @param object ([mlr3::ResampleResult]).
+#' @param type (character(1)): Type of the plot.
+#' @param measure ([mlr3::Measure]). If NULL, defaults to first measure, i.e.
 #'  `object$measures[[1]]`.
-#' @param ... \[any\]: Additional arguments, passed down to the respective `geom`.
+#' @param ... : Additional arguments, passed down to the respective `geom`.
 #'
 #' @return [ggplot2::ggplot()] object.
 #' @export

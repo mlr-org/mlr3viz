@@ -8,14 +8,14 @@
   measure = NULL, ...)
 }
 \arguments{
-\item{object}{[\link[mlr3:ResampleResult]{mlr3::ResampleResult}].}
+\item{object}{(\link[mlr3:ResampleResult]{mlr3::ResampleResult}).}
 
-\item{type}{[character(1)]: Type of the plot.}
+\item{type}{(character(1)): Type of the plot.}
 
-\item{measure}{[\link[mlr3:Measure]{mlr3::Measure}]. If NULL, defaults to first measure, i.e.
+\item{measure}{(\link[mlr3:Measure]{mlr3::Measure}). If NULL, defaults to first measure, i.e.
 \code{object$measures[[1]]}.}
 
-\item{...}{[any]: Additional arguments, passed down to the respective \code{geom}.}
+\item{...}{: Additional arguments, passed down to the respective \code{geom}.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.

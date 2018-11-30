@@ -3,8 +3,8 @@
 #' @description
 #' Generates plots for [mlr3::BenchmarkResult].
 #'
-#' @param object \[[mlr3::BenchmarkResult]\].
-#' @param measure \[[mlr3::Measure]\]. If NULL, defaults to first measure, i.e.
+#' @param object ([mlr3::BenchmarkResult]).
+#' @param measure ([mlr3::Measure]). If NULL, defaults to first measure, i.e.
 #'  `object$measures$measure[[1]]`.
 #'
 #' @return [ggplot2::ggplot()] object.

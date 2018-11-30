@@ -7,9 +7,9 @@
 \method{autoplot}{BenchmarkResult}(object, measure = NULL)
 }
 \arguments{
-\item{object}{[\link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}].}
+\item{object}{(\link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}).}
 
-\item{measure}{[\link[mlr3:Measure]{mlr3::Measure}]. If NULL, defaults to first measure, i.e.
+\item{measure}{(\link[mlr3:Measure]{mlr3::Measure}). If NULL, defaults to first measure, i.e.
 \code{object$measures$measure[[1]]}.}
 }
 \value{
