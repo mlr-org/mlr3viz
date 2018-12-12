@@ -18,6 +18,7 @@ Imports:
     mlr3misc,
     ggplot2
 Suggests:
+    logger,
     mlbench,
     rpart,
     testthat
