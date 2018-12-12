@@ -23,6 +23,7 @@ Suggests:
     rpart,
     testthat
 Remotes:
+    daroczig/logger,
     mlr-org/mlr3misc,
     mlr-org/mlr3
 ByteCompile: true
