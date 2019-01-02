@@ -14,7 +14,7 @@
 #' tasks = mlr_tasks$mget(c("iris", "pima", "sonar"))
 #' learner = mlr_learners$mget(c("classif.featureless", "classif.rpart"))
 #' resampling = mlr_resamplings$mget("cv")
-#' object = benchmark(tasks, learner, resampling)
+#' object = benchmark(expand_grid(tasks, learner, resampling))
 #'
 #' library(ggplot2)
 #' fortify(object)
