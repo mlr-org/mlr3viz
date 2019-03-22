@@ -9,12 +9,12 @@
 #' @export
 #' @examples
 #' library(mlr3)
-#' object = mlr_tasks$get("pima")
+#' task = mlr_tasks$get("iris")
 #'
 #' library(ggplot2)
-#' autoplot(object)
-#' autoplot(object, type = "pairs")
-#' autoplot(object, type = "duo")
+#' autoplot(task)
+#' autoplot(task, type = "pairs")
+#' autoplot(task, type = "duo")
 autoplot.TaskClassif = function(object, type = "target") {
   assert_choice(type, c("target", "pairs", "duo"))
   target = object$target_names

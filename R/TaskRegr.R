@@ -9,11 +9,12 @@
 #' @export
 #' @examples
 #' library(mlr3)
-#' object = mlr_tasks$get("mtcars")
+#' task = mlr_tasks$get("mtcars")
+#' task$select(c("mpg", "am", "carb"))
 #'
 #' library(ggplot2)
-#' autoplot(object)
-#' autoplot(object, type = "pairs")
+#' autoplot(task)
+#' autoplot(task, type = "pairs")
 autoplot.TaskRegr = function(object, type = "target") {
   assert_choice(type, c("target", "pairs"))
   target = object$target_names
