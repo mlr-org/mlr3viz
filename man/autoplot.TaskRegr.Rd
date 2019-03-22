@@ -4,7 +4,7 @@
 \alias{autoplot.TaskRegr}
 \title{Plot for Regression Tasks}
 \usage{
-\method{autoplot}{TaskRegr}(object, type = "target")
+\method{autoplot}{TaskRegr}(object, type = "target", ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:TaskRegr]{mlr3::TaskRegr}).}
