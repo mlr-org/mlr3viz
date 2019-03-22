@@ -1,9 +1,9 @@
-#' @title Plot for Classification Tasks
+#' @title Plot for Survival Tasks
 #'
 #' @description
-#' Generates plots for [mlr3::TaskClassif].
+#' Generates plots for [mlr3survival::TaskSurv].
 #'
-#' @param object ([mlr3::TaskClassif]).
+#' @param object ([mlr3survival::TaskSurv]).
 #' @param type (`character(1)`)\cr
 #'   Type of the plot:
 #'   * `"target"`: bar plot of target variable (default).
@@ -17,23 +17,26 @@
 #' @export
 #' @examples
 #' library(mlr3)
-#' task = mlr_tasks$get("iris")
+#' library(mlr3survival)
+#' task = mlr_tasks$get("lung")
 #'
 #' library(ggplot2)
 #' autoplot(task)
-#' autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")), type = "pairs")
+#' autoplot(task, strata = "sex")
 #' autoplot(task, type = "duo")
-autoplot.TaskClassif = function(object, type = "target", ...) {
-  assert_choice(type, c("target", "duo", "pairs"))
+autoplot.TaskSurv = function(object, type = "target", ...) {
+  assert_choice(type, c("target", "pairs", "duo"))
   target = object$target_names
 
   if (type == "target") {
-    ggplot(object, aes_string(x = target, fill = target)) + geom_bar(stat = "count")
+    require_namespaces(c("survival", "GGally"))
+    GGally::ggsurv(task$survfit(...))
   } else if (type == "pairs") {
     require_namespaces("GGally")
-    GGally::ggpairs(object, aes_string(color = target), ...)
+    GGally::ggpairs(object, ...)
   } else {
     features = object$feature_names
-    GGally::ggduo(object, columnsX = target, columnsY = features, mapping = aes_string(color = target), ...)
+    GGally::ggduo(object, columnsX = target, columnsY = features, ...)
   }
 }
+
