@@ -12,7 +12,6 @@ License: MIT + file LICENSE
 Depends:
     R (>= 3.1.0)
 Imports:
-    mlr3misc,
     checkmate,
     data.table,
     mlr3,

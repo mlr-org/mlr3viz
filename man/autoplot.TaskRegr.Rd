@@ -8,6 +8,17 @@
 }
 \arguments{
 \item{object}{(\link[mlr3:TaskRegr]{mlr3::TaskRegr}).}
+
+\item{type}{(\code{character(1)})\cr
+Type of the plot:
+\itemize{
+\item \code{"target"}: bar plot of target variable (default).
+\item \code{"pairs"}: Passes data and additional arguments down to \link[GGally:ggpairs]{GGally::ggpairs}.
+Color is set to target column.
+}}
+
+\item{...}{(\code{any})\cr
+Additional argument, possibly passed down to the underlying plot functions.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -17,9 +28,10 @@ Generates plots for \link[mlr3:TaskRegr]{mlr3::TaskRegr}.
 }
 \examples{
 library(mlr3)
-object = mlr_tasks$get("mtcars")
+task = mlr_tasks$get("mtcars")
+task$select(c("mpg", "am", "carb"))
 
 library(ggplot2)
-autoplot(object)
-autoplot(object, type = "pairs")
+autoplot(task)
+autoplot(task, type = "pairs")
 }
