@@ -18,12 +18,16 @@ Imports:
     mlr3misc,
     ggplot2
 Suggests:
+    GGally,
     logger,
     mlbench,
+    mlr3survival,
     rpart,
+    survival,
     testthat
 Remotes:
     mlr-org/mlr3misc,
+    mlr-org/mlr3survival,
     mlr-org/mlr3
 ByteCompile: true
 Encoding: UTF-8
