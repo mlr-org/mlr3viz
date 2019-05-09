@@ -4,9 +4,9 @@
 #' Generates plots for [mlr3::BenchmarkResult].
 #'
 #' @param object ([mlr3::BenchmarkResult]).
-#' @param measure ([mlr3::Measure]):\cr
+#' @param measure ([mlr3::Measure]):
 #'   If NULL, defaults to first measure in the [mlr3::BenchmarkResult], i.e. `object$measures$measure[[1]]`.
-#' @param ... (any):\cr
+#' @param ... (any):
 #'   Currently ignored.
 #'
 #' @return [ggplot2::ggplot()] object.

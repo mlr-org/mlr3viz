@@ -9,10 +9,10 @@
 \arguments{
 \item{object}{(\link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}).}
 
-\item{measure}{(\link[mlr3:Measure]{mlr3::Measure}):\cr
+\item{measure}{(\link[mlr3:Measure]{mlr3::Measure}):
 If NULL, defaults to first measure in the \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}, i.e. \code{object$measures$measure[[1]]}.}
 
-\item{...}{(any):\cr
+\item{...}{(any):
 Currently ignored.}
 }
 \value{

@@ -9,7 +9,7 @@
 \arguments{
 \item{object}{(\link[mlr3survival:TaskSurv]{mlr3survival::TaskSurv}).}
 
-\item{type}{(\code{character(1)}):\cr
+\item{type}{(\code{character(1)}):
 Type of the plot. Available choices:
 \itemize{
 \item \code{"target"}: bar plot of target variable (default).
@@ -19,7 +19,7 @@ Type of the plot. Available choices:
 Color is set to target column.
 }}
 
-\item{...}{(any):\cr
+\item{...}{(any):
 Additional argument, possibly passed down to the underlying plot functions.}
 }
 \value{

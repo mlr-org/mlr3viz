@@ -4,14 +4,14 @@
 #' Generates plots for [mlr3survival::TaskSurv].
 #'
 #' @param object ([mlr3survival::TaskSurv]).
-#' @param type (`character(1)`):\cr
+#' @param type (`character(1)`):
 #'   Type of the plot. Available choices:
 #'   * `"target"`: bar plot of target variable (default).
 #'   * `"duo"`: Passes data and additional arguments down to [GGally::ggduo].
 #'     `columnsX` is target, `columnsY` is features.
 #'   * `"pairs"`: Passes data and additional arguments down to [GGally::ggpairs].
 #'     Color is set to target column.
-#' @param ... (any):\cr
+#' @param ... (any):
 #'   Additional argument, possibly passed down to the underlying plot functions.
 #' @return [ggplot2::ggplot()] object.
 #' @export
