@@ -32,7 +32,7 @@ Generates plots for \link[mlr3:TaskClassif]{mlr3::TaskClassif}.
 library(mlr3)
 task = mlr_tasks$get("iris")
 
-library(ggplot2)
+head(fortify(task))
 autoplot(task)
 autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")), type = "pairs")
 autoplot(task, type = "duo")

@@ -33,7 +33,7 @@ library(mlr3)
 library(mlr3survival)
 task = mlr_tasks$get("lung")
 
-library(ggplot2)
+head(fortify(task))
 autoplot(task)
 autoplot(task, strata = "sex")
 autoplot(task, type = "duo")

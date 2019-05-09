@@ -20,8 +20,7 @@
 #' resampling = mlr_resamplings$get("cv")
 #' object = resample(task, learner, resampling)
 #'
-#' library(ggplot2)
-#' fortify(object)
+#' head(fortify(object))
 #' autoplot(object)
 #' autoplot(object, type = "histogram", binwidth = 0.01)
 autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, ...) {

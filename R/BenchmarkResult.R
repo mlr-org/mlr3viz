@@ -18,8 +18,7 @@
 #' resampling = mlr_resamplings$mget("cv")
 #' object = benchmark(expand_grid(tasks, learner, resampling))
 #'
-#' library(ggplot2)
-#' fortify(object)
+#' head(fortify(object))
 #' autoplot(object)
 autoplot.BenchmarkResult = function(object, measure = NULL, ...) {
   measure = assert_measure(measure %??% object$measures$measure[[1L]])

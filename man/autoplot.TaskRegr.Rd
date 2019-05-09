@@ -31,7 +31,7 @@ library(mlr3)
 task = mlr_tasks$get("mtcars")
 task$select(c("mpg", "am", "carb"))
 
-library(ggplot2)
+head(fortify(task))
 autoplot(task)
 autoplot(task, type = "pairs")
 }
