@@ -4,8 +4,10 @@
 #' Generates plots for [mlr3::BenchmarkResult].
 #'
 #' @param object ([mlr3::BenchmarkResult]).
-#' @param measure ([mlr3::Measure]). If NULL, defaults to first measure, i.e.
-#'  `object$measures$measure[[1]]`.
+#' @param measure ([mlr3::Measure]):\cr
+#'   If NULL, defaults to first measure in the [mlr3::BenchmarkResult], i.e. `object$measures$measure[[1]]`.
+#' @param ... (any):\cr
+#'   Currently ignored.
 #'
 #' @return [ggplot2::ggplot()] object.
 #' @export
@@ -19,7 +21,7 @@
 #' library(ggplot2)
 #' fortify(object)
 #' autoplot(object)
-autoplot.BenchmarkResult = function(object, measure = NULL) {
+autoplot.BenchmarkResult = function(object, measure = NULL, ...) {
   measure = assert_measure(measure %??% object$measures$measure[[1L]])
 
   ggplot(object, measure = measure, aes_string("learner_id", measure$id)) +
@@ -27,7 +29,7 @@ autoplot.BenchmarkResult = function(object, measure = NULL) {
 }
 
 #' @export
-fortify.BenchmarkResult = function(model, data = NULL, measure = NULL) {
+fortify.BenchmarkResult = function(model, data = NULL, measure = NULL, ...) {
   measure = assert_measure(measure %??% model$measures$measure[[1L]])
 
   as.data.table(model)[, c("hash", "task_id", "learner_id", "resampling_id", measure$id), with = FALSE]

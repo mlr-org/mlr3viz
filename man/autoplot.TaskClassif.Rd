@@ -9,8 +9,8 @@
 \arguments{
 \item{object}{(\link[mlr3:TaskClassif]{mlr3::TaskClassif}).}
 
-\item{type}{(\code{character(1)})\cr
-Type of the plot:
+\item{type}{(\code{character(1)}):\cr
+Type of the plot. Available choices:
 \itemize{
 \item \code{"target"}: bar plot of target variable (default).
 \item \code{"duo"}: Passes data and additional arguments down to \link[GGally:ggduo]{GGally::ggduo}.
@@ -19,7 +19,7 @@ Type of the plot:
 Color is set to target column.
 }}
 
-\item{...}{(\code{any})\cr
+\item{...}{(any):\cr
 Additional argument, possibly passed down to the underlying plot functions.}
 }
 \value{

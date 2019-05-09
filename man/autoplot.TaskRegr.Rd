@@ -9,15 +9,15 @@
 \arguments{
 \item{object}{(\link[mlr3:TaskRegr]{mlr3::TaskRegr}).}
 
-\item{type}{(\code{character(1)})\cr
-Type of the plot:
+\item{type}{(\code{character(1)}):\cr
+Type of the plot. Available choices:
 \itemize{
 \item \code{"target"}: bar plot of target variable (default).
 \item \code{"pairs"}: Passes data and additional arguments down to \link[GGally:ggpairs]{GGally::ggpairs}.
 Color is set to target column.
 }}
 
-\item{...}{(\code{any})\cr
+\item{...}{(any):\cr
 Additional argument, possibly passed down to the underlying plot functions.}
 }
 \value{
