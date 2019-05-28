@@ -3,9 +3,7 @@ context("BenchmarkResult")
 tasks = mlr_tasks$mget(c("iris", "pima", "sonar"))
 learner = mlr_learners$mget(c("classif.featureless", "classif.rpart"))
 resampling = mlr_resamplings$mget("cv")
-bmr = logger::with_log_threshold(
-  benchmark(expand_grid(tasks, learner, resampling)),
-  logger::WARN, namespace = "mlr3")
+bmr = benchmark(expand_grid(tasks, learner, resampling))
 
 test_that("fortify BenchmarkResult", {
   f = fortify(bmr)

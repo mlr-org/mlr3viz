@@ -19,7 +19,7 @@ Imports:
     ggplot2
 Suggests:
     GGally,
-    logger,
+    lgr,
     mlbench,
     mlr3survival,
     rpart,

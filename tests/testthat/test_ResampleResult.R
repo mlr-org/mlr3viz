@@ -3,9 +3,7 @@ context("ResampleResult")
 task = mlr_tasks$get("iris")
 learner = mlr_learners$get("classif.rpart")
 resampling = mlr_resamplings$get("cv")
-rr = logger::with_log_threshold(
-  resample(task, learner, resampling),
-  logger::WARN, namespace = "mlr3")
+rr = resample(task, learner, resampling)
 
 test_that("fortify ResampleResult", {
   f = fortify(rr)
