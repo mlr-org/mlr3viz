@@ -16,7 +16,7 @@
 #' @examples
 #' library(mlr3)
 #' task = mlr_tasks$get("mtcars")
-#' task$select(c("mpg", "am", "carb"))
+#' task$select(c("am", "carb"))
 #'
 #' head(fortify(task))
 #' autoplot(task)
