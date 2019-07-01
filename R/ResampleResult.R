@@ -24,7 +24,7 @@
 #' autoplot(object)
 #' autoplot(object, type = "histogram", binwidth = 0.01)
 autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, ...) {
-  measure = assert_measure(measure %??% object$measures$measure[[1L]])
+  measure = mlr3::assert_measure(measure, task_type = object$task$task_type)
 
   switch(type,
     "boxplot" =
@@ -37,14 +37,8 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, ...
 
 #' @export
 fortify.ResampleResult = function(model, data, measure = NULL, ...) {
-  mids = model$measures$measure_id
-  data = as.data.table(model)[, c("iteration", mids), with = FALSE]
-  data = melt(data, measure.vars = mids,
+  measure = mlr3::assert_measure(measure, task_type = model$task$task_type)
+  data = model$performance(measure)[, c("iteration", measure$id), with = FALSE]
+  melt(data, measure.vars = measure$id,
     variable.name = "measure_id", value.name = "performance")
-
-  if (!is.null(measure)) {
-    assert_measure(measure)
-    data = data[get("measure_id") == measure$id]
-  }
-  data
 }

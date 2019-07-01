@@ -21,7 +21,8 @@
 #' head(fortify(object))
 #' autoplot(object)
 autoplot.BenchmarkResult = function(object, measure = NULL, ...) {
-  measure = assert_measure(measure %??% object$measures$measure[[1L]])
+  measure = mlr3::assert_measure(measure, task_type = object$data$task[[1L]]$task_type)
+  tab = fortify(object, measure = measure)
 
   ggplot(object, measure = measure, aes_string("learner_id", measure$id)) +
     geom_boxplot() + facet_wrap("task_id")
@@ -29,7 +30,6 @@ autoplot.BenchmarkResult = function(object, measure = NULL, ...) {
 
 #' @export
 fortify.BenchmarkResult = function(model, data = NULL, measure = NULL, ...) {
-  measure = assert_measure(measure %??% model$measures$measure[[1L]])
-
-  as.data.table(model)[, c("hash", "task_id", "learner_id", "resampling_id", measure$id), with = FALSE]
+  measure = mlr3::assert_measure(measure, task_type = model$data$task[[1L]]$task_type)
+  model$performance(measures = measure)[, c("hash", "task_id", "learner_id", "resampling_id", measure$id), with = FALSE]
 }
