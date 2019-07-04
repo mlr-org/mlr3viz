@@ -8,7 +8,7 @@
 #'   Type of the plot.
 #' @param measure ([mlr3::Measure]):
 #'   If NULL, defaults to first measure of the [mlr3::ResampleResult], i.e. `object$measures[[1]]`.
-#' @param ... (any):
+#' @param ... (`any`):
 #'   Additional arguments, passed down to the respective `geom`.
 #'
 #' @return [ggplot2::ggplot()] object.

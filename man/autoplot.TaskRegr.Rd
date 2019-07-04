@@ -17,7 +17,7 @@ Type of the plot. Available choices:
 Color is set to target column.
 }}
 
-\item{...}{(any):
+\item{...}{(\code{any}):
 Additional argument, possibly passed down to the underlying plot functions.}
 }
 \value{

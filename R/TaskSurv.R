@@ -11,7 +11,7 @@
 #'     `columnsX` is target, `columnsY` is features.
 #'   * `"pairs"`: Passes data and additional arguments down to [GGally::ggpairs].
 #'     Color is set to target column.
-#' @param ... (any):
+#' @param ... (`any`):
 #'   Additional argument, possibly passed down to the underlying plot functions.
 #' @return [ggplot2::ggplot()] object.
 #' @export

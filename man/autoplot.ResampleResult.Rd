@@ -16,7 +16,7 @@ Type of the plot.}
 \item{measure}{(\link[mlr3:Measure]{mlr3::Measure}):
 If NULL, defaults to first measure of the \link[mlr3:ResampleResult]{mlr3::ResampleResult}, i.e. \code{object$measures[[1]]}.}
 
-\item{...}{(any):
+\item{...}{(\code{any}):
 Additional arguments, passed down to the respective \code{geom}.}
 }
 \value{
