@@ -22,7 +22,7 @@ navbar:
 
   right:
   - icon: fa-github fa-lg
-    href: https://github.com/mlr-org/mlr3
+    href: https://github.com/mlr-org/mlr3viz
   - icon: fa-slack
     href: https://mlr-org.slack.com
   - icon: fa-stack-overflow
