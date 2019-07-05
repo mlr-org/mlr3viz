@@ -8,7 +8,7 @@ Authors@R:
              email = "michellang@gmail.com",
              comment = c(ORCID = "0000-0001-9754-0393")))
 Description: Provides visualizations for mlr3 objects.
-License: MIT + file LICENSE
+License: LGPL-3
 Depends:
     R (>= 3.1.0)
 Imports:
@@ -29,11 +29,10 @@ Remotes:
     mlr-org/mlr3misc,
     mlr-org/mlr3survival,
     mlr-org/mlr3
-ByteCompile: true
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
-URL: https://github.com/mlr-org/mlrviz
+URL: https://mlrviz.mlr-org.com
 BugReports: https://github.com/mlr-org/mlrviz/issues
 RoxygenNote: 6.1.1
