@@ -7,7 +7,7 @@ rr = resample(task, learner, resampling)
 
 test_that("fortify ResampleResult", {
   f = fortify(rr)
-  expect_data_table(f, nrow = 10, ncol = 3)
+  expect_data_table(f, nrows = 10, ncols = 3)
   expect_names(names(f), identical.to = c("iteration", "measure_id", "performance"))
 })
 

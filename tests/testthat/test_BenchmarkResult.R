@@ -7,7 +7,7 @@ bmr = benchmark(expand_grid(tasks, learner, resampling))
 
 test_that("fortify BenchmarkResult", {
   f = fortify(bmr)
-  expect_data_table(f, nrow = 60, ncol = 5)
+  expect_data_table(f, nrows = 60, ncols = 5)
   expect_names(names(f), permutation.of = c("hash", "task_id", "learner_id", "resampling_id", "classif.ce"))
 })
 
