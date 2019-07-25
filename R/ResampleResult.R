@@ -6,8 +6,7 @@
 #' @param object ([mlr3::ResampleResult]).
 #' @param type (character(1)):
 #'   Type of the plot.
-#' @param measure ([mlr3::Measure]):
-#'   If NULL, defaults to first measure of the [mlr3::ResampleResult], i.e. `object$measures[[1]]`.
+#' @param measure ([mlr3::Measure]).
 #' @param ... (`any`):
 #'   Additional arguments, passed down to the respective `geom`.
 #'
