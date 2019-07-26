@@ -2,21 +2,23 @@ Package: mlr3viz
 Title: Vizualizations for mlr3
 Version: 0.1.0-9000
 Authors@R:
-    c(person(given = "Michel",
-             family = "Lang",
-             role = c("cre", "aut"),
-             email = "michellang@gmail.com",
-             comment = c(ORCID = "0000-0001-9754-0393")))
+    person(given = "Michel",
+           family = "Lang",
+           role = c("cre", "aut"),
+           email = "michellang@gmail.com",
+           comment = c(ORCID = "0000-0001-9754-0393"))
 Description: Provides visualizations for mlr3 objects.
 License: LGPL-3
+URL: https://github.com/mlr-org/mlr3viz
+BugReports: https://github.com/mlr-org/mlrviz/issues
 Depends:
     R (>= 3.1.0)
 Imports:
     checkmate,
     data.table,
+    ggplot2,
     mlr3,
-    mlr3misc,
-    ggplot2
+    mlr3misc
 Suggests:
     GGally,
     lgr,
@@ -26,13 +28,11 @@ Suggests:
     survival,
     testthat
 Remotes:
+    mlr-org/mlr3,
     mlr-org/mlr3misc,
-    mlr-org/mlr3survival,
-    mlr-org/mlr3
+    mlr-org/mlr3survival
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
-URL: https://github.com/mlr-org/mlr3viz
-BugReports: https://github.com/mlr-org/mlrviz/issues
 RoxygenNote: 6.1.1
