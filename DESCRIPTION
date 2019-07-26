@@ -33,6 +33,6 @@ Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
-URL: https://mlrviz.mlr-org.com
+URL: https://github.com/mlr-org/mlr3viz
 BugReports: https://github.com/mlr-org/mlrviz/issues
 RoxygenNote: 6.1.1
