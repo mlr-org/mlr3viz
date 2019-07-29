@@ -1,6 +1,5 @@
 context("TaskClassif")
 
-
 test_that("autoplot.TaskClassif", {
   task = mlr_tasks$get("iris")
   p = autoplot(task)
