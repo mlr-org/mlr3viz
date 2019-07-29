@@ -18,7 +18,8 @@ Imports:
     data.table,
     ggplot2,
     mlr3,
-    mlr3misc
+    mlr3misc,
+    utils
 Suggests:
     GGally,
     lgr,
@@ -30,8 +31,8 @@ Suggests:
     testthat
 Remotes:
     mlr-org/mlr3,
-    mlr-org/mlr3misc,
-    mlr-org/mlr3survival
+    mlr-org/mlr3survival,
+    mlr-org/mlr3filters
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no

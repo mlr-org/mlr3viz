@@ -3,7 +3,7 @@
 #' @description
 #' Generates plots for [mlr3filters::Filter].
 #'
-#' @param object ([mlr3::Filter]).
+#' @param object ([mlr3filters::Filter]).
 #' @param n (`integer(1)`)\cr
 #'   Only include the first `n` features with highest importance.
 #'   Defaults to all features.

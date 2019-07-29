@@ -7,7 +7,7 @@
 \method{autoplot}{Filter}(object, n = Inf, ...)
 }
 \arguments{
-\item{object}{(\link[mlr3:Filter]{mlr3::Filter}).}
+\item{object}{(\link[mlr3filters:Filter]{mlr3filters::Filter}).}
 
 \item{n}{(\code{integer(1)})\cr
 Only include the first \code{n} features with highest importance.
