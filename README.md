@@ -1,6 +1,8 @@
 # mlr3viz
 
 [![Travis build status](https://travis-ci.org/mlr-org/mlr3viz.svg?branch=master)](https://travis-ci.org/mlr-org/mlr3viz)
-[![Appveyor build status](https://ci.appveyor.com/api/projects/status/48tf025aimtfw9gs/branch/master?svg=true)](https://ci.appveyor.com/project/mlr-org/mlr3viz/branch/master)
+[![CRAN](https://www.r-pkg.org/badges/version/mlr3viz)](https://cran.r-project.org/package=mlr3viz)
+[![codecov](https://codecov.io/gh/mlr-org/mlr3viz/branch/master/graph/badge.svg)](https://codecov.io/gh/mlr-org/mlr3viz)
+[![StackOverflow](https://img.shields.io/badge/stackoverflow-mlr3-orange.svg)](https://stackoverflow.com/questions/tagged/mlr3)
 
 Visualizations for [mlr3](https://mlr3.mlr-org.com).
