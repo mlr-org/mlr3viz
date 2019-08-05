@@ -1,7 +1,7 @@
-#' @import data.table
+#' @import mlr3misc
 #' @import checkmate
+#' @import data.table
 #' @import mlr3
 #' @import ggplot2
-#' @importFrom mlr3misc require_namespaces
 #' @importFrom utils head
 "_PACKAGE"

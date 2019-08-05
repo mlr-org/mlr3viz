@@ -26,6 +26,7 @@ Suggests:
     mlbench,
     mlr3filters,
     mlr3survival,
+    precrec,
     rpart,
     survival,
     testthat
