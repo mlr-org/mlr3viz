@@ -10,6 +10,7 @@ Authors@R:
 Description: Provides visualizations for mlr3 objects.
 License: LGPL-3
 URL: https://mlr3viz.mlr-org.com
+    https://github.com/mlr-org/mlrviz
 BugReports: https://github.com/mlr-org/mlrviz/issues
 Depends:
     R (>= 3.1.0)
@@ -32,8 +33,8 @@ Suggests:
     testthat
 Remotes:
     mlr-org/mlr3,
-    mlr-org/mlr3survival,
-    mlr-org/mlr3filters
+    mlr-org/mlr3filters,
+    mlr-org/mlr3survival
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
