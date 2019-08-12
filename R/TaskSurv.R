@@ -39,4 +39,3 @@ autoplot.TaskSurv = function(object, type = "target", ...) {
     GGally::ggduo(object, columnsX = target, columnsY = features, ...)
   }
 }
-
