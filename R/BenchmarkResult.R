@@ -30,5 +30,5 @@ autoplot.BenchmarkResult = function(object, measure = NULL, ...) {
 #' @export
 fortify.BenchmarkResult = function(model, data = NULL, measure = NULL, ...) {
   measure = mlr3::assert_measure(measure, task_type = model$data$task[[1L]]$task_type)
-  model$performance(measures = measure)[, c("hash", "task_id", "learner_id", "resampling_id", measure$id), with = FALSE]
+  model$performance(measures = measure)[, c("nr", "task_id", "learner_id", "resampling_id", measure$id), with = FALSE]
 }
