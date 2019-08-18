@@ -11,7 +11,8 @@ Provides visualizations for mlr3 objects.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://mlr3viz.mlr-org.com}
+  \item \url{https://mlr3viz.mlr-org.com
+    https://github.com/mlr-org/mlrviz}
   \item Report bugs at \url{https://github.com/mlr-org/mlrviz/issues}
 }
 

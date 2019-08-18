@@ -25,7 +25,7 @@ library(mlr3)
 tasks = mlr_tasks$mget(c("iris", "pima", "sonar"))
 learner = mlr_learners$mget(c("classif.featureless", "classif.rpart"))
 resampling = mlr_resamplings$mget("cv")
-object = benchmark(expand_grid(tasks, learner, resampling))
+object = benchmark(benchmark_grid(tasks, learner, resampling))
 
 head(fortify(object))
 autoplot(object)
