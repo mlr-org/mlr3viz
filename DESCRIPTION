@@ -9,7 +9,7 @@ Authors@R:
            comment = c(ORCID = "0000-0001-9754-0393"))
 Description: Provides visualizations for mlr3 objects.
 License: LGPL-3
-URL: https://mlr3viz.mlr-org.com
+URL: https://mlr3viz.mlr-org.com,
     https://github.com/mlr-org/mlrviz
 BugReports: https://github.com/mlr-org/mlrviz/issues
 Depends:
