@@ -20,7 +20,8 @@
 #' head(fortify(object))
 #' autoplot(object)
 autoplot.BenchmarkResult = function(object, measure = NULL, ...) {
-  measure = mlr3::assert_measure(measure, task = object$data$task[[1L]])
+  task = object$data$task[[1L]]
+  measure = mlr3::assert_measure(measure, task = task, default = task$task_type)
   tab = fortify(object, measure = measure)
 
   ggplot(object, measure = measure, aes_string("learner_id", measure$id)) +
@@ -29,6 +30,7 @@ autoplot.BenchmarkResult = function(object, measure = NULL, ...) {
 
 #' @export
 fortify.BenchmarkResult = function(model, data = NULL, measure = NULL, ...) {
-  measure = mlr3::assert_measure(measure, task = model$data$task[[1L]])
+  task = model$data$task[[1L]]
+  measure = mlr3::assert_measure(measure, task = task, default = task$task_type)
   model$performance(measures = measure)[, c("nr", "task_id", "learner_id", "resampling_id", measure$id), with = FALSE]
 }
