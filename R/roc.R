@@ -20,6 +20,7 @@
 #' prediction = lrn$train(task)$predict(task)
 #' p = roc(prediction)
 roc = function(prediction) {
+
   # TODO:
   # 1) This might not be the best interface, we have autoplot everywhere else.
   # 2) We need to expose more parameters to allow putting arbitrary measures on the axes.
