@@ -39,7 +39,7 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, ...
 fortify.ResampleResult = function(model, data, measure = NULL, ...) {
   task = model$task
   measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
-  data = model$performance(measure)[, c("iteration", measure$id), with = FALSE]
+  data = model$score(measure)[, c("iteration", measure$id), with = FALSE]
   melt(data, measure.vars = measure$id,
     variable.name = "measure_id", value.name = "performance")
 }
