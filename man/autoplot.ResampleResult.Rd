@@ -4,8 +4,7 @@
 \alias{autoplot.ResampleResult}
 \title{Plot for ResampleResult}
 \usage{
-\method{autoplot}{ResampleResult}(object, type = "boxplot",
-  measure = NULL, ...)
+\method{autoplot}{ResampleResult}(object, type = "boxplot", measure = NULL, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:ResampleResult]{mlr3::ResampleResult}).}
