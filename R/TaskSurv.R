@@ -1,9 +1,9 @@
 #' @title Plot for Survival Tasks
 #'
 #' @description
-#' Generates plots for [mlr3survival::TaskSurv].
+#' Generates plots for [mlr3proba::TaskSurv].
 #'
-#' @param object ([mlr3survival::TaskSurv]).
+#' @param object ([mlr3proba::TaskSurv]).
 #' @param type (`character(1)`):
 #'   Type of the plot. Available choices:
 #'   * `"target"`: bar plot of target variable (default).
@@ -17,12 +17,12 @@
 #' @export
 #' @examples
 #' library(mlr3)
-#' library(mlr3survival)
+#' library(mlr3proba)
 #' task = mlr_tasks$get("lung")
 #'
 #' head(fortify(task))
 #' autoplot(task)
-#' autoplot(task, strata = "sex")
+#' autoplot(task, rhs = "sex")
 #' autoplot(task, type = "duo")
 autoplot.TaskSurv = function(object, type = "target", ...) {
   assert_choice(type, c("target", "pairs", "duo"))
@@ -30,8 +30,12 @@ autoplot.TaskSurv = function(object, type = "target", ...) {
 
   if (type == "target") {
     require_namespaces(c("survival", "GGally"))
-    GGally::ggsurv(object$survfit(...))
-  } else if (type == "pairs") {
+    if(length(list(...))==0)
+      GGally::ggsurv(invoke(survival::survfit, formula = object$formula(1), data = object$data()))
+    else
+      GGally::ggsurv(invoke(survival::survfit, formula = object$formula(...), data = object$data()))
+  } else
+    if (type == "pairs") {
     require_namespaces("GGally")
     GGally::ggpairs(object, ...)
   } else {

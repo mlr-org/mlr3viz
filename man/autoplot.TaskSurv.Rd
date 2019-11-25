@@ -7,7 +7,7 @@
 \method{autoplot}{TaskSurv}(object, type = "target", ...)
 }
 \arguments{
-\item{object}{(\link[mlr3survival:TaskSurv]{mlr3survival::TaskSurv}).}
+\item{object}{(\link[mlr3proba:TaskSurv]{mlr3proba::TaskSurv}).}
 
 \item{type}{(\code{character(1)}):
 Type of the plot. Available choices:
@@ -26,15 +26,15 @@ Additional argument, possibly passed down to the underlying plot functions.}
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
 }
 \description{
-Generates plots for \link[mlr3survival:TaskSurv]{mlr3survival::TaskSurv}.
+Generates plots for \link[mlr3proba:TaskSurv]{mlr3proba::TaskSurv}.
 }
 \examples{
 library(mlr3)
-library(mlr3survival)
+library(mlr3proba)
 task = mlr_tasks$get("lung")
 
 head(fortify(task))
 autoplot(task)
-autoplot(task, strata = "sex")
+autoplot(task, rhs = "sex")
 autoplot(task, type = "duo")
 }
