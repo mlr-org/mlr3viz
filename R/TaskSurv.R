@@ -28,18 +28,17 @@ autoplot.TaskSurv = function(object, type = "target", ...) {
   assert_choice(type, c("target", "pairs", "duo"))
   target = object$target_names
 
+  require_namespaces("GGally")
   if (type == "target") {
-    require_namespaces(c("survival", "GGally"))
+    require_namespaces("survival")
     if (...length() == 0L) {
       GGally::ggsurv(invoke(survival::survfit, formula = object$formula(1), data = object$data()))
     } else {
       GGally::ggsurv(invoke(survival::survfit, formula = object$formula(...), data = object$data()))
     }
-  } else
-    if (type == "pairs") {
-    require_namespaces("GGally")
+  } else if (type == "pairs") {
     GGally::ggpairs(object, ...)
-  } else {
+  } else { # type == "duo"
     features = object$feature_names
     GGally::ggduo(object, columnsX = target, columnsY = features, ...)
   }
