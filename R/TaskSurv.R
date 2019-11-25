@@ -30,10 +30,11 @@ autoplot.TaskSurv = function(object, type = "target", ...) {
 
   if (type == "target") {
     require_namespaces(c("survival", "GGally"))
-    if(length(list(...))==0)
+    if (...length() == 0L) {
       GGally::ggsurv(invoke(survival::survfit, formula = object$formula(1), data = object$data()))
-    else
+    } else {
       GGally::ggsurv(invoke(survival::survfit, formula = object$formula(...), data = object$data()))
+    }
   } else
     if (type == "pairs") {
     require_namespaces("GGally")
