@@ -2,7 +2,8 @@ context("TaskClassif")
 
 test_that("autoplot.TaskClassif", {
   task = mlr_tasks$get("iris")
-  p = autoplot(task)
+
+  p = autoplot(task, type = "target")
   expect_true(is.ggplot(p))
 
   p = autoplot(task, type = "pairs")

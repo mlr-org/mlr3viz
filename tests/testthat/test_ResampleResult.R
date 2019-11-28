@@ -12,6 +12,9 @@ test_that("fortify ResampleResult", {
 })
 
 test_that("autoplot ResampleResult", {
-  p = autoplot(rr, measure = msr("classif.ce"))
+  p = autoplot(rr, measure = msr("classif.ce"), type = "boxplot")
+  expect_true(is.ggplot(p))
+
+  p = autoplot(rr, measure = msr("classif.ce"), type = "histogram")
   expect_true(is.ggplot(p))
 })
