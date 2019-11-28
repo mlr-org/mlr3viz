@@ -1,10 +1,12 @@
 #' @title Plot for ResampleResult
 #'
 #' @description
-#' Generates plots for [mlr3::ResampleResult].
+#' Generates plots for [mlr3::ResampleResult], depending on argument `type`:
+#' * `"boxplot"` (default): Boxplot of performance measures.
+#' * `"histogram"`: Histogram of performance measures.
 #'
 #' @param object ([mlr3::ResampleResult]).
-#' @param type (character(1)):
+#' @param type (character(1)):\cr
 #'   Type of the plot.
 #' @param measure ([mlr3::Measure]).
 #' @param ... (`any`):
@@ -27,10 +29,14 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, ...
   measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
 
   switch(type,
-    "boxplot" =
-      ggplot(object, measure = measure, aes_string(y = "performance")) + geom_boxplot(...) + ylab(measure$id),
-    "histogram" =
-      ggplot(object, measure = measure, aes_string(x = "performance")) + geom_histogram(...) + xlab(measure$id),
+    "boxplot" = {
+      ggplot(object, measure = measure, aes_string(y = "performance")) + geom_boxplot(...) + ylab(measure$id)
+    },
+
+    "histogram" = {
+      ggplot(object, measure = measure, aes_string(x = "performance")) + geom_histogram(...) + xlab(measure$id)
+    },
+
     stop("Unknown type")
   )
 }

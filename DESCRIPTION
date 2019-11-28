@@ -24,16 +24,12 @@ Imports:
 Suggests:
     GGally,
     lgr,
-    mlbench,
     mlr3filters,
     mlr3proba,
     precrec,
-    rpart,
     survival,
     testthat
 Remotes:
-    mlr-org/mlr3,
-    mlr-org/mlr3filters,
     mlr-org/mlr3proba
 Encoding: UTF-8
 LazyData: true

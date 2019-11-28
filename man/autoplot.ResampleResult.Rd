@@ -9,7 +9,7 @@
 \arguments{
 \item{object}{(\link[mlr3:ResampleResult]{mlr3::ResampleResult}).}
 
-\item{type}{(character(1)):
+\item{type}{(character(1)):\cr
 Type of the plot.}
 
 \item{measure}{(\link[mlr3:Measure]{mlr3::Measure}).}
@@ -21,7 +21,11 @@ Additional arguments, passed down to the respective \code{geom}.}
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
 }
 \description{
-Generates plots for \link[mlr3:ResampleResult]{mlr3::ResampleResult}.
+Generates plots for \link[mlr3:ResampleResult]{mlr3::ResampleResult}, depending on argument \code{type}:
+\itemize{
+\item \code{"boxplot"} (default): Boxplot of performance measures.
+\item \code{"histogram"}: Histogram of performance measures.
+}
 }
 \examples{
 library(mlr3)

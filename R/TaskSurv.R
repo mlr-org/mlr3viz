@@ -1,18 +1,19 @@
 #' @title Plot for Survival Tasks
 #'
 #' @description
-#' Generates plots for [mlr3proba::TaskSurv].
+#' Generates plots for [mlr3proba::TaskSurv], depending on argument `type`:
+#'   * `"target"`: Calls [GGally::ggsurv()] on a [survival::survfit()] object.
+#'   * `"duo"`: Passes data and additional arguments down to [GGally::ggduo()].
+#'     `columnsX` is target, `columnsY` is features.
+#'   * `"pairs"`: Passes data and additional arguments down to [GGally::ggpairs()].
+#'     Color is set to target column.
 #'
 #' @param object ([mlr3proba::TaskSurv]).
-#' @param type (`character(1)`):
+#' @param type (`character(1)`):\cr
 #'   Type of the plot. Available choices:
-#'   * `"target"`: bar plot of target variable (default).
-#'   * `"duo"`: Passes data and additional arguments down to [GGally::ggduo].
-#'     `columnsX` is target, `columnsY` is features.
-#'   * `"pairs"`: Passes data and additional arguments down to [GGally::ggpairs].
-#'     Color is set to target column.
 #' @param ... (`any`):
-#'   Additional argument, possibly passed down to the underlying plot functions.
+#'   Additional argument, passed down to `$formula` of [mlr3proba::TaskSurv] or the underlying plot functions.
+#'
 #' @return [ggplot2::ggplot()] object.
 #' @export
 #' @examples
@@ -26,20 +27,25 @@
 #' autoplot(task, type = "duo")
 autoplot.TaskSurv = function(object, type = "target", ...) {
   assert_choice(type, c("target", "pairs", "duo"))
-  target = object$target_names
+  require_namespaces(c("survival", "GGally"))
 
-  require_namespaces("GGally")
-  if (type == "target") {
-    require_namespaces("survival")
-    if (...length() == 0L) {
-      GGally::ggsurv(invoke(survival::survfit, formula = object$formula(1), data = object$data()))
-    } else {
-      GGally::ggsurv(invoke(survival::survfit, formula = object$formula(...), data = object$data()))
-    }
-  } else if (type == "pairs") {
-    GGally::ggpairs(object, ...)
-  } else { # type == "duo"
-    features = object$feature_names
-    GGally::ggduo(object, columnsX = target, columnsY = features, ...)
-  }
+  switch(type,
+    "target" = {
+      if (...length() == 0L) {
+        GGally::ggsurv(invoke(survival::survfit, formula = object$formula(1), data = object$data()))
+      } else {
+        GGally::ggsurv(invoke(survival::survfit, formula = object$formula(...), data = object$data()))
+      }
+    },
+
+    "duo" = {
+      require_namespaces("GGally")
+      GGally::ggduo(object, columnsX = object$target_names, columnsY = object$feature_names, ...)
+    },
+
+    "pairs" = {
+      GGally::ggpairs(object, ...)
+    },
+    stop("Unknown type")
+  )
 }

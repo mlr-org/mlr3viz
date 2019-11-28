@@ -4,10 +4,13 @@
 \alias{autoplot.BenchmarkResult}
 \title{Plot for BenchmarkResult}
 \usage{
-\method{autoplot}{BenchmarkResult}(object, measure = NULL, ...)
+\method{autoplot}{BenchmarkResult}(object, type = "boxplot", measure = NULL, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}).}
+
+\item{type}{(character(1)):\cr
+Type of the plot.}
 
 \item{measure}{(\link[mlr3:Measure]{mlr3::Measure}).}
 
@@ -18,7 +21,10 @@ Currently ignored.}
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
 }
 \description{
-Generates plots for \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}.
+Generates plots for \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}, depending on argument \code{type}:
+\itemize{
+\item \code{"boxplot"} (default): Boxplots of performance measures, one box per \link[mlr3:Learner]{mlr3::Learner} and one facet per \link[mlr3:Task]{mlr3::Task}.
+}
 }
 \examples{
 library(mlr3)

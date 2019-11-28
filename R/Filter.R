@@ -1,14 +1,18 @@
 #' @title Plot for Filter Scores
 #'
 #' @description
-#' Generates plots for [mlr3filters::Filter].
+#' Generates plots for [mlr3filters::Filter], depending on argument `type`:
+#' * `"barplot"` (default): Bar plot of filter scores.
 #'
 #' @param object ([mlr3filters::Filter]).
+#' @param type (character(1)):\cr
+#'   Type of the plot.
 #' @param n (`integer(1)`)\cr
 #'   Only include the first `n` features with highest importance.
 #'   Defaults to all features.
 #' @param ... (`any`):
 #'   Additional argument, possibly passed down to the underlying plot functions.
+#'
 #' @return [ggplot2::ggplot()] object.
 #' @export
 #' @examples
@@ -20,10 +24,17 @@
 #'
 #' head(fortify(f))
 #' autoplot(f, n = 5)
-autoplot.Filter = function(object, n = Inf, ...) {
+autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) {
   data = head(fortify(object), n)
-  ggplot(data = data, aes_string(x = "feature", y = "score")) + geom_bar(stat = "identity") +
-    scale_x_discrete(limits = data$feature)
+
+  switch(type,
+    "boxplot" = {
+      ggplot(data = data, aes_string(x = "feature", y = "score")) + geom_bar(stat = "identity") +
+        scale_x_discrete(limits = data$feature)
+    },
+
+    stop("Unknown type")
+  )
 }
 
 #' @export

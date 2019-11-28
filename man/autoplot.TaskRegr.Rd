@@ -9,22 +9,22 @@
 \arguments{
 \item{object}{(\link[mlr3:TaskRegr]{mlr3::TaskRegr}).}
 
-\item{type}{(\code{character(1)}):
-Type of the plot. Available choices:
-\itemize{
-\item \code{"target"}: bar plot of target variable (default).
-\item \code{"pairs"}: Passes data and additional arguments down to \link[GGally:ggpairs]{GGally::ggpairs}.
-Color is set to target column.
-}}
+\item{type}{(\code{character(1)}):\cr
+Type of the plot.}
 
 \item{...}{(\code{any}):
-Additional argument, possibly passed down to the underlying plot functions.}
+Additional argument, passed down to the underlying \code{geom} or plot functions.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
 }
 \description{
-Generates plots for \link[mlr3:TaskRegr]{mlr3::TaskRegr}.
+Generates plots for \link[mlr3:TaskRegr]{mlr3::TaskRegr}, depending on argument \code{type}:
+\itemize{
+\item \code{"target"}: Box plot of target variable (default).
+\item \code{"pairs"}: Passes data and additional arguments down to \code{\link[GGally:ggpairs]{GGally::ggpairs()}}.
+Color is set to target column.
+}
 }
 \examples{
 library(mlr3)
