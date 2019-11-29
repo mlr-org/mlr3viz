@@ -18,12 +18,12 @@ Imports:
     checkmate,
     data.table,
     ggplot2,
-    mlr3,
     mlr3misc,
     utils
 Suggests:
     GGally,
     lgr,
+    mlr3,
     mlr3filters,
     mlr3proba,
     precrec,

@@ -46,6 +46,7 @@ autoplot.TaskSurv = function(object, type = "target", ...) {
     "pairs" = {
       GGally::ggpairs(object, ...)
     },
+
     stop("Unknown type")
   )
 }
