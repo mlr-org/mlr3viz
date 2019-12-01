@@ -25,16 +25,24 @@ Generates plots for \link[mlr3:ResampleResult]{mlr3::ResampleResult}, depending 
 \itemize{
 \item \code{"boxplot"} (default): Boxplot of performance measures.
 \item \code{"histogram"}: Histogram of performance measures.
+\item \code{"roc"}: ROC curve (1 - specificity on x, sensitivity on y).
+The predictions of the individual \link[mlr3:Resampling]{mlr3::Resampling}s are merged prior to calculating the ROC curve
+(micro averaged). Requires package \CRANpkg{precrec}.
+\item \code{"prc"}: Precision recall curve. See \code{"roc"}.
 }
 }
 \examples{
 library(mlr3)
-task = mlr_tasks$get("iris")
-learner = mlr_learners$get("classif.rpart")
-resampling = mlr_resamplings$get("cv")
+library(mlr3viz)
+
+task = tsk("sonar")
+learner = lrn("classif.rpart", predict_type = "prob")
+resampling = rsmp("cv")
 object = resample(task, learner, resampling)
 
 head(fortify(object))
 autoplot(object)
-autoplot(object, type = "histogram", binwidth = 0.01)
+autoplot(object, type = "histogram")
+autoplot(object, type = "roc")
+autoplot(object, type = "prc")
 }

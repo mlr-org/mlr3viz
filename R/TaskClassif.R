@@ -18,6 +18,8 @@
 #' @export
 #' @examples
 #' library(mlr3)
+#' library(mlr3viz)
+#'
 #' task = mlr_tasks$get("iris")
 #'
 #' head(fortify(task))

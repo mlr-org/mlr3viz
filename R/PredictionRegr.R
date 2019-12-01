@@ -17,8 +17,10 @@
 #' @export
 #' @examples
 #' library(mlr3)
-#' task = mlr_tasks$get("boston_housing")
-#' learner = mlr_learners$get("regr.rpart")
+#' library(mlr3viz)
+#'
+#' task = tsk("boston_housing")
+#' learner = lrn("regr.rpart")
 #' object = learner$train(task)$predict(task)
 #'
 #' head(fortify(object))
@@ -38,9 +40,4 @@ autoplot.PredictionRegr = function(object, type = "xy", ...) {
 
     stop("Unknown type")
   )
-}
-
-#' @export
-fortify.PredictionRegr = function(model, data, ...) {
-  as.data.table(model)
 }

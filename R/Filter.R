@@ -17,9 +17,11 @@
 #' @export
 #' @examples
 #' library(mlr3)
+#' library(mlr3viz)
 #' library(mlr3filters)
-#' task = mlr_tasks$get("mtcars")
-#' f = mlr_filters$get("correlation")
+#'
+#' task = tsk("mtcars")
+#' f = flt("correlation")
 #' f$calculate(task)
 #'
 #' head(fortify(f))

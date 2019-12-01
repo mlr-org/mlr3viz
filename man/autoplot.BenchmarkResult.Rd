@@ -4,7 +4,7 @@
 \alias{autoplot.BenchmarkResult}
 \title{Plot for BenchmarkResult}
 \usage{
-\method{autoplot}{BenchmarkResult}(object, type = "boxplot", measure = NULL, ...)
+\method{autoplot}{BenchmarkResult}(object, type = "boxplot", measure = NULL, task_id = NULL, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}).}
@@ -13,6 +13,9 @@
 Type of the plot.}
 
 \item{measure}{(\link[mlr3:Measure]{mlr3::Measure}).}
+
+\item{task_id}{(\code{character(1)}):\cr
+Id of the task to operate on.}
 
 \item{...}{(\code{any}):
 Currently ignored.}
@@ -24,15 +27,24 @@ Currently ignored.}
 Generates plots for \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}, depending on argument \code{type}:
 \itemize{
 \item \code{"boxplot"} (default): Boxplots of performance measures, one box per \link[mlr3:Learner]{mlr3::Learner} and one facet per \link[mlr3:Task]{mlr3::Task}.
+\item \code{"roc"}: ROC curve (1 - specificity on x, sensitivity on y).
+The predictions of the individual \link[mlr3:Resampling]{mlr3::Resampling}s are merged prior to calculating the ROC curve
+(micro averaged). Requires package \CRANpkg{precrec}.
+If the \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} has multiple tasks, a single task must be selected via argument \code{task_id}.
+\item \code{"prc"}: Precision recall curve. See \code{"roc"}.
 }
 }
 \examples{
 library(mlr3)
-tasks = mlr_tasks$mget(c("iris", "pima", "sonar"))
-learner = mlr_learners$mget(c("classif.featureless", "classif.rpart"))
-resampling = mlr_resamplings$mget("cv")
+library(mlr3viz)
+
+tasks = tsks(c("spam", "pima", "sonar"))
+learner = lrns(c("classif.featureless", "classif.rpart"), predict_type = "prob")
+resampling = rsmps("cv")
 object = benchmark(benchmark_grid(tasks, learner, resampling))
 
 head(fortify(object))
 autoplot(object)
+autoplot(object, type = "roc", task_id = "spam")
+autoplot(object, type = "prc", task_id = "pima")
 }

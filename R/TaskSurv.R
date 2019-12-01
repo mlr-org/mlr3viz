@@ -18,7 +18,9 @@
 #' @export
 #' @examples
 #' library(mlr3)
+#' library(mlr3viz)
 #' library(mlr3proba)
+#'
 #' task = mlr_tasks$get("lung")
 #'
 #' head(fortify(task))

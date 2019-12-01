@@ -16,6 +16,8 @@
 #' @export
 #' @examples
 #' library(mlr3)
+#' library(mlr3viz)
+#'
 #' task = mlr_tasks$get("mtcars")
 #' task$select(c("am", "carb"))
 #'
