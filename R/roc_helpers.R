@@ -25,8 +25,7 @@ autoplot_roc_bmr = function(object, task_id = NULL, curvetype = "ROC") {
       stopf("autoplot.BenchmarkResult can only work on a benchmark results with a single task. You can select one via argument `task_id`")
     }
   } else {
-    needle = assert_string(task_id)
-    assert_choice(needle, aggr$task_id)
+    needle = assert_choice(task_id, aggr$task_id)
     aggr = aggr[list(needle), on = "task_id"]
   }
 
