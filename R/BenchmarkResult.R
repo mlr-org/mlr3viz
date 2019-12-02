@@ -42,7 +42,7 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ta
   switch(type,
     "boxplot" = {
       ggplot(object, measure = measure, aes_string("learner_id", measure$id)) +
-        geom_boxplot() + facet_wrap("task_id")
+        geom_boxplot() + xlab("") + facet_wrap("task_id")
     },
 
     "roc" = {
