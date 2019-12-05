@@ -4,10 +4,13 @@
 \alias{autoplot.Filter}
 \title{Plot for Filter Scores}
 \usage{
-\method{autoplot}{Filter}(object, n = Inf, ...)
+\method{autoplot}{Filter}(object, type = "boxplot", n = Inf, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3filters:Filter]{mlr3filters::Filter}).}
+
+\item{type}{(character(1)):\cr
+Type of the plot.}
 
 \item{n}{(\code{integer(1)})\cr
 Only include the first \code{n} features with highest importance.
@@ -20,13 +23,18 @@ Additional argument, possibly passed down to the underlying plot functions.}
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
 }
 \description{
-Generates plots for \link[mlr3filters:Filter]{mlr3filters::Filter}.
+Generates plots for \link[mlr3filters:Filter]{mlr3filters::Filter}, depending on argument \code{type}:
+\itemize{
+\item \code{"barplot"} (default): Bar plot of filter scores.
+}
 }
 \examples{
 library(mlr3)
+library(mlr3viz)
 library(mlr3filters)
-task = mlr_tasks$get("mtcars")
-f = mlr_filters$get("correlation")
+
+task = tsk("mtcars")
+f = flt("correlation")
 f$calculate(task)
 
 head(fortify(f))

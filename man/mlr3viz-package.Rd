@@ -12,12 +12,12 @@ Provides visualizations for mlr3 objects.
 Useful links:
 \itemize{
   \item \url{https://mlr3viz.mlr-org.com}
-  \item \url{https://github.com/mlr-org/mlrviz}
-  \item Report bugs at \url{https://github.com/mlr-org/mlrviz/issues}
+  \item \url{https://github.com/mlr-org/mlr3viz}
+  \item Report bugs at \url{https://github.com/mlr-org/mlr3viz/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Michel Lang \email{michellang@gmail.com} (0000-0001-9754-0393)
+\strong{Maintainer}: Michel Lang \email{michellang@gmail.com} (\href{https://orcid.org/0000-0001-9754-0393}{ORCID})
 
 }

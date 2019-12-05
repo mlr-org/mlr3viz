@@ -18,25 +18,21 @@ Imports:
     checkmate,
     data.table,
     ggplot2,
-    mlr3,
     mlr3misc,
     utils
 Suggests:
     GGally,
     lgr,
-    mlbench,
+    mlr3,
     mlr3filters,
-    mlr3survival,
+    mlr3proba,
     precrec,
-    rpart,
     survival,
     testthat
 Remotes:
-    mlr-org/mlr3,
-    mlr-org/mlr3filters,
-    mlr-org/mlr3survival
+    mlr-org/mlr3proba
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1

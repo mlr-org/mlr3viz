@@ -9,15 +9,8 @@
 \arguments{
 \item{object}{(\link[mlr3:TaskClassif]{mlr3::TaskClassif}).}
 
-\item{type}{(\code{character(1)}):
-Type of the plot. Available choices:
-\itemize{
-\item \code{"target"}: bar plot of target variable (default).
-\item \code{"duo"}: Passes data and additional arguments down to \link[GGally:ggduo]{GGally::ggduo}.
-\code{columnsX} is target, \code{columnsY} is features.
-\item \code{"pairs"}: Passes data and additional arguments down to \link[GGally:ggpairs]{GGally::ggpairs}.
-Color is set to target column.
-}}
+\item{type}{(\code{character(1)})\cr
+Type of the plot.}
 
 \item{...}{(\code{any}):
 Additional argument, possibly passed down to the underlying plot functions.}
@@ -26,10 +19,19 @@ Additional argument, possibly passed down to the underlying plot functions.}
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
 }
 \description{
-Generates plots for \link[mlr3:TaskClassif]{mlr3::TaskClassif}.
+Generates plots for \link[mlr3:TaskClassif]{mlr3::TaskClassif}, depending on argument \code{type}:
+\itemize{
+\item \code{"target"} (default): Bar plot of the target variable (default).
+\item \code{"duo"}: Passes data and additional arguments down to \code{\link[GGally:ggduo]{GGally::ggduo()}}.
+\code{columnsX} is target, \code{columnsY} is features.
+\item \code{"pairs"}: Passes data and additional arguments down to \code{\link[GGally:ggpairs]{GGally::ggpairs()}}.
+Color is set to target column.
+}
 }
 \examples{
 library(mlr3)
+library(mlr3viz)
+
 task = mlr_tasks$get("iris")
 
 head(fortify(task))
