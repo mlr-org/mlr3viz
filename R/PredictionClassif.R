@@ -37,20 +37,15 @@ autoplot.PredictionClassif = function(object, type = "stacked", ...) {
     },
 
     "roc" = {
-      roc(object, ctype = "ROC")
+      require_namespaces("precrec")
+      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "ROC")
     },
 
     "prc" = {
-      roc(object, ctype = "PRC")
+      require_namespaces("precrec")
+      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "PRC")
     },
 
     stop("Unknown type")
   )
-}
-
-roc = function(prediction, ctype = "ROC") {
-  require_namespaces("precrec")
-  data = roc_data(prediction)
-  evaluated = do.call(precrec::evalmod, data)
-  autoplot(evaluated, curvetype = ctype)
 }

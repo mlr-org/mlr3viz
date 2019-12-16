@@ -1,21 +1,3 @@
-roc_data = function(prediction) {
-  lvls = levels(prediction$truth)
-
-  if (length(lvls) != 2L) {
-    stopf("Need a binary classification problem to plot a ROC curve")
-  }
-
-  if ("prob" %nin% prediction$predict_types) {
-    stopf("Need predicted probabilities to plot a ROC curve")
-  }
-
-  list(
-    scores = prediction$prob[, lvls[1L]],
-    labels = prediction$truth,
-    posclass = lvls[1L]
-  )
-}
-
 
 autoplot_roc_bmr = function(object, task_id = NULL, curvetype = "ROC") {
   require_namespaces("precrec")
@@ -28,6 +10,8 @@ autoplot_roc_bmr = function(object, task_id = NULL, curvetype = "ROC") {
     needle = assert_choice(task_id, aggr$task_id)
     aggr = aggr[list(needle), on = "task_id"]
   }
+
+  tab = object$score()[list(needle), c("task_id", "learner_id", "iteration", "prediction"), on = "task_id", with = FALSE]
 
   data = transpose_list(lapply(aggr$resample_result, function(x) roc_data(x$prediction())))
   mmdata = precrec::mmdata(scores = data$scores, labels = data$labels, modnames = aggr$learner_id, posclass = data$posclass[[1L]])

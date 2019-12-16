@@ -41,8 +41,19 @@ resampling = rsmp("cv")
 object = resample(task, learner, resampling)
 
 head(fortify(object))
+
+# Default: boxplot
 autoplot(object)
-autoplot(object, type = "histogram")
+
+# Histogram
+autoplot(object, type = "histogram", bins = 30)
+
+# ROC curve, averaged over resampling folds:
 autoplot(object, type = "roc")
+
+# ROC curve of joint prediction object:
+autoplot(object$prediction(), type = "roc")
+
+# Precision Recall Curve
 autoplot(object, type = "prc")
 }

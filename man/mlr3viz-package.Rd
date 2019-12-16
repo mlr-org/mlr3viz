@@ -6,7 +6,7 @@
 \alias{mlr3viz-package}
 \title{mlr3viz: Vizualizations for mlr3}
 \description{
-Provides visualizations for mlr3 objects.
+Provides `autoplot()` like visualizations for 'mlr3' objects.
 }
 \seealso{
 Useful links:

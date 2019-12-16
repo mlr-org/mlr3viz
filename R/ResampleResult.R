@@ -28,9 +28,20 @@
 #' object = resample(task, learner, resampling)
 #'
 #' head(fortify(object))
+#'
+#' # Default: boxplot
 #' autoplot(object)
-#' autoplot(object, type = "histogram")
+#'
+#' # Histogram
+#' autoplot(object, type = "histogram", bins = 30)
+#'
+#' # ROC curve, averaged over resampling folds:
 #' autoplot(object, type = "roc")
+#'
+#' # ROC curve of joint prediction object:
+#' autoplot(object$prediction(), type = "roc")
+#'
+#' # Precision Recall Curve
 #' autoplot(object, type = "prc")
 autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, ...) {
   task = object$task
@@ -46,11 +57,12 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, ...
     },
 
     "roc" = {
-      autoplot(object$prediction(), type = "roc")
+      require_namespaces("precrec")
+      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "ROC")
     },
 
     "prc" = {
-      autoplot(object$prediction(), type = "prc")
+      autoplot(as_precrec_rr(object), curvetype = "prc")
     },
 
     stop("Unknown type")
@@ -65,3 +77,5 @@ fortify.ResampleResult = function(model, data, measure = NULL, ...) {
   melt(data, measure.vars = measure$id,
     variable.name = "measure_id", value.name = "performance")
 }
+
+
