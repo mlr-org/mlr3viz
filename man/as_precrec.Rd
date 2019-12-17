@@ -4,6 +4,7 @@
 \alias{as_precrec}
 \alias{as_precrec.PredictionClassif}
 \alias{as_precrec.ResampleResult}
+\alias{as_precrec.BenchmarkResult}
 \title{Convert to 'precrec' Format}
 \usage{
 as_precrec(object)
@@ -11,9 +12,11 @@ as_precrec(object)
 \method{as_precrec}{PredictionClassif}(object)
 
 \method{as_precrec}{ResampleResult}(object)
+
+\method{as_precrec}{BenchmarkResult}(object)
 }
 \arguments{
-\item{`object`}{:: \code{any}\cr
+\item{object}{:: \code{any}\cr
 Object to convert.}
 }
 \value{

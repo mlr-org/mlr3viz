@@ -62,7 +62,8 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, ...
     },
 
     "prc" = {
-      autoplot(as_precrec_rr(object), curvetype = "prc")
+      require_namespaces("precrec")
+      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "prc")
     },
 
     stop("Unknown type")

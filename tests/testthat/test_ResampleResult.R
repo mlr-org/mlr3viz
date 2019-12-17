@@ -1,8 +1,9 @@
 context("ResampleResult")
 
-task = mlr_tasks$get("iris")
-learner = mlr_learners$get("classif.rpart")
-resampling = mlr_resamplings$get("cv")
+library(mlr3)
+task = tsk("sonar")
+learner = lrn("classif.rpart", predict_type = "prob")
+resampling = rsmp("cv")
 rr = resample(task, learner, resampling)
 
 test_that("fortify ResampleResult", {
@@ -16,5 +17,11 @@ test_that("autoplot ResampleResult", {
   expect_true(is.ggplot(p))
 
   p = autoplot(rr, measure = msr("classif.ce"), type = "histogram")
+  expect_true(is.ggplot(p))
+
+  p = autoplot(rr, type = "roc")
+  expect_true(is.ggplot(p))
+
+  p = autoplot(rr, type = "prc")
   expect_true(is.ggplot(p))
 })

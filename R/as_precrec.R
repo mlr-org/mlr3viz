@@ -3,7 +3,7 @@
 #' @description
 #' Converts to a format which is understood by [precrec::evalmod()] of package \CRANpkg{precrec}.
 #'
-#' @param `object` :: `any`\cr
+#' @param object :: `any`\cr
 #'   Object to convert.
 #' @return `list()` or nested `list()`.
 #' @export
@@ -27,13 +27,15 @@ roc_data = function(prediction) {
   )
 }
 
+
 #' @rdname as_precrec
 #' @export
 as_precrec.PredictionClassif = function(object) {
   require_namespaces("precrec")
-  data = roc_data(prediction)
+  data = roc_data(object)
   precrec::mmdata(scores = data$scores, labels = data$labels)
 }
+
 
 #' @rdname as_precrec
 #' @export
@@ -44,19 +46,19 @@ as_precrec.ResampleResult = function(object) {
   precrec::mmdata(scores = data$scores, labels = data$labels, dsids = seq_along(predictions))
 }
 
+
 #' @rdname as_precrec
 #' @export
 as_precrec.BenchmarkResult = function(object) {
   require_namespaces("precrec")
+
   scores = object$score(measures = list())
-  task_id = "spam"
-  if (is.null(task_id)) {
-    if (uniqueN(aggr$task_id) > 1L) {
-      stopf("autoplot.BenchmarkResult can only work on a benchmark results with a single task. You can select one via argument `task_id`")
-    }
-  } else {
-    needle = assert_choice(task_id, scores$task_id)
-    scores = scores[list(needle), on = "task_id"]
+
+  if (uniqueN(scores$task_id) > 1L) {
+    stopf("Unable to convert benchmark results with multiple tasks.")
+  }
+  if (uniqueN(scores$resampling_id) > 1L) {
+    stopf("Unable to convert benchmark results with multiple resamplings.")
   }
 
   predictions = map(scores$prediction, "test")
@@ -64,8 +66,7 @@ as_precrec.BenchmarkResult = function(object) {
   data$labels = split(data$labels, scores$iteration)
   data$scores = split(data$scores, scores$iteration)
 
-  mmdata = precrec::mmdata(data$scores, data$labels, dsids = 1:10, modnames = unique(scores$learner_id))
-
-  autoplot(precrec::evalmod(mmdata))
+  lrns = unique(scores$learner_id)
+  iters = unique(scores$iteration)
+  precrec::mmdata(data$scores, data$labels, dsids = iters, modnames = lrns)
 }
-

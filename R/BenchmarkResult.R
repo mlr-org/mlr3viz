@@ -5,17 +5,15 @@
 #'
 #' * `"boxplot"` (default): Boxplots of performance measures, one box per [mlr3::Learner] and one facet per [mlr3::Task].
 #' * `"roc"`: ROC curve (1 - specificity on x, sensitivity on y).
-#'   The predictions of the individual [mlr3::Resampling]s are merged prior to calculating the ROC curve
-#'   (micro averaged). Requires package \CRANpkg{precrec}.
-#'   If the [mlr3::BenchmarkResult] has multiple tasks, a single task must be selected via argument `task_id`.
+#'   The [mlr3::BenchmarkResult] may only have a single [mlr3::Task] and a single [mlr3::ResampleResult].
+#'   Note that you can subset any [mlr3::BenchmarkResult] with its `$filter()` method (see examples).
+#'   Requires package \CRANpkg{precrec}.
 #' * `"prc"`: Precision recall curve. See `"roc"`.
 #'
 #' @param object ([mlr3::BenchmarkResult]).
 #' @param type (character(1)):\cr
 #'   Type of the plot.
 #' @param measure ([mlr3::Measure]).
-#' @param task_id (`character(1)`):\cr
-#'   Id of the task to operate on.
 #' @param ... (`any`):
 #'   Currently ignored.
 #'
@@ -32,9 +30,9 @@
 #'
 #' head(fortify(object))
 #' autoplot(object)
-#' autoplot(object, type = "roc", task_id = "spam")
-#' autoplot(object, type = "prc", task_id = "pima")
-autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, task_id = NULL, ...) {
+#' autoplot(object$clone()$filter(task_ids = "spam"), type = "roc")
+#' autoplot(object$clone()$filter(task_ids = "pima"), type = "prc")
+autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ...) {
   task = object$data$task[[1L]]
   measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
   tab = fortify(object, measure = measure)
@@ -46,11 +44,13 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ta
     },
 
     "roc" = {
-      autoplot_roc_bmr(object, task_id, "ROC")
+      require_namespaces("precrec")
+      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "ROC", show_cb = TRUE)
     },
 
     "prc" = {
-      autoplot_roc_bmr(object, task_id, "PRC")
+      require_namespaces("precrec")
+      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "PRC", show_cb = TRUE)
     },
 
     stop("Unknown type")
