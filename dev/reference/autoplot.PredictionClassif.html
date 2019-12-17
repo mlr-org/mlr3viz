@@ -193,13 +193,13 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></td>
 <span class='no'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"classif.rpart"</span>, <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"prob"</span>)
 <span class='no'>object</span> <span class='kw'>=</span> <span class='no'>learner</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='fortify.html'>fortify</a></span>(<span class='no'>object</span>))</div><div class='output co'>#&gt;    row_id truth response prob.nonspam prob.spam
-#&gt; 1:      1  spam     spam   0.14864865 0.8513514
-#&gt; 2:      2  spam     spam   0.06603774 0.9339623
-#&gt; 3:      3  spam     spam   0.06603774 0.9339623
-#&gt; 4:      4  spam     spam   0.09090909 0.9090909
-#&gt; 5:      5  spam     spam   0.09090909 0.9090909
-#&gt; 6:      6  spam  nonspam   0.89952503 0.1004750</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>)</div><div class='img'><img src='autoplot.PredictionClassif-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"roc"</span>)</div><div class='img'><img src='autoplot.PredictionClassif-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"prc"</span>)</div><div class='img'><img src='autoplot.PredictionClassif-3.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='fortify.html'>fortify</a></span>(<span class='no'>object</span>))</div><div class='output co'>#&gt;    row_id truth response prob.spam prob.nonspam
+#&gt; 1:      1  spam     spam 0.8513514   0.14864865
+#&gt; 2:      2  spam     spam 0.9339623   0.06603774
+#&gt; 3:      3  spam     spam 0.9339623   0.06603774
+#&gt; 4:      4  spam     spam 0.9090909   0.09090909
+#&gt; 5:      5  spam     spam 0.9090909   0.09090909
+#&gt; 6:      6  spam  nonspam 0.1004750   0.89952503</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>)</div><div class='img'><img src='autoplot.PredictionClassif-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"roc"</span>)</div><div class='img'><img src='autoplot.PredictionClassif-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"prc"</span>)</div><div class='img'><img src='autoplot.PredictionClassif-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
