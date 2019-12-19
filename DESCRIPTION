@@ -23,15 +23,10 @@ Imports:
 Suggests:
     GGally,
     lgr,
-    mlr3 (>= 0.1.5),
+    mlr3 (>= 0.1.6),
     mlr3filters,
-    mlr3proba,
     precrec,
-    survival,
     testthat
-Remotes:
-    mlr-org/mlr3,
-    mlr-org/mlr3proba
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
