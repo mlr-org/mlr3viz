@@ -44,18 +44,18 @@ rr = resample(task, learner, rsmp("cv", folds = 10))
 autoplot(task)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](man/figures/README-demo-1.png)<!-- -->
 
 ``` r
 # Pairs plot from GGally
 autoplot(task, type = "pairs")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+![](man/figures/README-demo-2.png)<!-- -->
 
 ``` r
 # ROC curve for the ResampleResult
 autoplot(rr, type = "roc")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-3.png)<!-- -->
+![](man/figures/README-demo-3.png)<!-- -->

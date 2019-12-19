@@ -4,8 +4,9 @@ output: github_document
 
 ```{r, include = FALSE}
 lgr::get_logger("mlr3")$set_threshold("warn")
-set.seed(1)
+knitr::opts_chunk$set(fig.path = "man/figures/README-")
 options(datatable.print.class = FALSE, datatable.print.keys = FALSE)
+set.seed(1)
 ```
 
 # mlr3viz
@@ -37,7 +38,7 @@ remotes::install_github("mlr-org/mlr3filters")
 
 ## Short Demo
 
-```{r, message = FALSE, warning = FALSE}
+```{r demo, message = FALSE, warning = FALSE}
 library(mlr3)
 library(mlr3viz)
 
