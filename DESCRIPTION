@@ -25,14 +25,12 @@ Suggests:
     lgr,
     mlr3,
     mlr3filters,
-    mlr3proba,
     precrec,
     survival,
     testthat
 Remotes:
-    mlr-org/mlr3proba
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.1
+RoxygenNote: 7.0.2
