@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Re-export of <code>autoplot</code>
-
-See <code><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>ggplot2::autoplot()</a></code>. — autoplot • mlr3viz</title>
+<title>Convert to 'precrec' Format — as_precrec • mlr3viz</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -45,11 +43,8 @@ See <code><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>ggplot
 
 
 
-<meta property="og:title" content="Re-export of <code>autoplot</code>
-
-See <code><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>ggplot2::autoplot()</a></code>. — autoplot" />
-<meta property="og:description" content="Re-export of autoplot
-See ggplot2::autoplot()." />
+<meta property="og:title" content="Convert to 'precrec' Format — as_precrec" />
+<meta property="og:description" content="Converts to a format which is understood by precrec::evalmod() of package precrec." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -141,25 +136,46 @@ See ggplot2::autoplot()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Re-export of <code>autoplot</code>
-
-See <code><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>ggplot2::autoplot()</a></code>.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/reexports.R'><code>R/reexports.R</code></a></small>
-    <div class="hidden name"><code>autoplot.Rd</code></div>
+    <h1>Convert to 'precrec' Format</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/as_precrec.R'><code>R/as_precrec.R</code></a></small>
+    <div class="hidden name"><code>as_precrec.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Re-export of <code>autoplot</code></p>
-<p>See <code><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>ggplot2::autoplot()</a></code>.</p>
+    <p>Converts to a format which is understood by <code><a href='https://rdrr.io/pkg/precrec/man/evalmod.html'>precrec::evalmod()</a></code> of package <a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>as_precrec</span>(<span class='no'>object</span>)
 
+<span class='co'># S3 method for PredictionClassif</span>
+<span class='fu'>as_precrec</span>(<span class='no'>object</span>)
 
+<span class='co'># S3 method for ResampleResult</span>
+<span class='fu'>as_precrec</span>(<span class='no'>object</span>)
+
+<span class='co'># S3 method for BenchmarkResult</span>
+<span class='fu'>as_precrec</span>(<span class='no'>object</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>object</th>
+      <td><p>:: <code>any</code><br />
+Object to convert.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code><a href='https://rdrr.io/r/base/list.html'>list()</a></code> or nested <code><a href='https://rdrr.io/r/base/list.html'>list()</a></code>.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
     </ul>
 
   </div>

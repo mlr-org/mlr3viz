@@ -47,9 +47,9 @@
 <meta property="og:description" content="Generates plots for mlr3::BenchmarkResult, depending on argument type:
 &quot;boxplot&quot; (default): Boxplots of performance measures, one box per mlr3::Learner and one facet per mlr3::Task.
 &quot;roc&quot;: ROC curve (1 - specificity on x, sensitivity on y).
-The predictions of the individual mlr3::Resamplings are merged prior to calculating the ROC curve
-(micro averaged). Requires package precrec.
-If the mlr3::BenchmarkResult has multiple tasks, a single task must be selected via argument task_id.
+The mlr3::BenchmarkResult may only have a single mlr3::Task and a single mlr3::ResampleResult.
+Note that you can subset any mlr3::BenchmarkResult with its $filter() method (see examples).
+Requires package precrec.
 &quot;prc&quot;: Precision recall curve. See &quot;roc&quot;.
 
 " />
@@ -85,14 +85,25 @@ If the mlr3::BenchmarkResult has multiple tasks, a single task must be selected 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mlr3viz</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Development version">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Version">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">
+    <span class="fa fa fa fa-file-alt"></span>
+     
+    Reference
+  </a>
+</li>
+<li>
+  <a href="https://mlr3book.mlr-org.com">
+    <span class="fa fa fa fa-link"></span>
+     
+    mlr3book
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -142,16 +153,16 @@ If the mlr3::BenchmarkResult has multiple tasks, a single task must be selected 
     <p>Generates plots for <a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a>, depending on argument <code>type</code>:</p><ul>
 <li><p><code>"boxplot"</code> (default): Boxplots of performance measures, one box per <a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a> and one facet per <a href='https://mlr3.mlr-org.com/reference/Task.html'>mlr3::Task</a>.</p></li>
 <li><p><code>"roc"</code>: ROC curve (1 - specificity on x, sensitivity on y).
-The predictions of the individual <a href='https://mlr3.mlr-org.com/reference/Resampling.html'>mlr3::Resampling</a>s are merged prior to calculating the ROC curve
-(micro averaged). Requires package <a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>.
-If the <a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a> has multiple tasks, a single task must be selected via argument <code>task_id</code>.</p></li>
+The <a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a> may only have a single <a href='https://mlr3.mlr-org.com/reference/Task.html'>mlr3::Task</a> and a single <a href='https://mlr3.mlr-org.com/reference/ResampleResult.html'>mlr3::ResampleResult</a>.
+Note that you can subset any <a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a> with its <code>$filter()</code> method (see examples).
+Requires package <a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>.</p></li>
 <li><p><code>"prc"</code>: Precision recall curve. See <code>"roc"</code>.</p></li>
 </ul>
 
     </div>
 
     <pre class="usage"><span class='co'># S3 method for BenchmarkResult</span>
-<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"boxplot"</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>task_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"boxplot"</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,11 +179,6 @@ Type of the plot.</p></td>
     <tr>
       <th>measure</th>
       <td><p>(<a href='https://mlr3.mlr-org.com/reference/Measure.html'>mlr3::Measure</a>).</p></td>
-    </tr>
-    <tr>
-      <th>task_id</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>):<br />
-Id of the task to operate on.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -200,7 +206,7 @@ Currently ignored.</p></td>
 #&gt; 3:  1    spam classif.featureless            cv  0.4043478
 #&gt; 4:  1    spam classif.featureless            cv  0.4065217
 #&gt; 5:  1    spam classif.featureless            cv  0.4021739
-#&gt; 6:  1    spam classif.featureless            cv  0.3847826</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>)</div><div class='img'><img src='autoplot.BenchmarkResult-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"roc"</span>, <span class='kw'>task_id</span> <span class='kw'>=</span> <span class='st'>"spam"</span>)</div><div class='img'><img src='autoplot.BenchmarkResult-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"prc"</span>, <span class='kw'>task_id</span> <span class='kw'>=</span> <span class='st'>"pima"</span>)</div><div class='img'><img src='autoplot.BenchmarkResult-3.png' alt='' width='700' height='433' /></div></pre>
+#&gt; 6:  1    spam classif.featureless            cv  0.3847826</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>)</div><div class='img'><img src='autoplot.BenchmarkResult-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>$<span class='fu'>clone</span>()$<span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='kw'>task_ids</span> <span class='kw'>=</span> <span class='st'>"spam"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"roc"</span>)</div><div class='img'><img src='autoplot.BenchmarkResult-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>$<span class='fu'>clone</span>()$<span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='kw'>task_ids</span> <span class='kw'>=</span> <span class='st'>"pima"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"prc"</span>)</div><div class='img'><img src='autoplot.BenchmarkResult-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

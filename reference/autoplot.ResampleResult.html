@@ -85,14 +85,25 @@ The predictions of the individual mlr3::Resamplings are merged prior to calculat
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mlr3viz</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Development version">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Version">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">
+    <span class="fa fa fa fa-file-alt"></span>
+     
+    Reference
+  </a>
+</li>
+<li>
+  <a href="https://mlr3book.mlr-org.com">
+    <span class="fa fa fa fa-link"></span>
+     
+    mlr3book
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -195,7 +206,17 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></td>
 #&gt; 3:         3 classif.ce   0.2380952
 #&gt; 4:         4 classif.ce   0.3333333
 #&gt; 5:         5 classif.ce   0.3333333
-#&gt; 6:         6 classif.ce   0.3333333</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>)</div><div class='img'><img src='autoplot.ResampleResult-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>)</div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='img'><img src='autoplot.ResampleResult-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"roc"</span>)</div><div class='img'><img src='autoplot.ResampleResult-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"prc"</span>)</div><div class='img'><img src='autoplot.ResampleResult-4.png' alt='' width='700' height='433' /></div></pre>
+#&gt; 6:         6 classif.ce   0.3333333</div><div class='input'>
+<span class='co'># Default: boxplot</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>)</div><div class='img'><img src='autoplot.ResampleResult-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Histogram</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div><div class='img'><img src='autoplot.ResampleResult-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># ROC curve, averaged over resampling folds:</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"roc"</span>)</div><div class='img'><img src='autoplot.ResampleResult-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># ROC curve of joint prediction object:</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>$<span class='fu'>prediction</span>(), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"roc"</span>)</div><div class='img'><img src='autoplot.ResampleResult-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Precision Recall Curve</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"prc"</span>)</div><div class='img'><img src='autoplot.ResampleResult-5.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
