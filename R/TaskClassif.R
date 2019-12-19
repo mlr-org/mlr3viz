@@ -9,8 +9,7 @@
 #'   Color is set to target column.
 #'
 #' @param object ([mlr3::TaskClassif]).
-#' @param type (`character(1)`)\cr
-#'   Type of the plot.
+#' @template param_type
 #' @param ... (`any`):
 #'   Additional argument, possibly passed down to the underlying plot functions.
 #'
@@ -27,7 +26,8 @@
 #' autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")), type = "pairs")
 #' autoplot(task, type = "duo")
 autoplot.TaskClassif = function(object, type = "target", ...) {
-  assert_choice(type, c("target", "duo", "pairs"))
+  assert_string(type)
+
   target = object$target_names
 
   switch(type,
@@ -45,6 +45,6 @@ autoplot.TaskClassif = function(object, type = "target", ...) {
       GGally::ggpairs(object, aes_string(color = target), ...)
     },
 
-    stop("Unknown type")
+    stopf("Unknown plot type '%s'", type)
   )
 }

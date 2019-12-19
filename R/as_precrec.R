@@ -5,7 +5,7 @@
 #'
 #' @param object :: `any`\cr
 #'   Object to convert.
-#' @return `list()` or nested `list()`.
+#' @return Object as created by [precrec::mmdata()].
 #' @export
 as_precrec = function(object) {
   UseMethod("as_precrec")

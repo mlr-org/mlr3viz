@@ -5,8 +5,7 @@
 #' * `"barplot"` (default): Bar plot of filter scores.
 #'
 #' @param object ([mlr3filters::Filter]).
-#' @param type (character(1)):\cr
-#'   Type of the plot.
+#' @template param_type
 #' @param n (`integer(1)`)\cr
 #'   Only include the first `n` features with highest importance.
 #'   Defaults to all features.
@@ -27,6 +26,8 @@
 #' head(fortify(f))
 #' autoplot(f, n = 5)
 autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) {
+  assert_string(type)
+
   data = head(fortify(object), n)
 
   switch(type,
@@ -35,7 +36,7 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) {
         scale_x_discrete(limits = data$feature)
     },
 
-    stop("Unknown type")
+    stopf("Unknown plot type '%s'", type)
   )
 }
 

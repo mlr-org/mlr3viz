@@ -10,8 +10,7 @@
 #' * `"prc"`: Precision recall curve. See `"roc"`.
 #'
 #' @param object ([mlr3::ResampleResult]).
-#' @param type (character(1)):\cr
-#'   Type of the plot.
+#' @template param_type
 #' @param measure ([mlr3::Measure]).
 #' @param ... (`any`):
 #'   Additional arguments, passed down to the respective `geom`.
@@ -44,6 +43,8 @@
 #' # Precision Recall Curve
 #' autoplot(object, type = "prc")
 autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, ...) {
+  assert_string(type)
+
   task = object$task
   measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
 
@@ -58,15 +59,15 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, ...
 
     "roc" = {
       require_namespaces("precrec")
-      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "ROC")
+      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "ROC", show_cb = TRUE)
     },
 
     "prc" = {
       require_namespaces("precrec")
-      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "prc")
+      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "prc", show_cb = TRUE)
     },
 
-    stop("Unknown type")
+    stopf("Unknown plot type '%s'", type)
   )
 }
 

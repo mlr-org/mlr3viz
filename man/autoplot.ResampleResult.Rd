@@ -10,7 +10,7 @@
 \item{object}{(\link[mlr3:ResampleResult]{mlr3::ResampleResult}).}
 
 \item{type}{(character(1)):\cr
-Type of the plot.}
+Type of the plot. See description.}
 
 \item{measure}{(\link[mlr3:Measure]{mlr3::Measure}).}
 

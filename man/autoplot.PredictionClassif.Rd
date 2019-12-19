@@ -10,7 +10,7 @@
 \item{object}{(\link[mlr3:PredictionClassif]{mlr3::PredictionClassif}).}
 
 \item{type}{(character(1)):\cr
-Type of the plot.}
+Type of the plot. See description.}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to the respective \code{geom}.}

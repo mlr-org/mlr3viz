@@ -8,8 +8,7 @@
 #' * `"histogram"`: Histogram of residuals \eqn{r = y - \hat{y}}{r = y - y.hat}.
 #'
 #' @param object ([mlr3::PredictionRegr]).
-#' @param type (character(1)):\cr
-#'   Type of the plot.
+#' @template param_type
 #' @param ... (`any`):
 #'   Additional arguments, passed down to the respective `geom`.
 #'
@@ -27,6 +26,8 @@
 #' autoplot(object)
 #' autoplot(object, type = "histogram", binwidth = 1)
 autoplot.PredictionRegr = function(object, type = "xy", ...) {
+  assert_string(type)
+
   switch(type,
     "xy" = {
       ggplot(object, aes_string(x = "response", y = "truth")) + geom_point(...) + geom_rug(sides = "bl") + geom_smooth(method = "lm")
@@ -38,6 +39,6 @@ autoplot.PredictionRegr = function(object, type = "xy", ...) {
       ggplot(object, aes_string(x = "residuals", y = "..density..")) + geom_histogram(...)
     },
 
-    stop("Unknown type")
+    stopf("Unknown plot type '%s'", type)
   )
 }

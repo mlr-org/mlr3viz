@@ -9,8 +9,8 @@
 \arguments{
 \item{object}{(\link[mlr3:TaskClassif]{mlr3::TaskClassif}).}
 
-\item{type}{(\code{character(1)})\cr
-Type of the plot.}
+\item{type}{(character(1)):\cr
+Type of the plot. See description.}
 
 \item{...}{(\code{any}):
 Additional argument, possibly passed down to the underlying plot functions.}

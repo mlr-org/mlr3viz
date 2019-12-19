@@ -10,8 +10,7 @@
 #'   Requires package \CRANpkg{precrec}.
 #'
 #' @param object ([mlr3::PredictionClassif]).
-#' @param type (character(1)):\cr
-#'   Type of the plot.
+#' @template param_type
 #' @param ... (`any`):
 #'   Additional arguments, passed down to the respective `geom`.
 #'
@@ -30,6 +29,8 @@
 #' autoplot(object, type = "roc")
 #' autoplot(object, type = "prc")
 autoplot.PredictionClassif = function(object, type = "stacked", ...) {
+  assert_string(type)
+
   switch(type,
     "stacked" = {
       tab = melt(fortify(object)[, c("truth", "response")], measure.vars = c("truth", "response"))
@@ -46,6 +47,6 @@ autoplot.PredictionClassif = function(object, type = "stacked", ...) {
       autoplot(precrec::evalmod(as_precrec(object)), curvetype = "PRC")
     },
 
-    stop("Unknown type")
+    stopf("Unknown plot type '%s'", type)
   )
 }

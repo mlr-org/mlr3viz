@@ -10,7 +10,7 @@
 \item{object}{(\link[mlr3filters:Filter]{mlr3filters::Filter}).}
 
 \item{type}{(character(1)):\cr
-Type of the plot.}
+Type of the plot. See description.}
 
 \item{n}{(\code{integer(1)})\cr
 Only include the first \code{n} features with highest importance.

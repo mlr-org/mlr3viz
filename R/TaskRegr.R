@@ -7,8 +7,7 @@
 #'     Color is set to target column.
 #'
 #' @param object ([mlr3::TaskRegr]).
-#' @param type (`character(1)`):\cr
-#'   Type of the plot.
+#' @template param_type
 #' @param ... (`any`):
 #'   Additional argument, passed down to the underlying `geom` or plot functions.
 #'
@@ -25,7 +24,7 @@
 #' autoplot(task)
 #' autoplot(task, type = "pairs")
 autoplot.TaskRegr = function(object, type = "target", ...) {
-  assert_choice(type, c("target", "pairs"))
+  assert_string(type)
 
   switch(type,
     "target" = {
@@ -38,6 +37,6 @@ autoplot.TaskRegr = function(object, type = "target", ...) {
       GGally::ggpairs(object, ...)
     },
 
-    stop("Unknown type")
+    stopf("Unknown plot type '%s'", type)
   )
 }

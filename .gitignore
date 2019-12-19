@@ -35,3 +35,5 @@ vignettes/*.pdf
 inst/doc
 .DS_Store
 .Rproj.user
+
+README.html
