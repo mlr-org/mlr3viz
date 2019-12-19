@@ -1,6 +1,6 @@
 Package: mlr3viz
-Title: Vizualizations for mlr3
-Version: 0.1.0-9000
+Title: Visualizations for 'mlr3'
+Version: 0.1.0
 Authors@R:
     person(given = "Michel",
            family = "Lang",
@@ -26,6 +26,7 @@ Suggests:
     mlr3 (>= 0.1.6),
     mlr3filters,
     precrec,
+    rpart,
     testthat
 Encoding: UTF-8
 LazyData: true
