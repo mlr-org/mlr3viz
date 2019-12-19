@@ -15,7 +15,7 @@ Type of the plot. See description.}
 \item{measure}{(\link[mlr3:Measure]{mlr3::Measure}).}
 
 \item{...}{(\code{any}):
-Currently ignored.}
+Additional arguments, passed down to the respective \code{geom}.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.

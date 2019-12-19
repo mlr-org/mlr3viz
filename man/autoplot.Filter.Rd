@@ -17,7 +17,7 @@ Only include the first \code{n} features with highest importance.
 Defaults to all features.}
 
 \item{...}{(\code{any}):
-Additional argument, possibly passed down to the underlying plot functions.}
+Additional argument, passed down to the respective \code{geom}.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.

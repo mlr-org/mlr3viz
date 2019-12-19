@@ -10,7 +10,7 @@
 #'   Only include the first `n` features with highest importance.
 #'   Defaults to all features.
 #' @param ... (`any`):
-#'   Additional argument, possibly passed down to the underlying plot functions.
+#'   Additional argument, passed down to the respective `geom`.
 #'
 #' @return [ggplot2::ggplot()] object.
 #' @export
@@ -32,7 +32,7 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) {
 
   switch(type,
     "boxplot" = {
-      ggplot(data = data, aes_string(x = "feature", y = "score")) + geom_bar(stat = "identity") +
+      ggplot(data = data, aes_string(x = "feature", y = "score")) + geom_bar(stat = "identity", ...) +
         scale_x_discrete(limits = data$feature)
     },
 

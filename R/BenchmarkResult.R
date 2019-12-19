@@ -14,7 +14,7 @@
 #' @template param_type
 #' @param measure ([mlr3::Measure]).
 #' @param ... (`any`):
-#'   Currently ignored.
+#'   Additional arguments, passed down to the respective `geom`.
 #'
 #' @return [ggplot2::ggplot()] object.
 #' @export
@@ -41,7 +41,7 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ..
   switch(type,
     "boxplot" = {
       ggplot(object, measure = measure, aes_string("learner_id", measure$id)) +
-        geom_boxplot() + xlab("") + facet_wrap("task_id")
+        geom_boxplot(...) + xlab("") + facet_wrap("task_id")
     },
 
     "roc" = {
