@@ -28,7 +28,7 @@
 #' autoplot(task, rhs = "sex")
 #' autoplot(task, type = "duo")
 autoplot.TaskSurv = function(object, type = "target", ...) {
-  assert_choice(type, c("target", "pairs", "duo"))
+  assert_string(type)
   require_namespaces(c("survival", "GGally"))
 
   switch(type,
@@ -41,7 +41,6 @@ autoplot.TaskSurv = function(object, type = "target", ...) {
     },
 
     "duo" = {
-      require_namespaces("GGally")
       GGally::ggduo(object, columnsX = object$target_names, columnsY = object$feature_names, ...)
     },
 
@@ -49,6 +48,6 @@ autoplot.TaskSurv = function(object, type = "target", ...) {
       GGally::ggpairs(object, ...)
     },
 
-    stop("Unknown type")
+    stopf("Unknown plot type '%s'", type)
   )
 }
