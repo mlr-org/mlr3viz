@@ -33,6 +33,7 @@ Suggests:
     mlr3proba,
     precrec,
     rpart,
+    survival,
     testthat
 Encoding: UTF-8
 LazyData: true
