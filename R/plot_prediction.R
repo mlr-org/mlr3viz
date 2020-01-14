@@ -16,12 +16,13 @@
 #' library(mlr3)
 #' library(mlr3viz)
 #'
-#' task = tsk("spam")
+#' task = tsk("pima")$select(c("age", "glucose"))
 #' learner = lrn("classif.rpart", predict_type = "prob")
-#' plot_prediction(learner, task)
+#' p = plot_prediction(learner, task)
 plot_prediction = function(learner, task, grid_points = 100L, expand_range = 0) {
   UseMethod("plot_prediction")
 }
+
 #' @export
 plot_prediction.LearnerClassif = function(learner, task, grid_points = 100L, expand_range = 0) {
 
