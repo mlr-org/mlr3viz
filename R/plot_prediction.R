@@ -1,14 +1,20 @@
 #' @title Plot for Learner Predictions
 #'
 #' @description
-#' Generates plots for [mlr3::Learner], and [mlr3::Task]
+#' Generates plots for [mlr3::Learner], and [mlr3::Task].
 #'
-#' @param Learner ([mlr3::Learner])
-#' @param Task ([mlr3::Task])
-#' @param grid_ponints (`integer(1)`)\cr
+#' * For classification we support tasks with two features and learners with `predict_type="response"` and `"prob"`.
+#' * For regression we support tasks with one or two features.
+#'   For tasks with one feature we can print confidence bounds if the predict type of the learner was set to `"se"`.
+#'   For tasks with two features the predict type will be ignored.
+#'
+#' @param learner ([mlr3::Learner])
+#' @param task ([mlr3::Task])
+#' @param grid_points (`integer(1)`)\cr
 #'   Resolution of the grid.
+#'   For factors, ordered and logicals this value is ignored.
 #' @param expand_range (`numeric(1)`)\cr
-#'   Expand the prediction range over the range of the task.
+#'   Expand the prediction range for numerical features.
 #'
 #' @return [ggplot2::ggplot()] object.
 #' @export
@@ -81,7 +87,7 @@ sequenize = function(x, n, expand_range) {
     if (is.integer(x)) {
       res = unique(as.integer(round(res)))
     }
-  } else if (is.factor(x) || os.ordered(x)) {
+  } else if (is.factor(x) || is.ordered(x)) {
     res = factor(levels(x), levels = levels(x), ordered = is.ordered(x)) # keeps the order of the levels
   } else if (is.logical(x)) {
     res = c(TRUE, FALSE)

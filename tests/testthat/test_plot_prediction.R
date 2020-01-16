@@ -15,7 +15,7 @@ test_that("plot_prediction.LearnerClassif", {
 
   # non numerical columns
   task = tsk("german_credit")$select(c("housing", "employment_duration"))
-  p = plot_prediction(learner)
+  p = plot_prediction(learner, task)
   expect_true(is.ggplot(p))
 })
 
