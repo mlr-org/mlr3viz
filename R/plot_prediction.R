@@ -25,25 +25,15 @@ plot_prediction = function(learner, task, grid_points = 100L, expand_range = 0) 
 
 #' @export
 plot_prediction.LearnerClassif = function(learner, task, grid_points = 100L, expand_range = 0) {
-
   features = task$feature_names
   if (length(features) != 2) {
-    stop("plot_prediction only works for tasks with two features!")
+    stop("plot_prediction.TaskClassif only works for tasks with two features!")
   }
   if (!all(task$feature_types$type %in% "numeric")) {
-    stop("plot_prediction only works for tasks with purely numeric features!")
+    stop("plot_prediction.TaskClassif only works for tasks with purely numeric features!")
   }
 
-  learner = learner$clone()$train(task)
-
-  sequenize = function(x, n) {
-    r = range(x, na.rm = TRUE)
-    d = diff(r)
-    seq(from = r[1L] - expand_range * d, to = r[2L] + expand_range * d, length.out = n)
-  }
-
-  grid = cross_join(map(task$data(cols = features), sequenize, n = grid_points), sorted = FALSE)
-  grid = cbind(grid, remove_named(as.data.table(learner$predict_newdata(grid)), c("row_id", "truth")))
+  grid = predict_grid(learner, task, grid_points, expand_range)
 
   if (learner$predict_type == "prob") {
     grid[, prob.response := .SD[, paste0("prob.", response), with = FALSE] , by = response]
@@ -56,3 +46,45 @@ plot_prediction.LearnerClassif = function(learner, task, grid_points = 100L, exp
     geom_raster(raster_aes) +
     geom_point(data = task$data(), aes_string(features[1L], features[2L], fill = task$target_names), shape = 21, size = 4, color = "black")
 }
+
+
+#' @export
+plot_prediction.LearnerRegr = function(learner, task, grid_points = 100L, expand_range = 0) {
+  features = task$feature_names
+  if (length(features) > 2) {
+    stop("plot_prediction.LearnerRegr only works with one or two features!")
+  }
+  if (!all(task$feature_types$type %in% "numeric")) {
+    stop("plot_prediction.LearnerRegr only works for tasks with purely numeric features!")
+  }
+
+  grid = predict_grid(learner, task, grid_points, expand_range)
+
+  if (length(features) == 1) {
+    g = ggplot(grid, aes_string(features, "response")) +
+      geom_line() +
+      geom_point(data = task$data(), aes_string(features, task$target_names))
+  } else if (length(features) == 2) {
+    g = ggplot(grid, aes_string(features[1L], features[2L])) +
+      geom_raster(aes_string(fill = "response")) +
+      geom_point(data = task$data(), aes_string(features[1L], features[2L], fill = task$target_names), shape = 21, size = 4, color = "black")
+  }
+  return(g)
+
+}
+
+sequenize = function(x, n, expand_range) {
+  r = range(x, na.rm = TRUE)
+  d = diff(r)
+  seq(from = r[1L] - expand_range * d, to = r[2L] + expand_range * d, length.out = n)
+}
+
+predict_grid = function(learner, task, grid_points, expand_range) {
+  features = task$feature_names
+  learner = learner$clone()$train(task)
+  grid = cross_join(map(task$data(cols = features), sequenize, n = grid_points, expand_range = expand_range), sorted = FALSE)
+  grid = cbind(grid, remove_named(as.data.table(learner$predict_newdata(grid)), c("row_id", "truth")))
+  return(grid)
+}
+
+
