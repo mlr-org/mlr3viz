@@ -12,6 +12,11 @@ test_that("plot_prediction.LearnerClassif", {
   learner = lrn("classif.rpart", predict_type = "response")$train(task)
   p = plot_prediction(learner, task, expand_range = 0.1)
   expect_true(is.ggplot(p))
+
+  # non numerical columns
+  task = tsk("german_credit")$select(c("housing", "employment_duration"))
+  p = plot_prediction(learner)
+  expect_true(is.ggplot(p))
 })
 
 test_that("plot_prediction.LearnerRegr 2d", {
@@ -23,7 +28,14 @@ test_that("plot_prediction.LearnerRegr 2d", {
 
 test_that("plot_prediction.LearnerRegr 1d", {
   task = tsk("boston_housing")$select(c("age"))
+
+  # predict_type = "response"
   learner = lrn("regr.rpart")$train(task)
+  p = plot_prediction(learner, task, expand_range = 0.1)
+  expect_true(is.ggplot(p))
+
+  # predict_type = "se"
+  learner = lrn("regr.featureless", predict_type = "se")$train(task)
   p = plot_prediction(learner, task, expand_range = 0.1)
   expect_true(is.ggplot(p))
 })

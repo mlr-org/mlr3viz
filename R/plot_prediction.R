@@ -29,9 +29,6 @@ plot_prediction.LearnerClassif = function(learner, task, grid_points = 100L, exp
   if (length(features) != 2) {
     stop("plot_prediction.TaskClassif only works for tasks with two features!")
   }
-  if (!all(task$feature_types$type %in% "numeric")) {
-    stop("plot_prediction.TaskClassif only works for tasks with purely numeric features!")
-  }
 
   grid = predict_grid(learner, task, grid_points, expand_range)
 
@@ -54,14 +51,17 @@ plot_prediction.LearnerRegr = function(learner, task, grid_points = 100L, expand
   if (length(features) > 2) {
     stop("plot_prediction.LearnerRegr only works with one or two features!")
   }
-  if (!all(task$feature_types$type %in% "numeric")) {
-    stop("plot_prediction.LearnerRegr only works for tasks with purely numeric features!")
-  }
 
   grid = predict_grid(learner, task, grid_points, expand_range)
 
   if (length(features) == 1) {
+    if (learner$predict_type == "se") {
+      se_geom = geom_ribbon(aes_string(ymin = "response-se", ymax = "response+se"), alpha = 0.2)
+    } else {
+      se_geom = NULL
+    }
     g = ggplot(grid, aes_string(features, "response")) +
+      se_geom +
       geom_line() +
       geom_point(data = task$data(), aes_string(features, task$target_names))
   } else if (length(features) == 2) {
@@ -74,15 +74,28 @@ plot_prediction.LearnerRegr = function(learner, task, grid_points = 100L, expand
 }
 
 sequenize = function(x, n, expand_range) {
-  r = range(x, na.rm = TRUE)
-  d = diff(r)
-  seq(from = r[1L] - expand_range * d, to = r[2L] + expand_range * d, length.out = n)
+  if (is.numeric(x)) {
+    r = range(x, na.rm = TRUE)
+    d = diff(r)
+    res = seq(from = r[1L] - expand_range * d, to = r[2L] + expand_range * d, length.out = n)
+    if (is.integer(x)) {
+      res = unique(as.integer(round(res)))
+    }
+  } else if (is.factor(x) || os.ordered(x)) {
+    res = factor(levels(x), levels = levels(x), ordered = is.ordered(x)) # keeps the order of the levels
+  } else if (is.logical(x)) {
+    res = c(TRUE, FALSE)
+  } else {
+    stopf("Type of column (%s) not supported.", typeof(x))
+  }
+  return(res)
 }
 
 predict_grid = function(learner, task, grid_points, expand_range) {
   features = task$feature_names
   learner = learner$clone()$train(task)
-  grid = cross_join(map(task$data(cols = features), sequenize, n = grid_points, expand_range = expand_range), sorted = FALSE)
+  grid = map(task$data(cols = features), sequenize, n = grid_points, expand_range = expand_range)
+  grid = cross_join(grid, sorted = FALSE)
   grid = cbind(grid, remove_named(as.data.table(learner$predict_newdata(grid)), c("row_id", "truth")))
   return(grid)
 }
