@@ -24,22 +24,22 @@
 #'
 #' task = tsk("pima")$select(c("age", "glucose"))
 #' learner = lrn("classif.rpart", predict_type = "prob")
-#' p = plot_prediction(learner, task)
-plot_prediction = function(learner, task, grid_points = 100L, expand_range = 0) {
-  UseMethod("plot_prediction")
+#' p = plot_learner_prediction(learner, task)
+plot_learner_prediction = function(learner, task, grid_points = 100L, expand_range = 0) {
+  UseMethod("plot_learner_prediction")
 }
 
 #' @export
-plot_prediction.LearnerClassif = function(learner, task, grid_points = 100L, expand_range = 0) {
+plot_learner_prediction.LearnerClassif = function(learner, task, grid_points = 100L, expand_range = 0) {
   features = task$feature_names
   if (length(features) != 2) {
-    stop("plot_prediction.TaskClassif only works for tasks with two features!")
+    stop("plot_learner_prediction.TaskClassif only works for tasks with two features!")
   }
 
   grid = predict_grid(learner, task, grid_points, expand_range)
 
   if (learner$predict_type == "prob") {
-    grid[, prob.response := .SD[, paste0("prob.", response), with = FALSE] , by = response]
+    grid[, "prob.response" := .SD[, paste0("prob.", get("response")), with = FALSE] , by = "response"]
     raster_aes = aes_string(fill = "response", alpha = "prob.response")
   } else {
     raster_aes = aes_string(fill = "response")
@@ -52,10 +52,10 @@ plot_prediction.LearnerClassif = function(learner, task, grid_points = 100L, exp
 
 
 #' @export
-plot_prediction.LearnerRegr = function(learner, task, grid_points = 100L, expand_range = 0) {
+plot_learner_prediction.LearnerRegr = function(learner, task, grid_points = 100L, expand_range = 0) {
   features = task$feature_names
   if (length(features) > 2) {
-    stop("plot_prediction.LearnerRegr only works with one or two features!")
+    stop("plot_learner_prediction.LearnerRegr only works with one or two features!")
   }
 
   grid = predict_grid(learner, task, grid_points, expand_range)
