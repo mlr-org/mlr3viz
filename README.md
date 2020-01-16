@@ -1,6 +1,9 @@
 
 # mlr3viz
 
+Package website: [release](https://mlr3.mlr-org.com/) |
+[dev](https://mlr3.mlr-org.com/dev)
+
 <!-- badges: start -->
 
 [![Build
@@ -17,7 +20,13 @@ resample results or benchmark results via the `autoplot()` generic of
 
 ## Installation
 
-Development version:
+Install the last release from CRAN:
+
+``` r
+install.packages("mlr3")
+```
+
+Install the development version from GitHub:
 
 ``` r
 remotes::install_github("mlr-org/mlr3viz")

@@ -11,6 +11,8 @@ set.seed(1)
 
 # mlr3viz
 
+Package website: [release](https://mlr3.mlr-org.com/) | [dev](https://mlr3.mlr-org.com/dev)
+
 <!-- badges: start -->
 [![Build Status](https://img.shields.io/travis/mlr-org/mlr3viz/master?label=Linux&logo=travis&style=flat-square)](https://travis-ci.org/mlr-org/mlr3viz)
 [![CRAN](https://www.r-pkg.org/badges/version/mlr3viz)](https://cran.r-project.org/package=mlr3viz)
@@ -22,7 +24,13 @@ This R package provides visualizations for [mlr3](https://mlr3.mlr-org.com) obje
 
 ## Installation
 
-Development version:
+Install the last release from CRAN:
+
+```{r, eval = FALSE}
+install.packages("mlr3")
+```
+
+Install the development version from GitHub:
 
 ```{r, eval = FALSE}
 remotes::install_github("mlr-org/mlr3viz")
