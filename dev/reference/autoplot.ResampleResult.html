@@ -99,6 +99,9 @@ The predictions of the individual mlr3::Resamplings are merged prior to calculat
   </a>
 </li>
 <li>
+  <a href="../news/index.html">Changelog</a>
+</li>
+<li>
   <a href="https://mlr3book.mlr-org.com">
     <span class="fa fa fa fa-link"></span>
      
@@ -174,7 +177,7 @@ The predictions of the individual <a href='https://mlr3.mlr-org.com/reference/Re
     <tr>
       <th>type</th>
       <td><p>(character(1)):<br />
-Type of the plot.</p></td>
+Type of the plot. See description.</p></td>
     </tr>
     <tr>
       <th>measure</th>
@@ -206,7 +209,17 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></td>
 #&gt; 3:         3 classif.ce   0.2380952
 #&gt; 4:         4 classif.ce   0.3333333
 #&gt; 5:         5 classif.ce   0.3333333
-#&gt; 6:         6 classif.ce   0.3333333</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>)</div><div class='img'><img src='autoplot.ResampleResult-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>)</div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='img'><img src='autoplot.ResampleResult-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"roc"</span>)</div><div class='img'><img src='autoplot.ResampleResult-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"prc"</span>)</div><div class='img'><img src='autoplot.ResampleResult-4.png' alt='' width='700' height='433' /></div></pre>
+#&gt; 6:         6 classif.ce   0.3333333</div><div class='input'>
+<span class='co'># Default: boxplot</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>)</div><div class='img'><img src='autoplot.ResampleResult-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Histogram</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div><div class='img'><img src='autoplot.ResampleResult-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># ROC curve, averaged over resampling folds:</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"roc"</span>)</div><div class='img'><img src='autoplot.ResampleResult-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># ROC curve of joint prediction object:</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>$<span class='fu'>prediction</span>(), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"roc"</span>)</div><div class='img'><img src='autoplot.ResampleResult-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Precision Recall Curve</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"prc"</span>)</div><div class='img'><img src='autoplot.ResampleResult-5.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
