@@ -101,7 +101,6 @@ plot_learner_prediction_resample_result.LearnerClassif = function(learner, objec
   if (length(learners) > 1) {
     facet_labels = setNames(paste(object$resampling$id, seq_len(object$resampling$iters)), seq_len(object$resampling$iters))
     folds_facet = facet_wrap(".id", labeller = as_labeller(facet_labels))
-    folds_facet = facet_wrap(".id")
   } else {
     folds_facet = NULL
   }
