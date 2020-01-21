@@ -4,7 +4,7 @@
 \alias{autoplot.ResampleResult}
 \title{Plot for ResampleResult}
 \usage{
-\method{autoplot}{ResampleResult}(object, type = "boxplot", measure = NULL, ...)
+\method{autoplot}{ResampleResult}(object, type = "boxplot", measure = NULL, predict_sets = "test", ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:ResampleResult]{mlr3::ResampleResult}).}
@@ -13,6 +13,11 @@
 Type of the plot. See description.}
 
 \item{measure}{(\link[mlr3:Measure]{mlr3::Measure}).}
+
+\item{predict_sets}{(\code{character()})\cr
+Only for \code{type} set to \code{"prediction"}.
+Which points should be shown in the plot?
+Can be a subset of (\code{"train"}, \code{"test"}) or empty.}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to the respective \code{geom}.}
@@ -29,6 +34,12 @@ Generates plots for \link[mlr3:ResampleResult]{mlr3::ResampleResult}, depending 
 The predictions of the individual \link[mlr3:Resampling]{mlr3::Resampling}s are merged prior to calculating the ROC curve
 (micro averaged). Requires package \CRANpkg{precrec}.
 \item \code{"prc"}: Precision recall curve. See \code{"roc"}.
+\item \code{"prediction"}: Plots the learner prediction for a grid of points.
+Needs models to be stored. Set \code{store_models = TRUE} for \verb{[mlr3::resample]}.
+For classification, we support tasks with exactly two features and learners with \verb{predict_type=} set to \code{"response"} or \code{"prob"}.
+For regression, we support tasks with one or two features.
+For tasks with one feature we can print confidence bounds if the predict type of the learner was set to \code{"se"}.
+For tasks with two features the predict type will be ignored.
 }
 }
 \examples{
@@ -56,4 +67,10 @@ autoplot(object$prediction(), type = "roc")
 
 # Precision Recall Curve
 autoplot(object, type = "prc")
+
+# Prediction Plot
+task = tsk("iris")$select(c("Sepal.Length", "Sepal.Width"))
+resampling = rsmp("cv", folds = 3)
+object = resample(task, learner, resampling, store_models = TRUE)
+autoplot(object, type = "prediction")
 }
