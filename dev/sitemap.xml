@@ -39,4 +39,7 @@
   <url>
     <loc>https://mlr3viz.mlr-org.com/reference/mlr3viz-package.html</loc>
   </url>
+  <url>
+    <loc>https://mlr3viz.mlr-org.com/reference/plot_learner_prediction.html</loc>
+  </url>
 </urlset>
