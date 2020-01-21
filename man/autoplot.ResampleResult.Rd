@@ -15,9 +15,9 @@ Type of the plot. See description.}
 \item{measure}{(\link[mlr3:Measure]{mlr3::Measure}).}
 
 \item{predict_sets}{(\code{character()})\cr
-Only for \code{type = "prediction"}.
+Only for \code{type} set to \code{"prediction"}.
 Which points should be shown in the plot?
-Can be a subset of ("train", "test") or empty.}
+Can be a subset of (\code{"train"}, \code{"test"}) or empty.}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to the respective \code{geom}.}
@@ -36,8 +36,8 @@ The predictions of the individual \link[mlr3:Resampling]{mlr3::Resampling}s are 
 \item \code{"prc"}: Precision recall curve. See \code{"roc"}.
 \item \code{"prediction"}: Plots the learner prediction for a grid of points.
 Needs models to be stored. Set \code{store_models = TRUE} for \verb{[mlr3::resample]}.
-For classification we support tasks with two features and learners with \code{predict_type="response"} and \code{"prob"}.
-For regression we support tasks with one or two features.
+For classification, we support tasks with exactly two features and learners with \verb{predict_type=} set to \code{"response"} or \code{"prob"}.
+For regression, we support tasks with one or two features.
 For tasks with one feature we can print confidence bounds if the predict type of the learner was set to \code{"se"}.
 For tasks with two features the predict type will be ignored.
 }

@@ -7,9 +7,9 @@
 plot_learner_prediction(learner, task, grid_points = 100L, expand_range = 0)
 }
 \arguments{
-\item{learner}{(\link[mlr3:Learner]{mlr3::Learner})}
+\item{learner}{(\link[mlr3:Learner]{mlr3::Learner}).}
 
-\item{task}{(\link[mlr3:Task]{mlr3::Task})}
+\item{task}{(\link[mlr3:Task]{mlr3::Task}).}
 
 \item{grid_points}{(\code{integer(1)})\cr
 Resolution of the grid.
@@ -22,13 +22,16 @@ Expand the prediction range for numerical features.}
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
 }
 \description{
-Generates plots for \link[mlr3:Learner]{mlr3::Learner}, and \link[mlr3:Task]{mlr3::Task}.
+Generates a plot for the \link[mlr3:Prediction]{mlr3::Prediction} of a single \link[mlr3:Learner]{mlr3::Learner} on a single \link[mlr3:Task]{mlr3::Task}.
 \itemize{
-\item For classification we support tasks with two features and learners with \code{predict_type="response"} and \code{"prob"}.
+\item For classification we support tasks with exactly two features and learners with \code{predict_type} set to \code{"response"} or \code{"prob"}.
 \item For regression we support tasks with one or two features.
-For tasks with one feature we can print confidence bounds if the predict type of the learner was set to \code{"se"}.
+For tasks with one feature we print confidence bounds if the predict type of the learner was set to \code{"se"}.
 For tasks with two features the predict type will be ignored.
 }
+
+Note that this function is a wrapper around \code{\link[=autoplot.ResampleResult]{autoplot.ResampleResult()}} for a temporary \link[mlr3:ResampleResult]{mlr3::ResampleResult}
+using \link[mlr3:mlr_resamplings_holdout]{mlr3::mlr_resamplings_holdout} with ratio 1 (all observations in training set).
 }
 \examples{
 library(mlr3)
@@ -37,4 +40,5 @@ library(mlr3viz)
 task = tsk("pima")$select(c("age", "glucose"))
 learner = lrn("classif.rpart", predict_type = "prob")
 p = plot_learner_prediction(learner, task)
+print(p)
 }

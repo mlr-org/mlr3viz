@@ -10,8 +10,8 @@
 #' * `"prc"`: Precision recall curve. See `"roc"`.
 #' * `"prediction"`: Plots the learner prediction for a grid of points.
 #'      Needs models to be stored. Set `store_models = TRUE` for `[mlr3::resample]`.
-#'      For classification we support tasks with two features and learners with `predict_type="response"` and `"prob"`.
-#'      For regression we support tasks with one or two features.
+#'      For classification, we support tasks with exactly two features and learners with `predict_type=` set to `"response"` or `"prob"`.
+#'      For regression, we support tasks with one or two features.
 #'      For tasks with one feature we can print confidence bounds if the predict type of the learner was set to `"se"`.
 #'      For tasks with two features the predict type will be ignored.
 #'
@@ -19,9 +19,9 @@
 #' @template param_type
 #' @param measure ([mlr3::Measure]).
 #' @param predict_sets (`character()`)\cr
-#'   Only for `type = "prediction"`.
+#'   Only for `type` set to `"prediction"`.
 #'   Which points should be shown in the plot?
-#'   Can be a subset of ("train", "test") or empty.
+#'   Can be a subset of (`"train"`, `"test"`) or empty.
 #'
 #' @param ... (`any`):
 #'   Additional arguments, passed down to the respective `geom`.
@@ -110,30 +110,31 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
     stop("No trained models available. Set 'store_models = TRUE' in 'resample()'.")
   }
 
-  if (task_type == "classif" && dim != 2) {
-    stop("Plot learner prediction only works for tasks with two features for classification!")
-  }
-  if (task_type == "regr" && dim > 2) {
-    stop("Plot learner prediction only works with one or two features for regression!")
-  }
   if (task_type %nin% c("classif", "regr"))  {
     stopf("Unsupported task type: %s", task_type)
+  }
+  if (task_type == "classif" && dim != 2L) {
+    stop("Plot learner prediction only works for tasks with two features for classification!")
+  }
+  if (task_type == "regr" && dim %nin% 1:2) {
+    stop("Plot learner prediction only works with one or two features for regression!")
   }
 
   grid = predict_grid(learners, task, grid_points = grid_points, expand_range = expand_range)
 
   # facets for multiple resampling iterations
-  if (length(learners) > 1) {
-    facet_labels = paste(object$resampling$id, seq_len(object$resampling$iters))
-    names(facet_labels) = seq_len(object$resampling$iters)
+  if (length(learners) > 1L) {
+    iters = object$resampling$data$iteration
+    facet_labels = paste(object$resampling$id, iters)
+    names(facet_labels) = iters
     folds_facet = facet_wrap(".id", labeller = as_labeller(facet_labels))
   } else {
     folds_facet = NULL
   }
 
   # 1d plot (only regression)
-  if (task_type == "regr" && dim == 1) {
-    if (learners[[1]]$predict_type == "se") {
+  if (task_type == "regr" && dim == 1L) {
+    if (learners[[1L]]$predict_type == "se") {
       se_geom = geom_ribbon(aes_string(ymin = "response-se", ymax = "response+se"), alpha = 0.2)
     } else {
       se_geom = NULL
@@ -147,9 +148,8 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
       folds_facet
 
   # 2d plot regr + classif
-  } else if (dim == 2) {
-
-    if (task_type == "classif" && learners[[1]]$predict_type == "prob") {
+  } else if (dim == 2L) {
+    if (task_type == "classif" && learners[[1L]]$predict_type == "prob") {
       raster_aes = aes_string(fill = "response", alpha = ".prob.response")
       scale_alpha = scale_alpha_continuous(name = "Prob.")
     } else {
@@ -165,6 +165,7 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
       labs(fill = "Response") +
       folds_facet
   }
+
   return(g)
 }
 
@@ -185,15 +186,15 @@ task_data = function(object, predict_sets) {
 
   types = lapply(seq_along(object$learners), function(i) {
     ids = seq_len(object$task$nrow)
-    type = ids %in% object$resampling$train_set(i) + 2 * ids %in% object$resampling$test_set(i)
-    type = type_char[type + 1]
+    type = (ids %in% object$resampling$train_set(i)) + 2L * (ids %in% object$resampling$test_set(i))
+    type = type_char[type + 1L]
     select_ids = !is.na(type)
     data.table(.row_id = ids[select_ids], .predict_set = type[select_ids])
   })
+
   types = rbindlist(types, idcol = TRUE, use.names = FALSE)
-  data = cbind(types, object$task$data()[types$.row_id,])
-  data = remove_named(data, ".row_id")
-  return(data)
+  data = cbind(types, object$task$data()[types$.row_id, ])
+  return(remove_named(data, ".row_id"))
 }
 
 # Generates a evenly distributed sequence of the same type as the input vector.
@@ -242,6 +243,3 @@ predict_grid = function(learners, task, grid_points, expand_range) {
 
   return(grid)
 }
-
-
-
