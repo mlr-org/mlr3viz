@@ -6,6 +6,7 @@
 #' * `"xy"` (default): Scatterplot of true response vs predicted response.
 #'   Additionally fits a linear model to visualize a possible trend.
 #' * `"histogram"`: Histogram of residuals \eqn{r = y - \hat{y}}{r = y - y.hat}.
+#' * `"residual"`: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat} on the "x" and the residuals on the "y" axis.
 #'
 #' @param object ([mlr3::PredictionRegr]).
 #' @template param_type
@@ -30,13 +31,16 @@ autoplot.PredictionRegr = function(object, type = "xy", ...) {
 
   switch(type,
     "xy" = {
-      ggplot(object, aes_string(x = "response", y = "truth")) + geom_point(...) + geom_rug(sides = "bl") + geom_smooth(method = "lm")
+      ggplot(object, aes_string(x = "response", y = "truth")) + geom_abline(slope = 1, alpha = 0.5) + geom_point(...) + geom_rug(sides = "bl") + geom_smooth(method = "lm")
     },
 
     "histogram" = {
       object = fortify(object)
-      object$residuals = (object$truth - object$response)
-      ggplot(object, aes_string(x = "residuals", y = "..density..")) + geom_histogram(...)
+      ggplot(object, aes_string(x = "truth-response", y = "..density..")) + geom_histogram(...)
+    },
+
+    "residual" = {
+      ggplot(object, aes_string(x = "response", y = "truth-response")) + geom_point(...) + geom_rug(sides = "bl") + geom_smooth(method = "lm")
     },
 
     stopf("Unknown plot type '%s'", type)

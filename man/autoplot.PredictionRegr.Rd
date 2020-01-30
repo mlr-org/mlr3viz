@@ -24,6 +24,7 @@ Generates plots for \link[mlr3:PredictionRegr]{mlr3::PredictionRegr}, depending 
 \item \code{"xy"} (default): Scatterplot of true response vs predicted response.
 Additionally fits a linear model to visualize a possible trend.
 \item \code{"histogram"}: Histogram of residuals \eqn{r = y - \hat{y}}{r = y - y.hat}.
+\item \code{"residual"}: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat} on the "x" and the residuals on the "y" axis.
 }
 }
 \examples{
