@@ -1,7 +1,10 @@
-# mlr3viz 0.1.0.9000
+# mlr3viz 0.1.1
 
-- Internal changes only.
+- New plot: learner prediction for objects of class `ResampleResult`.
+  Additionally, the helper function `plot_learner_prediction()` first performs a
+  `resample()` and then plots the result.
+- New plot: residual plot for objects of class `PredictionRegr`.
 
-# mlr3viz 0.1.0 
+# mlr3viz 0.1.0
 
 - Initial CRAN release

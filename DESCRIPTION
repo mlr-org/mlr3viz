@@ -1,6 +1,6 @@
 Package: mlr3viz
 Title: Visualizations for 'mlr3'
-Version: 0.1.0.9000
+Version: 0.1.1
 Authors@R:
     person(given = "Michel",
            family = "Lang",
