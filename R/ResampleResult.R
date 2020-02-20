@@ -156,8 +156,9 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
     } else {
       raster_aes = aes_string(fill = "response")
       scale_alpha = NULL
-      # manual values for RColorBrewer::brewer.pal(11, "Spectral")
-      scale_fill = scale_fill_gradientn(colours = c("#9E0142", "#D53E4F", "#F46D43", "#FDAE61", "#FEE08B", "#FFFFBF", "#E6F598", "#ABDDA4", "#66C2A5", "#3288BD", "#5E4FA2"))
+      # manual values for rev(RColorBrewer::brewer.pal(11, "Spectral"))
+      scale_fill = scale_fill_gradientn(colours = c("#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4", "#E6F598", "#FFFFBF", "#FEE08B", "#FDAE61", "#F46D43", "#D53E4F", "#9E0142")
+)
     }
 
     g = ggplot(grid, aes_string(features[1L], features[2L])) +
