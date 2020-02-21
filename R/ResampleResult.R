@@ -152,9 +152,13 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
     if (task_type == "classif" && learners[[1L]]$predict_type == "prob") {
       raster_aes = aes_string(fill = "response", alpha = ".prob.response")
       scale_alpha = scale_alpha_continuous(name = "Prob.")
+      scale_fill = NULL
     } else {
       raster_aes = aes_string(fill = "response")
       scale_alpha = NULL
+      # manual values for rev(RColorBrewer::brewer.pal(11, "Spectral"))
+      scale_fill = scale_fill_gradientn(colours = c("#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4", "#E6F598", "#FFFFBF", "#FEE08B", "#FDAE61", "#F46D43", "#D53E4F", "#9E0142")
+)
     }
 
     g = ggplot(grid, aes_string(features[1L], features[2L])) +
@@ -162,6 +166,7 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
       geom_point(data = task_data(object, predict_sets), aes_string(fill = task$target_names, shape = ".predict_set"), color = "black") +
       scale_shape_manual(values = c(train = 21, test = 22, both = 23), name = "Set") +
       scale_alpha +
+      scale_fill +
       labs(fill = "Response") +
       folds_facet
   }
