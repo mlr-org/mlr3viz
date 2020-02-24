@@ -3,7 +3,7 @@
 #' @description
 #' Converts to a format which is understood by [precrec::evalmod()] of package \CRANpkg{precrec}.
 #'
-#' @param object :: `any`\cr
+#' @param object (`any`)\cr
 #'   Object to convert.
 #' @return Object as created by [precrec::mmdata()].
 #' @export

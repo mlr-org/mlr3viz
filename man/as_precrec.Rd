@@ -16,7 +16,7 @@ as_precrec(object)
 \method{as_precrec}{BenchmarkResult}(object)
 }
 \arguments{
-\item{object}{:: \code{any}\cr
+\item{object}{(\code{any})\cr
 Object to convert.}
 }
 \value{
