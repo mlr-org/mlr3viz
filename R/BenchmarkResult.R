@@ -36,12 +36,20 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ..
 
   task = object$data$task[[1L]]
   measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
+  measure_id = measure$id
   tab = fortify(object, measure = measure)
+  tab$nr = as.character(tab$nr)
+  learner_labels = object$learners$learner_id
 
   switch(type,
     "boxplot" = {
-      ggplot(object, measure = measure, aes_string("learner_id", measure$id)) +
-        geom_boxplot(...) + xlab("") + facet_wrap("task_id")
+      ggplot(tab, mapping = aes(x = .data$nr, y = .data[[measure_id]])) +
+        geom_boxplot(...) +
+        labs(x = "") +
+        scale_x_discrete(labels = learner_labels) +
+        # we need "free_x" to drop empty learners for certain tasks - because
+        # we apply over .data$nr
+        facet_wrap(vars(.data$task_id), scales = "free_x")
     },
 
     "roc" = {
