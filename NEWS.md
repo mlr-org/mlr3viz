@@ -5,7 +5,7 @@
 
 # mlr3viz 0.1.1.9000
 
-- Internal changes only.
+- `autoplot.BenchmarResult()`: Support for learners with identical IDs (#19)
 
 
 # mlr3viz 0.1.1
