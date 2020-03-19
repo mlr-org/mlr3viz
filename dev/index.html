@@ -18,12 +18,12 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <link href="extra.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Visualizations for mlr3">
-<meta property="og:description" content="Provides visualizations for mlr3 objects such as tasks,
-    predictions, resample results or benchmark results via the autoplot()
-    generic of ggplot2. The returned ggplot objects are intended to provide
-    sensible defaults, yet can easily be customized to create camera-ready
-    figures. Visualizations include barplots, boxplots, histograms, ROC curves,
-    and Precision-Recall curves.">
+<meta property="og:description" content="Provides visualizations for mlr3 objects such as
+    tasks, predictions, resample results or benchmark results via the
+    autoplot() generic of ggplot2. The returned ggplot objects are
+    intended to provide sensible defaults, yet can easily be customized to
+    create camera-ready figures. Visualizations include barplots,
+    boxplots, histograms, ROC curves, and Precision-Recall curves.">
 <meta name="twitter:card" content="summary">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -31,7 +31,7 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -68,7 +68,7 @@
   </a>
 </li>
         <li>
-  <a href="https://github.com/mlr-org/mlr3viz">
+  <a href="https://github.com/mlr-org/mlr3viz/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -108,7 +108,7 @@
 <a href="#mlr3viz" class="anchor"></a>mlr3viz</h1></div>
 <p>Package website: <a href="https://mlr3.mlr-org.com/">release</a> | <a href="https://mlr3.mlr-org.com/dev">dev</a></p>
 <!-- badges: start -->
-
+<p><a href="https://github.com/mlr-org/mlr3viz/actions"><img src="https://github.com/mlr-org/mlr3viz/workflows/R-CMD-check/badge.svg" alt="R build status"></a> <a href="https://cran.r-project.org/package=mlr3viz"><img src="https://www.r-pkg.org/badges/version-ago/mlr3viz" alt="CRAN Status Badge"></a> <a href="https://cran.r-project.org/web/checks/check_results_mlr3viz.html"><img src="https://cranchecks.info/badges/worst/mlr3viz" alt="Cran Checks"></a> <a href="https://codecov.io/gh/mlr-org/mlr3viz"><img src="https://codecov.io/gh/mlr-org/mlr3viz/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://stackoverflow.com/questions/tagged/mlr3"><img src="https://img.shields.io/badge/stackoverflow-mlr3-orange.svg" alt="StackOverflow"></a> <!-- badges: end --></p>
 <p>This R package provides visualizations for <a href="https://mlr3.mlr-org.com">mlr3</a> objects such as tasks, predictions, resample results or benchmark results via the <code><a href="reference/autoplot.html">autoplot()</a></code> generic of <a href="https://ggplot2.tidyverse.org/">ggplot2</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -147,7 +147,7 @@
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=mlr3viz">https://​cloud.r-project.org/​package=mlr3viz</a>
 </li>
-<li>Browse source code at <br><a href="https://github.com/mlr-org/mlr3viz">https://​github.com/​mlr-org/​mlr3viz</a>
+<li>Browse source code at <br><a href="https://github.com/mlr-org/mlr3viz/">https://​github.com/​mlr-org/​mlr3viz/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/mlr-org/mlr3viz/issues">https://​github.com/​mlr-org/​mlr3viz/​issues</a>
 </li>
@@ -163,25 +163,16 @@
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Michel Lang <br><small class="roles"> Maintainer, author </small> <a href="https://orcid.org/0000-0001-9754-0393" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Patrick Schratz <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-0748-6624" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/mlr-org/mlr3viz/actions"><img src="https://github.com/mlr-org/mlr3viz/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://cran.r-project.org/package=mlr3viz"><img src="https://www.r-pkg.org/badges/version-ago/mlr3viz" alt="CRAN Status Badge"></a></li>
-<li><a href="https://cran.r-project.org/web/checks/check_results_mlr3viz.html"><img src="https://cranchecks.info/badges/worst/mlr3viz" alt="Cran Checks"></a></li>
-<li><a href="https://codecov.io/gh/mlr-org/mlr3viz"><img src="https://codecov.io/gh/mlr-org/mlr3viz/branch/master/graph/badge.svg" alt="codecov"></a></li>
-<li><a href="https://stackoverflow.com/questions/tagged/mlr3"><img src="https://img.shields.io/badge/stackoverflow-mlr3-orange.svg" alt="StackOverflow"></a></li>
-</ul>
-</div>
-</div>
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Michel Lang.</p>
+  <p>Developed by Michel Lang, Patrick Schratz.</p>
 </div>
 
 <div class="pkgdown">
