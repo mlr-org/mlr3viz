@@ -1,12 +1,10 @@
 # mlr3viz 0.1.1.9001
 
-- Same as previous version.
-
+- `autoplot.BenchmarResult()`: Support for learners with identical IDs (#19)
 
 # mlr3viz 0.1.1.9000
 
-- `autoplot.BenchmarResult()`: Support for learners with identical IDs (#19)
-
+- Same as previous version
 
 # mlr3viz 0.1.1
 
