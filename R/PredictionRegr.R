@@ -38,40 +38,40 @@
 #' autoplot(object, type = "histogram", binwidth = 1)
 #' autoplot(object, type = "residual")
 autoplot.PredictionRegr = function(object,
-                                   type = "xy",
-                                   ...) {
+  type = "xy",
+  ...) {
   assert_string(type)
 
   switch(type,
-         "xy" = {
-           ggplot(object,
-                  mapping = aes(x = .data[["response"]], y = .data[["truth"]])
-           ) +
-             geom_abline(slope = 1, alpha = 0.5) +
-             geom_point(...) +
-             geom_rug(sides = "bl") +
-             geom_smooth(method = "lm")
-         },
+    "xy" = {
+      ggplot(object,
+        mapping = aes(x = .data[["response"]], y = .data[["truth"]])
+      ) +
+        geom_abline(slope = 1, alpha = 0.5) +
+        geom_point(...) +
+        geom_rug(sides = "bl") +
+        geom_smooth(method = "lm")
+    },
 
-         "histogram" = {
-           object = fortify(object)
-           ggplot(object,
-                  mapping = aes(x = .data[["truth"]] - .data[["response"]],
-                                y = after_stat(density))
-           ) +
-             geom_histogram(...)
-         },
+    "histogram" = {
+      object = fortify(object)
+      ggplot(object,
+        mapping = aes(x = .data[["truth"]] - .data[["response"]],
+          y = after_stat(density))
+      ) +
+        geom_histogram(...)
+    },
 
-         "residual" = {
-           ggplot(object,
-                  mapping = aes(x = .data[["response"]],
-                                y = .data[["truth"]] - .data[["response"]])
-           ) +
-             geom_point(...) +
-             geom_rug(sides = "bl") +
-             geom_smooth(method = "lm")
-         },
+    "residual" = {
+      ggplot(object,
+        mapping = aes(x = .data[["response"]],
+          y = .data[["truth"]] - .data[["response"]])
+      ) +
+        geom_point(...) +
+        geom_rug(sides = "bl") +
+        geom_smooth(method = "lm")
+    },
 
-         stopf("Unknown plot type '%s'", type)
+    stopf("Unknown plot type '%s'", type)
   )
 }
