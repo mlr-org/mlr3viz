@@ -100,6 +100,7 @@ fortify.ResampleResult = function(model, data, measure = NULL, ...) {
 }
 
 plot_learner_prediction_resample_result = function(object, predict_sets, grid_points = 100L, expand_range = 0) {
+
   task = object$task
   task_type = task$task_type
   features = task$feature_names
@@ -110,7 +111,7 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
     stop("No trained models available. Set 'store_models = TRUE' in 'resample()'.")
   }
 
-  if (task_type %nin% c("classif", "regr"))  {
+  if (task_type %nin% c("classif", "regr")) {
     stopf("Unsupported task type: %s", task_type)
   }
   if (task_type == "classif" && dim != 2L) {
@@ -147,7 +148,7 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
       labs(color = "Set") +
       folds_facet
 
-  # 2d plot regr + classif
+    # 2d plot regr + classif
   } else if (dim == 2L) {
     if (task_type == "classif" && learners[[1L]]$predict_type == "prob") {
       raster_aes = aes_string(fill = "response", alpha = ".prob.response")
@@ -158,7 +159,7 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
       scale_alpha = NULL
       # manual values for rev(RColorBrewer::brewer.pal(11, "Spectral"))
       scale_fill = scale_fill_gradientn(colours = c("#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4", "#E6F598", "#FFFFBF", "#FEE08B", "#FDAE61", "#F46D43", "#D53E4F", "#9E0142")
-)
+      )
     }
 
     g = ggplot(grid, aes_string(features[1L], features[2L])) +
@@ -243,7 +244,7 @@ predict_grid = function(learners, task, grid_points, expand_range) {
 
   # reduce to prob columns to one column for the predicted class
   if (learners[[1]]$predict_type == "prob") {
-    grid[, ".prob.response" := .SD[, paste0("prob.", get("response")), with = FALSE] , by = "response"]
+    grid[, ".prob.response" := .SD[, paste0("prob.", get("response")), with = FALSE], by = "response"]
   }
 
   return(grid)

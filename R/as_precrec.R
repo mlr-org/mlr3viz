@@ -50,6 +50,7 @@ as_precrec.ResampleResult = function(object) {
 #' @rdname as_precrec
 #' @export
 as_precrec.BenchmarkResult = function(object) {
+
   require_namespaces("precrec")
 
   scores = object$score(measures = list())

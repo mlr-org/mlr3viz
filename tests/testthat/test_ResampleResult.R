@@ -59,6 +59,6 @@ test_that("autoplot ResampleResult type=prediction", {
   expect_error(autoplot(rr, type = "prediction"), fixed = "store_models")
   rr = resample(tsk("iris"), lrn("classif.featureless"), resampling, store_models = TRUE)
   expect_error(autoplot(rr, type = "prediction"), fixed = "only works for tasks with two features")
-  rr = resample(tsk("boston_housing"), lrn("regr.featureless"), resampling , store_models = TRUE)
+  rr = resample(tsk("boston_housing"), lrn("regr.featureless"), resampling, store_models = TRUE)
   expect_error(autoplot(rr, type = "prediction"), fixed = "only works for tasks with one or two features")
 })

@@ -32,6 +32,7 @@
 #' autoplot(object$clone()$filter(task_ids = "spam"), type = "roc")
 #' autoplot(object$clone()$filter(task_ids = "pima"), type = "prc")
 autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ...) {
+
   assert_string(type)
 
   task = object$data$task[[1L]]
