@@ -36,3 +36,4 @@ vignettes/*.pdf
 .Rproj.user
 
 README.html
+.vscode

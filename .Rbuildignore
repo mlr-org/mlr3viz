@@ -8,3 +8,4 @@
 ^man-roxygen$
 ^pkgdown$
 ^\.pre-commit-config\.yaml$
+^\.vscode$
