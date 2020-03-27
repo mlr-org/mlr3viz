@@ -6,12 +6,12 @@
 \alias{mlr3viz-package}
 \title{mlr3viz: Visualizations for 'mlr3'}
 \description{
-Provides visualizations for 'mlr3' objects such as tasks,
-    predictions, resample results or benchmark results via the autoplot()
-    generic of 'ggplot2'. The returned 'ggplot' objects are intended to provide
-    sensible defaults, yet can easily be customized to create camera-ready
-    figures. Visualizations include barplots, boxplots, histograms, ROC curves,
-    and Precision-Recall curves.
+Provides visualizations for 'mlr3' objects such as
+    tasks, predictions, resample results or benchmark results via the
+    autoplot() generic of 'ggplot2'. The returned 'ggplot' objects are
+    intended to provide sensible defaults, yet can easily be customized to
+    create camera-ready figures. Visualizations include barplots,
+    boxplots, histograms, ROC curves, and Precision-Recall curves.
 }
 \seealso{
 Useful links:
@@ -24,5 +24,10 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Michel Lang \email{michellang@gmail.com} (\href{https://orcid.org/0000-0001-9754-0393}{ORCID})
+
+Authors:
+\itemize{
+  \item Patrick Schratz \email{patrick.schratz@gmail.com} (\href{https://orcid.org/0000-0003-0748-6624}{ORCID})
+}
 
 }

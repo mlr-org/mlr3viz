@@ -21,10 +21,21 @@ Additional arguments, passed down to the respective \code{geom}.}
 \description{
 Generates plots for \link[mlr3:PredictionRegr]{mlr3::PredictionRegr}, depending on argument \code{type}:
 \itemize{
-\item \code{"xy"} (default): Scatterplot of true response vs predicted response.
-Additionally fits a linear model to visualize a possible trend.
-\item \code{"histogram"}: Histogram of residuals \eqn{r = y - \hat{y}}{r = y - y.hat}.
-\item \code{"residual"}: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat} on the "x" and the residuals on the "y" axis.
+\item \code{"xy"} (default): Scatterplot of "true" response vs. "predicted" response.
+By default a linear model is fitted via \code{geom_smooth(method = "lm")}
+to visualize the trend between x and y (by default colored blue).
+\itemize{
+\item In addition \code{geom_abline()} with \code{slope = 1} is added to the plot.
+\item Note that \code{geom_smooth()} and \code{geom_abline()} may overlap, depending on the
+given data.
+}
+\item \code{"histogram"}: Histogram of residuals: \eqn{r = y - \hat{y}}{r = y - y.hat}.
+\item \code{"residual"}: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat}
+on the "x" and the residuals on the "y" axis.
+\itemize{
+\item By default a linear model is fitted via \code{geom_smooth(method = "lm")}
+to visualize the trend between x and y (by default colored blue).
+}
 }
 }
 \examples{
@@ -38,4 +49,5 @@ object = learner$train(task)$predict(task)
 head(fortify(object))
 autoplot(object)
 autoplot(object, type = "histogram", binwidth = 1)
+autoplot(object, type = "residual")
 }
