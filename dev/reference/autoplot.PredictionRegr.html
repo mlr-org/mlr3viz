@@ -45,10 +45,19 @@
 
 <meta property="og:title" content="Plot for PredictionRegr — autoplot.PredictionRegr" />
 <meta property="og:description" content="Generates plots for mlr3::PredictionRegr, depending on argument type:
-&quot;xy&quot; (default): Scatterplot of true response vs predicted response.
-Additionally fits a linear model to visualize a possible trend.
-&quot;histogram&quot;: Histogram of residuals \(r = y - \hat{y}\).
-&quot;residual&quot;: Plot of the residuals, with the response \(\hat{y}\) on the &quot;x&quot; and the residuals on the &quot;y&quot; axis.
+&quot;xy&quot; (default): Scatterplot of &quot;true&quot; response vs. &quot;predicted&quot; response.
+By default a linear model is fitted via geom_smooth(method = &quot;lm&quot;)
+to visualize the trend between x and y (by default colored blue).
+In addition geom_abline() with slope = 1 is added to the plot.
+Note that geom_smooth() and geom_abline() may overlap, depending on the
+given data.
+
+&quot;histogram&quot;: Histogram of residuals: \(r = y - \hat{y}\).
+&quot;residual&quot;: Plot of the residuals, with the response \(\hat{y}\)
+on the &quot;x&quot; and the residuals on the &quot;y&quot; axis.
+By default a linear model is fitted via geom_smooth(method = &quot;lm&quot;)
+to visualize the trend between x and y (by default colored blue).
+
 
 " />
 <meta name="twitter:card" content="summary" />
@@ -150,10 +159,19 @@ Additionally fits a linear model to visualize a possible trend.
 
     <div class="ref-description">
     <p>Generates plots for <a href='https://mlr3.mlr-org.com/reference/PredictionRegr.html'>mlr3::PredictionRegr</a>, depending on argument <code>type</code>:</p><ul>
-<li><p><code>"xy"</code> (default): Scatterplot of true response vs predicted response.
-Additionally fits a linear model to visualize a possible trend.</p></li>
-<li><p><code>"histogram"</code>: Histogram of residuals \(r = y - \hat{y}\).</p></li>
-<li><p><code>"residual"</code>: Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on the "y" axis.</p></li>
+<li><p><code>"xy"</code> (default): Scatterplot of "true" response vs. "predicted" response.
+By default a linear model is fitted via <code>geom_smooth(method = "lm")</code>
+to visualize the trend between x and y (by default colored blue).</p><ul>
+<li><p>In addition <code>geom_abline()</code> with <code>slope = 1</code> is added to the plot.</p></li>
+<li><p>Note that <code>geom_smooth()</code> and <code>geom_abline()</code> may overlap, depending on the
+given data.</p></li>
+</ul></li>
+<li><p><code>"histogram"</code>: Histogram of residuals: \(r = y - \hat{y}\).</p></li>
+<li><p><code>"residual"</code>: Plot of the residuals, with the response \(\hat{y}\)
+on the "x" and the residuals on the "y" axis.</p><ul>
+<li><p>By default a linear model is fitted via <code>geom_smooth(method = "lm")</code>
+to visualize the trend between x and y (by default colored blue).</p></li>
+</ul></li>
 </ul>
 
     </div>
@@ -198,7 +216,7 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></td>
 #&gt; 3:      3  34.7 35.10313
 #&gt; 4:      4  33.4 35.10313
 #&gt; 5:      5  36.2 35.10313
-#&gt; 6:      6  28.7 29.98333</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='autoplot.PredictionRegr-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='autoplot.PredictionRegr-2.png' alt='' width='700' height='433' /></div></pre>
+#&gt; 6:      6  28.7 29.98333</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='autoplot.PredictionRegr-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='autoplot.PredictionRegr-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"residual"</span>)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='autoplot.PredictionRegr-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
