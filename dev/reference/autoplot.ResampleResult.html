@@ -48,14 +48,18 @@
 &quot;boxplot&quot; (default): Boxplot of performance measures.
 &quot;histogram&quot;: Histogram of performance measures.
 &quot;roc&quot;: ROC curve (1 - specificity on x, sensitivity on y).
-The predictions of the individual mlr3::Resamplings are merged prior to calculating the ROC curve
-(micro averaged). Requires package precrec.
+The predictions of the individual mlr3::Resamplings are merged prior to
+calculating the ROC curve (micro averaged). Requires package
+precrec.
 &quot;prc&quot;: Precision recall curve. See &quot;roc&quot;.
 &quot;prediction&quot;: Plots the learner prediction for a grid of points.
-Needs models to be stored. Set store_models = TRUE for [mlr3::resample].
-For classification, we support tasks with exactly two features and learners with predict_type= set to &quot;response&quot; or &quot;prob&quot;.
+Needs models to be stored. Set store_models = TRUE for
+[mlr3::resample].
+For classification, we support tasks with exactly two features and
+learners with predict_type= set to &quot;response&quot; or &quot;prob&quot;.
 For regression, we support tasks with one or two features.
-For tasks with one feature we can print confidence bounds if the predict type of the learner was set to &quot;se&quot;.
+For tasks with one feature we can print confidence bounds if the predict
+type of the learner was set to &quot;se&quot;.
 For tasks with two features the predict type will be ignored.
 
 " />
@@ -161,14 +165,18 @@ For tasks with two features the predict type will be ignored.
 <li><p><code>"boxplot"</code> (default): Boxplot of performance measures.</p></li>
 <li><p><code>"histogram"</code>: Histogram of performance measures.</p></li>
 <li><p><code>"roc"</code>: ROC curve (1 - specificity on x, sensitivity on y).
-The predictions of the individual <a href='https://mlr3.mlr-org.com/reference/Resampling.html'>mlr3::Resampling</a>s are merged prior to calculating the ROC curve
-(micro averaged). Requires package <a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>.</p></li>
+The predictions of the individual <a href='https://mlr3.mlr-org.com/reference/Resampling.html'>mlr3::Resampling</a>s are merged prior to
+calculating the ROC curve (micro averaged). Requires package
+<a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>.</p></li>
 <li><p><code>"prc"</code>: Precision recall curve. See <code>"roc"</code>.</p></li>
 <li><p><code>"prediction"</code>: Plots the learner prediction for a grid of points.
-Needs models to be stored. Set <code>store_models = TRUE</code> for <code>[mlr3::resample]</code>.
-For classification, we support tasks with exactly two features and learners with <code>predict_type=</code> set to <code>"response"</code> or <code>"prob"</code>.
+Needs models to be stored. Set <code>store_models = TRUE</code> for
+<code>[mlr3::resample]</code>.
+For classification, we support tasks with exactly two features and
+learners with <code>predict_type=</code> set to <code>"response"</code> or <code>"prob"</code>.
 For regression, we support tasks with one or two features.
-For tasks with one feature we can print confidence bounds if the predict type of the learner was set to <code>"se"</code>.
+For tasks with one feature we can print confidence bounds if the predict
+type of the learner was set to <code>"se"</code>.
 For tasks with two features the predict type will be ignored.</p></li>
 </ul>
 

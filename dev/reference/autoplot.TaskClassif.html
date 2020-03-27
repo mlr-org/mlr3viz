@@ -48,8 +48,8 @@
 &quot;target&quot; (default): Bar plot of the target variable (default).
 &quot;duo&quot;: Passes data and additional arguments down to GGally::ggduo().
 columnsX is target, columnsY is features.
-&quot;pairs&quot;: Passes data and additional arguments down to GGally::ggpairs().
-Color is set to target column.
+&quot;pairs&quot;: Passes data and additional arguments down to
+GGally::ggpairs(). Color is set to target column.
 
 " />
 <meta name="twitter:card" content="summary" />
@@ -154,8 +154,8 @@ Color is set to target column.
 <li><p><code>"target"</code> (default): Bar plot of the target variable (default).</p></li>
 <li><p><code>"duo"</code>: Passes data and additional arguments down to <code><a href='https://rdrr.io/pkg/GGally/man/ggduo.html'>GGally::ggduo()</a></code>.
 <code>columnsX</code> is target, <code>columnsY</code> is features.</p></li>
-<li><p><code>"pairs"</code>: Passes data and additional arguments down to <code><a href='https://rdrr.io/pkg/GGally/man/ggpairs.html'>GGally::ggpairs()</a></code>.
-Color is set to target column.</p></li>
+<li><p><code>"pairs"</code>: Passes data and additional arguments down to
+<code><a href='https://rdrr.io/pkg/GGally/man/ggpairs.html'>GGally::ggpairs()</a></code>. Color is set to target column.</p></li>
 </ul>
 
     </div>
@@ -198,7 +198,8 @@ Additional argument, possibly passed down to the underlying plot functions.</p><
 #&gt; 3:  setosa          1.3         0.2          4.7         3.2
 #&gt; 4:  setosa          1.5         0.2          4.6         3.1
 #&gt; 5:  setosa          1.4         0.2          5.0         3.6
-#&gt; 6:  setosa          1.7         0.4          5.4         3.9</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>task</span>)</div><div class='img'><img src='autoplot.TaskClassif-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>task</span>$<span class='fu'>clone</span>()$<span class='fu'>select</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Sepal.Length"</span>, <span class='st'>"Sepal.Width"</span>)), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pairs"</span>)</div><div class='output co'>#&gt; <span class='message'>Registered S3 method overwritten by 'GGally':</span>
+#&gt; 6:  setosa          1.7         0.4          5.4         3.9</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>task</span>)</div><div class='img'><img src='autoplot.TaskClassif-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>task</span>$<span class='fu'>clone</span>()$<span class='fu'>select</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Sepal.Length"</span>, <span class='st'>"Sepal.Width"</span>)),
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pairs"</span>)</div><div class='output co'>#&gt; <span class='message'>Registered S3 method overwritten by 'GGally':</span>
 #&gt; <span class='message'>  method from   </span>
 #&gt; <span class='message'>  +.gg   ggplot2</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='img'><img src='autoplot.TaskClassif-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>task</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"duo"</span>)</div><div class='img'><img src='autoplot.TaskClassif-3.png' alt='' width='700' height='433' /></div></pre>
   </div>

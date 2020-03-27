@@ -45,10 +45,13 @@
 
 <meta property="og:title" content="Plot for BenchmarkResult — autoplot.BenchmarkResult" />
 <meta property="og:description" content="Generates plots for mlr3::BenchmarkResult, depending on argument type:
-&quot;boxplot&quot; (default): Boxplots of performance measures, one box per mlr3::Learner and one facet per mlr3::Task.
+&quot;boxplot&quot; (default): Boxplots of performance measures, one box per
+mlr3::Learner and one facet per mlr3::Task.
 &quot;roc&quot;: ROC curve (1 - specificity on x, sensitivity on y).
-The mlr3::BenchmarkResult may only have a single mlr3::Task and a single mlr3::ResampleResult.
-Note that you can subset any mlr3::BenchmarkResult with its $filter() method (see examples).
+The mlr3::BenchmarkResult may only have a single mlr3::Task and a
+single mlr3::ResampleResult.
+Note that you can subset any mlr3::BenchmarkResult with its $filter()
+method (see examples).
 Requires package precrec.
 &quot;prc&quot;: Precision recall curve. See &quot;roc&quot;.
 
@@ -152,10 +155,13 @@ Requires package precrec.
 
     <div class="ref-description">
     <p>Generates plots for <a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a>, depending on argument <code>type</code>:</p><ul>
-<li><p><code>"boxplot"</code> (default): Boxplots of performance measures, one box per <a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a> and one facet per <a href='https://mlr3.mlr-org.com/reference/Task.html'>mlr3::Task</a>.</p></li>
+<li><p><code>"boxplot"</code> (default): Boxplots of performance measures, one box per
+<a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a> and one facet per <a href='https://mlr3.mlr-org.com/reference/Task.html'>mlr3::Task</a>.</p></li>
 <li><p><code>"roc"</code>: ROC curve (1 - specificity on x, sensitivity on y).
-The <a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a> may only have a single <a href='https://mlr3.mlr-org.com/reference/Task.html'>mlr3::Task</a> and a single <a href='https://mlr3.mlr-org.com/reference/ResampleResult.html'>mlr3::ResampleResult</a>.
-Note that you can subset any <a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a> with its <code>$filter()</code> method (see examples).
+The <a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a> may only have a single <a href='https://mlr3.mlr-org.com/reference/Task.html'>mlr3::Task</a> and a
+single <a href='https://mlr3.mlr-org.com/reference/ResampleResult.html'>mlr3::ResampleResult</a>.
+Note that you can subset any <a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a> with its <code>$filter()</code>
+method (see examples).
 Requires package <a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>.</p></li>
 <li><p><code>"prc"</code>: Precision recall curve. See <code>"roc"</code>.</p></li>
 </ul>
@@ -197,7 +203,8 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></td>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3viz</span>)
 
 <span class='no'>tasks</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsks</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"spam"</span>, <span class='st'>"pima"</span>, <span class='st'>"sonar"</span>))
-<span class='no'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrns</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"classif.featureless"</span>, <span class='st'>"classif.rpart"</span>), <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"prob"</span>)
+<span class='no'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrns</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"classif.featureless"</span>, <span class='st'>"classif.rpart"</span>),
+  <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"prob"</span>)
 <span class='no'>resampling</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmps</a></span>(<span class='st'>"cv"</span>)
 <span class='no'>object</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/benchmark.html'>benchmark</a></span>(<span class='fu'><a href='https://mlr3.mlr-org.com/reference/benchmark_grid.html'>benchmark_grid</a></span>(<span class='no'>tasks</span>, <span class='no'>learner</span>, <span class='no'>resampling</span>))
 

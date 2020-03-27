@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert to 'precrec' Format — as_precrec • mlr3viz</title>
+<title>Generates a data.table of evenly distributed points. — predict_grid • mlr3viz</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -43,9 +43,10 @@
 
 
 
-<meta property="og:title" content="Convert to 'precrec' Format — as_precrec" />
-<meta property="og:description" content="Converts to a format which is understood by precrec::evalmod() of
-package precrec." />
+<meta property="og:title" content="Generates a data.table of evenly distributed points. — predict_grid" />
+<meta property="og:description" content="For each point we have the predicted class / regression value  in column
+response. If the learner predicts probabilities, a column &quot;.prob.response&quot; is
+added that contains the probability of the predicted class" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -138,40 +139,41 @@ package precrec." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert to 'precrec' Format</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/as_precrec.R'><code>R/as_precrec.R</code></a></small>
-    <div class="hidden name"><code>as_precrec.Rd</code></div>
+    <h1>Generates a data.table of evenly distributed points.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/ResampleResult.R'><code>R/ResampleResult.R</code></a></small>
+    <div class="hidden name"><code>predict_grid.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Converts to a format which is understood by <code><a href='https://rdrr.io/pkg/precrec/man/evalmod.html'>precrec::evalmod()</a></code> of
-package <a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>.</p>
+    <p>For each point we have the predicted class / regression value  in column
+response. If the learner predicts probabilities, a column ".prob.response" is
+added that contains the probability of the predicted class</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as_precrec</span>(<span class='no'>object</span>)
-
-<span class='co'># S3 method for PredictionClassif</span>
-<span class='fu'>as_precrec</span>(<span class='no'>object</span>)
-
-<span class='co'># S3 method for ResampleResult</span>
-<span class='fu'>as_precrec</span>(<span class='no'>object</span>)
-
-<span class='co'># S3 method for BenchmarkResult</span>
-<span class='fu'>as_precrec</span>(<span class='no'>object</span>)</pre>
+    <pre class="usage"><span class='fu'>predict_grid</span>(<span class='no'>learners</span>, <span class='no'>task</span>, <span class='no'>grid_points</span>, <span class='no'>expand_range</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>(<code>any</code>)<br />
-Object to convert.</p></td>
+      <th>learners</th>
+      <td><p>list of trained learners, each learner belongs to one
+resampling iteration</p></td>
+    </tr>
+    <tr>
+      <th>task</th>
+      <td><p>the task all learners are trained on</p></td>
+    </tr>
+    <tr>
+      <th>grid_points</th>
+      <td><p>(int): see sequenize</p></td>
+    </tr>
+    <tr>
+      <th>expand_range</th>
+      <td><p>see sequenize</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Object as created by <code><a href='https://rdrr.io/pkg/precrec/man/mmdata.html'>precrec::mmdata()</a></code>.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
