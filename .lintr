@@ -1,0 +1,6 @@
+linters: with_defaults(
+    assignment_linter = NULL,
+    object_name_linter = object_name_linter(c("snake_case", "CamelCase")),
+    cyclocomp_linter = NULL,
+    commented_code_linter = NULL
+    )
