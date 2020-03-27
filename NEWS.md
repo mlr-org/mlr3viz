@@ -1,3 +1,7 @@
+# mlr3viz 0.1.1.9002
+
+- Update documentation of PredictionRegr (#23)
+
 # mlr3viz 0.1.1.9001
 
 - `autoplot.BenchmarResult()`: Support for learners with identical IDs (#19)
