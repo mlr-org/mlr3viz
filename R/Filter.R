@@ -25,14 +25,15 @@
 #'
 #' head(fortify(f))
 #' autoplot(f, n = 5)
-autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) {
+autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
   assert_string(type)
 
   data = head(fortify(object), n)
 
   switch(type,
     "boxplot" = {
-      ggplot(data = data, aes_string(x = "feature", y = "score")) + geom_bar(stat = "identity", ...) +
+      ggplot(data = data, aes_string(x = "feature", y = "score")) +
+        geom_bar(stat = "identity", ...) +
         scale_x_discrete(limits = data$feature)
     },
 
@@ -41,6 +42,6 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) {
 }
 
 #' @export
-fortify.Filter = function(model, data = NULL, ...) {
+fortify.Filter = function(model, data = NULL, ...) { # nolint
   as.data.table(model)
 }

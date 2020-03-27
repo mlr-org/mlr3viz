@@ -24,8 +24,8 @@ Generates plots for \link[mlr3:TaskClassif]{mlr3::TaskClassif}, depending on arg
 \item \code{"target"} (default): Bar plot of the target variable (default).
 \item \code{"duo"}: Passes data and additional arguments down to \code{\link[GGally:ggduo]{GGally::ggduo()}}.
 \code{columnsX} is target, \code{columnsY} is features.
-\item \code{"pairs"}: Passes data and additional arguments down to \code{\link[GGally:ggpairs]{GGally::ggpairs()}}.
-Color is set to target column.
+\item \code{"pairs"}: Passes data and additional arguments down to
+\code{\link[GGally:ggpairs]{GGally::ggpairs()}}. Color is set to target column.
 }
 }
 \examples{
@@ -36,6 +36,7 @@ task = mlr_tasks$get("iris")
 
 head(fortify(task))
 autoplot(task)
-autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")), type = "pairs")
+autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")),
+  type = "pairs")
 autoplot(task, type = "duo")
 }

@@ -5,14 +5,18 @@
 #' * `"boxplot"` (default): Boxplot of performance measures.
 #' * `"histogram"`: Histogram of performance measures.
 #' * `"roc"`: ROC curve (1 - specificity on x, sensitivity on y).
-#'   The predictions of the individual [mlr3::Resampling]s are merged prior to calculating the ROC curve
-#'   (micro averaged). Requires package \CRANpkg{precrec}.
+#'   The predictions of the individual [mlr3::Resampling]s are merged prior to
+#'   calculating the ROC curve (micro averaged). Requires package
+#'   \CRANpkg{precrec}.
 #' * `"prc"`: Precision recall curve. See `"roc"`.
 #' * `"prediction"`: Plots the learner prediction for a grid of points.
-#'      Needs models to be stored. Set `store_models = TRUE` for `[mlr3::resample]`.
-#'      For classification, we support tasks with exactly two features and learners with `predict_type=` set to `"response"` or `"prob"`.
+#'      Needs models to be stored. Set `store_models = TRUE` for
+#'      `[mlr3::resample]`.
+#'      For classification, we support tasks with exactly two features and
+#'      learners with `predict_type=` set to `"response"` or `"prob"`.
 #'      For regression, we support tasks with one or two features.
-#'      For tasks with one feature we can print confidence bounds if the predict type of the learner was set to `"se"`.
+#'      For tasks with one feature we can print confidence bounds if the predict
+#'      type of the learner was set to `"se"`.
 #'      For tasks with two features the predict type will be ignored.
 #'
 #' @param object ([mlr3::ResampleResult]).
@@ -59,47 +63,63 @@
 #' resampling = rsmp("cv", folds = 3)
 #' object = resample(task, learner, resampling, store_models = TRUE)
 #' autoplot(object, type = "prediction")
-autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, predict_sets = "test", ...) {
+autoplot.ResampleResult = function(object, # nolint
+                                   type = "boxplot",
+                                   measure = NULL,
+  predict_sets = "test",
+  ...) {
   assert_string(type)
 
   task = object$task
-  measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
+  measure = mlr3::assert_measure(mlr3::as_measure(measure,
+    task_type = task$task_type), task = task)
 
   switch(type,
     "boxplot" = {
-      ggplot(object, measure = measure, aes_string(y = "performance")) + geom_boxplot(...) + ylab(measure$id)
+      ggplot(object, measure = measure, aes_string(y = "performance")) +
+        geom_boxplot(...) +
+        ylab(measure$id)
     },
 
     "histogram" = {
-      ggplot(object, measure = measure, aes_string(x = "performance")) + geom_histogram(...) + xlab(measure$id)
+      ggplot(object, measure = measure, aes_string(x = "performance")) +
+        geom_histogram(...) +
+        xlab(measure$id)
     },
 
     "roc" = {
       require_namespaces("precrec")
-      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "ROC", show_cb = TRUE)
+      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "ROC",
+        show_cb = TRUE)
     },
 
     "prc" = {
       require_namespaces("precrec")
-      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "prc", show_cb = TRUE)
+      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "prc",
+        show_cb = TRUE)
     },
 
-    "prediction" = plot_learner_prediction_resample_result(object, predict_sets, ...),
+    "prediction" = plot_learner_prediction_resample_result(object,
+      predict_sets, ...),
 
     stopf("Unknown plot type '%s'", type)
   )
 }
 
 #' @export
-fortify.ResampleResult = function(model, data, measure = NULL, ...) {
+fortify.ResampleResult = function(model, data, measure = NULL, ...) { # nolint
   task = model$task
-  measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
+  measure = mlr3::assert_measure(mlr3::as_measure(measure,
+    task_type = task$task_type), task = task)
   data = model$score(measure)[, c("iteration", measure$id), with = FALSE]
   melt(data, measure.vars = measure$id,
     variable.name = "measure_id", value.name = "performance")
 }
 
-plot_learner_prediction_resample_result = function(object, predict_sets, grid_points = 100L, expand_range = 0) {
+plot_learner_prediction_resample_result = function(object, # nolint
+                                                   predict_sets,
+  grid_points = 100L,
+  expand_range = 0) {
 
   task = object$task
   task_type = task$task_type
@@ -108,20 +128,24 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
   learners = object$learners
 
   if (any(map_lgl(map(learners, "model"), is.null))) {
-    stop("No trained models available. Set 'store_models = TRUE' in 'resample()'.")
+    mlr3misc::stopf("No trained models available. Set 'store_models = TRUE' in
+          'resample()'.", wrap = TRUE)
   }
 
   if (task_type %nin% c("classif", "regr")) {
     stopf("Unsupported task type: %s", task_type)
   }
   if (task_type == "classif" && dim != 2L) {
-    stop("Plot learner prediction only works for tasks with two features for classification!")
+    mlr3misc::stopf("Plot learner prediction only works for tasks with two
+                    features for classification!", wrap = TRUE)
   }
   if (task_type == "regr" && dim %nin% 1:2) {
-    stop("Plot learner prediction only works with one or two features for regression!")
+    mlr3misc::stopf("Plot learner prediction only works with one or two
+                    features for regression!", wrap = TRUE)
   }
 
-  grid = predict_grid(learners, task, grid_points = grid_points, expand_range = expand_range)
+  grid = predict_grid(learners, task, grid_points = grid_points,
+    expand_range = expand_range)
 
   # facets for multiple resampling iterations
   if (length(learners) > 1L) {
@@ -136,15 +160,19 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
   # 1d plot (only regression)
   if (task_type == "regr" && dim == 1L) {
     if (learners[[1L]]$predict_type == "se") {
-      se_geom = geom_ribbon(aes_string(ymin = "response-se", ymax = "response+se"), alpha = 0.2)
+      se_geom = geom_ribbon(aes_string(ymin = "response-se",
+        ymax = "response+se"), alpha = 0.2)
     } else {
       se_geom = NULL
     }
     g = ggplot(grid, aes_string(features, "response")) +
       se_geom +
       geom_line() +
-      geom_point(data = task_data(object, predict_sets), aes_string(y = task$target_names, shape = ".predict_set", color = ".predict_set")) +
-      scale_shape_manual(values = c(train = 16, test = 15, both = 17), name = "Set") +
+      geom_point(data = task_data(object, predict_sets),
+        aes_string(y = task$target_names, shape = ".predict_set",
+          color = ".predict_set")) +
+      scale_shape_manual(values = c(train = 16, test = 15, both = 17),
+        name = "Set") +
       labs(color = "Set") +
       folds_facet
 
@@ -158,14 +186,19 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
       raster_aes = aes_string(fill = "response")
       scale_alpha = NULL
       # manual values for rev(RColorBrewer::brewer.pal(11, "Spectral"))
-      scale_fill = scale_fill_gradientn(colours = c("#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4", "#E6F598", "#FFFFBF", "#FEE08B", "#FDAE61", "#F46D43", "#D53E4F", "#9E0142")
+      scale_fill = scale_fill_gradientn(colours = c("#5E4FA2", "#3288BD",
+        "#66C2A5", "#ABDDA4", "#E6F598", "#FFFFBF", "#FEE08B", "#FDAE61",
+        "#F46D43", "#D53E4F", "#9E0142")
       )
     }
 
     g = ggplot(grid, aes_string(features[1L], features[2L])) +
       geom_raster(raster_aes) +
-      geom_point(data = task_data(object, predict_sets), aes_string(fill = task$target_names, shape = ".predict_set"), color = "black") +
-      scale_shape_manual(values = c(train = 21, test = 22, both = 23), name = "Set") +
+      geom_point(data = task_data(object, predict_sets),
+        aes_string(fill = task$target_names, shape = ".predict_set"),
+        color = "black") +
+      scale_shape_manual(values = c(train = 21, test = 22, both = 23),
+        name = "Set") +
       scale_alpha +
       scale_fill +
       labs(fill = "Response") +
@@ -175,7 +208,8 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
   return(g)
 }
 
-# Generates a data.table that contains the points that were used in each resample iterations.
+# Generates a data.table that contains the points that were used in each
+# resample iterations.
 # The resample iteration is given in column ".id"
 # The point type is given in column ".predict_set"
 # object: ResampleResult
@@ -192,7 +226,8 @@ task_data = function(object, predict_sets) {
 
   types = lapply(seq_along(object$learners), function(i) {
     ids = seq_len(object$task$nrow)
-    type = (ids %in% object$resampling$train_set(i)) + 2L * (ids %in% object$resampling$test_set(i))
+    type = (ids %in% object$resampling$train_set(i)) + 2L *
+      (ids %in% object$resampling$test_set(i))
     type = type_char[type + 1L]
     select_ids = !is.na(type)
     data.table(.row_id = ids[select_ids], .predict_set = type[select_ids])
@@ -212,12 +247,14 @@ sequenize = function(x, n, expand_range = 0) {
   if (is.numeric(x)) {
     r = range(x, na.rm = TRUE)
     d = diff(r)
-    res = seq(from = r[1L] - expand_range * d, to = r[2L] + expand_range * d, length.out = n)
+    res = seq(from = r[1L] - expand_range * d, to = r[2L] + expand_range * d,
+      length.out = n)
     if (is.integer(x)) {
       res = unique(as.integer(round(res)))
     }
   } else if (is.factor(x) || is.ordered(x)) {
-    res = factor(levels(x), levels = levels(x), ordered = is.ordered(x)) # keeps the order of the levels
+    # keeps the order of the levels
+    res = factor(levels(x), levels = levels(x), ordered = is.ordered(x))
   } else if (is.logical(x)) {
     res = c(TRUE, FALSE)
   } else {
@@ -226,25 +263,33 @@ sequenize = function(x, n, expand_range = 0) {
   return(res)
 }
 
-# Generates a data.table of evenly distributed points.
-# For each point we have the predicted class / regression value  in column response.
-# If the learner predicts probabilities, a column ".prob.response" is added that contains the probability of the predicted class
-# learners: list of trained learners, each learner belongs to one resampling iteration
-# task: the task all learners are trained on
-# grid_points (int): see sequenize
-# expand_range: see sequenize
+#' @title Generates a data.table of evenly distributed points.
+#' @description
+#' For each point we have the predicted class / regression value  in column
+#' response. If the learner predicts probabilities, a column ".prob.response" is
+#' added that contains the probability of the predicted class
+#'
+#' @param learners list of trained learners, each learner belongs to one
+#'   resampling iteration
+#' @param task the task all learners are trained on
+#' @param grid_points (int): see sequenize
+#' @param expand_range see sequenize
 predict_grid = function(learners, task, grid_points, expand_range) {
-  grids = lapply(learners, function(learner) {
+  grids = mlr3misc::map(learners, function(learner) {
     features = task$feature_names
-    grid = map(task$data(cols = features), sequenize, n = grid_points, expand_range = expand_range)
+    grid = mlr3misc::map(task$data(cols = features), sequenize, n = grid_points,
+      expand_range = expand_range)
     grid = cross_join(grid, sorted = FALSE)
-    grid = cbind(grid, remove_named(as.data.table(learner$predict_newdata(newdata = grid, task = task)), c("row_id", "truth")))
+    grid = cbind(grid,
+      remove_named(as.data.table(learner$predict_newdata(newdata = grid,
+        task = task)), c("row_id", "truth")))
   })
   grid = rbindlist(grids, idcol = TRUE, use.names = FALSE)
 
   # reduce to prob columns to one column for the predicted class
   if (learners[[1]]$predict_type == "prob") {
-    grid[, ".prob.response" := .SD[, paste0("prob.", get("response")), with = FALSE], by = "response"]
+    grid[, ".prob.response" := .SD[, paste0("prob.", # nolint
+      get("response")), with = FALSE], by = "response"]
   }
 
   return(grid)

@@ -5,8 +5,8 @@
 #' * `"target"` (default): Bar plot of the target variable (default).
 #' * `"duo"`: Passes data and additional arguments down to [GGally::ggduo()].
 #'   `columnsX` is target, `columnsY` is features.
-#' * `"pairs"`: Passes data and additional arguments down to [GGally::ggpairs()].
-#'   Color is set to target column.
+#' * `"pairs"`: Passes data and additional arguments down to
+#' [GGally::ggpairs()]. Color is set to target column.
 #'
 #' @param object ([mlr3::TaskClassif]).
 #' @template param_type
@@ -23,21 +23,24 @@
 #'
 #' head(fortify(task))
 #' autoplot(task)
-#' autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")), type = "pairs")
+#' autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")),
+#'   type = "pairs")
 #' autoplot(task, type = "duo")
-autoplot.TaskClassif = function(object, type = "target", ...) {
+autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
   assert_string(type)
 
   target = object$target_names
 
   switch(type,
     "target" = {
-      ggplot(object, aes_string(x = target, fill = target)) + geom_bar(stat = "count")
+      ggplot(object, aes_string(x = target, fill = target)) +
+        geom_bar(stat = "count")
     },
 
     "duo" = {
       require_namespaces("GGally")
-      GGally::ggduo(object, columnsX = target, columnsY = object$feature_names, mapping = aes_string(color = target), ...)
+      GGally::ggduo(object, columnsX = target, columnsY = object$feature_names,
+        mapping = aes_string(color = target), ...)
     },
 
     "pairs" = {

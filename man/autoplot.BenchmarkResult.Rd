@@ -23,10 +23,13 @@ Additional arguments, passed down to the respective \code{geom}.}
 \description{
 Generates plots for \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}, depending on argument \code{type}:
 \itemize{
-\item \code{"boxplot"} (default): Boxplots of performance measures, one box per \link[mlr3:Learner]{mlr3::Learner} and one facet per \link[mlr3:Task]{mlr3::Task}.
+\item \code{"boxplot"} (default): Boxplots of performance measures, one box per
+\link[mlr3:Learner]{mlr3::Learner} and one facet per \link[mlr3:Task]{mlr3::Task}.
 \item \code{"roc"}: ROC curve (1 - specificity on x, sensitivity on y).
-The \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} may only have a single \link[mlr3:Task]{mlr3::Task} and a single \link[mlr3:ResampleResult]{mlr3::ResampleResult}.
-Note that you can subset any \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} with its \verb{$filter()} method (see examples).
+The \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} may only have a single \link[mlr3:Task]{mlr3::Task} and a
+single \link[mlr3:ResampleResult]{mlr3::ResampleResult}.
+Note that you can subset any \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} with its \verb{$filter()}
+method (see examples).
 Requires package \CRANpkg{precrec}.
 \item \code{"prc"}: Precision recall curve. See \code{"roc"}.
 }
@@ -36,7 +39,8 @@ library(mlr3)
 library(mlr3viz)
 
 tasks = tsks(c("spam", "pima", "sonar"))
-learner = lrns(c("classif.featureless", "classif.rpart"), predict_type = "prob")
+learner = lrns(c("classif.featureless", "classif.rpart"),
+  predict_type = "prob")
 resampling = rsmps("cv")
 object = benchmark(benchmark_grid(tasks, learner, resampling))
 

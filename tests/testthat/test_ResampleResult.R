@@ -9,7 +9,8 @@ rr = resample(task, learner, resampling)
 test_that("fortify ResampleResult", {
   f = fortify(rr, measure = msr("classif.ce"))
   expect_data_table(f, nrows = 10, ncols = 3)
-  expect_names(names(f), identical.to = c("iteration", "measure_id", "performance"))
+  expect_names(names(f), identical.to = c("iteration", "measure_id",
+    "performance"))
 })
 
 test_that("autoplot ResampleResult", {
@@ -39,9 +40,13 @@ test_that("autoplot ResampleResult type=prediction", {
 
   for (task in tasks) {
     if (task$task_type == "classif") {
-      learners = lapply(c("response", "prob"), function(x) lrn("classif.featureless", predict_type = x))
+      learners = lapply(c("response", "prob"), function(x) {
+        lrn("classif.featureless", predict_type = x)
+      })
     } else {
-      learners = lapply(c("response", "se"), function(x) lrn("regr.featureless", predict_type = x))
+      learners = lapply(c("response", "se"), function(x) {
+        lrn("regr.featureless", predict_type = x)
+      })
     }
     for (learner in learners) {
       for (resampling in resamplings) {
@@ -55,10 +60,15 @@ test_that("autoplot ResampleResult type=prediction", {
   }
 
   # check errors
-  rr = resample(tsk("iris")$select(c("Sepal.Length", "Sepal.Width")), lrn("classif.featureless"), resampling, store_models = FALSE)
+  rr = resample(tsk("iris")$select(c("Sepal.Length", "Sepal.Width")),
+    lrn("classif.featureless"), resampling, store_models = FALSE)
   expect_error(autoplot(rr, type = "prediction"), fixed = "store_models")
-  rr = resample(tsk("iris"), lrn("classif.featureless"), resampling, store_models = TRUE)
-  expect_error(autoplot(rr, type = "prediction"), fixed = "only works for tasks with two features")
-  rr = resample(tsk("boston_housing"), lrn("regr.featureless"), resampling, store_models = TRUE)
-  expect_error(autoplot(rr, type = "prediction"), fixed = "only works for tasks with one or two features")
+  rr = resample(tsk("iris"), lrn("classif.featureless"), resampling,
+    store_models = TRUE)
+  expect_error(autoplot(rr, type = "prediction"),
+    fixed = "only works for tasks with two features")
+  rr = resample(tsk("boston_housing"), lrn("regr.featureless"), resampling,
+    store_models = TRUE)
+  expect_error(autoplot(rr, type = "prediction"),
+    fixed = "only works for tasks with one or two features")
 })

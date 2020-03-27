@@ -9,7 +9,8 @@ bmr = benchmark(benchmark_grid(tasks, learner, resampling))
 test_that("fortify BenchmarkResult", {
   f = fortify(bmr, measure = msr("classif.ce"))
   expect_data_table(f, nrows = 18, ncols = 5)
-  expect_names(names(f), permutation.of = c("nr", "task_id", "learner_id", "resampling_id", "classif.ce"))
+  expect_names(names(f), permutation.of = c("nr", "task_id", "learner_id",
+    "resampling_id", "classif.ce"))
 })
 
 test_that("autoplot BenchmarkResult", {

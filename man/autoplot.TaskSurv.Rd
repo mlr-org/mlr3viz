@@ -13,7 +13,8 @@
 Type of the plot. Available choices:}
 
 \item{...}{(\code{any}):
-Additional argument, passed down to \verb{$formula} of \link[mlr3proba:TaskSurv]{mlr3proba::TaskSurv} or the underlying plot functions.}
+Additional argument, passed down to \verb{$formula} of \link[mlr3proba:TaskSurv]{mlr3proba::TaskSurv} or
+the underlying plot functions.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -24,7 +25,8 @@ Generates plots for \link[mlr3proba:TaskSurv]{mlr3proba::TaskSurv}, depending on
 \item \code{"target"}: Calls \code{\link[GGally:ggsurv]{GGally::ggsurv()}} on a \code{\link[survival:survfit]{survival::survfit()}} object.
 \item \code{"duo"}: Passes data and additional arguments down to \code{\link[GGally:ggduo]{GGally::ggduo()}}.
 \code{columnsX} is target, \code{columnsY} is features.
-\item \code{"pairs"}: Passes data and additional arguments down to \code{\link[GGally:ggpairs]{GGally::ggpairs()}}.
+\item \code{"pairs"}: Passes data and additional arguments down to
+\code{\link[GGally:ggpairs]{GGally::ggpairs()}}.
 Color is set to target column.
 }
 }

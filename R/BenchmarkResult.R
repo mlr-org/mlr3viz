@@ -3,10 +3,13 @@
 #' @description
 #' Generates plots for [mlr3::BenchmarkResult], depending on argument `type`:
 #'
-#' * `"boxplot"` (default): Boxplots of performance measures, one box per [mlr3::Learner] and one facet per [mlr3::Task].
+#' * `"boxplot"` (default): Boxplots of performance measures, one box per
+#' [mlr3::Learner] and one facet per [mlr3::Task].
 #' * `"roc"`: ROC curve (1 - specificity on x, sensitivity on y).
-#'   The [mlr3::BenchmarkResult] may only have a single [mlr3::Task] and a single [mlr3::ResampleResult].
-#'   Note that you can subset any [mlr3::BenchmarkResult] with its `$filter()` method (see examples).
+#'   The [mlr3::BenchmarkResult] may only have a single [mlr3::Task] and a
+#'   single [mlr3::ResampleResult].
+#'   Note that you can subset any [mlr3::BenchmarkResult] with its `$filter()`
+#'   method (see examples).
 #'   Requires package \CRANpkg{precrec}.
 #' * `"prc"`: Precision recall curve. See `"roc"`.
 #'
@@ -23,7 +26,8 @@
 #' library(mlr3viz)
 #'
 #' tasks = tsks(c("spam", "pima", "sonar"))
-#' learner = lrns(c("classif.featureless", "classif.rpart"), predict_type = "prob")
+#' learner = lrns(c("classif.featureless", "classif.rpart"),
+#'   predict_type = "prob")
 #' resampling = rsmps("cv")
 #' object = benchmark(benchmark_grid(tasks, learner, resampling))
 #'
@@ -31,12 +35,16 @@
 #' autoplot(object)
 #' autoplot(object$clone()$filter(task_ids = "spam"), type = "roc")
 #' autoplot(object$clone()$filter(task_ids = "pima"), type = "prc")
-autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ...) {
+autoplot.BenchmarkResult = function(object, # nolint
+  type = "boxplot",
+  measure = NULL,
+  ...) {
 
   assert_string(type)
 
   task = object$data$task[[1L]]
-  measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
+  measure = mlr3::assert_measure(mlr3::as_measure(measure,
+    task_type = task$task_type), task = task)
   measure_id = measure$id
   tab = fortify(object, measure = measure)
   tab$nr = as.character(tab$nr)
@@ -55,12 +63,14 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ..
 
     "roc" = {
       require_namespaces("precrec")
-      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "ROC", show_cb = TRUE)
+      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "ROC",
+        show_cb = TRUE)
     },
 
     "prc" = {
       require_namespaces("precrec")
-      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "PRC", show_cb = TRUE)
+      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "PRC",
+        show_cb = TRUE)
     },
 
     stopf("Unknown plot type '%s'", type)
@@ -68,8 +78,10 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ..
 }
 
 #' @export
-fortify.BenchmarkResult = function(model, data = NULL, measure = NULL, ...) {
+fortify.BenchmarkResult = function(model, data = NULL, measure = NULL, ...) { # nolint
   task = model$data$task[[1L]]
-  measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
-  model$score(measures = measure)[, c("nr", "task_id", "learner_id", "resampling_id", measure$id), with = FALSE]
+  measure = mlr3::assert_measure(mlr3::as_measure(measure,
+    task_type = task$task_type), task = task)
+  model$score(measures = measure)[, c("nr", "task_id", "learner_id",
+    "resampling_id", measure$id), with = FALSE]
 }

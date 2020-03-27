@@ -1,4 +1,4 @@
 #' @export
-fortify.Prediction = function(model, data, ...) {
+fortify.Prediction = function(model, data, ...) { # nolint
   as.data.table(model)
 }

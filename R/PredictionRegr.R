@@ -1,5 +1,6 @@
 #' @title Plot for PredictionRegr
 #'
+#' @importFrom ggplot2 fortify
 #' @description
 #' Generates plots for [mlr3::PredictionRegr], depending on argument `type`:
 #'
@@ -9,9 +10,10 @@
 #'
 #'   * In addition `geom_abline()` with `slope = 1` is added to the plot.
 #'
-#'   * Note that `geom_smooth()` and `geom_abline()` may overlap, depending on the
-#'   given data.
-#' * `"histogram"`: Histogram of residuals: \eqn{r = y - \hat{y}}{r = y - y.hat}.
+#'   * Note that `geom_smooth()` and `geom_abline()` may overlap, depending on
+#'     the given data.
+#' * `"histogram"`: Histogram of residuals:
+#'    \eqn{r = y - \hat{y}}{r = y - y.hat}.
 #' * `"residual"`: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat}
 #' on the "x" and the residuals on the "y" axis.
 #'
@@ -37,10 +39,10 @@
 #' autoplot(object)
 #' autoplot(object, type = "histogram", binwidth = 1)
 #' autoplot(object, type = "residual")
-autoplot.PredictionRegr = function(object,
+autoplot.PredictionRegr = function(object, # nolint
   type = "xy",
   ...) {
-  assert_string(type)
+  checkmate::assert_string(type)
 
   switch(type,
     "xy" = {
@@ -54,10 +56,10 @@ autoplot.PredictionRegr = function(object,
     },
 
     "histogram" = {
-      object = fortify(object)
+      object = ggplot2::fortify(object)
       ggplot(object,
         mapping = aes(x = .data[["truth"]] - .data[["response"]],
-          y = after_stat(density))
+          y = after_stat(.data[["density"]]))
       ) +
         geom_histogram(...)
     },

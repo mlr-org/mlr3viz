@@ -13,7 +13,8 @@
 Type of the plot. See description.}
 
 \item{...}{(\code{any}):
-Additional argument, passed down to the underlying \code{geom} or plot functions.}
+Additional argument, passed down to the underlying \code{geom} or plot
+functions.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -22,8 +23,8 @@ Additional argument, passed down to the underlying \code{geom} or plot functions
 Generates plots for \link[mlr3:TaskRegr]{mlr3::TaskRegr}, depending on argument \code{type}:
 \itemize{
 \item \code{"target"}: Box plot of target variable (default).
-\item \code{"pairs"}: Passes data and additional arguments down to \code{\link[GGally:ggpairs]{GGally::ggpairs()}}.
-Color is set to target column.
+\item \code{"pairs"}: Passes data and additional arguments down to
+\code{\link[GGally:ggpairs]{GGally::ggpairs()}}. Color is set to target column.
 }
 }
 \examples{

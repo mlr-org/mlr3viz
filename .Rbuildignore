@@ -9,3 +9,5 @@
 ^pkgdown$
 ^\.pre-commit-config\.yaml$
 ^\.vscode$
+^\.lintr$
+^\.github$

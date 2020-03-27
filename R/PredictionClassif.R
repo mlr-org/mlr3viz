@@ -28,13 +28,17 @@
 #' autoplot(object)
 #' autoplot(object, type = "roc")
 #' autoplot(object, type = "prc")
-autoplot.PredictionClassif = function(object, type = "stacked", ...) {
+autoplot.PredictionClassif = function(object, type = "stacked", ...) { # nolint
+  # nolint
   assert_string(type)
 
   switch(type,
     "stacked" = {
-      tab = melt(fortify(object)[, c("truth", "response")], measure.vars = c("truth", "response"))
-      ggplot(tab, aes_string(fill = "value", x = "variable")) + geom_bar(...) + geom_label(stat = "count", aes_string(label = "..count.."))
+      tab = melt(fortify(object)[, c("truth", "response")],
+        measure.vars = c("truth", "response"))
+      ggplot(tab, aes_string(fill = "value", x = "variable")) +
+        geom_bar(...) +
+        geom_label(stat = "count", aes_string(label = "..count.."))
     },
 
     "roc" = {
