@@ -1,6 +1,9 @@
 linters: with_defaults(
-    assignment_linter = NULL,
-    object_name_linter = object_name_linter(c("snake_case", "CamelCase")),
-    cyclocomp_linter = NULL,
-    commented_code_linter = NULL
+    # lintr defaults: https://github.com/jimhester/lintr#available-linters
+    # the following setup changes/removes certain linters
+    assignment_linter = NULL, # do not force using <- for assignments
+    object_name_linter = object_name_linter(c("snake_case", "CamelCase")), # only allow snake case and camel case object names
+    cyclocomp_linter = NULL, # do not check function complexity
+    commented_code_linter = NULL # allow code in comments
     )
+
