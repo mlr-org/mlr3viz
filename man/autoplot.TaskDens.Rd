@@ -30,7 +30,7 @@ Generates plots for \link[mlr3proba:TaskDens]{mlr3proba::TaskDens}.
 \examples{
 library(mlr3)
 library(mlr3proba)
-task = mlr_tasks$get("faithful")
+task = mlr_tasks$get("precip")
 
 head(fortify(task))
 autoplot(task, bins = 15)
