@@ -14,7 +14,7 @@ set.seed(1)
 Package website: [release](https://mlr3.mlr-org.com/) | [dev](https://mlr3.mlr-org.com/dev)
 
 <!-- badges: start -->
-[![R CMD Check via {tic}](https://github.com/mlr-org/mlr3viz/workflows/R%20CMD%20Check%20via%20{tic}/badge.svg?branch=master)](https://github.com/mlr-org/mlr3viz/actions)
+[![tic](https://github.com/mlr-org/mlr3viz/workflows/tic/badge.svg?branch=master)](https://github.com/mlr-org/mlr3viz/actions)
 [![CRAN](https://www.r-pkg.org/badges/version/mlr3viz)](https://cran.r-project.org/package=mlr3viz)
 [![codecov](https://codecov.io/gh/mlr-org/mlr3viz/branch/master/graph/badge.svg)](https://codecov.io/gh/mlr-org/mlr3viz)
 [![StackOverflow](https://img.shields.io/badge/stackoverflow-mlr3-orange.svg)](https://stackoverflow.com/questions/tagged/mlr3)
