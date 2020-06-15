@@ -30,7 +30,8 @@ autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
   switch(type,
     "target" = {
       target = object$target_names
-      ggplot(data = object, aes_string(x = as.factor(target), y = target,
+      ggplot(data = object, aes_string(
+        x = as.factor(target), y = target,
         fill = target)) +
         geom_boxplot(...) +
         xlab("")

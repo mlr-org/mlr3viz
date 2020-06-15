@@ -39,7 +39,8 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
 
     "duo" = {
       require_namespaces("GGally")
-      GGally::ggduo(object, columnsX = target, columnsY = object$feature_names,
+      GGally::ggduo(object,
+        columnsX = target, columnsY = object$feature_names,
         mapping = aes_string(color = target), ...)
     },
 

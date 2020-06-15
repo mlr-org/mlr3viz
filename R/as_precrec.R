@@ -44,8 +44,9 @@ as_precrec.ResampleResult = function(object) { # nolint
   require_namespaces("precrec")
   predictions = object$predictions()
   data = transpose_list(map(predictions, roc_data))
-  precrec::mmdata(scores = data$scores, labels = data$labels,
-   dsids = seq_along(predictions))
+  precrec::mmdata(
+    scores = data$scores, labels = data$labels,
+    dsids = seq_along(predictions))
 }
 
 

@@ -63,13 +63,15 @@ autoplot.BenchmarkResult = function(object, # nolint
 
     "roc" = {
       require_namespaces("precrec")
-      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "ROC",
+      autoplot(precrec::evalmod(as_precrec(object)),
+        curvetype = "ROC",
         show_cb = TRUE)
     },
 
     "prc" = {
       require_namespaces("precrec")
-      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "PRC",
+      autoplot(precrec::evalmod(as_precrec(object)),
+        curvetype = "PRC",
         show_cb = TRUE)
     },
 
@@ -82,6 +84,7 @@ fortify.BenchmarkResult = function(model, data = NULL, measure = NULL, ...) { # 
   task = model$data$task[[1L]]
   measure = mlr3::assert_measure(mlr3::as_measure(measure,
     task_type = task$task_type), task = task)
-  model$score(measures = measure)[, c("nr", "task_id", "learner_id",
+  model$score(measures = measure)[, c(
+    "nr", "task_id", "learner_id",
     "resampling_id", measure$id), with = FALSE]
 }

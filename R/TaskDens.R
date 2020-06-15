@@ -27,15 +27,15 @@
 autoplot.TaskDens = function(object, type = "dens", ...) {
   assert_choice(type, c("dens", "freq", "overlay", "freqpoly"))
 
-  p = ggplot(data = object, aes_string(x = object$target_names),...)
+  p = ggplot(data = object, aes_string(x = object$target_names), ...)
 
   if (type == "dens") {
-    p + geom_histogram(aes(y = ..density..), fill = "white", color = "black",...)
+    p + geom_histogram(aes(y = ..density..), fill = "white", color = "black", ...)
   } else if (type == "freq") {
     p + geom_histogram(fill = "white", color = "black", ...)
   } else if (type == "overlay") {
     p +
-      geom_histogram(aes(y = ..density..), colour = "black", fill = "white",...) +
+      geom_histogram(aes(y = ..density..), colour = "black", fill = "white", ...) +
       geom_density(alpha = 0.2, fill = "#FF6666")
   } else {
     p + geom_freqpoly(...)

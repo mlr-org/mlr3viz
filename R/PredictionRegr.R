@@ -58,7 +58,8 @@ autoplot.PredictionRegr = function(object, # nolint
     "histogram" = {
       object = ggplot2::fortify(object)
       ggplot(object,
-        mapping = aes(x = .data[["truth"]] - .data[["response"]],
+        mapping = aes(
+          x = .data[["truth"]] - .data[["response"]],
           y = after_stat(.data[["density"]]))
       ) +
         geom_histogram(...)
@@ -66,7 +67,8 @@ autoplot.PredictionRegr = function(object, # nolint
 
     "residual" = {
       ggplot(object,
-        mapping = aes(x = .data[["response"]],
+        mapping = aes(
+          x = .data[["response"]],
           y = .data[["truth"]] - .data[["response"]])
       ) +
         geom_point(...) +

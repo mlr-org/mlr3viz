@@ -64,10 +64,11 @@
 #' object = resample(task, learner, resampling, store_models = TRUE)
 #' autoplot(object, type = "prediction")
 autoplot.ResampleResult = function(object, # nolint
-                                   type = "boxplot",
-                                   measure = NULL,
+  type = "boxplot",
+  measure = NULL,
   predict_sets = "test",
   ...) {
+
   assert_string(type)
 
   task = object$task
@@ -89,17 +90,20 @@ autoplot.ResampleResult = function(object, # nolint
 
     "roc" = {
       require_namespaces("precrec")
-      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "ROC",
+      autoplot(precrec::evalmod(as_precrec(object)),
+        curvetype = "ROC",
         show_cb = TRUE)
     },
 
     "prc" = {
       require_namespaces("precrec")
-      autoplot(precrec::evalmod(as_precrec(object)), curvetype = "prc",
+      autoplot(precrec::evalmod(as_precrec(object)),
+        curvetype = "prc",
         show_cb = TRUE)
     },
 
-    "prediction" = plot_learner_prediction_resample_result(object,
+    "prediction" = plot_learner_prediction_resample_result(
+      object,
       predict_sets, ...),
 
     stopf("Unknown plot type '%s'", type)
@@ -112,12 +116,13 @@ fortify.ResampleResult = function(model, data, measure = NULL, ...) { # nolint
   measure = mlr3::assert_measure(mlr3::as_measure(measure,
     task_type = task$task_type), task = task)
   data = model$score(measure)[, c("iteration", measure$id), with = FALSE]
-  melt(data, measure.vars = measure$id,
+  melt(data,
+    measure.vars = measure$id,
     variable.name = "measure_id", value.name = "performance")
 }
 
 plot_learner_prediction_resample_result = function(object, # nolint
-                                                   predict_sets,
+  predict_sets,
   grid_points = 100L,
   expand_range = 0) {
 
@@ -144,7 +149,8 @@ plot_learner_prediction_resample_result = function(object, # nolint
                     features for regression!", wrap = TRUE)
   }
 
-  grid = predict_grid(learners, task, grid_points = grid_points,
+  grid = predict_grid(learners, task,
+    grid_points = grid_points,
     expand_range = expand_range)
 
   # facets for multiple resampling iterations
@@ -160,7 +166,8 @@ plot_learner_prediction_resample_result = function(object, # nolint
   # 1d plot (only regression)
   if (task_type == "regr" && dim == 1L) {
     if (learners[[1L]]$predict_type == "se") {
-      se_geom = geom_ribbon(aes_string(ymin = "response-se",
+      se_geom = geom_ribbon(aes_string(
+        ymin = "response-se",
         ymax = "response+se"), alpha = 0.2)
     } else {
       se_geom = NULL
@@ -168,10 +175,13 @@ plot_learner_prediction_resample_result = function(object, # nolint
     g = ggplot(grid, aes_string(features, "response")) +
       se_geom +
       geom_line() +
-      geom_point(data = task_data(object, predict_sets),
-        aes_string(y = task$target_names, shape = ".predict_set",
+      geom_point(
+        data = task_data(object, predict_sets),
+        aes_string(
+          y = task$target_names, shape = ".predict_set",
           color = ".predict_set")) +
-      scale_shape_manual(values = c(train = 16, test = 15, both = 17),
+      scale_shape_manual(
+        values = c(train = 16, test = 15, both = 17),
         name = "Set") +
       labs(color = "Set") +
       folds_facet
@@ -186,7 +196,8 @@ plot_learner_prediction_resample_result = function(object, # nolint
       raster_aes = aes_string(fill = "response")
       scale_alpha = NULL
       # manual values for rev(RColorBrewer::brewer.pal(11, "Spectral"))
-      scale_fill = scale_fill_gradientn(colours = c("#5E4FA2", "#3288BD",
+      scale_fill = scale_fill_gradientn(colours = c(
+        "#5E4FA2", "#3288BD",
         "#66C2A5", "#ABDDA4", "#E6F598", "#FFFFBF", "#FEE08B", "#FDAE61",
         "#F46D43", "#D53E4F", "#9E0142")
       )
@@ -194,10 +205,12 @@ plot_learner_prediction_resample_result = function(object, # nolint
 
     g = ggplot(grid, aes_string(features[1L], features[2L])) +
       geom_raster(raster_aes) +
-      geom_point(data = task_data(object, predict_sets),
+      geom_point(
+        data = task_data(object, predict_sets),
         aes_string(fill = task$target_names, shape = ".predict_set"),
         color = "black") +
-      scale_shape_manual(values = c(train = 21, test = 22, both = 23),
+      scale_shape_manual(
+        values = c(train = 21, test = 22, both = 23),
         name = "Set") +
       scale_alpha +
       scale_fill +
@@ -217,6 +230,7 @@ plot_learner_prediction_resample_result = function(object, # nolint
 task_data = function(object, predict_sets) {
 
   # if train and test is in predict_sets, allow "both" to be plotted
+
   if (all(c("train", "test") %in% predict_sets) && "both" %nin% predict_sets) {
     predict_sets = c(predict_sets, "both")
   }
@@ -247,7 +261,8 @@ sequenize = function(x, n, expand_range = 0) {
   if (is.numeric(x)) {
     r = range(x, na.rm = TRUE)
     d = diff(r)
-    res = seq(from = r[1L] - expand_range * d, to = r[2L] + expand_range * d,
+    res = seq(
+      from = r[1L] - expand_range * d, to = r[2L] + expand_range * d,
       length.out = n)
     if (is.integer(x)) {
       res = unique(as.integer(round(res)))
@@ -277,18 +292,22 @@ sequenize = function(x, n, expand_range = 0) {
 predict_grid = function(learners, task, grid_points, expand_range) {
   grids = mlr3misc::map(learners, function(learner) {
     features = task$feature_names
-    grid = mlr3misc::map(task$data(cols = features), sequenize, n = grid_points,
+    grid = mlr3misc::map(task$data(cols = features), sequenize,
+      n = grid_points,
       expand_range = expand_range)
     grid = cross_join(grid, sorted = FALSE)
-    grid = cbind(grid,
-      remove_named(as.data.table(learner$predict_newdata(newdata = grid,
+    grid = cbind(
+      grid,
+      remove_named(as.data.table(learner$predict_newdata(
+        newdata = grid,
         task = task)), c("row_id", "truth")))
   })
   grid = rbindlist(grids, idcol = TRUE, use.names = FALSE)
 
   # reduce to prob columns to one column for the predicted class
   if (learners[[1]]$predict_type == "prob") {
-    grid[, ".prob.response" := .SD[, paste0("prob.", # nolint
+    grid[, ".prob.response" := .SD[, paste0(
+      "prob.", # nolint
       get("response")), with = FALSE], by = "response"]
   }
 

@@ -36,16 +36,19 @@ autoplot.TaskSurv = function(object, type = "target", ...) { # nolint
   switch(type,
     "target" = {
       if (...length() == 0L) {
-        GGally::ggsurv(invoke(survival::survfit, formula = object$formula(1),
+        GGally::ggsurv(invoke(survival::survfit,
+          formula = object$formula(1),
           data = object$data()))
       } else {
-        GGally::ggsurv(invoke(survival::survfit, formula = object$formula(...),
+        GGally::ggsurv(invoke(survival::survfit,
+          formula = object$formula(...),
           data = object$data()))
       }
     },
 
     "duo" = {
-      GGally::ggduo(object, columnsX = object$target_names,
+      GGally::ggduo(object,
+        columnsX = object$target_names,
         columnsY = object$feature_names, ...)
     },
 
