@@ -12,10 +12,11 @@
 \item{type}{(\code{character(1)}):
 Type of the plot. Available choices:
 \itemize{
-\item \code{"dens"}: histogram density estimator (default) with \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}.
-\item \code{"freq"}: histogram frequency plot with \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}.
-\item \code{"overlay"}: histogram with overlaid density plot with \link[ggplot2:geom_histogram]{ggplot2::geom_histogram} and \link[ggplot2:geom_density]{ggplot2::geom_density}.
-\item \code{"freqpoly"}: frequency polygon plot with \link[ggplot2:geom_freqpoly]{ggplot2::geom_freqpoly}.
+\item \code{"dens"}: histogram density estimator (default) with \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}.
+\item \code{"freq"}: histogram frequency plot with \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}.
+\item \code{"overlay"}: histogram with overlaid density plot with \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}} and
+\code{\link[ggplot2:geom_density]{ggplot2::geom_density()}}.
+\item \code{"freqpoly"}: frequency polygon plot with \code{ggplot2::geom_freqpoly}.
 }}
 
 \item{...}{(\code{any}):

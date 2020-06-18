@@ -6,10 +6,11 @@
 #' @param object ([mlr3proba::TaskDens]).
 #' @param type (`character(1)`):
 #'   Type of the plot. Available choices:
-#'   * `"dens"`: histogram density estimator (default) with [ggplot2::geom_histogram].
-#'   * `"freq"`: histogram frequency plot with [ggplot2::geom_histogram].
-#'   * `"overlay"`: histogram with overlaid density plot with [ggplot2::geom_histogram] and [ggplot2::geom_density].
-#'   * `"freqpoly"`: frequency polygon plot with [ggplot2::geom_freqpoly].
+#'   * `"dens"`: histogram density estimator (default) with [ggplot2::geom_histogram()].
+#'   * `"freq"`: histogram frequency plot with [ggplot2::geom_histogram()].
+#'   * `"overlay"`: histogram with overlaid density plot with [ggplot2::geom_histogram()] and
+#'   [ggplot2::geom_density()].
+#'   * `"freqpoly"`: frequency polygon plot with `ggplot2::geom_freqpoly`.
 #' @param ... (`any`):
 #'   Additional arguments, possibly passed down to the underlying plot functions.
 #' @return [ggplot2::ggplot()] object.
@@ -28,6 +29,8 @@ autoplot.TaskDens = function(object, type = "dens", ...) {
   assert_choice(type, c("dens", "freq", "overlay", "freqpoly"))
 
   p = ggplot(data = object, aes_string(x = object$target_names), ...)
+  # hacky density fix
+  ..density.. <- NULL
 
   if (type == "dens") {
     p + geom_histogram(aes(y = ..density..), fill = "white", color = "black", ...)
