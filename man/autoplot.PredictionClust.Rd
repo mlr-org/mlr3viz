@@ -9,6 +9,8 @@
 \arguments{
 \item{object}{(\link[mlr3:PredictionClust]{mlr3::PredictionClust}).}
 
+\item{task}{(\link[mlr3:TaskClust]{mlr3::TaskClust}).}
+
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
 

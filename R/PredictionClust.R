@@ -7,6 +7,7 @@
 #' and colored cluster assignments.
 #'
 #' @param object ([mlr3::PredictionClust]).
+#' @param task ([mlr3::TaskClust]).
 #' @template param_type
 #' @param ... (`any`):
 #'   Additional arguments, passed down to the respective `geom`.

@@ -35,5 +35,4 @@ task = mlr_tasks$get("usarrests")
 
 head(fortify(task))
 autoplot(task)
-autoplot(task, type = "duo")
 }

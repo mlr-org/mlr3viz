@@ -22,16 +22,15 @@
 #' 
 #' head(fortify(task))
 #' autoplot(task)
-#' autoplot(task, type = "duo")
 autoplot.TaskClust = function(object, type = "pairs", ...) { # nolint
   assert_string(type)
   
   switch(type,
-         "pairs" = {
-           require_namespaces("GGally")
-           GGally::ggpairs(object, ...)
-         },
-         
-         stopf("Unknown plot type '%s'", type)
+     "pairs" = {
+       require_namespaces("GGally")
+       GGally::ggpairs(object, ...)
+     },
+     
+     stopf("Unknown plot type '%s'", type)
   )
 }
