@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Generates plots for [mlr3::TaskClust], depending on argument `type`:
-#'   * `"pairs"`: Passes data and additional arguments down to
+#' * `"pairs"`: Passes data and additional arguments down to
 #'   [GGally::ggpairs()] (default).
 #'
 #' @param object ([mlr3::TaskClust]).
@@ -22,6 +22,7 @@
 #' 
 #' head(fortify(task))
 #' autoplot(task)
+#' autoplot(task, type = "duo")
 autoplot.TaskClust = function(object, type = "pairs", ...) { # nolint
   assert_string(type)
   

@@ -34,6 +34,7 @@ Suggests:
     GGally,
     lgr,
     mlr3 (>= 0.1.6),
+    mlr3cluster,
     mlr3filters,
     mlr3proba,
     precrec,
