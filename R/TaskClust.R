@@ -1,11 +1,11 @@
 #' @title Plot for Clustering Tasks
 #'
 #' @description
-#' Generates plots for [mlr3::TaskClust], depending on argument `type`:
+#' Generates plots for [mlr3cluster::TaskClust], depending on argument `type`:
 #' * `"pairs"`: Passes data and additional arguments down to
 #'   [GGally::ggpairs()] (default).
 #'
-#' @param object ([mlr3::TaskClust]).
+#' @param object ([mlr3cluster::TaskClust]).
 #' @template param_type
 #' @param ... (`any`):
 #'   Additional argument, passed down to the underlying `geom` or plot

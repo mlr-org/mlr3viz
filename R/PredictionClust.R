@@ -1,13 +1,13 @@
 #' @title Plot for PredictionClust
 #'
 #' @description
-#' Generates plots for [mlr3::PredictionClust], depending on argument `type`:
+#' Generates plots for [mlr3cluster::PredictionClust], depending on argument `type`:
 #'
 #' * `"scatter"` (default): scatterplot with correlation values 
 #' and colored cluster assignments.
 #'
-#' @param object ([mlr3::PredictionClust]).
-#' @param task ([mlr3::TaskClust]).
+#' @param object ([mlr3cluster::PredictionClust]).
+#' @param task ([mlr3cluster::TaskClust]).
 #' @template param_type
 #' @param ... (`any`):
 #'   Additional arguments, passed down to the respective `geom`.

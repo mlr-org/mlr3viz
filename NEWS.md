@@ -1,3 +1,9 @@
+# mlr3viz 0.1.1.9003
+
+- New plot: pairs plot for objects of class 'TaskClust'.
+- New plot: scatter plot with cluster assignments for 
+	objects of class 'PredictionClust'.
+
 # mlr3viz 0.1.1.9002
 
 - Update documentation of PredictionRegr (#23)

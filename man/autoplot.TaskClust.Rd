@@ -7,7 +7,7 @@
 \method{autoplot}{TaskClust}(object, type = "pairs", ...)
 }
 \arguments{
-\item{object}{(\link[mlr3:TaskClust]{mlr3::TaskClust}).}
+\item{object}{(\link[mlr3cluster:TaskClust]{mlr3cluster::TaskClust}).}
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
@@ -20,7 +20,7 @@ functions.}
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
 }
 \description{
-Generates plots for \link[mlr3:TaskClust]{mlr3::TaskClust}, depending on argument \code{type}:
+Generates plots for \link[mlr3cluster:TaskClust]{mlr3cluster::TaskClust}, depending on argument \code{type}:
 \itemize{
 \item \code{"pairs"}: Passes data and additional arguments down to
 \code{\link[GGally:ggpairs]{GGally::ggpairs()}} (default).

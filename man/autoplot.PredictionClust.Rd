@@ -7,9 +7,9 @@
 \method{autoplot}{PredictionClust}(object, task, type = "scatter", ...)
 }
 \arguments{
-\item{object}{(\link[mlr3:PredictionClust]{mlr3::PredictionClust}).}
+\item{object}{(\link[mlr3cluster:PredictionClust]{mlr3cluster::PredictionClust}).}
 
-\item{task}{(\link[mlr3:TaskClust]{mlr3::TaskClust}).}
+\item{task}{(\link[mlr3cluster:TaskClust]{mlr3cluster::TaskClust}).}
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
@@ -21,7 +21,7 @@ Additional arguments, passed down to the respective \code{geom}.}
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
 }
 \description{
-Generates plots for \link[mlr3:PredictionClust]{mlr3::PredictionClust}, depending on argument \code{type}:
+Generates plots for \link[mlr3cluster:PredictionClust]{mlr3cluster::PredictionClust}, depending on argument \code{type}:
 \itemize{
 \item \code{"scatter"} (default): scatterplot with correlation values
 and colored cluster assignments.
