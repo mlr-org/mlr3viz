@@ -27,6 +27,7 @@ and colored cluster assignments.
 }
 \examples{
 library(mlr3)
+library(mlr3cluster)
 library(mlr3viz)
 
 task = tsk("usarrests")
