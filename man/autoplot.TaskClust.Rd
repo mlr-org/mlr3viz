@@ -31,7 +31,7 @@ library(mlr3)
 library(mlr3cluster)
 library(mlr3viz)
 
-task = mlr_tasks$get("usarrests") 
+task = mlr_tasks$get("usarrests")
 
 head(fortify(task))
 autoplot(task)

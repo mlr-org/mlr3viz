@@ -23,8 +23,7 @@ Additional arguments, passed down to the respective \code{geom}.}
 \description{
 Generates plots for \link[mlr3cluster:PredictionClust]{mlr3cluster::PredictionClust}, depending on argument \code{type}:
 \itemize{
-\item \code{"scatter"} (default): scatterplot with correlation values
-and colored cluster assignments.
+\item \code{"scatter"} (default): scatterplot with correlation values and cluster assignments.
 }
 }
 \examples{
