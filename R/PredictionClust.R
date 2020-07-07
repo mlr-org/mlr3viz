@@ -31,7 +31,7 @@ autoplot.PredictionClust = function(object, task, type = "scatter", ...) { # nol
       require_namespaces("GGally")
 
       # merge features and partitions
-      plot.data = data.table(row_id = 1:nrow(task$data()), task$data())
+      plot.data = data.table(row_id = seq_len(nrow(task$data())), task$data())
       plot.data = merge(object$data$tab, plot.data)
       plot.data$row_id = NULL
       plot.data$partition = factor(plot.data$partition)
