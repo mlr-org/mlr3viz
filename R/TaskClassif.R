@@ -19,7 +19,7 @@
 #' library(mlr3)
 #' library(mlr3viz)
 #'
-#' task = mlr_tasks$get("iris")
+#' task = tsk("iris")
 #'
 #' head(fortify(task))
 #' autoplot(task)

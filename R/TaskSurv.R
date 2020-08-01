@@ -23,7 +23,7 @@
 #' library(mlr3viz)
 #' library(mlr3proba)
 #'
-#' task = mlr_tasks$get("lung")
+#' task = tsk("lung")
 #'
 #' head(fortify(task))
 #' autoplot(task)
