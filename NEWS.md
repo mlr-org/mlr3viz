@@ -1,6 +1,8 @@
 # mlr3viz 0.2.0
 
-- Update documentation of PredictionRegr (#23)
+- Added plots for `TaskDens` and `TaskSurv` from package `mlr3proba`.
+- Added *experimental* plots for `LearnerClassifRpart` and `LearnerRegrRpart`.
+- Update documentation of `PredictionRegr` (#23)
 - `autoplot.BenchmarkResult()`: Support for learners with identical IDs (#19)
 
 # mlr3viz 0.1.1
@@ -8,7 +10,6 @@
 - New plot: learner prediction for objects of class `ResampleResult`.
   Additionally, the helper function `plot_learner_prediction()` first performs a
   `resample()` and then plots the result.
-- Added plots for `TaskDens` and `TaskSurv` from package `mlr3proba`.
 - New plot: residual plot for objects of class `PredictionRegr`.
 
 # mlr3viz 0.1.0
