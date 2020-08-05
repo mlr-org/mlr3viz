@@ -19,6 +19,10 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
+
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
@@ -45,10 +49,20 @@
 
 <meta property="og:title" content="Plot for PredictionRegr — autoplot.PredictionRegr" />
 <meta property="og:description" content="Generates plots for mlr3::PredictionRegr, depending on argument type:
-&quot;xy&quot; (default): Scatterplot of true response vs predicted response.
-Additionally fits a linear model to visualize a possible trend.
-&quot;histogram&quot;: Histogram of residuals \(r = y - \hat{y}\).
-&quot;residual&quot;: Plot of the residuals, with the response \(\hat{y}\) on the &quot;x&quot; and the residuals on the &quot;y&quot; axis.
+&quot;xy&quot; (default): Scatterplot of &quot;true&quot; response vs. &quot;predicted&quot; response.
+By default a linear model is fitted via geom_smooth(method = &quot;lm&quot;)
+to visualize the trend between x and y (by default colored blue).
+In addition geom_abline() with slope = 1 is added to the plot.
+Note that geom_smooth() and geom_abline() may overlap, depending on
+the given data.
+
+&quot;histogram&quot;: Histogram of residuals:
+\(r = y - \hat{y}\).
+&quot;residual&quot;: Plot of the residuals, with the response \(\hat{y}\)
+on the &quot;x&quot; and the residuals on the &quot;y&quot; axis.
+By default a linear model is fitted via geom_smooth(method = &quot;lm&quot;)
+to visualize the trend between x and y (by default colored blue).
+
 
 " />
 <meta name="twitter:card" content="summary" />
@@ -69,7 +83,7 @@ Additionally fits a linear model to visualize a possible trend.
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -84,7 +98,7 @@ Additionally fits a linear model to visualize a possible trend.
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3viz <small>v0.1.1</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3viz <small>v0.2.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -107,7 +121,7 @@ Additionally fits a linear model to visualize a possible trend.
   </a>
 </li>
         <li>
-  <a href="https://github.com/mlr-org/mlr3viz">
+  <a href="https://github.com/mlr-org/mlr3viz/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -119,7 +133,7 @@ Additionally fits a linear model to visualize a possible trend.
   </a>
 </li>
 <li>
-  <a href="https://stackoverflow.com/questions/tagged/mlr">
+  <a href="https://stackoverflow.com/questions/tagged/mlr3">
     <span class="fab fa fab fa-stack-overflow"></span>
      
   </a>
@@ -150,10 +164,20 @@ Additionally fits a linear model to visualize a possible trend.
 
     <div class="ref-description">
     <p>Generates plots for <a href='https://mlr3.mlr-org.com/reference/PredictionRegr.html'>mlr3::PredictionRegr</a>, depending on argument <code>type</code>:</p><ul>
-<li><p><code>"xy"</code> (default): Scatterplot of true response vs predicted response.
-Additionally fits a linear model to visualize a possible trend.</p></li>
-<li><p><code>"histogram"</code>: Histogram of residuals \(r = y - \hat{y}\).</p></li>
-<li><p><code>"residual"</code>: Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on the "y" axis.</p></li>
+<li><p><code>"xy"</code> (default): Scatterplot of "true" response vs. "predicted" response.
+By default a linear model is fitted via <code>geom_smooth(method = "lm")</code>
+to visualize the trend between x and y (by default colored blue).</p><ul>
+<li><p>In addition <code>geom_abline()</code> with <code>slope = 1</code> is added to the plot.</p></li>
+<li><p>Note that <code>geom_smooth()</code> and <code>geom_abline()</code> may overlap, depending on
+the given data.</p></li>
+</ul></li>
+<li><p><code>"histogram"</code>: Histogram of residuals:
+\(r = y - \hat{y}\).</p></li>
+<li><p><code>"residual"</code>: Plot of the residuals, with the response \(\hat{y}\)
+on the "x" and the residuals on the "y" axis.</p><ul>
+<li><p>By default a linear model is fitted via <code>geom_smooth(method = "lm")</code>
+to visualize the trend between x and y (by default colored blue).</p></li>
+</ul></li>
 </ul>
 
     </div>
@@ -198,27 +222,23 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></td>
 #&gt; 3:      3  34.7 35.10313
 #&gt; 4:      4  33.4 35.10313
 #&gt; 5:      5  36.2 35.10313
-#&gt; 6:      6  28.7 29.98333</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='autoplot.PredictionRegr-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='autoplot.PredictionRegr-2.png' alt='' width='700' height='433' /></div></pre>
+#&gt; 6:      6  28.7 29.98333</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='autoplot.PredictionRegr-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='autoplot.PredictionRegr-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"residual"</span>)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='autoplot.PredictionRegr-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
 
       <footer>
       <div class="copyright">
-  <p>Developed by Michel Lang.</p>
+  <p>Developed by Michel Lang, Patrick Schratz, Raphael Sonabend.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

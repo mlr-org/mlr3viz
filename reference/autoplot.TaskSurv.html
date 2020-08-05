@@ -19,6 +19,10 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
+
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
@@ -48,7 +52,8 @@
 &quot;target&quot;: Calls GGally::ggsurv() on a survival::survfit() object.
 &quot;duo&quot;: Passes data and additional arguments down to GGally::ggduo().
 columnsX is target, columnsY is features.
-&quot;pairs&quot;: Passes data and additional arguments down to GGally::ggpairs().
+&quot;pairs&quot;: Passes data and additional arguments down to
+GGally::ggpairs().
 Color is set to target column.
 
 " />
@@ -70,7 +75,7 @@ Color is set to target column.
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -85,7 +90,7 @@ Color is set to target column.
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3viz <small>v0.1.1</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3viz <small>v0.2.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -108,7 +113,7 @@ Color is set to target column.
   </a>
 </li>
         <li>
-  <a href="https://github.com/mlr-org/mlr3viz">
+  <a href="https://github.com/mlr-org/mlr3viz/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -120,7 +125,7 @@ Color is set to target column.
   </a>
 </li>
 <li>
-  <a href="https://stackoverflow.com/questions/tagged/mlr">
+  <a href="https://stackoverflow.com/questions/tagged/mlr3">
     <span class="fab fa fab fa-stack-overflow"></span>
      
   </a>
@@ -151,10 +156,11 @@ Color is set to target column.
 
     <div class="ref-description">
     <p>Generates plots for <a href='https://mlr3proba.mlr-org.com/reference/TaskSurv.html'>mlr3proba::TaskSurv</a>, depending on argument <code>type</code>:</p><ul>
-<li><p><code>"target"</code>: Calls <code><a href='https://rdrr.io/pkg/GGally/man/ggsurv.html'>GGally::ggsurv()</a></code> on a <code><a href='https://rdrr.io/pkg/survival/man/survfit.html'>survival::survfit()</a></code> object.</p></li>
-<li><p><code>"duo"</code>: Passes data and additional arguments down to <code><a href='https://rdrr.io/pkg/GGally/man/ggduo.html'>GGally::ggduo()</a></code>.
+<li><p><code>"target"</code>: Calls <code><a href='https://ggobi.github.io/ggally/reference/ggsurv.html'>GGally::ggsurv()</a></code> on a <code><a href='https://rdrr.io/pkg/survival/man/survfit.html'>survival::survfit()</a></code> object.</p></li>
+<li><p><code>"duo"</code>: Passes data and additional arguments down to <code><a href='https://ggobi.github.io/ggally/reference/ggduo.html'>GGally::ggduo()</a></code>.
 <code>columnsX</code> is target, <code>columnsY</code> is features.</p></li>
-<li><p><code>"pairs"</code>: Passes data and additional arguments down to <code><a href='https://rdrr.io/pkg/GGally/man/ggpairs.html'>GGally::ggpairs()</a></code>.
+<li><p><code>"pairs"</code>: Passes data and additional arguments down to
+<code><a href='https://ggobi.github.io/ggally/reference/ggpairs.html'>GGally::ggpairs()</a></code>.
 Color is set to target column.</p></li>
 </ul>
 
@@ -178,7 +184,8 @@ Type of the plot. Available choices:</p></td>
     <tr>
       <th>...</th>
       <td><p>(<code>any</code>):
-Additional argument, passed down to <code>$formula</code> of <a href='https://mlr3proba.mlr-org.com/reference/TaskSurv.html'>mlr3proba::TaskSurv</a> or the underlying plot functions.</p></td>
+Additional argument, passed down to <code>$formula</code> of <a href='https://mlr3proba.mlr-org.com/reference/TaskSurv.html'>mlr3proba::TaskSurv</a> or
+the underlying plot functions.</p></td>
     </tr>
     </table>
 
@@ -191,7 +198,7 @@ Additional argument, passed down to <code>$formula</code> of <a href='https://ml
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3viz</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3proba</span>)
 
-<span class='no'>task</span> <span class='kw'>=</span> <span class='no'>mlr_tasks</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"lung"</span>)
+<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"lung"</span>)
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='fortify.html'>fortify</a></span>(<span class='no'>task</span>))</div><div class='output co'>#&gt;    time status age inst meal.cal pat.karno ph.ecog ph.karno sex wt.loss
 #&gt; 1:  306   TRUE  74    3     1175       100       1       90   m      NA
@@ -199,27 +206,23 @@ Additional argument, passed down to <code>$formula</code> of <a href='https://ml
 #&gt; 3: 1010  FALSE  56    3       NA        90       0       90   m      15
 #&gt; 4:  210   TRUE  57    5     1150        60       1       90   m      11
 #&gt; 5:  883   TRUE  60    1       NA        90       0      100   m       0
-#&gt; 6: 1022  FALSE  74   12      513        80       1       50   m       0</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>task</span>)</div><div class='img'><img src='autoplot.TaskSurv-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>task</span>, <span class='kw'>rhs</span> <span class='kw'>=</span> <span class='st'>"sex"</span>)</div><div class='img'><img src='autoplot.TaskSurv-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>task</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"duo"</span>)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 47 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 47 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 47 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 3 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 3 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 3 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 4 rows containing missing values (geom_tile).</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 14 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 14 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 14 rows containing non-finite values (stat_boxplot).</span></div><div class='img'><img src='autoplot.TaskSurv-3.png' alt='' width='700' height='433' /></div></pre>
+#&gt; 6: 1022  FALSE  74   12      513        80       1       50   m       0</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>task</span>)</div><div class='img'><img src='autoplot.TaskSurv-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>task</span>, <span class='kw'>rhs</span> <span class='kw'>=</span> <span class='st'>"sex"</span>)</div><div class='img'><img src='autoplot.TaskSurv-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>task</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"duo"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 47 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 47 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 47 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 3 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 3 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 3 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 14 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 14 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 14 rows containing non-finite values (stat_boxplot).</span></div><div class='img'><img src='autoplot.TaskSurv-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
 
       <footer>
       <div class="copyright">
-  <p>Developed by Michel Lang.</p>
+  <p>Developed by Michel Lang, Patrick Schratz, Raphael Sonabend.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

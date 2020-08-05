@@ -28,6 +28,9 @@
     <loc>https://mlr3viz.mlr-org.com/reference/autoplot.TaskClassif.html</loc>
   </url>
   <url>
+    <loc>https://mlr3viz.mlr-org.com/reference/autoplot.TaskDens.html</loc>
+  </url>
+  <url>
     <loc>https://mlr3viz.mlr-org.com/reference/autoplot.TaskRegr.html</loc>
   </url>
   <url>
@@ -41,5 +44,8 @@
   </url>
   <url>
     <loc>https://mlr3viz.mlr-org.com/reference/plot_learner_prediction.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3viz.mlr-org.com/reference/predict_grid.html</loc>
   </url>
 </urlset>

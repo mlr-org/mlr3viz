@@ -12,25 +12,26 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <link href="extra.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Visualizations for mlr3">
-<meta property="og:description" content="Provides visualizations for mlr3 objects such as tasks,
-    predictions, resample results or benchmark results via the autoplot()
-    generic of ggplot2. The returned ggplot objects are intended to provide
-    sensible defaults, yet can easily be customized to create camera-ready
-    figures. Visualizations include barplots, boxplots, histograms, ROC curves,
-    and Precision-Recall curves.">
+<meta property="og:description" content="Provides visualizations for mlr3 objects such as
+    tasks, predictions, resample results or benchmark results via the
+    autoplot() generic of ggplot2. The returned ggplot objects are
+    intended to provide sensible defaults, yet can easily be customized to
+    create camera-ready figures. Visualizations include barplots,
+    boxplots, histograms, ROC curves, and Precision-Recall curves.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -44,7 +45,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org"></a>
-        <a class="navbar-brand" href="index.html">mlr3viz <small>v0.1.1</small></a>
+        <a class="navbar-brand" href="index.html">mlr3viz <small>v0.2.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -67,7 +68,7 @@
   </a>
 </li>
         <li>
-  <a href="https://github.com/mlr-org/mlr3viz">
+  <a href="https://github.com/mlr-org/mlr3viz/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -79,7 +80,7 @@
   </a>
 </li>
 <li>
-  <a href="https://stackoverflow.com/questions/tagged/mlr">
+  <a href="https://stackoverflow.com/questions/tagged/mlr3">
     <span class="fab fa fab fa-stack-overflow"></span>
      
   </a>
@@ -107,34 +108,34 @@
 <a href="#mlr3viz" class="anchor"></a>mlr3viz</h1></div>
 <p>Package website: <a href="https://mlr3.mlr-org.com/">release</a> | <a href="https://mlr3.mlr-org.com/dev">dev</a></p>
 <!-- badges: start -->
-
+<p><a href="https://github.com/mlr-org/mlr3viz/actions"><img src="https://github.com/mlr-org/mlr3viz/workflows/tic/badge.svg?branch=master" alt="tic"></a> <a href="https://cran.r-project.org/package=mlr3viz"><img src="https://www.r-pkg.org/badges/version/mlr3viz" alt="CRAN"></a> <a href="https://codecov.io/gh/mlr-org/mlr3viz"><img src="https://codecov.io/gh/mlr-org/mlr3viz/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://stackoverflow.com/questions/tagged/mlr3"><img src="https://img.shields.io/badge/stackoverflow-mlr3-orange.svg" alt="StackOverflow"></a> <!-- badges: end --></p>
 <p>This R package provides visualizations for <a href="https://mlr3.mlr-org.com">mlr3</a> objects such as tasks, predictions, resample results or benchmark results via the <code><a href="reference/autoplot.html">autoplot()</a></code> generic of <a href="https://ggplot2.tidyverse.org/">ggplot2</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Install the last release from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"mlr3"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"mlr3"</span>)</pre></div>
 <p>Install the development version from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>remotes<span class="op">::</span><span class="kw"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"mlr-org/mlr3viz"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"mlr-org/mlr3viz"</span>)</pre></div>
 </div>
 <div id="short-demo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#short-demo" class="anchor"></a>Short Demo</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(mlr3)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(mlr3viz)</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a>task =<span class="st"> </span><span class="kw"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">tsk</a></span>(<span class="st">"pima"</span>)<span class="op">$</span><span class="kw">select</span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"glucose"</span>, <span class="st">"insulin"</span>))</span>
-<span id="cb3-5"><a href="#cb3-5"></a>learner =<span class="st"> </span><span class="kw"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span>(<span class="st">"classif.rpart"</span>, <span class="dt">predict_type =</span> <span class="st">"prob"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6"></a>rr =<span class="st"> </span><span class="kw"><a href="https://mlr3.mlr-org.com/reference/resample.html">resample</a></span>(task, learner, <span class="kw"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">rsmp</a></span>(<span class="st">"cv"</span>, <span class="dt">folds =</span> <span class="dv">10</span>))</span>
-<span id="cb3-7"><a href="#cb3-7"></a></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co"># Default plot for task</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="kw"><a href="reference/autoplot.html">autoplot</a></span>(task)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mlr3</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mlr3viz</span>)
+
+<span class="no">task</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">tsk</a></span>(<span class="st">"pima"</span>)$<span class="fu">select</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"glucose"</span>, <span class="st">"insulin"</span>))
+<span class="no">learner</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span>(<span class="st">"classif.rpart"</span>, <span class="kw">predict_type</span> <span class="kw">=</span> <span class="st">"prob"</span>)
+<span class="no">rr</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/resample.html">resample</a></span>(<span class="no">task</span>, <span class="no">learner</span>, <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">rsmp</a></span>(<span class="st">"cv"</span>, <span class="kw">folds</span> <span class="kw">=</span> <span class="fl">10</span>))
+
+<span class="co"># Default plot for task</span>
+<span class="fu"><a href="reference/autoplot.html">autoplot</a></span>(<span class="no">task</span>)</pre></div>
 <p><img src="reference/figures/README-demo-1.png"><!-- --></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Pairs plot from GGally</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="kw"><a href="reference/autoplot.html">autoplot</a></span>(task, <span class="dt">type =</span> <span class="st">"pairs"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="r"><span class="co"># Pairs plot from GGally</span>
+<span class="fu"><a href="reference/autoplot.html">autoplot</a></span>(<span class="no">task</span>, <span class="kw">type</span> <span class="kw">=</span> <span class="st">"pairs"</span>)</pre></div>
 <p><img src="reference/figures/README-demo-2.png"><!-- --></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># ROC curve for the ResampleResult</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw"><a href="reference/autoplot.html">autoplot</a></span>(rr, <span class="dt">type =</span> <span class="st">"roc"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="r"><span class="co"># ROC curve for the ResampleResult</span>
+<span class="fu"><a href="reference/autoplot.html">autoplot</a></span>(<span class="no">rr</span>, <span class="kw">type</span> <span class="kw">=</span> <span class="st">"roc"</span>)</pre></div>
 <p><img src="reference/figures/README-demo-3.png"><!-- --></p>
 </div>
 </div>
@@ -146,7 +147,7 @@
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=mlr3viz">https://​cloud.r-project.org/​package=mlr3viz</a>
 </li>
-<li>Browse source code at <br><a href="https://github.com/mlr-org/mlr3viz">https://​github.com/​mlr-org/​mlr3viz</a>
+<li>Browse source code at <br><a href="https://github.com/mlr-org/mlr3viz/">https://​github.com/​mlr-org/​mlr3viz/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/mlr-org/mlr3viz/issues">https://​github.com/​mlr-org/​mlr3viz/​issues</a>
 </li>
@@ -162,29 +163,21 @@
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Michel Lang <br><small class="roles"> Maintainer, author </small> <a href="https://orcid.org/0000-0001-9754-0393" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Patrick Schratz <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-0748-6624" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Raphael Sonabend <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-9225-4654" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/mlr-org/mlr3viz/actions"><img src="https://github.com/mlr-org/mlr3viz/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://cran.r-project.org/package=mlr3viz"><img src="https://www.r-pkg.org/badges/version-ago/mlr3viz" alt="CRAN Status Badge"></a></li>
-<li><a href="https://cran.r-project.org/web/checks/check_results_mlr3viz.html"><img src="https://cranchecks.info/badges/worst/mlr3viz" alt="Cran Checks"></a></li>
-<li><a href="https://codecov.io/gh/mlr-org/mlr3viz"><img src="https://codecov.io/gh/mlr-org/mlr3viz/branch/master/graph/badge.svg" alt="codecov"></a></li>
-<li><a href="https://stackoverflow.com/questions/tagged/mlr3"><img src="https://img.shields.io/badge/stackoverflow-mlr3-orange.svg" alt="StackOverflow"></a></li>
-</ul>
-</div>
-</div>
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Michel Lang.</p>
+  <p>Developed by Michel Lang, Patrick Schratz, Raphael Sonabend.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

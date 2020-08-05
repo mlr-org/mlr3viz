@@ -19,6 +19,10 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
+
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
@@ -48,14 +52,18 @@
 &quot;boxplot&quot; (default): Boxplot of performance measures.
 &quot;histogram&quot;: Histogram of performance measures.
 &quot;roc&quot;: ROC curve (1 - specificity on x, sensitivity on y).
-The predictions of the individual mlr3::Resamplings are merged prior to calculating the ROC curve
-(micro averaged). Requires package precrec.
+The predictions of the individual mlr3::Resamplings are merged prior to
+calculating the ROC curve (micro averaged). Requires package
+precrec.
 &quot;prc&quot;: Precision recall curve. See &quot;roc&quot;.
 &quot;prediction&quot;: Plots the learner prediction for a grid of points.
-Needs models to be stored. Set store_models = TRUE for [mlr3::resample].
-For classification, we support tasks with exactly two features and learners with predict_type= set to &quot;response&quot; or &quot;prob&quot;.
+Needs models to be stored. Set store_models = TRUE for
+[mlr3::resample].
+For classification, we support tasks with exactly two features and
+learners with predict_type= set to &quot;response&quot; or &quot;prob&quot;.
 For regression, we support tasks with one or two features.
-For tasks with one feature we can print confidence bounds if the predict type of the learner was set to &quot;se&quot;.
+For tasks with one feature we can print confidence bounds if the predict
+type of the learner was set to &quot;se&quot;.
 For tasks with two features the predict type will be ignored.
 
 " />
@@ -77,7 +85,7 @@ For tasks with two features the predict type will be ignored.
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -92,7 +100,7 @@ For tasks with two features the predict type will be ignored.
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3viz <small>v0.1.1</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3viz <small>v0.2.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -115,7 +123,7 @@ For tasks with two features the predict type will be ignored.
   </a>
 </li>
         <li>
-  <a href="https://github.com/mlr-org/mlr3viz">
+  <a href="https://github.com/mlr-org/mlr3viz/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -127,7 +135,7 @@ For tasks with two features the predict type will be ignored.
   </a>
 </li>
 <li>
-  <a href="https://stackoverflow.com/questions/tagged/mlr">
+  <a href="https://stackoverflow.com/questions/tagged/mlr3">
     <span class="fab fa fab fa-stack-overflow"></span>
      
   </a>
@@ -161,14 +169,18 @@ For tasks with two features the predict type will be ignored.
 <li><p><code>"boxplot"</code> (default): Boxplot of performance measures.</p></li>
 <li><p><code>"histogram"</code>: Histogram of performance measures.</p></li>
 <li><p><code>"roc"</code>: ROC curve (1 - specificity on x, sensitivity on y).
-The predictions of the individual <a href='https://mlr3.mlr-org.com/reference/Resampling.html'>mlr3::Resampling</a>s are merged prior to calculating the ROC curve
-(micro averaged). Requires package <a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>.</p></li>
+The predictions of the individual <a href='https://mlr3.mlr-org.com/reference/Resampling.html'>mlr3::Resampling</a>s are merged prior to
+calculating the ROC curve (micro averaged). Requires package
+<a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>.</p></li>
 <li><p><code>"prc"</code>: Precision recall curve. See <code>"roc"</code>.</p></li>
 <li><p><code>"prediction"</code>: Plots the learner prediction for a grid of points.
-Needs models to be stored. Set <code>store_models = TRUE</code> for <code>[mlr3::resample]</code>.
-For classification, we support tasks with exactly two features and learners with <code>predict_type=</code> set to <code>"response"</code> or <code>"prob"</code>.
+Needs models to be stored. Set <code>store_models = TRUE</code> for
+<code>[mlr3::resample]</code>.
+For classification, we support tasks with exactly two features and
+learners with <code>predict_type=</code> set to <code>"response"</code> or <code>"prob"</code>.
 For regression, we support tasks with one or two features.
-For tasks with one feature we can print confidence bounds if the predict type of the learner was set to <code>"se"</code>.
+For tasks with one feature we can print confidence bounds if the predict
+type of the learner was set to <code>"se"</code>.
 For tasks with two features the predict type will be ignored.</p></li>
 </ul>
 
@@ -244,24 +256,20 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></td>
 <span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"prediction"</span>)</div><div class='img'><img src='autoplot.ResampleResult-6.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
 
       <footer>
       <div class="copyright">
-  <p>Developed by Michel Lang.</p>
+  <p>Developed by Michel Lang, Patrick Schratz, Raphael Sonabend.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
