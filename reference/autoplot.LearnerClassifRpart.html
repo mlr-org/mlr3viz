@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot for Learner Predictions — plot_learner_prediction • mlr3viz</title>
+<title>Plot for LearnerClassifRpart — autoplot.LearnerClassifRpart • mlr3viz</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,20 +47,10 @@
 
 
 
-<meta property="og:title" content="Plot for Learner Predictions — plot_learner_prediction" />
-<meta property="og:description" content="Generates a plot for the mlr3::Prediction of a single mlr3::Learner on a
-single mlr3::Task.
-For classification we support tasks with exactly two features and learners
-with predict_type set to &quot;response&quot; or &quot;prob&quot;.
-For regression we support tasks with one or two features.
-For tasks with one feature we print confidence bounds if the predict type
-of the learner was set to &quot;se&quot;.
-For tasks with two features the predict type will be ignored.
-
-
-Note that this function is a wrapper around autoplot.ResampleResult() for a
-temporary mlr3::ResampleResult using mlr3::mlr_resamplings_holdout with
-ratio 1 (all observations in training set)." />
+<meta property="og:title" content="Plot for LearnerClassifRpart — autoplot.LearnerClassifRpart" />
+<meta property="og:description" content="Visualize trees for mlr3::mlr_learners_classif.rpart or
+mlr3::mlr_learners_regr.rpart using the package ggparty.
+Note that learner-specific plots are experimental and subject to change." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -153,50 +143,34 @@ ratio 1 (all observations in training set)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot for Learner Predictions</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/plot_learner_prediction.R'><code>R/plot_learner_prediction.R</code></a></small>
-    <div class="hidden name"><code>plot_learner_prediction.Rd</code></div>
+    <h1>Plot for LearnerClassifRpart</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/LearnerClasssifRpart.R'><code>R/LearnerClasssifRpart.R</code></a></small>
+    <div class="hidden name"><code>autoplot.LearnerClassifRpart.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Generates a plot for the <a href='https://mlr3.mlr-org.com/reference/Prediction.html'>mlr3::Prediction</a> of a single <a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a> on a
-single <a href='https://mlr3.mlr-org.com/reference/Task.html'>mlr3::Task</a>.</p><ul>
-<li><p>For classification we support tasks with exactly two features and learners
-with <code>predict_type</code> set to <code>"response"</code> or <code>"prob"</code>.</p></li>
-<li><p>For regression we support tasks with one or two features.
-For tasks with one feature we print confidence bounds if the predict type
-of the learner was set to <code>"se"</code>.
-For tasks with two features the predict type will be ignored.</p></li>
-</ul>
-
-<p>Note that this function is a wrapper around <code><a href='autoplot.ResampleResult.html'>autoplot.ResampleResult()</a></code> for a
-temporary <a href='https://mlr3.mlr-org.com/reference/ResampleResult.html'>mlr3::ResampleResult</a> using <a href='https://mlr3.mlr-org.com/reference/mlr_resamplings_holdout.html'>mlr3::mlr_resamplings_holdout</a> with
-ratio 1 (all observations in training set).</p>
+    <p>Visualize trees for <a href='https://mlr3.mlr-org.com/reference/mlr_learners_classif.rpart.html'>mlr3::mlr_learners_classif.rpart</a> or
+<a href='https://mlr3.mlr-org.com/reference/mlr_learners_regr.rpart.html'>mlr3::mlr_learners_regr.rpart</a> using the package <a href='https://CRAN.R-project.org/package=ggparty'><span class="pkg">ggparty</span></a>.</p>
+<p>Note that learner-specific plots are experimental and subject to change.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_learner_prediction</span>(<span class='no'>learner</span>, <span class='no'>task</span>, <span class='kw'>grid_points</span> <span class='kw'>=</span> <span class='fl'>100L</span>, <span class='kw'>expand_range</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for LearnerClassifRpart</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for LearnerRegrRpart</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>learner</th>
-      <td><p>(<a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a>).</p></td>
+      <th>object</th>
+      <td><p>(<a href='https://mlr3.mlr-org.com/reference/mlr_learners_classif.rpart.html'>mlr3::LearnerClassifRpart</a> | <a href='https://mlr3.mlr-org.com/reference/mlr_learners_regr.rpart.html'>mlr3::LearnerRegrRpart</a>).</p></td>
     </tr>
     <tr>
-      <th>task</th>
-      <td><p>(<a href='https://mlr3.mlr-org.com/reference/Task.html'>mlr3::Task</a>).</p></td>
-    </tr>
-    <tr>
-      <th>grid_points</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>)<br />
-Resolution of the grid.
-For factors, ordered and logicals this value is ignored.</p></td>
-    </tr>
-    <tr>
-      <th>expand_range</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>)<br />
-Expand the prediction range for numerical features.</p></td>
+      <th>...</th>
+      <td><p>(<code>any</code>):
+Additional arguments, passed down to <code><a href='https://rdrr.io/pkg/ggparty/man/autoplot.party.html'>ggparty::autoplot.party()</a></code>.</p></td>
     </tr>
     </table>
 
@@ -208,10 +182,10 @@ Expand the prediction range for numerical features.</p></td>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3viz</span>)
 
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"pima"</span>)$<span class='fu'>select</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age"</span>, <span class='st'>"glucose"</span>))
-<span class='no'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"classif.rpart"</span>, <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"prob"</span>)
-<span class='no'>p</span> <span class='kw'>=</span> <span class='fu'>plot_learner_prediction</span>(<span class='no'>learner</span>, <span class='no'>task</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 5 rows containing missing values (geom_point).</span></div><div class='img'><img src='plot_learner_prediction-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"spam"</span>)
+<span class='no'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"classif.rpart"</span>)
+<span class='no'>learner</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>learner</span>)</div><div class='output co'>#&gt; <span class='error'>Error in is.data.frame(data): object 'task' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
