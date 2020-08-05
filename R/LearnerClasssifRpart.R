@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Visualize trees for [mlr3::mlr_learners_classif.rpart] or
-#' [mlr3::mlr_learners_regr.rpart] using the \CRANpkg{ggparty}.
+#' [mlr3::mlr_learners_regr.rpart] using the package \CRANpkg{ggparty}.
 #'
 #' Note that learner-specific plots are experimental and subject to change.
 #'

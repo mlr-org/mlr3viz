@@ -20,7 +20,7 @@ Additional arguments, passed down to \code{\link[ggparty:autoplot.party]{ggparty
 }
 \description{
 Visualize trees for \link[mlr3:mlr_learners_classif.rpart]{mlr3::mlr_learners_classif.rpart} or
-\link[mlr3:mlr_learners_regr.rpart]{mlr3::mlr_learners_regr.rpart} using the \CRANpkg{ggparty}.
+\link[mlr3:mlr_learners_regr.rpart]{mlr3::mlr_learners_regr.rpart} using the package \CRANpkg{ggparty}.
 
 Note that learner-specific plots are experimental and subject to change.
 }
