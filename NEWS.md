@@ -1,14 +1,8 @@
-# mlr3viz 0.1.1.9002
+# mlr3viz 0.2.0
 
 - Update documentation of PredictionRegr (#23)
-
-# mlr3viz 0.1.1.9001
-
 - `autoplot.BenchmarkResult()`: Support for learners with identical IDs (#19)
-
-# mlr3viz 0.1.1.9000
-
-- Same as previous version
+- Added plots for `TaskDens` and `TaskSurv` from package `mlr3proba`.
 
 # mlr3viz 0.1.1
 

@@ -1,6 +1,6 @@
 Package: mlr3viz
 Title: Visualizations for 'mlr3'
-Version: 0.1.1.9002
+Version: 0.2.0
 Authors@R:
     c(person(given = "Michel",
              family = "Lang",
@@ -11,7 +11,12 @@ Authors@R:
              family = "Schratz",
              role = "aut",
              email = "patrick.schratz@gmail.com",
-             comment = c(ORCID = "0000-0003-0748-6624")))
+             comment = c(ORCID = "0000-0003-0748-6624")),
+      person(given = "Raphael",
+             family = "Sonabend",
+             role = "aut",
+             email = "raphael.sonabend.15@ucl.ac.uk",
+             comment = c(ORCID = "0000-0001-9225-4654")))
 Description: Provides visualizations for 'mlr3' objects such as
     tasks, predictions, resample results or benchmark results via the
     autoplot() generic of 'ggplot2'. The returned 'ggplot' objects are
@@ -33,9 +38,9 @@ Imports:
 Suggests:
     GGally,
     lgr,
-    mlr3 (>= 0.1.6),
+    mlr3 (>= 0.4.0),
     mlr3filters,
-    mlr3proba,
+    mlr3proba (>= 0.2.0),
     precrec,
     rpart,
     survival,
