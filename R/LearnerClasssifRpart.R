@@ -20,15 +20,17 @@
 #' library(mlr3viz)
 #'
 #' task = tsk("spam")
-#' learner = lrn("classif.rpart")
+#' learner = lrn("classif.rpart", keep_model = TRUE)
 #' learner$train(task)
 #' autoplot(learner)
 autoplot.LearnerClassifRpart = function(object, ...) { # nolint
   if (is.null(object$model)) {
     stopf("Learner '%s' must be trained first", object$id)
   }
+  if (is.null(object$model$model)) {
+    stopf("Learner '%s' must be trained with `keep_model` set to `TRUE`", object$id)
+  }
 
   require_namespaces(c("partykit", "ggparty"))
-  # FIXME: partykit::as.party does not work without the task :/
   autoplot(partykit::as.party(object$model), ...)
 }

@@ -4,8 +4,7 @@ skip_if_not_installed("partykit")
 skip_if_not_installed("ggparty")
 
 test_that("autoplot.LearnerClassifRpart", {
-  task = tsk("iris")
-  learner = lrn("classif.rpart")$train(task)
+  learner = lrn("classif.rpart", keep_model = TRUE)$train(tsk("iris"))
   p = autoplot(learner)
   expect_true(is.ggplot(p))
 })

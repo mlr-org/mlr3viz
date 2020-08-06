@@ -4,9 +4,11 @@ autoplot.LearnerRegrRpart = function(object, ...) { # nolint
   if (is.null(object$model)) {
     stopf("Learner '%s' must be trained first", object$id)
   }
+  if (is.null(object$model$model)) {
+    stopf("Learner '%s' must be trained with `keep_model` set to `TRUE`", object$id)
+  }
   require_namespaces(c("partykit", "ggparty"))
 
-  # FIXME: partykit::as.party does not work without the task :/
   target = all.vars(object$model$terms)[1L]
   autoplot(partykit::as.party(object$model), ...) +
     ggparty::geom_node_plot(gglist = list(
