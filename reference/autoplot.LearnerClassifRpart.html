@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • mlr3viz</title>
+<title>Plot for LearnerClassifRpart — autoplot.LearnerClassifRpart • mlr3viz</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,7 +47,13 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Plot for LearnerClassifRpart — autoplot.LearnerClassifRpart" />
+<meta property="og:description" content="Visualize trees for mlr3::mlr_learners_classif.rpart or
+mlr3::mlr_learners_regr.rpart using the package ggparty.
+Contrary to ggparty, boxplots are shown in the terminal nodes for
+regression trees.
+Note that learner-specific plots are experimental and subject to change." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -66,7 +72,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -137,120 +143,54 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Plot for LearnerClassifRpart</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/LearnerClasssifRpart.R'><code>R/LearnerClasssifRpart.R</code></a>, <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/LearnerRegrRpart.R'><code>R/LearnerRegrRpart.R</code></a></small>
+    <div class="hidden name"><code>autoplot.LearnerClassifRpart.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Visualize trees for <a href='https://mlr3.mlr-org.com/reference/mlr_learners_classif.rpart.html'>mlr3::mlr_learners_classif.rpart</a> or
+<a href='https://mlr3.mlr-org.com/reference/mlr_learners_regr.rpart.html'>mlr3::mlr_learners_regr.rpart</a> using the package <a href='https://CRAN.R-project.org/package=ggparty'><span class="pkg">ggparty</span></a>.</p>
+<p>Contrary to <a href='https://CRAN.R-project.org/package=ggparty'><span class="pkg">ggparty</span></a>, boxplots are shown in the terminal nodes for
+regression trees.</p>
+<p>Note that learner-specific plots are experimental and subject to change.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='co'># S3 method for LearnerClassifRpart</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="as_precrec.html">as_precrec()</a></code> </p>
-        </td>
-        <td><p>Convert to 'precrec' Format</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.BenchmarkResult.html">autoplot(<i>&lt;BenchmarkResult&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot for BenchmarkResult</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.Filter.html">autoplot(<i>&lt;Filter&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot for Filter Scores</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.LearnerClassifRpart.html">autoplot(<i>&lt;LearnerClassifRpart&gt;</i>)</a></code> <code><a href="autoplot.LearnerClassifRpart.html">autoplot(<i>&lt;LearnerRegrRpart&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot for LearnerClassifRpart</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.PredictionClassif.html">autoplot(<i>&lt;PredictionClassif&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot for PredictionClassif</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.PredictionRegr.html">autoplot(<i>&lt;PredictionRegr&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot for PredictionRegr</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.ResampleResult.html">autoplot(<i>&lt;ResampleResult&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot for ResampleResult</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.TaskClassif.html">autoplot(<i>&lt;TaskClassif&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot for Classification Tasks</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.TaskDens.html">autoplot(<i>&lt;TaskDens&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot for Density Tasks</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.TaskRegr.html">autoplot(<i>&lt;TaskRegr&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot for Regression Tasks</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.TaskSurv.html">autoplot(<i>&lt;TaskSurv&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot for Survival Tasks</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mlr3viz-package.html">mlr3viz-package</a></code> </p>
-        </td>
-        <td><p>mlr3viz: Visualizations for 'mlr3'</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_learner_prediction.html">plot_learner_prediction()</a></code> </p>
-        </td>
-        <td><p>Plot for Learner Predictions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="predict_grid.html">predict_grid()</a></code> </p>
-        </td>
-        <td><p>Generates a data.table of evenly distributed points.</p></td>
-      </tr>
-    </tbody>
+<span class='co'># S3 method for LearnerRegrRpart</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>object</th>
+      <td><p>(<a href='https://mlr3.mlr-org.com/reference/mlr_learners_classif.rpart.html'>mlr3::LearnerClassifRpart</a> | <a href='https://mlr3.mlr-org.com/reference/mlr_learners_regr.rpart.html'>mlr3::LearnerRegrRpart</a>).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>(<code>any</code>):
+Additional arguments, passed down to <code><a href='https://rdrr.io/pkg/ggparty/man/autoplot.party.html'>ggparty::autoplot.party()</a></code>.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot2::ggplot()</a></code> object.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3viz</span>)
+
+<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"spam"</span>)
+<span class='no'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"classif.rpart"</span>, <span class='kw'>keep_model</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='no'>learner</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>learner</span>)</div><div class='img'><img src='autoplot.LearnerClassifRpart-1.png' alt='' width='700' height='433' /></div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
