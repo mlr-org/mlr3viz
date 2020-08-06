@@ -1,9 +1,9 @@
 # mlr3viz 0.2.0
 
 - Added plots for `TaskDens` and `TaskSurv` from package `mlr3proba`.
-- Added *experimental* plots for `LearnerClassifRpart` and `LearnerRegrRpart`.
 - Update documentation of `PredictionRegr` (#23)
 - `autoplot.BenchmarkResult()`: Support for learners with identical IDs (#19)
+- Fixed a bug in `plot_learner_prediction()` (#47)
 
 # mlr3viz 0.1.1
 
