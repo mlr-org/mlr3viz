@@ -4,6 +4,9 @@
 #' Visualize trees for [mlr3::mlr_learners_classif.rpart] or
 #' [mlr3::mlr_learners_regr.rpart] using the package \CRANpkg{ggparty}.
 #'
+#' Contrary to \CRANpkg{ggparty}, boxplots are shown in the terminal nodes for
+#' regression trees.
+#'
 #' Note that learner-specific plots are experimental and subject to change.
 #'
 #' @param object ([mlr3::LearnerClassifRpart] | [mlr3::LearnerRegrRpart]).
@@ -21,13 +24,11 @@
 #' learner$train(task)
 #' autoplot(learner)
 autoplot.LearnerClassifRpart = function(object, ...) { # nolint
-  require_namespaces(c("partykit", "ggparty"))
-  autoplot(partykit::as.party(object$model), ...)
-}
+  if (is.null(object$model)) {
+    stopf("Learner '%s' must be trained first", object$id)
+  }
 
-#' @export
-#' @rdname autoplot.LearnerClassifRpart
-autoplot.LearnerRegrRpart = function(object, ...) { # nolint
   require_namespaces(c("partykit", "ggparty"))
+  # FIXME: partykit::as.party does not work without the task :/
   autoplot(partykit::as.party(object$model), ...)
 }
