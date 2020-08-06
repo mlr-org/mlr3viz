@@ -189,10 +189,17 @@ plot_learner_prediction_resample_result = function(object, # nolint
     # 2d plot regr + classif
   } else if (dim == 2L) {
     if (task_type == "classif" && learners[[1L]]$predict_type == "prob") {
+      # classif, probs
       raster_aes = aes_string(fill = "response", alpha = ".prob.response")
       scale_alpha = scale_alpha_continuous(name = "Prob.")
       scale_fill = NULL
+    } else if (task_type == "classif" && learners[[1L]]$predict_type == "response") {
+      # classif, no probs
+      raster_aes = aes_string(fill = "response")
+      scale_alpha = NULL
+      scale_fill = NULL
     } else {
+      # regr
       raster_aes = aes_string(fill = "response")
       scale_alpha = NULL
       # manual values for rev(RColorBrewer::brewer.pal(11, "Spectral"))
