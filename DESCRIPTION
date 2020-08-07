@@ -47,8 +47,6 @@ Suggests:
     rpart,
     survival,
     testthat
-Remotes:
-    mlr-org/mlr3
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
