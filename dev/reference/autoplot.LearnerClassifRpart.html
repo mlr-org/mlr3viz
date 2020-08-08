@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot for BenchmarkResult — autoplot.BenchmarkResult • mlr3viz</title>
+<title>Plot for LearnerClassifRpart — autoplot.LearnerClassifRpart • mlr3viz</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,19 +47,12 @@
 
 
 
-<meta property="og:title" content="Plot for BenchmarkResult — autoplot.BenchmarkResult" />
-<meta property="og:description" content="Generates plots for mlr3::BenchmarkResult, depending on argument type:
-&quot;boxplot&quot; (default): Boxplots of performance measures, one box per
-mlr3::Learner and one facet per mlr3::Task.
-&quot;roc&quot;: ROC curve (1 - specificity on x, sensitivity on y).
-The mlr3::BenchmarkResult may only have a single mlr3::Task and a
-single mlr3::ResampleResult.
-Note that you can subset any mlr3::BenchmarkResult with its $filter()
-method (see examples).
-Requires package precrec.
-&quot;prc&quot;: Precision recall curve. See &quot;roc&quot;.
-
-" />
+<meta property="og:title" content="Plot for LearnerClassifRpart — autoplot.LearnerClassifRpart" />
+<meta property="og:description" content="Visualize trees for mlr3::mlr_learners_classif.rpart or
+mlr3::mlr_learners_regr.rpart using the package ggparty.
+Contrary to ggparty, boxplots are shown in the terminal nodes for
+regression trees.
+Note that learner-specific plots are experimental and subject to change." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -152,49 +145,36 @@ Requires package precrec.
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot for BenchmarkResult</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/BenchmarkResult.R'><code>R/BenchmarkResult.R</code></a></small>
-    <div class="hidden name"><code>autoplot.BenchmarkResult.Rd</code></div>
+    <h1>Plot for LearnerClassifRpart</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/LearnerClasssifRpart.R'><code>R/LearnerClasssifRpart.R</code></a>, <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/LearnerRegrRpart.R'><code>R/LearnerRegrRpart.R</code></a></small>
+    <div class="hidden name"><code>autoplot.LearnerClassifRpart.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Generates plots for <a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a>, depending on argument <code>type</code>:</p><ul>
-<li><p><code>"boxplot"</code> (default): Boxplots of performance measures, one box per
-<a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a> and one facet per <a href='https://mlr3.mlr-org.com/reference/Task.html'>mlr3::Task</a>.</p></li>
-<li><p><code>"roc"</code>: ROC curve (1 - specificity on x, sensitivity on y).
-The <a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a> may only have a single <a href='https://mlr3.mlr-org.com/reference/Task.html'>mlr3::Task</a> and a
-single <a href='https://mlr3.mlr-org.com/reference/ResampleResult.html'>mlr3::ResampleResult</a>.
-Note that you can subset any <a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a> with its <code>$filter()</code>
-method (see examples).
-Requires package <a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>.</p></li>
-<li><p><code>"prc"</code>: Precision recall curve. See <code>"roc"</code>.</p></li>
-</ul>
-
+    <p>Visualize trees for <a href='https://mlr3.mlr-org.com/reference/mlr_learners_classif.rpart.html'>mlr3::mlr_learners_classif.rpart</a> or
+<a href='https://mlr3.mlr-org.com/reference/mlr_learners_regr.rpart.html'>mlr3::mlr_learners_regr.rpart</a> using the package <a href='https://CRAN.R-project.org/package=ggparty'><span class="pkg">ggparty</span></a>.</p>
+<p>Contrary to <a href='https://CRAN.R-project.org/package=ggparty'><span class="pkg">ggparty</span></a>, boxplots are shown in the terminal nodes for
+regression trees.</p>
+<p>Note that learner-specific plots are experimental and subject to change.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for BenchmarkResult</span>
-<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"boxplot"</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for LearnerClassifRpart</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for LearnerRegrRpart</span>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>(<a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a>).</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>(character(1)):<br />
-Type of the plot. See description.</p></td>
-    </tr>
-    <tr>
-      <th>measure</th>
-      <td><p>(<a href='https://mlr3.mlr-org.com/reference/Measure.html'>mlr3::Measure</a>).</p></td>
+      <td><p>(<a href='https://mlr3.mlr-org.com/reference/mlr_learners_classif.rpart.html'>mlr3::LearnerClassifRpart</a> | <a href='https://mlr3.mlr-org.com/reference/mlr_learners_regr.rpart.html'>mlr3::LearnerRegrRpart</a>).</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>(<code>any</code>):
-Additional arguments, passed down to the respective <code>geom</code>.</p></td>
+Additional arguments, passed down to <code><a href='https://rdrr.io/pkg/ggparty/man/autoplot.party.html'>ggparty::autoplot.party()</a></code>.</p></td>
     </tr>
     </table>
 
@@ -206,19 +186,10 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></td>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3viz</span>)
 
-<span class='no'>tasks</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsks</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"spam"</span>, <span class='st'>"pima"</span>, <span class='st'>"sonar"</span>))
-<span class='no'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrns</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"classif.featureless"</span>, <span class='st'>"classif.rpart"</span>),
-  <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"prob"</span>)
-<span class='no'>resampling</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmps</a></span>(<span class='st'>"cv"</span>)
-<span class='no'>object</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/benchmark.html'>benchmark</a></span>(<span class='fu'><a href='https://mlr3.mlr-org.com/reference/benchmark_grid.html'>benchmark_grid</a></span>(<span class='no'>tasks</span>, <span class='no'>learner</span>, <span class='no'>resampling</span>))
-
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='fortify.html'>fortify</a></span>(<span class='no'>object</span>))</div><div class='output co'>#&gt;    nr task_id          learner_id resampling_id classif.ce
-#&gt; 1:  1    spam classif.featureless            cv  0.3991323
-#&gt; 2:  1    spam classif.featureless            cv  0.3760870
-#&gt; 3:  1    spam classif.featureless            cv  0.4043478
-#&gt; 4:  1    spam classif.featureless            cv  0.4065217
-#&gt; 5:  1    spam classif.featureless            cv  0.4021739
-#&gt; 6:  1    spam classif.featureless            cv  0.3847826</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>)</div><div class='img'><img src='autoplot.BenchmarkResult-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>$<span class='fu'>clone</span>()$<span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='kw'>task_ids</span> <span class='kw'>=</span> <span class='st'>"spam"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"roc"</span>)</div><div class='img'><img src='autoplot.BenchmarkResult-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>$<span class='fu'>clone</span>()$<span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='kw'>task_ids</span> <span class='kw'>=</span> <span class='st'>"pima"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"prc"</span>)</div><div class='img'><img src='autoplot.BenchmarkResult-3.png' alt='' width='700' height='433' /></div></pre>
+<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"spam"</span>)
+<span class='no'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"classif.rpart"</span>, <span class='kw'>keep_model</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='no'>learner</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>learner</span>)</div><div class='img'><img src='autoplot.LearnerClassifRpart-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
