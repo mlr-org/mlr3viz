@@ -19,8 +19,15 @@
 #' library(mlr3)
 #' library(mlr3viz)
 #'
+#' # classification
 #' task = tsk("spam")
 #' learner = lrn("classif.rpart", keep_model = TRUE)
+#' learner$train(task)
+#' autoplot(learner)
+#'
+#' # regression
+#' task = tsk("boston_housing")
+#' learner = lrn("regr.rpart", keep_model = TRUE)
 #' learner$train(task)
 #' autoplot(learner)
 autoplot.LearnerClassifRpart = function(object, ...) { # nolint
@@ -32,5 +39,6 @@ autoplot.LearnerClassifRpart = function(object, ...) { # nolint
   }
 
   require_namespaces(c("partykit", "ggparty"))
-  autoplot(partykit::as.party(object$model), ...)
+  autoplot(partykit::as.party(object$model), ...) +
+    ggparty::geom_node_label(aes(label = paste0("n=", nodesize), nudge_y = 0.03), ids = "terminal")
 }
