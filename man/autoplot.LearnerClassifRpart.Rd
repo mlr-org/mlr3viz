@@ -31,8 +31,15 @@ Note that learner-specific plots are experimental and subject to change.
 library(mlr3)
 library(mlr3viz)
 
+# classification
 task = tsk("spam")
 learner = lrn("classif.rpart", keep_model = TRUE)
+learner$train(task)
+autoplot(learner)
+
+# regression
+task = tsk("boston_housing")
+learner = lrn("regr.rpart", keep_model = TRUE)
 learner$train(task)
 autoplot(learner)
 }

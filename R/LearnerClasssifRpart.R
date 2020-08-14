@@ -40,5 +40,5 @@ autoplot.LearnerClassifRpart = function(object, ...) { # nolint
 
   require_namespaces(c("partykit", "ggparty"))
   autoplot(partykit::as.party(object$model), ...) +
-    ggparty::geom_node_label(aes(label = paste0("n=", nodesize), nudge_y = 0.03), ids = "terminal")
+    ggparty::geom_node_label(aes(label = paste0("n=", nodesize)), nudge_y = 0.03, ids = "terminal")
 }
