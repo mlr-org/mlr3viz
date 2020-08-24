@@ -4,12 +4,15 @@
 \alias{autoplot.PredictionClust}
 \title{Plot for PredictionClust}
 \usage{
-\method{autoplot}{PredictionClust}(object, task, type = "scatter", ...)
+\method{autoplot}{PredictionClust}(object, task, row_ids = NULL, type = "scatter", ...)
 }
 \arguments{
 \item{object}{(\link[mlr3cluster:PredictionClust]{mlr3cluster::PredictionClust}).}
 
 \item{task}{(\link[mlr3cluster:TaskClust]{mlr3cluster::TaskClust}).}
+
+\item{row_ids}{row ids to subset task data to ensure that
+only the data used to make predictions are shown in plots.}
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
@@ -25,6 +28,8 @@ Generates plots for \link[mlr3cluster:PredictionClust]{mlr3cluster::PredictionCl
 \itemize{
 \item \code{"scatter"} (default): scatterplot with correlation values
 and colored cluster assignments.
+\item \code{"sil"}: Silhouette plot with mean silhouette value as
+a reference line.
 }
 }
 \examples{

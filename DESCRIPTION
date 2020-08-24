@@ -32,6 +32,7 @@ Imports:
     utils
 Suggests:
     GGally,
+    ggfortify,
     lgr,
     mlr3 (>= 0.1.6),
     mlr3cluster,
@@ -41,6 +42,8 @@ Suggests:
     rpart,
     survival,
     testthat
+Remotes:
+    sinhrks/ggfortify
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no

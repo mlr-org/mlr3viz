@@ -6,8 +6,13 @@
 #' * `"scatter"` (default): scatterplot with correlation values
 #' and colored cluster assignments.
 #'
+#' * `"sil"`: Silhouette plot with mean silhouette value as
+#' a reference line.
+#'
 #' @param object ([mlr3cluster::PredictionClust]).
 #' @param task ([mlr3cluster::TaskClust]).
+#' @param row_ids row ids to subset task data to ensure that
+#' only the data used to make predictions are shown in plots.
 #' @template param_type
 #' @param ... (`any`):
 #'   Additional arguments, passed down to the respective `geom`.
@@ -25,7 +30,7 @@
 #'
 #' head(fortify(object))
 #' autoplot(object, task)
-autoplot.PredictionClust = function(object, task, type = "scatter", ...) { # nolint
+autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatter", ...) { # nolint
   assert_string(type)
 
   switch(type,
@@ -33,7 +38,12 @@ autoplot.PredictionClust = function(object, task, type = "scatter", ...) { # nol
        require_namespaces("GGally")
 
        # merge features and partitions
-       data = data.table(row_id = 1:nrow(task$data()), task$data())
+       if (is.null(row_ids)) {
+         data = data.table(row_id = task$row_ids, task$data())
+       } else {
+         data = data.table(row_id = row_ids, task$data(rows = row_ids))
+       }
+
        data = merge(object$data$tab, data)
        data$row_id = NULL
        data$partition = factor(data$partition)
@@ -42,29 +52,13 @@ autoplot.PredictionClust = function(object, task, type = "scatter", ...) { # nol
      },
 
      "sil" = {
-       require_namespaces("cluster")
+       require_namespaces(c("cluster", "ggfortify"))
 
        # prepare data
-       d = dist(task$data())
-       widths = cluster::silhouette(object$data$tab$partition, d)
+       d = dist(task$data(rows = row_ids))
+       sil = cluster::silhouette(object$data$tab$partition, d)
 
-       data = as.data.frame(unclass(widths))
-       data$cluster = as.factor(data$cluster)
-       data = data[order(data$cluster), ]
-       data$id = seq_len(nrow(data))
-
-       min.y = if(min(data$sil_width) < 0) min(data$sil_width) else 0
-       ggplot(data, aes(x = id, y = sil_width, fill = cluster)) +
-         geom_bar(stat = "identity", color = "black") +
-         ylim(min.y, 1) +
-         labs(x = NULL, y = "Silhouette Width",
-              title = sprintf("Average Silhouette Width: %s", round(mean(data$sil_width), 2))) +
-         theme(axis.text.y = element_blank(),
-               axis.ticks.y = element_blank(),
-               plot.title = element_text(hjust = 0.5),
-               axis.title.y = element_text(hjust = 0.5)) +
-         geom_hline(yintercept = round(mean(data$sil_width), 2), color = "red", linetype = "dashed") +
-         coord_flip()
+       ggplot2::autoplot(sil, ...)
      },
 
      stopf("Unknown plot type '%s'", type)
