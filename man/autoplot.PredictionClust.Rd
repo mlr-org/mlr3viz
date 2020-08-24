@@ -30,6 +30,8 @@ Generates plots for \link[mlr3cluster:PredictionClust]{mlr3cluster::PredictionCl
 and colored cluster assignments.
 \item \code{"sil"}: Silhouette plot with mean silhouette value as
 a reference line.
+\item \code{"pca"}: Perform PCA on data and color code cluster
+assignments. Inspired by and uses \link[ggfortify:autoplot.kmeans]{ggfortify::autoplot.kmeans}.
 }
 }
 \examples{

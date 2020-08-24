@@ -9,6 +9,9 @@
 #' * `"sil"`: Silhouette plot with mean silhouette value as
 #' a reference line.
 #'
+#' * `"pca"`: Perform PCA on data and color code cluster
+#' assignments. Inspired by and uses [ggfortify::autoplot.kmeans].
+#'
 #' @param object ([mlr3cluster::PredictionClust]).
 #' @param task ([mlr3cluster::TaskClust]).
 #' @param row_ids row ids to subset task data to ensure that
@@ -59,6 +62,22 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
        sil = cluster::silhouette(object$data$tab$partition, d)
 
        ggplot2::autoplot(sil, ...)
+     },
+
+     "pca" = {
+       require_namespaces("ggfortify")
+       d = data.frame(row_ids = object$data$tab$row_id,
+                      cluster = as.factor(object$data$tab$partition))
+
+       if (is.null(row_ids)) {
+         task_data = data.table(task$data(), row_ids = task$row_ids)
+       } else {
+         task_data = data.table(task$data(rows = row_ids), row_ids = row_ids)
+       }
+
+       plot_data = merge(task_data, d, by = "row_ids")
+       ggplot2::autoplot(stats::prcomp(task_data), data = plot_data,
+                         colour = "cluster", ...)
      },
 
      stopf("Unknown plot type '%s'", type)
