@@ -2,7 +2,7 @@
 # mlr3viz
 
 Package website: [release](https://mlr3.mlr-org.com/) |
-[dev](https://mlr3.mlr-org.com/dev)
+[dev](https://mlr3.mlr-org.com/dev/)
 
 <!-- badges: start -->
 

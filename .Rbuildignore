@@ -6,6 +6,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^man-roxygen$
+^attic$
 ^pkgdown$
 ^\.pre-commit-config\.yaml$
 ^\.vscode$

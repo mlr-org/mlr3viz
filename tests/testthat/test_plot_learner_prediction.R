@@ -13,6 +13,17 @@ test_that("plot_learner_prediction.LearnerClassif", {
   p = plot_learner_prediction(learner, task, expand_range = 0.1)
   expect_true(is.ggplot(p))
 
+  # two-class, predict_type = "response"
+  task = tsk("sonar")$select(c("V1", "V2"))
+  learner = lrn("classif.rpart", predict_type = "response")$train(task)
+  p = plot_learner_prediction(learner, task)
+  expect_true(is.ggplot(p))
+
+  # two-class, predict_type = "prob"
+  learner = lrn("classif.rpart", predict_type = "prob")$train(task)
+  p = plot_learner_prediction(learner, task)
+  expect_true(is.ggplot(p))
+
   # non numerical columns
   task = tsk("german_credit")$select(c("housing", "employment_duration"))
   p = plot_learner_prediction(learner, task)

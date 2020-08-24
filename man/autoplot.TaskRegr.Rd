@@ -31,7 +31,7 @@ Generates plots for \link[mlr3:TaskRegr]{mlr3::TaskRegr}, depending on argument 
 library(mlr3)
 library(mlr3viz)
 
-task = mlr_tasks$get("mtcars")
+task = tsk("mtcars")
 task$select(c("am", "carb"))
 
 head(fortify(task))

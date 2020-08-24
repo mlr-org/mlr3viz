@@ -32,7 +32,7 @@ Generates plots for \link[mlr3:TaskClassif]{mlr3::TaskClassif}, depending on arg
 library(mlr3)
 library(mlr3viz)
 
-task = mlr_tasks$get("iris")
+task = tsk("iris")
 
 head(fortify(task))
 autoplot(task)

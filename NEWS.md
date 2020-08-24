@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # mlr3viz 0.1.1.9003
 
 - New plot: pairs plot for objects of class 'TaskClust'.
@@ -9,12 +10,14 @@
 - Update documentation of PredictionRegr (#23)
 
 # mlr3viz 0.1.1.9001
+=======
+# mlr3viz 0.2.0
+>>>>>>> upstream/master
 
+- Added plots for `TaskDens` and `TaskSurv` from package `mlr3proba`.
+- Update documentation of `PredictionRegr` (#23)
 - `autoplot.BenchmarkResult()`: Support for learners with identical IDs (#19)
-
-# mlr3viz 0.1.1.9000
-
-- Same as previous version
+- Fixed a bug in `plot_learner_prediction()` (#47)
 
 # mlr3viz 0.1.1
 
