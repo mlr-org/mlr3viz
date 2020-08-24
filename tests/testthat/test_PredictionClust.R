@@ -1,10 +1,14 @@
 context("PredictionClust")
 
 test_that("autoplot.PredictionClust", {
-  task = tsk("usarrests")
+  skip_if_not_installed("mlr3cluster")
+
+  require_namespaces("mlr3cluster")
+  task = mlr_tasks$get("usarrests")
+
   learner = lrn("clust.kmeans", centers = 3)
   prediction = learner$train(task)$predict(task)
 
-  p = autoplot(object, task, type = "scatter")
+  p = autoplot(prediction, task, type = "scatter")
   expect_true(is.ggplot(p))
 })

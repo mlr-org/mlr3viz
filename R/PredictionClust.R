@@ -55,10 +55,10 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
      },
 
      "sil" = {
-       require_namespaces(c("cluster", "ggfortify"))
+       require_namespaces(c("cluster", "ggfortify", "stats"))
 
        # prepare data
-       d = dist(task$data(rows = row_ids))
+       d = stats::dist(task$data(rows = row_ids))
        sil = cluster::silhouette(object$data$tab$partition, d)
 
        ggplot2::autoplot(sil, ...)

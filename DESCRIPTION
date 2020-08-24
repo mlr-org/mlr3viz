@@ -48,6 +48,7 @@ Suggests:
     precrec,
     rpart,
     survival,
+    stats,
     testthat
 Remotes:
     sinhrks/ggfortify,
