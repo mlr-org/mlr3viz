@@ -49,6 +49,7 @@ Suggests:
     rpart,
     survival,
     stats,
+    cluster,
     testthat
 Remotes:
     sinhrks/ggfortify,
