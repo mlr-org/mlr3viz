@@ -1,4 +1,4 @@
-#' @title Plot for Hierarchical Learners
+#' @title Plot for Hierarchical Clustering Learners
 #'
 #' @description
 #' Visualize dendrograms for hierarchical clusterers
@@ -6,7 +6,7 @@
 #'
 #' Note that learner-specific plots are experimental and subject to change.
 #'
-#' @param object ([mlr3::LearnerClustAgnes] | [mlr3::LearnerClustDiana]).
+#' @param object ([mlr3cluster::LearnerClustAgnes] | [mlr3cluster::LearnerClustDiana]).
 #' @param ... (`any`):
 #'   Additional arguments, passed down to [factoextra::fviz_dend()].
 #'
@@ -27,21 +27,22 @@
 #' # diana clustering
 #' learner = mlr_learners$get("clust.diana")
 #' learner$train(task)
-#' autoplot(learner, k = learner$param_set$values$k, rect_fill = TRUE, rect = TRUE, rect_border = "red")
-autoplot.LearnerHierarchical = function(object, ...) { # nolint
+#' autoplot(learner, k = learner$param_set$values$k, rect_fill = TRUE,
+#'          rect = TRUE, rect_border = "red")
+autoplot.LearnerClustHierarchical = function(object, ...) { # nolint
   if (is.null(object$model)) {
     stopf("Learner '%s' must be trained first", object$id)
   }
-  if (!("hierarchical" %in% learner$properties)) {
+  if (!("hierarchical" %in% object$properties)) {
     stopf("Learner '%s' must be hierarchical", object$id)
   }
   require_namespaces(c("factoextra"))
 
-  factoextra::fviz_dend(learner$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
+  factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
 }
 
 #' @export
-autoplot.LearnerClustAgnes = autoplot.LearnerHierarchical
+autoplot.LearnerClustAgnes = autoplot.LearnerClustHierarchical
 
 #' @export
-autoplot.LearnerClustDiana = autoplot.LearnerHierarchical
+autoplot.LearnerClustDiana = autoplot.LearnerClustHierarchical
