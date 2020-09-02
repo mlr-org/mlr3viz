@@ -27,8 +27,9 @@
 #' # diana clustering
 #' learner = mlr_learners$get("clust.diana")
 #' learner$train(task)
-#' autoplot(learner, k = learner$param_set$values$k, rect_fill = TRUE,
-#'          rect = TRUE, rect_border = "red")
+#' autoplot(learner,
+#'   k = learner$param_set$values$k, rect_fill = TRUE,
+#'   rect = TRUE, rect_border = "red")
 autoplot.LearnerClustHierarchical = function(object, ...) { # nolint
   if (is.null(object$model)) {
     stopf("Learner '%s' must be trained first", object$id)

@@ -37,49 +37,51 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
   assert_string(type)
 
   switch(type,
-     "scatter" = {
-       require_namespaces("GGally")
+    "scatter" = {
+      require_namespaces("GGally")
 
-       # merge features and partitions
-       if (is.null(row_ids)) {
-         data = data.table(row_id = task$row_ids, task$data())
-       } else {
-         data = data.table(row_id = row_ids, task$data(rows = row_ids))
-       }
+      # merge features and partitions
+      if (is.null(row_ids)) {
+        data = data.table(row_id = task$row_ids, task$data())
+      } else {
+        data = data.table(row_id = row_ids, task$data(rows = row_ids))
+      }
 
-       data = merge(object$data$tab, data)
-       data$row_id = NULL
-       data$partition = factor(data$partition)
+      data = merge(object$data$tab, data)
+      data$row_id = NULL
+      data$partition = factor(data$partition)
 
-       GGally::ggscatmat(data, color = "partition", ...)
-     },
+      GGally::ggscatmat(data, color = "partition", ...)
+    },
 
-     "sil" = {
-       require_namespaces(c("cluster", "ggfortify", "stats"))
+    "sil" = {
+      require_namespaces(c("cluster", "ggfortify", "stats"))
 
-       # prepare data
-       d = stats::dist(task$data(rows = row_ids))
-       sil = cluster::silhouette(object$data$tab$partition, d)
+      # prepare data
+      d = stats::dist(task$data(rows = row_ids))
+      sil = cluster::silhouette(object$data$tab$partition, d)
 
-       ggplot2::autoplot(sil, ...)
-     },
+      ggplot2::autoplot(sil, ...)
+    },
 
-     "pca" = {
-       require_namespaces("ggfortify")
-       d = data.frame(row_ids = object$data$tab$row_id,
-                      cluster = as.factor(object$data$tab$partition))
+    "pca" = {
+      require_namespaces("ggfortify")
+      d = data.frame(
+        row_ids = object$data$tab$row_id,
+        cluster = as.factor(object$data$tab$partition))
 
-       if (is.null(row_ids)) {
-         task_data = data.table(task$data(), row_ids = task$row_ids)
-       } else {
-         task_data = data.table(task$data(rows = row_ids), row_ids = row_ids)
-       }
+      if (is.null(row_ids)) {
+        task_data = data.table(task$data(), row_ids = task$row_ids)
+      } else {
+        task_data = data.table(task$data(rows = row_ids), row_ids = row_ids)
+      }
 
-       plot_data = merge(task_data, d, by = "row_ids")
-       ggplot2::autoplot(stats::prcomp(task_data), data = plot_data,
-                         colour = "cluster", ...)
-     },
+      plot_data = merge(task_data, d, by = "row_ids")
+      ggplot2::autoplot(stats::prcomp(task_data),
+        data = plot_data,
+        colour = "cluster", ...)
+    },
 
-     stopf("Unknown plot type '%s'", type)
+    stopf("Unknown plot type '%s'", type)
   )
 }
