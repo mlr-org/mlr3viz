@@ -187,7 +187,7 @@ For tasks with two features the predict type will be ignored.</p></li>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for ResampleResult</span>
-<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"boxplot"</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>predict_sets</span> <span class='kw'>=</span> <span class='st'>"test"</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span>, type = <span class='st'>"boxplot"</span>, measure = <span class='kw'>NULL</span>, predict_sets = <span class='st'>"test"</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -224,15 +224,16 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></td>
     <p><code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot2::ggplot()</a></code> object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3viz</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://mlr3.mlr-org.com'>mlr3</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://mlr3viz.mlr-org.com'>mlr3viz</a></span>)
 
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"sonar"</span>)
-<span class='no'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"classif.rpart"</span>, <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"prob"</span>)
-<span class='no'>resampling</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>)
-<span class='no'>object</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>learner</span>, <span class='no'>resampling</span>)
+<span class='kw'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"sonar"</span>)
+<span class='kw'>learner</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"classif.rpart"</span>, predict_type = <span class='st'>"prob"</span>)
+<span class='kw'>resampling</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>)
+<span class='kw'>object</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='kw'>task</span>, <span class='kw'>learner</span>, <span class='kw'>resampling</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='fortify.html'>fortify</a></span>(<span class='no'>object</span>))</div><div class='output co'>#&gt;    iteration measure_id performance
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='fortify.html'>fortify</a></span>(<span class='kw'>object</span>))
+</div><div class='output co'>#&gt;    iteration measure_id performance
 #&gt; 1:         1 classif.ce   0.4285714
 #&gt; 2:         2 classif.ce   0.1904762
 #&gt; 3:         3 classif.ce   0.2380952
@@ -240,20 +241,26 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></td>
 #&gt; 5:         5 classif.ce   0.3333333
 #&gt; 6:         6 classif.ce   0.3333333</div><div class='input'>
 <span class='co'># Default: boxplot</span>
-<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>)</div><div class='img'><img src='autoplot.ResampleResult-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span>)
+</div><div class='img'><img src='autoplot.ResampleResult-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Histogram</span>
-<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div><div class='img'><img src='autoplot.ResampleResult-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span>, type = <span class='st'>"histogram"</span>, bins = <span class='fl'>30</span>)
+</div><div class='img'><img src='autoplot.ResampleResult-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># ROC curve, averaged over resampling folds:</span>
-<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"roc"</span>)</div><div class='img'><img src='autoplot.ResampleResult-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span>, type = <span class='st'>"roc"</span>)
+</div><div class='img'><img src='autoplot.ResampleResult-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># ROC curve of joint prediction object:</span>
-<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>$<span class='fu'>prediction</span>(), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"roc"</span>)</div><div class='img'><img src='autoplot.ResampleResult-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span><span class='op'>$</span><span class='fu'>prediction</span>(), type = <span class='st'>"roc"</span>)
+</div><div class='img'><img src='autoplot.ResampleResult-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Precision Recall Curve</span>
-<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"prc"</span>)</div><div class='img'><img src='autoplot.ResampleResult-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span>, type = <span class='st'>"prc"</span>)
+</div><div class='img'><img src='autoplot.ResampleResult-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Prediction Plot</span>
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"iris"</span>)$<span class='fu'>select</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Sepal.Length"</span>, <span class='st'>"Sepal.Width"</span>))
-<span class='no'>resampling</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>3</span>)
-<span class='no'>object</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>learner</span>, <span class='no'>resampling</span>, <span class='kw'>store_models</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"prediction"</span>)</div><div class='img'><img src='autoplot.ResampleResult-6.png' alt='' width='700' height='433' /></div></pre>
+<span class='kw'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"iris"</span>)<span class='op'>$</span><span class='fu'>select</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Sepal.Length"</span>, <span class='st'>"Sepal.Width"</span>))
+<span class='kw'>resampling</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, folds = <span class='fl'>3</span>)
+<span class='kw'>object</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='kw'>task</span>, <span class='kw'>learner</span>, <span class='kw'>resampling</span>, store_models = <span class='fl'>TRUE</span>)
+<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span>, type = <span class='st'>"prediction"</span>)
+</div><div class='img'><img src='autoplot.ResampleResult-6.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -269,7 +276,7 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
