@@ -20,11 +20,11 @@ test_that("autoplot BenchmarkResult", {
 
   expect_error(autoplot(bmr, type = "roc"), "multiple")
 
-  object = bmr$clone()$filter(task_ids = "sonar")
+  object = bmr$clone(deep = TRUE)$filter(task_ids = "sonar")
   p = autoplot(object, type = "roc")
   expect_true(is.ggplot(p))
 
-  object = bmr$clone()$filter(task_ids = "pima")
+  object = bmr$clone(deep = TRUE)$filter(task_ids = "pima")
   p = autoplot(object, type = "prc")
   expect_true(is.ggplot(p))
 })
