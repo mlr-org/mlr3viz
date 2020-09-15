@@ -33,8 +33,8 @@
 #'
 #' head(fortify(object))
 #' autoplot(object)
-#' autoplot(object$clone()$filter(task_ids = "spam"), type = "roc")
-#' autoplot(object$clone()$filter(task_ids = "pima"), type = "prc")
+#' autoplot(object$clone(deep = TRUE)$filter(task_ids = "spam"), type = "roc")
+#' autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "prc")
 autoplot.BenchmarkResult = function(object, # nolint
   type = "boxplot",
   measure = NULL,

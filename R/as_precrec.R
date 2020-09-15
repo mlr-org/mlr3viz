@@ -66,7 +66,7 @@ as_precrec.BenchmarkResult = function(object) { # nolint
     stopf("Unable to convert benchmark results with multiple resamplings.")
   }
 
-  predictions = map(scores$prediction, "test")
+  predictions = scores$prediction
   data = transpose_list(map(predictions, roc_data))
   data$labels = split(data$labels, scores$iteration)
   data$scores = split(data$scores, scores$iteration)
