@@ -14,7 +14,7 @@ as_precrec = function(object) {
 
 
 roc_data = function(prediction) {
-  prediction = as_prediction(prediction)
+  prediction = mlr3::as_prediction(prediction)
   if (nlevels(prediction$truth) != 2L) {
     stopf("Need a binary classification problem to plot a ROC curve")
   }
