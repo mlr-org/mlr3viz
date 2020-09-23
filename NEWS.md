@@ -1,3 +1,7 @@
+# mlr3viz 0.3.0
+
+- Compatibility with `mlr3` >= 0.6.0.
+
 # mlr3viz 0.2.0
 
 - Added plots for `TaskDens` and `TaskSurv` from package `mlr3proba`.

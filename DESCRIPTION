@@ -1,6 +1,6 @@
 Package: mlr3viz
 Title: Visualizations for 'mlr3'
-Version: 0.2.0-9000
+Version: 0.3.0
 Authors@R:
     c(person(given = "Michel",
              family = "Lang",
@@ -42,13 +42,11 @@ Suggests:
     lgr,
     mlr3 (>= 0.6.0),
     mlr3filters,
-    mlr3proba (>= 0.2.0),
+    mlr3proba (>= 0.2.2),
     precrec,
     rpart,
     survival,
     testthat
-Remotes:
-    mlr-org/mlr3
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
