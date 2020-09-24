@@ -213,13 +213,13 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></td>
 <span class='kw'>object</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/benchmark.html'>benchmark</a></span>(<span class='fu'><a href='https://mlr3.mlr-org.com/reference/benchmark_grid.html'>benchmark_grid</a></span>(<span class='kw'>tasks</span>, <span class='kw'>learner</span>, <span class='kw'>resampling</span>))
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='fortify.html'>fortify</a></span>(<span class='kw'>object</span>))
-</div><div class='output co'>#&gt;    nr task_id    learner_id resampling_id classif.ce
-#&gt; 1:  1    spam classif.rpart            cv 0.13665944
-#&gt; 2:  1    spam classif.rpart            cv 0.12826087
-#&gt; 3:  1    spam classif.rpart            cv 0.10217391
-#&gt; 4:  1    spam classif.rpart            cv 0.09782609
-#&gt; 5:  1    spam classif.rpart            cv 0.11521739
-#&gt; 6:  1    spam classif.rpart            cv 0.10217391</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span>)
+</div><div class='output co'>#&gt;    nr task_id          learner_id resampling_id classif.ce
+#&gt; 1:  1    spam classif.featureless            cv  0.3991323
+#&gt; 2:  1    spam classif.featureless            cv  0.3760870
+#&gt; 3:  1    spam classif.featureless            cv  0.4043478
+#&gt; 4:  1    spam classif.featureless            cv  0.4065217
+#&gt; 5:  1    spam classif.featureless            cv  0.4021739
+#&gt; 6:  1    spam classif.featureless            cv  0.3847826</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span>)
 </div><div class='img'><img src='autoplot.BenchmarkResult-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span><span class='op'>$</span><span class='fu'>clone</span>(deep = <span class='fl'>TRUE</span>)<span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(task_ids = <span class='st'>"spam"</span>), type = <span class='st'>"roc"</span>)
 </div><div class='img'><img src='autoplot.BenchmarkResult-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span><span class='op'>$</span><span class='fu'>clone</span>(deep = <span class='fl'>TRUE</span>)<span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(task_ids = <span class='st'>"pima"</span>), type = <span class='st'>"prc"</span>)
 </div><div class='img'><img src='autoplot.BenchmarkResult-3.png' alt='' width='700' height='433' /></div></pre>
