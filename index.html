@@ -115,37 +115,32 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Install the last release from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"mlr3"</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"mlr3"</span><span class="op">)</span></pre></div>
 <p>Install the development version from GitHub:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"mlr-org/mlr3viz"</span>)
-</pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"mlr-org/mlr3viz"</span><span class="op">)</span></pre></div>
 </div>
 <div id="short-demo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#short-demo" class="anchor"></a>Short Demo</h2>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://mlr3.mlr-org.com">mlr3</a></span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://mlr3viz.mlr-org.com">mlr3viz</a></span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3.mlr-org.com">mlr3</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3viz.mlr-org.com">mlr3viz</a></span><span class="op">)</span>
 
-<span class="kw">task</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">tsk</a></span>(<span class="st">"pima"</span>)<span class="op">$</span><span class="fu">select</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"glucose"</span>, <span class="st">"insulin"</span>))
-<span class="kw">learner</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span>(<span class="st">"classif.rpart"</span>, predict_type = <span class="st">"prob"</span>)
-<span class="kw">rr</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/resample.html">resample</a></span>(<span class="kw">task</span>, <span class="kw">learner</span>, <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">rsmp</a></span>(<span class="st">"cv"</span>, folds = <span class="fl">10</span>))
+<span class="va">task</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">tsk</a></span><span class="op">(</span><span class="st">"pima"</span><span class="op">)</span><span class="op">$</span><span class="fu">select</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"glucose"</span>, <span class="st">"insulin"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">learner</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span><span class="op">(</span><span class="st">"classif.rpart"</span>, predict_type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span>
+<span class="va">rr</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">task</span>, <span class="va">learner</span>, <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">rsmp</a></span><span class="op">(</span><span class="st">"cv"</span>, folds <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Default plot for task</span>
-<span class="fu"><a href="reference/autoplot.html">autoplot</a></span>(<span class="kw">task</span>)
-</pre></div>
+<span class="fu"><a href="reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">task</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-demo-1.png"><!-- --></p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="co"># Pairs plot from GGally</span>
-<span class="fu"><a href="reference/autoplot.html">autoplot</a></span>(<span class="kw">task</span>, type = <span class="st">"pairs"</span>)
-</pre></div>
+<span class="fu"><a href="reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">task</span>, type <span class="op">=</span> <span class="st">"pairs"</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-demo-2.png"><!-- --></p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="co"># ROC curve for the ResampleResult</span>
-<span class="fu"><a href="reference/autoplot.html">autoplot</a></span>(<span class="kw">rr</span>, type = <span class="st">"roc"</span>)
-</pre></div>
+<span class="fu"><a href="reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">rr</span>, type <span class="op">=</span> <span class="st">"roc"</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-demo-3.png"><!-- --></p>
 </div>
 </div>

@@ -165,7 +165,7 @@ Requires package <a href='https://CRAN.R-project.org/package=precrec'><span clas
     </div>
 
     <pre class="usage"><span class='co'># S3 method for PredictionClassif</span>
-<span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span>, type = <span class='st'>"stacked"</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'><a href='autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span>, type <span class='op'>=</span> <span class='st'>"stacked"</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,23 +191,23 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></td>
     <p><code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot2::ggplot()</a></code> object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://mlr3.mlr-org.com'>mlr3</a></span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://mlr3viz.mlr-org.com'>mlr3viz</a></span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3.mlr-org.com'>mlr3</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3viz.mlr-org.com'>mlr3viz</a></span><span class='op'>)</span>
 
-<span class='kw'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"spam"</span>)
-<span class='kw'>learner</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"classif.rpart"</span>, predict_type = <span class='st'>"prob"</span>)
-<span class='kw'>object</span> <span class='op'>=</span> <span class='kw'>learner</span><span class='op'>$</span><span class='fu'>train</span>(<span class='kw'>task</span>)<span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='kw'>task</span>)
+<span class='va'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span><span class='op'>(</span><span class='st'>"spam"</span><span class='op'>)</span>
+<span class='va'>learner</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"classif.rpart"</span>, predict_type <span class='op'>=</span> <span class='st'>"prob"</span><span class='op'>)</span>
+<span class='va'>object</span> <span class='op'>=</span> <span class='va'>learner</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span><span class='op'>$</span><span class='fu'>predict</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='fortify.html'>fortify</a></span>(<span class='kw'>object</span>))
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'><a href='fortify.html'>fortify</a></span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;    row_id truth response prob.spam prob.nonspam
 #&gt; 1:      1  spam     spam 0.8513514   0.14864865
 #&gt; 2:      2  spam     spam 0.9339623   0.06603774
 #&gt; 3:      3  spam     spam 0.9339623   0.06603774
 #&gt; 4:      4  spam     spam 0.9090909   0.09090909
 #&gt; 5:      5  spam     spam 0.9090909   0.09090909
-#&gt; 6:      6  spam  nonspam 0.1004750   0.89952503</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span>)
-</div><div class='img'><img src='autoplot.PredictionClassif-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span>, type = <span class='st'>"roc"</span>)
-</div><div class='img'><img src='autoplot.PredictionClassif-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span>(<span class='kw'>object</span>, type = <span class='st'>"prc"</span>)
+#&gt; 6:      6  spam  nonspam 0.1004750   0.89952503</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span>
+</div><div class='img'><img src='autoplot.PredictionClassif-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span>, type <span class='op'>=</span> <span class='st'>"roc"</span><span class='op'>)</span>
+</div><div class='img'><img src='autoplot.PredictionClassif-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span>, type <span class='op'>=</span> <span class='st'>"prc"</span><span class='op'>)</span>
 </div><div class='img'><img src='autoplot.PredictionClassif-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
