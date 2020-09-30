@@ -2,9 +2,12 @@
 % Please edit documentation in R/TaskSurv.R
 \name{autoplot.TaskSurv}
 \alias{autoplot.TaskSurv}
+\alias{plot.TaskSurv}
 \title{Plot for Survival Tasks}
 \usage{
 \method{autoplot}{TaskSurv}(object, type = "target", ...)
+
+\method{plot}{TaskSurv}(x, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3proba:TaskSurv]{mlr3proba::TaskSurv}).}
@@ -15,6 +18,8 @@ Type of the plot. Available choices:}
 \item{...}{(\code{any}):
 Additional argument, passed down to \verb{$formula} of \link[mlr3proba:TaskSurv]{mlr3proba::TaskSurv} or
 the underlying plot functions.}
+
+\item{x}{(\link[mlr3proba:TaskSurv]{mlr3proba::TaskSurv}).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -39,6 +44,7 @@ task = tsk("lung")
 
 head(fortify(task))
 autoplot(task)
+plot(task)
 autoplot(task, rhs = "sex")
 autoplot(task, type = "duo")
 }

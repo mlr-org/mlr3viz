@@ -27,6 +27,7 @@
 #'
 #' head(fortify(task))
 #' autoplot(task)
+#' plot(task)
 #' autoplot(task, rhs = "sex")
 #' autoplot(task, type = "duo")
 autoplot.TaskSurv = function(object, type = "target", ...) { # nolint
@@ -58,4 +59,12 @@ autoplot.TaskSurv = function(object, type = "target", ...) { # nolint
 
     stopf("Unknown plot type '%s'", type)
   )
+}
+
+#' @importFrom graphics plot
+#' @param x ([mlr3proba::TaskSurv]).
+#' @rdname autoplot.TaskSurv
+#' @export
+plot.TaskSurv = function(x, ...) {
+  print(autoplot(x, ...))
 }

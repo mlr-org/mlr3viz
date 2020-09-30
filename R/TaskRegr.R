@@ -23,6 +23,7 @@
 #'
 #' head(fortify(task))
 #' autoplot(task)
+#' plot(task)
 #' autoplot(task, type = "pairs")
 autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
   assert_string(type)
@@ -44,4 +45,12 @@ autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
 
     stopf("Unknown plot type '%s'", type)
   )
+}
+
+#' @importFrom graphics plot
+#' @param x ([mlr3::TaskRegr]).
+#' @rdname autoplot.TaskRegr
+#' @export
+plot.TaskRegr = function(x, ...) {
+  print(autoplot(x, ...))
 }

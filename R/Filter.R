@@ -25,6 +25,7 @@
 #'
 #' head(fortify(f))
 #' autoplot(f, n = 5)
+#' plot(f, n = 5)
 autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
   assert_string(type)
 
@@ -39,6 +40,14 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
 
     stopf("Unknown plot type '%s'", type)
   )
+}
+
+#' @importFrom graphics plot
+#' @param x ([mlr3filters::Filter]).
+#' @rdname autoplot.Filter
+#' @export
+plot.Filter = function(x, ...) {
+  print(autoplot(x, ...))
 }
 
 #' @export

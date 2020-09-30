@@ -2,18 +2,26 @@
 % Please edit documentation in R/LearnerClasssifRpart.R, R/LearnerRegrRpart.R
 \name{autoplot.LearnerClassifRpart}
 \alias{autoplot.LearnerClassifRpart}
+\alias{plot.LearnerClassifRpart}
 \alias{autoplot.LearnerRegrRpart}
+\alias{plot.LearnerRegrRpart}
 \title{Plot for LearnerClassifRpart}
 \usage{
 \method{autoplot}{LearnerClassifRpart}(object, ...)
 
+\method{plot}{LearnerClassifRpart}(x, ...)
+
 \method{autoplot}{LearnerRegrRpart}(object, ...)
+
+\method{plot}{LearnerRegrRpart}(x, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:mlr_learners_classif.rpart]{mlr3::LearnerClassifRpart} | \link[mlr3:mlr_learners_regr.rpart]{mlr3::LearnerRegrRpart}).}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to \code{\link[ggparty:autoplot.party]{ggparty::autoplot.party()}}.}
+
+\item{x}{(\link[mlr3:mlr_learners_classif.rpart]{mlr3::LearnerClassifRpart} | \link[mlr3:mlr_learners_regr.rpart]{mlr3::LearnerRegrRpart}).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -42,4 +50,5 @@ task = tsk("boston_housing")
 learner = lrn("regr.rpart", keep_model = TRUE)
 learner$train(task)
 autoplot(learner)
+plot(learner)
 }

@@ -45,6 +45,7 @@
 #'
 #' # Default: boxplot
 #' autoplot(object)
+#' plot(object)
 #'
 #' # Histogram
 #' autoplot(object, type = "histogram", bins = 30)
@@ -108,6 +109,14 @@ autoplot.ResampleResult = function(object, # nolint
 
     stopf("Unknown plot type '%s'", type)
   )
+}
+
+#' @importFrom graphics plot
+#' @param x ([mlr3::ResampleResult]).
+#' @rdname autoplot.ResampleResult
+#' @export
+plot.ResampleResult = function(x, ...) {
+  print(autoplot(x, ...))
 }
 
 #' @export
