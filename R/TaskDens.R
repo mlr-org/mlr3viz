@@ -50,6 +50,6 @@ autoplot.TaskDens = function(object, type = "dens", ...) {
 #' @param x ([mlr3proba::TaskDens]).
 #' @rdname autoplot.TaskDens
 #' @export
-plot.Dens = function(x, ...) {
+plot.TaskDens = function(x, ...) {
   print(autoplot(x, ...))
 }

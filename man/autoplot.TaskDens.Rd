@@ -2,12 +2,12 @@
 % Please edit documentation in R/TaskDens.R
 \name{autoplot.TaskDens}
 \alias{autoplot.TaskDens}
-\alias{plot.Dens}
+\alias{plot.TaskDens}
 \title{Plot for Density Tasks}
 \usage{
 \method{autoplot}{TaskDens}(object, type = "dens", ...)
 
-\method{plot}{Dens}(x, ...)
+\method{plot}{TaskDens}(x, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3proba:TaskDens]{mlr3proba::TaskDens}).}
