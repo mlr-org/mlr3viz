@@ -1,18 +1,8 @@
-<<<<<<< HEAD
-# mlr3viz 0.1.1.9003
+# mlr3viz 0.3.0
 
-- New plot: pairs plot for objects of class 'TaskClust'.
-- New plot: scatter plot with cluster assignments for 
-	objects of class 'PredictionClust'.
+- Compatibility with `mlr3` >= 0.6.0.
 
-# mlr3viz 0.1.1.9002
-
-- Update documentation of PredictionRegr (#23)
-
-# mlr3viz 0.1.1.9001
-=======
 # mlr3viz 0.2.0
->>>>>>> upstream/master
 
 - Added plots for `TaskDens` and `TaskSurv` from package `mlr3proba`.
 - Update documentation of `PredictionRegr` (#23)

@@ -33,8 +33,8 @@
 #'
 #' head(fortify(object))
 #' autoplot(object)
-#' autoplot(object$clone()$filter(task_ids = "spam"), type = "roc")
-#' autoplot(object$clone()$filter(task_ids = "pima"), type = "prc")
+#' autoplot(object$clone(deep = TRUE)$filter(task_ids = "spam"), type = "roc")
+#' autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "prc")
 autoplot.BenchmarkResult = function(object, # nolint
   type = "boxplot",
   measure = NULL,
@@ -42,7 +42,7 @@ autoplot.BenchmarkResult = function(object, # nolint
 
   assert_string(type)
 
-  task = object$data$task[[1L]]
+  task = object$tasks$task[[1L]]
   measure = mlr3::assert_measure(mlr3::as_measure(measure,
     task_type = task$task_type), task = task)
   measure_id = measure$id
@@ -81,7 +81,7 @@ autoplot.BenchmarkResult = function(object, # nolint
 
 #' @export
 fortify.BenchmarkResult = function(model, data = NULL, measure = NULL, ...) { # nolint
-  task = model$data$task[[1L]]
+  task = model$tasks$task[[1L]]
   measure = mlr3::assert_measure(mlr3::as_measure(measure,
     task_type = task$task_type), task = task)
   model$score(measures = measure)[, c(

@@ -14,6 +14,7 @@ as_precrec = function(object) {
 
 
 roc_data = function(prediction) {
+  prediction = mlr3::as_prediction(prediction)
   if (nlevels(prediction$truth) != 2L) {
     stopf("Need a binary classification problem to plot a ROC curve")
   }
@@ -65,7 +66,7 @@ as_precrec.BenchmarkResult = function(object) { # nolint
     stopf("Unable to convert benchmark results with multiple resamplings.")
   }
 
-  predictions = map(scores$prediction, "test")
+  predictions = scores$prediction
   data = transpose_list(map(predictions, roc_data))
   data$labels = split(data$labels, scores$iteration)
   data$scores = split(data$scores, scores$iteration)

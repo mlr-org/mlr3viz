@@ -1,6 +1,6 @@
 Package: mlr3viz
 Title: Visualizations for 'mlr3'
-Version: 0.2.0-9000
+Version: 0.3.0
 Authors@R:
     c(person(given = "Michel",
              family = "Lang",
@@ -46,10 +46,10 @@ Suggests:
     ggfortify,
     factoextra,
     lgr,
-    mlr3 (>= 0.5.0),
-    mlr3cluster,
+    mlr3 (>= 0.6.0),
     mlr3filters,
-    mlr3proba (>= 0.2.0),
+    mlr3proba (>= 0.2.2),
+    mlr3cluster,
     precrec,
     rpart,
     survival,
