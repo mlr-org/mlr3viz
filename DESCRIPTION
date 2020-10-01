@@ -57,8 +57,7 @@ Suggests:
     cluster,
     testthat
 Remotes:
-    sinhrks/ggfortify,
-    mlr-org/mlr3cluster
+    sinhrks/ggfortify
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no

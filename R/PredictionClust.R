@@ -47,7 +47,8 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
         data = data.table(row_id = row_ids, task$data(rows = row_ids))
       }
 
-      data = merge(object$data$tab, data)
+      preds = data.table(row_id = object$data$row_ids, partition = object$data$partition)
+      data = merge(preds, data)
       data$row_id = NULL
       data$partition = factor(data$partition)
 
@@ -59,7 +60,7 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
 
       # prepare data
       d = stats::dist(task$data(rows = row_ids))
-      sil = cluster::silhouette(object$data$tab$partition, d)
+      sil = cluster::silhouette(object$data$partition, d)
 
       ggplot2::autoplot(sil, ...)
     },
@@ -67,8 +68,8 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
     "pca" = {
       require_namespaces("ggfortify")
       d = data.frame(
-        row_ids = object$data$tab$row_id,
-        cluster = as.factor(object$data$tab$partition))
+        row_ids = object$data$row_id,
+        cluster = as.factor(object$data$partition))
 
       if (is.null(row_ids)) {
         task_data = data.table(task$data(), row_ids = task$row_ids)
