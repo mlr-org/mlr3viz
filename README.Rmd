@@ -16,8 +16,8 @@ Package website: [release](https://mlr3.mlr-org.com/) | [dev](https://mlr3.mlr-o
 <!-- badges: start -->
 [![tic](https://github.com/mlr-org/mlr3viz/workflows/tic/badge.svg?branch=master)](https://github.com/mlr-org/mlr3viz/actions)
 [![CRAN](https://www.r-pkg.org/badges/version/mlr3viz)](https://cran.r-project.org/package=mlr3viz)
-[![codecov](https://codecov.io/gh/mlr-org/mlr3viz/branch/master/graph/badge.svg)](https://codecov.io/gh/mlr-org/mlr3viz)
 [![StackOverflow](https://img.shields.io/badge/stackoverflow-mlr3-orange.svg)](https://stackoverflow.com/questions/tagged/mlr3)
+[![Mattermost](https://img.shields.io/badge/chat-mattermost-orange.svg)](https://lmmisld-lmu-stats-slds.srv.mwn.de/mlr_invite/)
 <!-- badges: end -->
 
 This R package provides visualizations for [mlr3](https://mlr3.mlr-org.com) objects such as tasks, predictions, resample results or benchmark results via the `autoplot()` generic of [ggplot2](https://ggplot2.tidyverse.org/).
