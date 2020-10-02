@@ -37,7 +37,7 @@ autoplot.LearnerClustHierarchical = function(object, ...) { # nolint
   if (!("hierarchical" %in% object$properties)) {
     stopf("Learner '%s' must be hierarchical", object$id)
   }
-  require_namespaces(c("factoextra"))
+  require_namespaces("factoextra")
 
   factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
 }
