@@ -43,7 +43,7 @@ Suggests:
     partykit,
     ggparty,
     GGally,
-    ggfortify,
+    ggfortify (>= 0.4.11),
     factoextra,
     lgr,
     mlr3 (>= 0.6.0),
@@ -56,8 +56,6 @@ Suggests:
     stats,
     cluster,
     testthat
-Remotes:
-    sinhrks/ggfortify
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
