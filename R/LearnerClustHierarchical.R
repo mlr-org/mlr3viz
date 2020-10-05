@@ -8,7 +8,7 @@
 #'
 #' @param object ([mlr3cluster::LearnerClustAgnes] | [mlr3cluster::LearnerClustDiana]).
 #' @param ... (`any`):
-#'   Additional arguments, passed down to function `fviz_dend()` in package \CRANpkg{factoextra}.
+#'   Additional arguments, passed down to function [factorextra::fviz_dend()] in package \CRANpkg{factoextra}.
 #'
 #' @return [ggplot2::ggplot()] object.
 #' @export

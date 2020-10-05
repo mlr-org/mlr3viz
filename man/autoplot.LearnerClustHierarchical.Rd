@@ -10,7 +10,7 @@
 \item{object}{(\link[mlr3cluster:mlr_learners_clust.agnes]{mlr3cluster::LearnerClustAgnes} | \link[mlr3cluster:mlr_learners_clust.diana]{mlr3cluster::LearnerClustDiana}).}
 
 \item{...}{(\code{any}):
-Additional arguments, passed down to function \code{fviz_dend()} in package \CRANpkg{factoextra}.}
+Additional arguments, passed down to function \code{\link[factorextra:fviz_dend]{factorextra::fviz_dend()}} in package \CRANpkg{factoextra}.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
