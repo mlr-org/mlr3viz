@@ -31,4 +31,9 @@ Authors:
   \item Raphael Sonabend \email{raphael.sonabend.15@ucl.ac.uk} (\href{https://orcid.org/0000-0001-9225-4654}{ORCID})
 }
 
+Other contributors:
+\itemize{
+  \item Damir Pulatov \email{dpulatov@uwyo.edu} [contributor]
+}
+
 }
