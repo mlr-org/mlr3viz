@@ -33,6 +33,7 @@
 #'
 #' head(fortify(object))
 #' autoplot(object)
+#' plot(object)
 #' autoplot(object$clone(deep = TRUE)$filter(task_ids = "spam"), type = "roc")
 #' autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "prc")
 autoplot.BenchmarkResult = function(object, # nolint
@@ -77,6 +78,14 @@ autoplot.BenchmarkResult = function(object, # nolint
 
     stopf("Unknown plot type '%s'", type)
   )
+}
+
+#' @importFrom graphics plot
+#' @param x ([mlr3::BenchmarkResult]).
+#' @rdname autoplot.BenchmarkResult
+#' @export
+plot.BenchmarkResult = function(x, ...) {
+  print(autoplot(x, ...))
 }
 
 #' @export

@@ -22,6 +22,7 @@
 #'
 #' head(fortify(task))
 #' autoplot(task, bins = 15)
+#' plot(task, bins = 15)
 #' autoplot(task, type = "freq", bins = 15)
 #' autoplot(task, type = "overlay", bins = 15)
 #' autoplot(task, type = "freqpoly", bins = 15)
@@ -43,4 +44,12 @@ autoplot.TaskDens = function(object, type = "dens", ...) {
   } else {
     p + geom_freqpoly(...)
   }
+}
+
+#' @importFrom graphics plot
+#' @param x ([mlr3proba::TaskDens]).
+#' @rdname autoplot.TaskDens
+#' @export
+plot.TaskDens = function(x, ...) {
+  print(autoplot(x, ...))
 }

@@ -26,6 +26,7 @@
 #'
 #' head(fortify(object))
 #' autoplot(object)
+#' plot(object)
 #' autoplot(object, type = "roc")
 #' autoplot(object, type = "prc")
 autoplot.PredictionClassif = function(object, type = "stacked", ...) { # nolint
@@ -53,4 +54,12 @@ autoplot.PredictionClassif = function(object, type = "stacked", ...) { # nolint
 
     stopf("Unknown plot type '%s'", type)
   )
+}
+
+#' @importFrom graphics plot
+#' @param x ([mlr3::PredictionClassif]).
+#' @rdname autoplot.PredictionClassif
+#' @export
+plot.PredictionClassif = function(x, ...) {
+  print(autoplot(x, ...))
 }

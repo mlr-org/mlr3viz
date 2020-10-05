@@ -23,6 +23,7 @@
 #'
 #' head(fortify(task))
 #' autoplot(task)
+#' plot(task)
 #' autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")),
 #'   type = "pairs")
 #' autoplot(task, type = "duo")
@@ -51,4 +52,12 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
 
     stopf("Unknown plot type '%s'", type)
   )
+}
+
+#' @importFrom graphics plot
+#' @param x ([mlr3::TaskClassif]).
+#' @rdname autoplot.TaskClassif
+#' @export
+plot.TaskClassif = function(x, ...) {
+  print(autoplot(x, ...))
 }

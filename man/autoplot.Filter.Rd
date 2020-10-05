@@ -2,9 +2,12 @@
 % Please edit documentation in R/Filter.R
 \name{autoplot.Filter}
 \alias{autoplot.Filter}
+\alias{plot.Filter}
 \title{Plot for Filter Scores}
 \usage{
 \method{autoplot}{Filter}(object, type = "boxplot", n = Inf, ...)
+
+\method{plot}{Filter}(x, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3filters:Filter]{mlr3filters::Filter}).}
@@ -18,6 +21,8 @@ Defaults to all features.}
 
 \item{...}{(\code{any}):
 Additional argument, passed down to the respective \code{geom}.}
+
+\item{x}{(\link[mlr3filters:Filter]{mlr3filters::Filter}).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -39,4 +44,5 @@ f$calculate(task)
 
 head(fortify(f))
 autoplot(f, n = 5)
+plot(f, n = 5)
 }

@@ -2,9 +2,12 @@
 % Please edit documentation in R/TaskRegr.R
 \name{autoplot.TaskRegr}
 \alias{autoplot.TaskRegr}
+\alias{plot.TaskRegr}
 \title{Plot for Regression Tasks}
 \usage{
 \method{autoplot}{TaskRegr}(object, type = "target", ...)
+
+\method{plot}{TaskRegr}(x, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:TaskRegr]{mlr3::TaskRegr}).}
@@ -15,6 +18,8 @@ Type of the plot. See description.}
 \item{...}{(\code{any}):
 Additional argument, passed down to the underlying \code{geom} or plot
 functions.}
+
+\item{x}{(\link[mlr3:TaskRegr]{mlr3::TaskRegr}).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -36,5 +41,6 @@ task$select(c("am", "carb"))
 
 head(fortify(task))
 autoplot(task)
+plot(task)
 autoplot(task, type = "pairs")
 }
