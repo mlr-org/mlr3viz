@@ -49,7 +49,7 @@ autoplot.BenchmarkResult = function(object, # nolint
   measure_id = measure$id
   tab = fortify(object, measure = measure)
   tab$nr = as.character(tab$nr)
-  learner_labels = object$learners$learner_id
+  learner_labels = unique(tab$learner_id)
 
   switch(type,
     "boxplot" = {

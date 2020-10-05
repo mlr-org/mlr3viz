@@ -16,7 +16,7 @@
 \method{plot}{LearnerRegrRpart}(x, ...)
 }
 \arguments{
-\item{object}{(\link[mlr3:LearnerClassifRpart]{mlr3::LearnerClassifRpart} | \link[mlr3:LearnerRegrRpart]{mlr3::LearnerRegrRpart}).}
+\item{object}{(\link[mlr3:mlr_learners_classif.rpart]{mlr3::LearnerClassifRpart} | \link[mlr3:mlr_learners_regr.rpart]{mlr3::LearnerRegrRpart}).}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to \code{\link[ggparty:autoplot.party]{ggparty::autoplot.party()}}.}
