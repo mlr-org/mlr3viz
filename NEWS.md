@@ -1,7 +1,8 @@
-# mlr3viz 0.3.0.9000
+# mlr3viz 0.4.0
 
 - All `autoplot.*()` functions now also have a generic S3 `plot()` sibling (#51).
 - New plots for cluster tasks, learners and predictions from `mlr3cluster`.
+- Fixed wrong labels for boxplots of `BenchmarkResult`.
 
 # mlr3viz 0.3.0
 
