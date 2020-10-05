@@ -1,11 +1,11 @@
 # mlr3viz 0.3.0.9000
 
 - All `autoplot.*()` functions now also have a generic S3 `plot()` sibling (#51).
+- New plots for cluster tasks, learners and predictions from `mlr3cluster`.
 
 # mlr3viz 0.3.0
 
 - Compatibility with `mlr3` >= 0.6.0.
-- New plots for cluster tasks, learners and predictions from `mlr3cluster`.
 
 # mlr3viz 0.2.0
 
