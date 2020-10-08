@@ -1,3 +1,8 @@
+# mlr3viz 0.4.0.9000
+
+- Internal changes only.
+
+
 # mlr3viz 0.4.0
 
 - All `autoplot.*()` functions now also have a generic S3 `plot()` sibling (#51).
