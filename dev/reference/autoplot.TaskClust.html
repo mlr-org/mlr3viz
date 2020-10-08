@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Re-export of fortify
-
-See ggplot2::fortify(). — fortify • mlr3viz</title>
+<title>Plot for Clustering Tasks — autoplot.TaskClust • mlr3viz</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -49,11 +47,12 @@ See ggplot2::fortify(). — fortify • mlr3viz</title>
 
 
 
-<meta property="og:title" content="Re-export of fortify
+<meta property="og:title" content="Plot for Clustering Tasks — autoplot.TaskClust" />
+<meta property="og:description" content="Generates plots for mlr3cluster::TaskClust, depending on argument type:
+&quot;pairs&quot;: Passes data and additional arguments down to
+GGally::ggpairs() (default).
 
-See ggplot2::fortify(). — fortify" />
-<meta property="og:description" content="Re-export of fortify
-See ggplot2::fortify()." />
+" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -87,7 +86,7 @@ See ggplot2::fortify()." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3viz <small>v0.2.0-9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3viz <small>v0.4.0.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -146,21 +145,62 @@ See ggplot2::fortify()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Re-export of <code>fortify</code>
-
-See <code><a href='https://ggplot2.tidyverse.org/reference/fortify.html'>ggplot2::fortify()</a></code>.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/reexports.R'><code>R/reexports.R</code></a></small>
-    <div class="hidden name"><code>fortify.Rd</code></div>
+    <h1>Plot for Clustering Tasks</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/TaskClust.R'><code>R/TaskClust.R</code></a></small>
+    <div class="hidden name"><code>autoplot.TaskClust.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Re-export of <code>fortify</code></p>
-<p>See <code><a href='https://ggplot2.tidyverse.org/reference/fortify.html'>ggplot2::fortify()</a></code>.</p>
+    <p>Generates plots for <a href='https://mlr3cluster.mlr-org.com/reference/TaskClust.html'>mlr3cluster::TaskClust</a>, depending on argument <code>type</code>:</p><ul>
+<li><p><code>"pairs"</code>: Passes data and additional arguments down to
+<code><a href='https://ggobi.github.io/ggally/reference/ggpairs.html'>GGally::ggpairs()</a></code> (default).</p></li>
+</ul>
+
     </div>
 
+    <pre class="usage"><span class='co'># S3 method for TaskClust</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span>, type <span class='op'>=</span> <span class='st'>"pairs"</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>object</th>
+      <td><p>(<a href='https://mlr3cluster.mlr-org.com/reference/TaskClust.html'>mlr3cluster::TaskClust</a>).</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>(character(1)):<br />
+Type of the plot. See description.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>(<code>any</code>):
+Additional argument, passed down to the underlying <code>geom</code> or plot
+functions.</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p><code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot2::ggplot()</a></code> object.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3.mlr-org.com'>mlr3</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3cluster.mlr-org.com'>mlr3cluster</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3viz.mlr-org.com'>mlr3viz</a></span><span class='op'>)</span>
+
+<span class='va'>task</span> <span class='op'>=</span> <span class='va'>mlr_tasks</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"usarrests"</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/fortify.html'>fortify</a></span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    Assault Murder Rape UrbanPop
+#&gt; 1:     236   13.2 21.2       58
+#&gt; 2:     263   10.0 44.5       48
+#&gt; 3:     294    8.1 31.0       80
+#&gt; 4:     190    8.8 19.5       50
+#&gt; 5:     276    9.0 40.6       91
+#&gt; 6:     204    7.9 38.7       78</div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
+</div><div class='img'><img src='autoplot.TaskClust-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
