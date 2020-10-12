@@ -1,6 +1,6 @@
 # mlr3viz 0.4.0.9000
 
-- Internal changes only.
+- Added plots for learners from package `glmnet` via `ggfortify`.
 
 
 # mlr3viz 0.4.0
