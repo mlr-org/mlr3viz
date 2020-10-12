@@ -2,12 +2,9 @@
 % Please edit documentation in R/TaskDens.R
 \name{autoplot.TaskDens}
 \alias{autoplot.TaskDens}
-\alias{plot.TaskDens}
 \title{Plot for Density Tasks}
 \usage{
 \method{autoplot}{TaskDens}(object, type = "dens", ...)
-
-\method{plot}{TaskDens}(x, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3proba:TaskDens]{mlr3proba::TaskDens}).}
@@ -24,8 +21,6 @@ Type of the plot. Available choices:
 
 \item{...}{(\code{any}):
 Additional arguments, possibly passed down to the underlying plot functions.}
-
-\item{x}{(\link[mlr3proba:TaskDens]{mlr3proba::TaskDens}).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.

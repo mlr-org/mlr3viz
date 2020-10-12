@@ -42,9 +42,6 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
   )
 }
 
-#' @importFrom graphics plot
-#' @param x ([mlr3filters::Filter]).
-#' @rdname autoplot.Filter
 #' @export
 plot.Filter = function(x, ...) {
   print(autoplot(x, ...))

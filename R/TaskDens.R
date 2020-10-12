@@ -46,9 +46,6 @@ autoplot.TaskDens = function(object, type = "dens", ...) {
   }
 }
 
-#' @importFrom graphics plot
-#' @param x ([mlr3proba::TaskDens]).
-#' @rdname autoplot.TaskDens
 #' @export
 plot.TaskDens = function(x, ...) {
   print(autoplot(x, ...))

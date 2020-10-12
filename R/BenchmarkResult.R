@@ -80,9 +80,6 @@ autoplot.BenchmarkResult = function(object, # nolint
   )
 }
 
-#' @importFrom graphics plot
-#' @param x ([mlr3::BenchmarkResult]).
-#' @rdname autoplot.BenchmarkResult
 #' @export
 plot.BenchmarkResult = function(x, ...) {
   print(autoplot(x, ...))

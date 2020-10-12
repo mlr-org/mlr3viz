@@ -56,9 +56,6 @@ autoplot.PredictionClassif = function(object, type = "stacked", ...) { # nolint
   )
 }
 
-#' @importFrom graphics plot
-#' @param x ([mlr3::PredictionClassif]).
-#' @rdname autoplot.PredictionClassif
 #' @export
 plot.PredictionClassif = function(x, ...) {
   print(autoplot(x, ...))

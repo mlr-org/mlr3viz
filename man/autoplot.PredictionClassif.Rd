@@ -2,12 +2,9 @@
 % Please edit documentation in R/PredictionClassif.R
 \name{autoplot.PredictionClassif}
 \alias{autoplot.PredictionClassif}
-\alias{plot.PredictionClassif}
 \title{Plot for PredictionClassif}
 \usage{
 \method{autoplot}{PredictionClassif}(object, type = "stacked", ...)
-
-\method{plot}{PredictionClassif}(x, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:PredictionClassif]{mlr3::PredictionClassif}).}
@@ -17,8 +14,6 @@ Type of the plot. See description.}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to the respective \code{geom}.}
-
-\item{x}{(\link[mlr3:PredictionClassif]{mlr3::PredictionClassif}).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.

@@ -2,12 +2,9 @@
 % Please edit documentation in R/BenchmarkResult.R
 \name{autoplot.BenchmarkResult}
 \alias{autoplot.BenchmarkResult}
-\alias{plot.BenchmarkResult}
 \title{Plot for BenchmarkResult}
 \usage{
 \method{autoplot}{BenchmarkResult}(object, type = "boxplot", measure = NULL, ...)
-
-\method{plot}{BenchmarkResult}(x, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}).}
@@ -19,8 +16,6 @@ Type of the plot. See description.}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to the respective \code{geom}.}
-
-\item{x}{(\link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.

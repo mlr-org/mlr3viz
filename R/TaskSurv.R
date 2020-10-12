@@ -61,9 +61,6 @@ autoplot.TaskSurv = function(object, type = "target", ...) { # nolint
   )
 }
 
-#' @importFrom graphics plot
-#' @param x ([mlr3proba::TaskSurv]).
-#' @rdname autoplot.TaskSurv
 #' @export
 plot.TaskSurv = function(x, ...) {
   print(autoplot(x, ...))

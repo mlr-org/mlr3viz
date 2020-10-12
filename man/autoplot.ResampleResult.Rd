@@ -2,12 +2,9 @@
 % Please edit documentation in R/ResampleResult.R
 \name{autoplot.ResampleResult}
 \alias{autoplot.ResampleResult}
-\alias{plot.ResampleResult}
 \title{Plot for ResampleResult}
 \usage{
 \method{autoplot}{ResampleResult}(object, type = "boxplot", measure = NULL, predict_sets = "test", ...)
-
-\method{plot}{ResampleResult}(x, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:ResampleResult]{mlr3::ResampleResult}).}
@@ -24,8 +21,6 @@ Can be a subset of (\code{"train"}, \code{"test"}) or empty.}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to the respective \code{geom}.}
-
-\item{x}{(\link[mlr3:ResampleResult]{mlr3::ResampleResult}).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.

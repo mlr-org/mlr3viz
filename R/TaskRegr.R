@@ -47,9 +47,6 @@ autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
   )
 }
 
-#' @importFrom graphics plot
-#' @param x ([mlr3::TaskRegr]).
-#' @rdname autoplot.TaskRegr
 #' @export
 plot.TaskRegr = function(x, ...) {
   print(autoplot(x, ...))

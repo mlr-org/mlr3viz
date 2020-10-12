@@ -2,12 +2,9 @@
 % Please edit documentation in R/PredictionRegr.R
 \name{autoplot.PredictionRegr}
 \alias{autoplot.PredictionRegr}
-\alias{plot.PredictionRegr}
 \title{Plot for PredictionRegr}
 \usage{
 \method{autoplot}{PredictionRegr}(object, type = "xy", ...)
-
-\method{plot}{PredictionRegr}(x, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:PredictionRegr]{mlr3::PredictionRegr}).}
@@ -17,8 +14,6 @@ Type of the plot. See description.}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to the respective \code{geom}.}
-
-\item{x}{(\link[mlr3:PredictionRegr]{mlr3::PredictionRegr}).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.

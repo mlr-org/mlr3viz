@@ -111,9 +111,6 @@ autoplot.ResampleResult = function(object, # nolint
   )
 }
 
-#' @importFrom graphics plot
-#' @param x ([mlr3::ResampleResult]).
-#' @rdname autoplot.ResampleResult
 #' @export
 plot.ResampleResult = function(x, ...) {
   print(autoplot(x, ...))

@@ -2,12 +2,9 @@
 % Please edit documentation in R/TaskClassif.R
 \name{autoplot.TaskClassif}
 \alias{autoplot.TaskClassif}
-\alias{plot.TaskClassif}
 \title{Plot for Classification Tasks}
 \usage{
 \method{autoplot}{TaskClassif}(object, type = "target", ...)
-
-\method{plot}{TaskClassif}(x, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:TaskClassif]{mlr3::TaskClassif}).}
@@ -17,8 +14,6 @@ Type of the plot. See description.}
 
 \item{...}{(\code{any}):
 Additional argument, possibly passed down to the underlying plot functions.}
-
-\item{x}{(\link[mlr3:TaskClassif]{mlr3::TaskClassif}).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.

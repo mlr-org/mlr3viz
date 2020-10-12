@@ -54,9 +54,6 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
   )
 }
 
-#' @importFrom graphics plot
-#' @param x ([mlr3::TaskClassif]).
-#' @rdname autoplot.TaskClassif
 #' @export
 plot.TaskClassif = function(x, ...) {
   print(autoplot(x, ...))

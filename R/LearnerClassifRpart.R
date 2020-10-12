@@ -1,7 +1,7 @@
-#' @title Plot for LearnerClassifRpart
+#' @title Plot for LearnerClassifRpart / LearnerRegrRpart
 #'
 #' @description
-#' Visualize trees for [mlr3::mlr_learners_classif.rpart] or
+#' Visualize trees for [mlr3::mlr_learners_classif.rpart] and
 #' [mlr3::mlr_learners_regr.rpart] using the package \CRANpkg{ggparty}.
 #'
 #' Contrary to \CRANpkg{ggparty}, boxplots are shown in the terminal nodes for
@@ -32,9 +32,8 @@
 #' autoplot(learner)
 #' plot(learner)
 autoplot.LearnerClassifRpart = function(object, ...) { # nolint
-  if (is.null(object$model)) {
-    stopf("Learner '%s' must be trained first", object$id)
-  }
+  assert_has_model(object)
+
   if (is.null(object$model$model)) {
     stopf("Learner '%s' must be trained with `keep_model` set to `TRUE`", object$id)
   }
@@ -44,10 +43,7 @@ autoplot.LearnerClassifRpart = function(object, ...) { # nolint
     ggparty::geom_node_label(aes(label = paste0("n=", .data[["nodesize"]])), nudge_y = 0.03, ids = "terminal")
 }
 
-#' @importFrom graphics plot
-#' @param x ([mlr3::LearnerClassifRpart] | [mlr3::LearnerRegrRpart]).
-#' @rdname autoplot.LearnerClassifRpart
 #' @export
-plot.LearnerClassifRpart= function(x, ...) {
+plot.LearnerClassifRpart = function(x, ...) {
   print(autoplot(x, ...))
 }
