@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot for LearnerClassifRpart / LearnerRegrRpart — autoplot.LearnerClassifRpart • mlr3viz</title>
+<title>Plot for LearnerClassifGlmnet / LearnerRegrGlmnet / LearnerClassifCVGlmnet / LearnerRegrCVGlmnet — autoplot.LearnerClassifCVGlmnet • mlr3viz</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,11 +47,10 @@
 
 
 
-<meta property="og:title" content="Plot for LearnerClassifRpart / LearnerRegrRpart — autoplot.LearnerClassifRpart" />
-<meta property="og:description" content="Visualize trees for mlr3::mlr_learners_classif.rpart and
-mlr3::mlr_learners_regr.rpart using the package ggparty.
-Contrary to ggparty, boxplots are shown in the terminal nodes for
-regression trees.
+<meta property="og:title" content="Plot for LearnerClassifGlmnet / LearnerRegrGlmnet / LearnerClassifCVGlmnet / LearnerRegrCVGlmnet — autoplot.LearnerClassifCVGlmnet" />
+<meta property="og:description" content="Visualizations for mlr3learners::mlr_learners_classif.glmnet, mlr3learners::mlr_learners_regr.glmnet,
+mlr3learners::mlr_learners_classif.cv_glmnet and mlr3learners::mlr_learners_regr.cv_glmnet
+using the package ggfortify.
 Note that learner-specific plots are experimental and subject to change." />
 <meta name="twitter:card" content="summary" />
 
@@ -145,23 +144,28 @@ Note that learner-specific plots are experimental and subject to change." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot for LearnerClassifRpart / LearnerRegrRpart</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/LearnerClassifRpart.R'><code>R/LearnerClassifRpart.R</code></a>, <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/LearnerRegrRpart.R'><code>R/LearnerRegrRpart.R</code></a></small>
-    <div class="hidden name"><code>autoplot.LearnerClassifRpart.Rd</code></div>
+    <h1>Plot for LearnerClassifGlmnet / LearnerRegrGlmnet / LearnerClassifCVGlmnet / LearnerRegrCVGlmnet</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/LearnerClassifCVGlmnet.R'><code>R/LearnerClassifCVGlmnet.R</code></a>, <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/LearnerClassifGlmnet.R'><code>R/LearnerClassifGlmnet.R</code></a>, <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/LearnerRegrCVGlmnet.R'><code>R/LearnerRegrCVGlmnet.R</code></a>, and 1 more</small>
+    <div class="hidden name"><code>autoplot.LearnerClassifGlmnet.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Visualize trees for <a href='https://mlr3.mlr-org.com/reference/mlr_learners_classif.rpart.html'>mlr3::mlr_learners_classif.rpart</a> and
-<a href='https://mlr3.mlr-org.com/reference/mlr_learners_regr.rpart.html'>mlr3::mlr_learners_regr.rpart</a> using the package <a href='https://CRAN.R-project.org/package=ggparty'><span class="pkg">ggparty</span></a>.</p>
-<p>Contrary to <a href='https://CRAN.R-project.org/package=ggparty'><span class="pkg">ggparty</span></a>, boxplots are shown in the terminal nodes for
-regression trees.</p>
+    <p>Visualizations for <a href='https://mlr3learners.mlr-org.com/reference/mlr_learners_classif.glmnet.html'>mlr3learners::mlr_learners_classif.glmnet</a>, <a href='https://mlr3learners.mlr-org.com/reference/mlr_learners_regr.glmnet.html'>mlr3learners::mlr_learners_regr.glmnet</a>,
+<a href='https://mlr3learners.mlr-org.com/reference/mlr_learners_classif.cv_glmnet.html'>mlr3learners::mlr_learners_classif.cv_glmnet</a> and <a href='https://mlr3learners.mlr-org.com/reference/mlr_learners_regr.cv_glmnet.html'>mlr3learners::mlr_learners_regr.cv_glmnet</a>
+using the package <a href='https://CRAN.R-project.org/package=ggfortify'><span class="pkg">ggfortify</span></a>.</p>
 <p>Note that learner-specific plots are experimental and subject to change.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for LearnerClassifRpart</span>
+    <pre class="usage"><span class='co'># S3 method for LearnerClassifCVGlmnet</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='co'># S3 method for LearnerRegrRpart</span>
+<span class='co'># S3 method for LearnerClassifGlmnet</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for LearnerRegrCVGlmnet</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for LearnerRegrGlmnet</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -169,7 +173,8 @@ regression trees.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>(<a href='https://mlr3.mlr-org.com/reference/mlr_learners_classif.rpart.html'>mlr3::LearnerClassifRpart</a> | <a href='https://mlr3.mlr-org.com/reference/mlr_learners_regr.rpart.html'>mlr3::LearnerRegrRpart</a>).</p></td>
+      <td><p>(<a href='https://mlr3learners.mlr-org.com/reference/mlr_learners_classif.glmnet.html'>mlr3learners::LearnerClassifGlmnet</a> | <a href='https://mlr3learners.mlr-org.com/reference/mlr_learners_regr.glmnet.html'>mlr3learners::LearnerRegrGlmnet</a> |
+<a href='https://mlr3learners.mlr-org.com/reference/mlr_learners_regr.cv_glmnet.html'>mlr3learners::LearnerRegrCVGlmnet</a> | <a href='https://mlr3learners.mlr-org.com/reference/mlr_learners_regr.cv_glmnet.html'>mlr3learners::LearnerRegrCVGlmnet</a>).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -185,20 +190,28 @@ Additional arguments, passed down to <code><a href='https://rdrr.io/pkg/ggparty/
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3.mlr-org.com'>mlr3</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3viz.mlr-org.com'>mlr3viz</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3learners.mlr-org.com'>mlr3learners</a></span><span class='op'>)</span>
 
 <span class='co'># classification</span>
 <span class='va'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span><span class='op'>(</span><span class='st'>"spam"</span><span class='op'>)</span>
-<span class='va'>learner</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"classif.rpart"</span>, keep_model <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>learner</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"classif.glmnet"</span><span class='op'>)</span>
 <span class='va'>learner</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>learner</span><span class='op'>)</span>
-</div><div class='img'><img src='autoplot.LearnerClassifRpart-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='autoplot.LearnerClassifGlmnet-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>learner</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"classif.cv_glmnet"</span><span class='op'>)</span>
+<span class='va'>learner</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>learner</span><span class='op'>)</span>
+</div><div class='img'><img src='autoplot.LearnerClassifGlmnet-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># regression</span>
-<span class='va'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span><span class='op'>(</span><span class='st'>"boston_housing"</span><span class='op'>)</span>
-<span class='va'>learner</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"regr.rpart"</span>, keep_model <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span><span class='op'>(</span><span class='st'>"mtcars"</span><span class='op'>)</span>
+<span class='va'>learner</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"regr.glmnet"</span><span class='op'>)</span>
 <span class='va'>learner</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>learner</span><span class='op'>)</span>
-</div><div class='img'><img src='autoplot.LearnerClassifRpart-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>learner</span><span class='op'>)</span>
-</div><div class='img'><img src='autoplot.LearnerClassifRpart-3.png' alt='' width='700' height='433' /></div></pre>
+</div><div class='img'><img src='autoplot.LearnerClassifGlmnet-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>learner</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"regr.cv_glmnet"</span><span class='op'>)</span>
+<span class='va'>learner</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>learner</span><span class='op'>)</span>
+</div><div class='img'><img src='autoplot.LearnerClassifGlmnet-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
