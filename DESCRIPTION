@@ -40,22 +40,23 @@ Imports:
     mlr3misc,
     utils
 Suggests:
-    partykit,
-    ggparty,
+    cluster,
+    factoextra,
     GGally,
     ggfortify (>= 0.4.11),
-    factoextra,
+    ggparty,
+    glmnet,
     lgr,
     mlr3 (>= 0.6.0),
+    mlr3cluster,
     mlr3filters,
     mlr3learners,
     mlr3proba (>= 0.2.2),
-    mlr3cluster,
+    partykit,
     precrec,
     rpart,
-    survival,
     stats,
-    cluster,
+    survival,
     testthat
 Encoding: UTF-8
 LazyData: true
