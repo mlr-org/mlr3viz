@@ -26,3 +26,9 @@ Object as created by \code{\link[precrec:mmdata]{precrec::mmdata()}}.
 Converts to a format which is understood by \code{\link[precrec:evalmod]{precrec::evalmod()}} of
 package \CRANpkg{precrec}.
 }
+\references{
+Saito T, Rehmsmeier M (2017).
+\dQuote{Precrec: fast and accurate precision-recall and ROC curve calculations in R.}
+\emph{Bioinformatics}, \bold{33}(1), 145-147.
+\doi{10.1093/bioinformatics/btw570}.
+}

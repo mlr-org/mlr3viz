@@ -7,10 +7,10 @@
 #' and colored cluster assignments.
 #'
 #' * `"sil"`: Silhouette plot with mean silhouette value as
-#' a reference line.
+#'   a reference line. Requires package \CRANpkg{ggfortify}.
 #'
 #' * `"pca"`: Perform PCA on data and color code cluster
-#' assignments. Inspired by and uses [ggfortify::autoplot.kmeans].
+#'   assignments. Inspired by and uses [ggfortify::autoplot.kmeans].
 #'
 #' @param object ([mlr3cluster::PredictionClust]).
 #' @param task ([mlr3cluster::TaskClust]).
@@ -19,6 +19,9 @@
 #' @template param_type
 #' @param ... (`any`):
 #'   Additional arguments, passed down to the respective `geom`.
+#'
+#' @references
+#' `r tools::toRd(bibentries["ggfortify"])`
 #'
 #' @return [ggplot2::ggplot()] object.
 #' @export

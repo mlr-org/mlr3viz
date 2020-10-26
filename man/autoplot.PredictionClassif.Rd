@@ -42,3 +42,9 @@ plot(object)
 autoplot(object, type = "roc")
 autoplot(object, type = "prc")
 }
+\references{
+Saito T, Rehmsmeier M (2017).
+\dQuote{Precrec: fast and accurate precision-recall and ROC curve calculations in R.}
+\emph{Bioinformatics}, \bold{33}(1), 145-147.
+\doi{10.1093/bioinformatics/btw570}.
+}

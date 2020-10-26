@@ -58,3 +58,9 @@ learner = lrn("regr.cv_glmnet")
 learner$train(task)
 autoplot(learner)
 }
+\references{
+Tang Y, Horikoshi M, Li W (2016).
+\dQuote{ggfortify: Unified Interface to Visualize Statistical Result of Popular R Packages.}
+\emph{The R Journal}, \bold{8}(2), 474--485.
+\doi{10.32614/RJ-2016-060}.
+}

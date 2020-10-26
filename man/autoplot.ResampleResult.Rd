@@ -79,3 +79,9 @@ resampling = rsmp("cv", folds = 3)
 object = resample(task, learner, resampling, store_models = TRUE)
 autoplot(object, type = "prediction")
 }
+\references{
+Saito T, Rehmsmeier M (2017).
+\dQuote{Precrec: fast and accurate precision-recall and ROC curve calculations in R.}
+\emph{Bioinformatics}, \bold{33}(1), 145-147.
+\doi{10.1093/bioinformatics/btw570}.
+}

@@ -13,6 +13,10 @@
 #'   Additional arguments, passed down to [ggparty::autoplot.party()].
 #'
 #' @return [ggplot2::ggplot()] object.
+#'
+#' @references
+#' `r tools::toRd(bibentries["ggfortify"])`
+#'
 #' @export
 #' @examples
 #' library(mlr3)

@@ -7,6 +7,9 @@
 #' @param object (`any`)\cr
 #'   Object to convert.
 #' @return Object as created by [precrec::mmdata()].
+#'
+#' @references
+#' `r tools::toRd(bibentries["precrec"])`
 #' @export
 as_precrec = function(object) {
   UseMethod("as_precrec")

@@ -29,7 +29,7 @@ Generates plots for \link[mlr3cluster:PredictionClust]{mlr3cluster::PredictionCl
 \item \code{"scatter"} (default): scatterplot with correlation values
 and colored cluster assignments.
 \item \code{"sil"}: Silhouette plot with mean silhouette value as
-a reference line.
+a reference line. Requires package \CRANpkg{ggfortify}.
 \item \code{"pca"}: Perform PCA on data and color code cluster
 assignments. Inspired by and uses \link[ggfortify:autoplot.kmeans]{ggfortify::autoplot.kmeans}.
 }
@@ -45,4 +45,10 @@ object = learner$train(task)$predict(task)
 
 head(fortify(object))
 autoplot(object, task)
+}
+\references{
+Tang Y, Horikoshi M, Li W (2016).
+\dQuote{ggfortify: Unified Interface to Visualize Statistical Result of Popular R Packages.}
+\emph{The R Journal}, \bold{8}(2), 474--485.
+\doi{10.32614/RJ-2016-060}.
 }

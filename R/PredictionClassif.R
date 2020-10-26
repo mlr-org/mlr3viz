@@ -15,6 +15,10 @@
 #'   Additional arguments, passed down to the respective `geom`.
 #'
 #' @return [ggplot2::ggplot()] object.
+#'
+#' @references
+#' `r tools::toRd(bibentries["precrec"])`
+#'
 #' @export
 #' @examples
 #' library(mlr3)
