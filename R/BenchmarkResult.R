@@ -63,17 +63,11 @@ autoplot.BenchmarkResult = function(object, # nolint
     },
 
     "roc" = {
-      require_namespaces("precrec")
-      autoplot(precrec::evalmod(as_precrec(object)),
-        curvetype = "ROC",
-        show_cb = TRUE)
+      plot_precrec(object, curvetype = "ROC")
     },
 
     "prc" = {
-      require_namespaces("precrec")
-      autoplot(precrec::evalmod(as_precrec(object)),
-        curvetype = "PRC",
-        show_cb = TRUE)
+      plot_precrec(object, curvetype = "PRC")
     },
 
     stopf("Unknown plot type '%s'", type)

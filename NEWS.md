@@ -1,6 +1,7 @@
 # mlr3viz 0.4.0.9000
 
 - Added plots for learners from package `glmnet` via `ggfortify`.
+- Fixed ROC and PRC plots for resampling `"holdout"` (#54).
 
 
 # mlr3viz 0.4.0

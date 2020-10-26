@@ -9,7 +9,7 @@ test_that("autoplot.PredictionClust", {
   learner = lrn("clust.kmeans", centers = 3)
   prediction = learner$train(task)$predict(task)
 
-  p = autoplot(prediction, task, type = "scatter")
+  p = expect_warning(autoplot(prediction, task, type = "scatter"), "Factor variables are omitted")
   expect_true(is.ggplot(p))
 
   p = autoplot(prediction, task, type = "sil")

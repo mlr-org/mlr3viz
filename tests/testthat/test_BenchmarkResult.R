@@ -28,3 +28,18 @@ test_that("autoplot BenchmarkResult", {
   p = autoplot(object, type = "prc")
   expect_true(is.ggplot(p))
 })
+
+test_that("holdout roc plot (#54)", {
+  tasks = tsks("german_credit")
+
+  learners = c("classif.featureless", "classif.rpart")
+  learners = lapply(learners, lrn,
+    predict_type = "prob")
+
+  resamplings = rsmp("holdout", ratio = .8) # holdout instead of cv
+
+  design = benchmark_grid(tasks, learners, resamplings)
+  bmr = benchmark(design)
+  p = autoplot(bmr, type = "roc")
+  expect_true(is.ggplot(p))
+})

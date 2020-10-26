@@ -90,17 +90,11 @@ autoplot.ResampleResult = function(object, # nolint
     },
 
     "roc" = {
-      require_namespaces("precrec")
-      autoplot(precrec::evalmod(as_precrec(object)),
-        curvetype = "ROC",
-        show_cb = TRUE)
+      plot_precrec(object, curvetype = "ROC")
     },
 
     "prc" = {
-      require_namespaces("precrec")
-      autoplot(precrec::evalmod(as_precrec(object)),
-        curvetype = "prc",
-        show_cb = TRUE)
+      plot_precrec(object, curvetype = "PRC")
     },
 
     "prediction" = plot_learner_prediction_resample_result(

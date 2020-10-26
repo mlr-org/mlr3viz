@@ -35,7 +35,7 @@ roc_data = function(prediction) {
 as_precrec.PredictionClassif = function(object) { # nolint
   require_namespaces("precrec")
   data = roc_data(object)
-  precrec::mmdata(scores = data$scores, labels = data$labels)
+  precrec::mmdata(scores = data$scores, labels = data$labels, dsids = 1L)
 }
 
 
@@ -54,9 +54,7 @@ as_precrec.ResampleResult = function(object) { # nolint
 #' @rdname as_precrec
 #' @export
 as_precrec.BenchmarkResult = function(object) { # nolint
-
   require_namespaces("precrec")
-
   scores = object$score(measures = list())
 
   if (uniqueN(scores$task_id) > 1L) {
