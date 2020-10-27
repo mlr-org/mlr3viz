@@ -12,7 +12,7 @@
 #' @param object ([mlr3::PredictionClassif]).
 #' @template param_type
 #' @param ... (`any`):
-#'   Additional arguments, passed down to the respective `geom`.
+#'   Additional arguments, passed down to the respective `geom` or plotting function.
 #'
 #' @return [ggplot2::ggplot()] object.
 #'
@@ -47,11 +47,11 @@ autoplot.PredictionClassif = function(object, type = "stacked", ...) { # nolint
     },
 
     "roc" = {
-      plot_precrec(object, curvetype = "ROC")
+      plot_precrec(object, curvetype = "ROC", ...)
     },
 
     "prc" = {
-      plot_precrec(object, curvetype = "PRC")
+      plot_precrec(object, curvetype = "PRC", ...)
     },
 
     stopf("Unknown plot type '%s'", type)

@@ -20,7 +20,7 @@ Which points should be shown in the plot?
 Can be a subset of (\code{"train"}, \code{"test"}) or empty.}
 
 \item{...}{(\code{any}):
-Additional arguments, passed down to the respective \code{geom}.}
+Additional arguments, passed down to the respective \code{geom} or plotting function.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -34,6 +34,9 @@ Generates plots for \link[mlr3:ResampleResult]{mlr3::ResampleResult}, depending 
 The predictions of the individual \link[mlr3:Resampling]{mlr3::Resampling}s are merged prior to
 calculating the ROC curve (micro averaged). Requires package
 \CRANpkg{precrec}.
+Additional arguments will be passed down to the respective \code{\link[=autoplot]{autoplot()}} function
+in package \CRANpkg{precrec}. Arguments \code{calc_avg} and \code{cb_alpha} are passed to
+\code{\link[precrec:evalmod]{precrec::evalmod()}}.
 \item \code{"prc"}: Precision recall curve. See \code{"roc"}.
 \item \code{"prediction"}: Plots the learner prediction for a grid of points.
 Needs models to be stored. Set \code{store_models = TRUE} for

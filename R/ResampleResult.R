@@ -8,6 +8,9 @@
 #'   The predictions of the individual [mlr3::Resampling]s are merged prior to
 #'   calculating the ROC curve (micro averaged). Requires package
 #'   \CRANpkg{precrec}.
+#'   Additional arguments will be passed down to the respective [autoplot()] function
+#'   in package \CRANpkg{precrec}. Arguments `calc_avg` and `cb_alpha` are passed to
+#'   [precrec::evalmod()].
 #' * `"prc"`: Precision recall curve. See `"roc"`.
 #' * `"prediction"`: Plots the learner prediction for a grid of points.
 #'      Needs models to be stored. Set `store_models = TRUE` for
@@ -28,7 +31,7 @@
 #'   Can be a subset of (`"train"`, `"test"`) or empty.
 #'
 #' @param ... (`any`):
-#'   Additional arguments, passed down to the respective `geom`.
+#'   Additional arguments, passed down to the respective `geom` or plotting function.
 #'
 #' @return [ggplot2::ggplot()] object.
 #'
@@ -94,11 +97,11 @@ autoplot.ResampleResult = function(object, # nolint
     },
 
     "roc" = {
-      plot_precrec(object, curvetype = "ROC")
+      plot_precrec(object, curvetype = "ROC", ...)
     },
 
     "prc" = {
-      plot_precrec(object, curvetype = "PRC")
+      plot_precrec(object, curvetype = "PRC", ...)
     },
 
     "prediction" = plot_learner_prediction_resample_result(

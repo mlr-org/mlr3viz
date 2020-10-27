@@ -10,16 +10,14 @@ assert_has_model = function(learner) {
   }
 }
 
-plot_precrec = function(object, curvetype = "ROC", cb_alpha = 0.05, ...) {
+plot_precrec = function(object, curvetype = "ROC", cb_alpha = 0.05, show_cb = TRUE, calc_avg = TRUE, ...) {
   require_namespaces("precrec")
   x = as_precrec(object)
   dsids = unique(map_int(x, attr, which = "dsid", exact = TRUE))
-  if (length(dsids) > 1L) {
-    show_cb = calc_avg = TRUE
-  } else {
+  if (length(dsids) <= 1L) {
     show_cb = calc_avg = FALSE
     cb_alpha = NULL
   }
 
-  autoplot(precrec::evalmod(x, calc_avg = calc_avg, cb_alpha = cb_alpha), curvetype = curvetype, show_cb = show_cb)
+  autoplot(precrec::evalmod(x, calc_avg = calc_avg, cb_alpha = cb_alpha), curvetype = curvetype, show_cb = show_cb, ...)
 }

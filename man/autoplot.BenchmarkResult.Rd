@@ -15,7 +15,7 @@ Type of the plot. See description.}
 \item{measure}{(\link[mlr3:Measure]{mlr3::Measure}).}
 
 \item{...}{(\code{any}):
-Additional arguments, passed down to the respective \code{geom}.}
+Additional arguments, passed down to the respective \code{geom} or plotting function.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -27,10 +27,13 @@ Generates plots for \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}, dependin
 \link[mlr3:Learner]{mlr3::Learner} and one facet per \link[mlr3:Task]{mlr3::Task}.
 \item \code{"roc"}: ROC curve (1 - specificity on x, sensitivity on y).
 The \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} may only have a single \link[mlr3:Task]{mlr3::Task} and a
-single \link[mlr3:ResampleResult]{mlr3::ResampleResult}.
+single \link[mlr3:Resampling]{mlr3::Resampling}.
 Note that you can subset any \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} with its \verb{$filter()}
 method (see examples).
 Requires package \CRANpkg{precrec}.
+Additional arguments will be passed down to the respective \code{\link[=autoplot]{autoplot()}} function
+in package \CRANpkg{precrec}. Arguments \code{calc_avg} and \code{cb_alpha} are passed to
+\code{\link[precrec:evalmod]{precrec::evalmod()}}.
 \item \code{"prc"}: Precision recall curve. See \code{"roc"}.
 }
 }

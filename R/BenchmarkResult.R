@@ -7,17 +7,20 @@
 #' [mlr3::Learner] and one facet per [mlr3::Task].
 #' * `"roc"`: ROC curve (1 - specificity on x, sensitivity on y).
 #'   The [mlr3::BenchmarkResult] may only have a single [mlr3::Task] and a
-#'   single [mlr3::ResampleResult].
+#'   single [mlr3::Resampling].
 #'   Note that you can subset any [mlr3::BenchmarkResult] with its `$filter()`
 #'   method (see examples).
 #'   Requires package \CRANpkg{precrec}.
+#'   Additional arguments will be passed down to the respective [autoplot()] function
+#'   in package \CRANpkg{precrec}. Arguments `calc_avg` and `cb_alpha` are passed to
+#'   [precrec::evalmod()].
 #' * `"prc"`: Precision recall curve. See `"roc"`.
 #'
 #' @param object ([mlr3::BenchmarkResult]).
 #' @template param_type
 #' @param measure ([mlr3::Measure]).
 #' @param ... (`any`):
-#'   Additional arguments, passed down to the respective `geom`.
+#'   Additional arguments, passed down to the respective `geom` or plotting function.
 #'
 #' @return [ggplot2::ggplot()] object.
 #'
@@ -67,11 +70,11 @@ autoplot.BenchmarkResult = function(object, # nolint
     },
 
     "roc" = {
-      plot_precrec(object, curvetype = "ROC")
+      plot_precrec(object, curvetype = "ROC", ...)
     },
 
     "prc" = {
-      plot_precrec(object, curvetype = "PRC")
+      plot_precrec(object, curvetype = "PRC", ...)
     },
 
     stopf("Unknown plot type '%s'", type)
