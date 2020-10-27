@@ -53,10 +53,13 @@
 mlr3::Learner and one facet per mlr3::Task.
 &quot;roc&quot;: ROC curve (1 - specificity on x, sensitivity on y).
 The mlr3::BenchmarkResult may only have a single mlr3::Task and a
-single mlr3::ResampleResult.
+single mlr3::Resampling.
 Note that you can subset any mlr3::BenchmarkResult with its $filter()
 method (see examples).
 Requires package precrec.
+Additional arguments will be passed down to the respective autoplot() function
+in package precrec. Arguments calc_avg and cb_alpha are passed to
+precrec::evalmod().
 &quot;prc&quot;: Precision recall curve. See &quot;roc&quot;.
 
 " />
@@ -163,10 +166,13 @@ Requires package precrec.
 <a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a> and one facet per <a href='https://mlr3.mlr-org.com/reference/Task.html'>mlr3::Task</a>.</p></li>
 <li><p><code>"roc"</code>: ROC curve (1 - specificity on x, sensitivity on y).
 The <a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a> may only have a single <a href='https://mlr3.mlr-org.com/reference/Task.html'>mlr3::Task</a> and a
-single <a href='https://mlr3.mlr-org.com/reference/ResampleResult.html'>mlr3::ResampleResult</a>.
+single <a href='https://mlr3.mlr-org.com/reference/Resampling.html'>mlr3::Resampling</a>.
 Note that you can subset any <a href='https://mlr3.mlr-org.com/reference/BenchmarkResult.html'>mlr3::BenchmarkResult</a> with its <code>$filter()</code>
 method (see examples).
-Requires package <a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>.</p></li>
+Requires package <a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>.
+Additional arguments will be passed down to the respective <code><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot()</a></code> function
+in package <a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>. Arguments <code>calc_avg</code> and <code>cb_alpha</code> are passed to
+<code><a href='https://takayasaito.github.io/precrec/reference/evalmod.html'>precrec::evalmod()</a></code>.</p></li>
 <li><p><code>"prc"</code>: Precision recall curve. See <code>"roc"</code>.</p></li>
 </ul>
 
@@ -194,7 +200,7 @@ Type of the plot. See description.</p></td>
     <tr>
       <th>...</th>
       <td><p>(<code>any</code>):
-Additional arguments, passed down to the respective <code>geom</code>.</p></td>
+Additional arguments, passed down to the respective <code>geom</code> or plotting function.</p></td>
     </tr>
     </table>
 

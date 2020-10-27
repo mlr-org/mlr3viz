@@ -55,6 +55,9 @@
 The predictions of the individual mlr3::Resamplings are merged prior to
 calculating the ROC curve (micro averaged). Requires package
 precrec.
+Additional arguments will be passed down to the respective autoplot() function
+in package precrec. Arguments calc_avg and cb_alpha are passed to
+precrec::evalmod().
 &quot;prc&quot;: Precision recall curve. See &quot;roc&quot;.
 &quot;prediction&quot;: Plots the learner prediction for a grid of points.
 Needs models to be stored. Set store_models = TRUE for
@@ -171,7 +174,10 @@ For tasks with two features the predict type will be ignored.
 <li><p><code>"roc"</code>: ROC curve (1 - specificity on x, sensitivity on y).
 The predictions of the individual <a href='https://mlr3.mlr-org.com/reference/Resampling.html'>mlr3::Resampling</a>s are merged prior to
 calculating the ROC curve (micro averaged). Requires package
-<a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>.</p></li>
+<a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>.
+Additional arguments will be passed down to the respective <code><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot()</a></code> function
+in package <a href='https://CRAN.R-project.org/package=precrec'><span class="pkg">precrec</span></a>. Arguments <code>calc_avg</code> and <code>cb_alpha</code> are passed to
+<code><a href='https://takayasaito.github.io/precrec/reference/evalmod.html'>precrec::evalmod()</a></code>.</p></li>
 <li><p><code>"prc"</code>: Precision recall curve. See <code>"roc"</code>.</p></li>
 <li><p><code>"prediction"</code>: Plots the learner prediction for a grid of points.
 Needs models to be stored. Set <code>store_models = TRUE</code> for
@@ -215,7 +221,7 @@ Can be a subset of (<code>"train"</code>, <code>"test"</code>) or empty.</p></td
     <tr>
       <th>...</th>
       <td><p>(<code>any</code>):
-Additional arguments, passed down to the respective <code>geom</code>.</p></td>
+Additional arguments, passed down to the respective <code>geom</code> or plotting function.</p></td>
     </tr>
     </table>
 
