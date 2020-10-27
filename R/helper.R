@@ -21,5 +21,5 @@ plot_precrec = function(object, curvetype = "ROC", cb_alpha = 0.05, ...) {
     cb_alpha = NULL
   }
 
-  autoplot(precrec::evalmod(x, show_cb = show_cb, calc_avg = calc_avg, cb_alpha = cb_alpha), curvetype = curvetype)
+  autoplot(precrec::evalmod(x, calc_avg = calc_avg, cb_alpha = cb_alpha), curvetype = curvetype, show_cb = show_cb)
 }
