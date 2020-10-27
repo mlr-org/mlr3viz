@@ -2,6 +2,7 @@
 
 - Added plots for learners from package `glmnet` via `ggfortify`.
 - Fixed ROC and PRC plots for resampling `"holdout"` (#54).
+- If possible, we show confidence bounds for prc and roc plots (#55).
 
 
 # mlr3viz 0.4.0
