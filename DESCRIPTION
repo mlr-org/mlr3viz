@@ -51,13 +51,15 @@ Suggests:
     mlr3cluster,
     mlr3filters,
     mlr3learners,
-    mlr3proba (>= 0.2.2),
+    mlr3proba (>= 0.2.3),
     partykit,
     precrec,
     rpart,
     stats,
     survival,
     testthat
+Remotes:
+    mlr-org/mlr3proba
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
