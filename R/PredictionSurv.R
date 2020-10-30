@@ -35,6 +35,8 @@
 #' @export
 autoplot.PredictionSurv = function(object, type = "calib", task = NULL, row_ids = NULL, times = NULL, ...) {
 
+  x = y = Group = NULL
+
   type = match.arg(type)
 
   switch(type,
@@ -42,7 +44,7 @@ autoplot.PredictionSurv = function(object, type = "calib", task = NULL, row_ids 
       assert("distr" %in% object$predict_types)
       pred_distr = distr6::as.MixtureDistribution(object$distr)
 
-      km = lrn("surv.kaplan")
+      km = mlr3::lrn("surv.kaplan")
       km_pred = km$train(task, row_ids = row_ids)$predict(task, row_ids = row_ids)
       km_distr = distr6::as.MixtureDistribution(km_pred$distr)
 

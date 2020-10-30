@@ -41,6 +41,7 @@ Imports:
     utils
 Suggests:
     cluster,
+    distr6 (>= 1.4.4),
     factoextra,
     GGally,
     ggfortify (>= 0.4.11),
