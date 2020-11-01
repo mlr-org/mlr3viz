@@ -29,7 +29,7 @@
 autoplot.TaskDens = function(object, type = "dens", ...) {
   assert_choice(type, c("dens", "freq", "overlay", "freqpoly"))
 
-  p = ggplot(data = object, aes_string(x = object$target_names), ...)
+  p = ggplot(data = object, aes_string(x = object$feature_names), ...)
   # hacky density fix
   ..density.. <- NULL
 
