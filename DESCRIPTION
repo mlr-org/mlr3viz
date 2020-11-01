@@ -59,8 +59,6 @@ Suggests:
     stats,
     survival,
     testthat
-Remotes:
-    mlr-org/mlr3proba
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
