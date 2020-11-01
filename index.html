@@ -45,7 +45,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org"></a>
-        <a class="navbar-brand" href="index.html">mlr3viz <small>v0.4.0</small></a>
+        <a class="navbar-brand" href="index.html">mlr3viz <small>v0.5.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -106,36 +106,41 @@
 <div id="mlr3viz" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#mlr3viz" class="anchor"></a>mlr3viz</h1></div>
-<p>Package website: <a href="https://mlr3.mlr-org.com/">release</a> | <a href="https://mlr3.mlr-org.com/dev/">dev</a></p>
+<p>Package website: <a href="https://mlr3viz.mlr-org.com/">release</a> | <a href="https://mlr3viz.mlr-org.com/dev/">dev</a></p>
 <!-- badges: start -->
 <p><a href="https://github.com/mlr-org/mlr3viz/actions"><img src="https://github.com/mlr-org/mlr3viz/workflows/tic/badge.svg?branch=master" alt="tic"></a> <a href="https://cran.r-project.org/package=mlr3viz"><img src="https://www.r-pkg.org/badges/version/mlr3viz" alt="CRAN"></a> <a href="https://stackoverflow.com/questions/tagged/mlr3"><img src="https://img.shields.io/badge/stackoverflow-mlr3-orange.svg" alt="StackOverflow"></a> <a href="https://lmmisld-lmu-stats-slds.srv.mwn.de/mlr_invite/"><img src="https://img.shields.io/badge/chat-mattermost-orange.svg" alt="Mattermost"></a> <!-- badges: end --></p>
-<p>This R package provides visualizations for <a href="https://mlr3.mlr-org.com">mlr3</a> objects such as tasks, predictions, resample results or benchmark results via the <code><a href="reference/autoplot.html">autoplot()</a></code> generic of <a href="https://ggplot2.tidyverse.org/">ggplot2</a>.</p>
+<p>This R package provides visualizations for <a href="https://mlr3.mlr-org.com">mlr3</a> objects such as tasks, predictions, resample results or benchmark results via the <code><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot()</a></code> generic of <a href="https://ggplot2.tidyverse.org/">ggplot2</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Install the last release from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">"mlr3"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"mlr3"</span><span class="op">)</span></pre></div>
 <p>Install the development version from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"mlr-org/mlr3viz"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"mlr-org/mlr3viz"</span><span class="op">)</span></pre></div>
 </div>
 <div id="short-demo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#short-demo" class="anchor"></a>Short Demo</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(mlr3)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">library</span>(mlr3viz)</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a>task =<span class="st"> </span><span class="kw">tsk</span>(<span class="st">"pima"</span>)<span class="op">$</span><span class="kw">select</span>(<span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"glucose"</span>, <span class="st">"insulin"</span>))</span>
-<span id="cb3-5"><a href="#cb3-5"></a>learner =<span class="st"> </span><span class="kw">lrn</span>(<span class="st">"classif.rpart"</span>, <span class="dt">predict_type =</span> <span class="st">"prob"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6"></a>rr =<span class="st"> </span><span class="kw">resample</span>(task, learner, <span class="kw">rsmp</span>(<span class="st">"cv"</span>, <span class="dt">folds =</span> <span class="dv">10</span>))</span>
-<span id="cb3-7"><a href="#cb3-7"></a></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co"># Default plot for task</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="kw">autoplot</span>(task)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3.mlr-org.com">mlr3</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3viz.mlr-org.com">mlr3viz</a></span><span class="op">)</span>
+
+<span class="va">task</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">tsk</a></span><span class="op">(</span><span class="st">"pima"</span><span class="op">)</span><span class="op">$</span><span class="fu">select</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"glucose"</span>, <span class="st">"insulin"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">learner</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span><span class="op">(</span><span class="st">"classif.rpart"</span>, predict_type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span>
+<span class="va">rr</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">task</span>, <span class="va">learner</span>, <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">rsmp</a></span><span class="op">(</span><span class="st">"cv"</span>, folds <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Default plot for task</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">task</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-demo-1.png"><!-- --></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Pairs plot from GGally</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">autoplot</span>(task, <span class="dt">type =</span> <span class="st">"pairs"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co"># Pairs plot from GGally</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">task</span>, type <span class="op">=</span> <span class="st">"pairs"</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-demo-2.png"><!-- --></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># ROC curve for the ResampleResult</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">autoplot</span>(rr, <span class="dt">type =</span> <span class="st">"roc"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="co"># ROC curve for the ResampleResult</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">rr</span>, type <span class="op">=</span> <span class="st">"roc"</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-demo-3.png"><!-- --></p>
 </div>
 </div>

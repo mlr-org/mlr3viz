@@ -90,7 +90,7 @@ Color is set to target column.
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3viz <small>v0.4.0</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3viz <small>v0.5.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -167,10 +167,7 @@ Color is set to target column.</p></li>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for TaskSurv</span>
-<span class='fu'><a href='autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span>, type <span class='op'>=</span> <span class='st'>"target"</span>, <span class='va'>...</span><span class='op'>)</span>
-
-<span class='co'># S3 method for TaskSurv</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span>, type <span class='op'>=</span> <span class='st'>"target"</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -190,10 +187,6 @@ Type of the plot. Available choices:</p></td>
 Additional argument, passed down to <code>$formula</code> of <a href='https://mlr3proba.mlr-org.com/reference/TaskSurv.html'>mlr3proba::TaskSurv</a> or
 the underlying plot functions.</p></td>
     </tr>
-    <tr>
-      <th>x</th>
-      <td><p>(<a href='https://mlr3proba.mlr-org.com/reference/TaskSurv.html'>mlr3proba::TaskSurv</a>).</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -207,17 +200,17 @@ the underlying plot functions.</p></td>
 
 <span class='va'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span><span class='op'>(</span><span class='st'>"lung"</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'><a href='fortify.html'>fortify</a></span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/fortify.html'>fortify</a></span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;    time status age inst meal.cal pat.karno ph.ecog ph.karno sex wt.loss
 #&gt; 1:  306   TRUE  74    3     1175       100       1       90   m      NA
 #&gt; 2:  455   TRUE  68    3     1225        90       0       90   m      15
 #&gt; 3: 1010  FALSE  56    3       NA        90       0       90   m      15
 #&gt; 4:  210   TRUE  57    5     1150        60       1       90   m      11
 #&gt; 5:  883   TRUE  60    1       NA        90       0      100   m       0
-#&gt; 6: 1022  FALSE  74   12      513        80       1       50   m       0</div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
+#&gt; 6: 1022  FALSE  74   12      513        80       1       50   m       0</div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
 </div><div class='img'><img src='autoplot.TaskSurv-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
-</div><div class='img'><img src='autoplot.TaskSurv-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>task</span>, rhs <span class='op'>=</span> <span class='st'>"sex"</span><span class='op'>)</span>
-</div><div class='img'><img src='autoplot.TaskSurv-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>task</span>, type <span class='op'>=</span> <span class='st'>"duo"</span><span class='op'>)</span>
+</div><div class='img'><img src='autoplot.TaskSurv-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>task</span>, rhs <span class='op'>=</span> <span class='st'>"sex"</span><span class='op'>)</span>
+</div><div class='img'><img src='autoplot.TaskSurv-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>task</span>, type <span class='op'>=</span> <span class='st'>"duo"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 47 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 47 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 47 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 3 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 3 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 3 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing non-finite values (stat_boxplot).</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 14 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 14 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 14 rows containing non-finite values (stat_boxplot).</span></div><div class='img'><img src='autoplot.TaskSurv-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

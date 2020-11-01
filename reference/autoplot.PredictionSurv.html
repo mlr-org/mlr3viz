@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot for LearnerClassifRpart / LearnerRegrRpart — autoplot.LearnerClassifRpart • mlr3viz</title>
+<title>Plot for PredictionSurv — autoplot.PredictionSurv • mlr3viz</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,12 +47,16 @@
 
 
 
-<meta property="og:title" content="Plot for LearnerClassifRpart / LearnerRegrRpart — autoplot.LearnerClassifRpart" />
-<meta property="og:description" content="Visualize trees for mlr3::mlr_learners_classif.rpart and
-mlr3::mlr_learners_regr.rpart using the package ggparty.
-Contrary to ggparty, boxplots are shown in the terminal nodes for
-regression trees.
-Note that learner-specific plots are experimental and subject to change." />
+<meta property="og:title" content="Plot for PredictionSurv — autoplot.PredictionSurv" />
+<meta property="og:description" content="Generates plots for mlr3proba::PredictionSurv, depending on argument type:
+&quot;calib&quot; (default): Calibration plot comparing the average predicted survival distribution
+to a Kaplan-Meier prediction, this is not a comparison of a stratified crank or lp
+prediction. object must have distr prediction. geom_line() is used for comparison split
+between the prediction (Pred) and Kaplan-Meier estimate (KM). In addition labels are added
+for the x (T) and y (S(T))
+axes.
+
+" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -145,60 +149,80 @@ Note that learner-specific plots are experimental and subject to change." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot for LearnerClassifRpart / LearnerRegrRpart</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/LearnerClassifRpart.R'><code>R/LearnerClassifRpart.R</code></a>, <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/LearnerRegrRpart.R'><code>R/LearnerRegrRpart.R</code></a></small>
-    <div class="hidden name"><code>autoplot.LearnerClassifRpart.Rd</code></div>
+    <h1>Plot for PredictionSurv</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3viz/blob/master/R/PredictionSurv.R'><code>R/PredictionSurv.R</code></a></small>
+    <div class="hidden name"><code>autoplot.PredictionSurv.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Visualize trees for <a href='https://mlr3.mlr-org.com/reference/mlr_learners_classif.rpart.html'>mlr3::mlr_learners_classif.rpart</a> and
-<a href='https://mlr3.mlr-org.com/reference/mlr_learners_regr.rpart.html'>mlr3::mlr_learners_regr.rpart</a> using the package <a href='https://CRAN.R-project.org/package=ggparty'><span class="pkg">ggparty</span></a>.</p>
-<p>Contrary to <a href='https://CRAN.R-project.org/package=ggparty'><span class="pkg">ggparty</span></a>, boxplots are shown in the terminal nodes for
-regression trees.</p>
-<p>Note that learner-specific plots are experimental and subject to change.</p>
+    <p>Generates plots for <a href='https://mlr3proba.mlr-org.com/reference/PredictionSurv.html'>mlr3proba::PredictionSurv</a>, depending on argument <code>type</code>:</p><ul>
+<li><p><code>"calib"</code> (default): Calibration plot comparing the average predicted survival distribution
+to a Kaplan-Meier prediction, this is <em>not</em> a comparison of a stratified <code>crank</code> or <code>lp</code>
+prediction. <code>object</code> must have <code>distr</code> prediction. <code>geom_line()</code> is used for comparison split
+between the prediction (<code>Pred</code>) and Kaplan-Meier estimate (<code>KM</code>). In addition labels are added
+for the x (<code>T</code>) and y (<code>S(T)</code>)
+axes.</p></li>
+</ul>
+
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for LearnerClassifRpart</span>
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
-
-<span class='co'># S3 method for LearnerRegrRpart</span>
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='co'># S3 method for PredictionSurv</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  type <span class='op'>=</span> <span class='st'>"calib"</span>,
+  task <span class='op'>=</span> <span class='cn'>NULL</span>,
+  row_ids <span class='op'>=</span> <span class='cn'>NULL</span>,
+  times <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>(<a href='https://mlr3.mlr-org.com/reference/mlr_learners_classif.rpart.html'>mlr3::LearnerClassifRpart</a> | <a href='https://mlr3.mlr-org.com/reference/mlr_learners_regr.rpart.html'>mlr3::LearnerRegrRpart</a>).</p></td>
+      <td><p>(<a href='https://mlr3proba.mlr-org.com/reference/PredictionSurv.html'>mlr3proba::PredictionSurv</a>).</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>(character(1)):<br />
+Type of the plot. See description.</p></td>
+    </tr>
+    <tr>
+      <th>task</th>
+      <td><p>(<a href='https://mlr3proba.mlr-org.com/reference/TaskSurv.html'>mlr3proba::TaskSurv</a>) <br />
+If <code>type = "calib"</code> then <code>task</code> is passed to <code>$predict</code> in the Kaplan-Meier learner.</p></td>
+    </tr>
+    <tr>
+      <th>row_ids</th>
+      <td><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code>) <br />
+If <code>type = "calib"</code> then <code>row_ids</code> is passed to <code>$predict</code> in the Kaplan-Meier learner.</p></td>
+    </tr>
+    <tr>
+      <th>times</th>
+      <td><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>) <br />
+If <code>type = "calib"</code> then <code>times</code> is the values on the x-axis to plot over,
+if <code>NULL</code> uses all times from <code>task</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>(<code>any</code>):
-Additional arguments, passed down to <code><a href='https://rdrr.io/pkg/ggparty/man/autoplot.party.html'>ggparty::autoplot.party()</a></code>.</p></td>
+Additional arguments, currently unused.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot2::ggplot()</a></code> object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3.mlr-org.com'>mlr3</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3proba.mlr-org.com'>mlr3proba</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3viz.mlr-org.com'>mlr3viz</a></span><span class='op'>)</span>
 
-<span class='co'># classification</span>
-<span class='va'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span><span class='op'>(</span><span class='st'>"spam"</span><span class='op'>)</span>
-<span class='va'>learner</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"classif.rpart"</span>, keep_model <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='va'>learner</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>learner</span><span class='op'>)</span>
-</div><div class='img'><img src='autoplot.LearnerClassifRpart-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># regression</span>
-<span class='va'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span><span class='op'>(</span><span class='st'>"boston_housing"</span><span class='op'>)</span>
-<span class='va'>learner</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"regr.rpart"</span>, keep_model <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='va'>learner</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>learner</span><span class='op'>)</span>
-</div><div class='img'><img src='autoplot.LearnerClassifRpart-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>learner</span><span class='op'>)</span>
-</div><div class='img'><img src='autoplot.LearnerClassifRpart-3.png' alt='' width='700' height='433' /></div></pre>
+<span class='va'>learn</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"surv.coxph"</span><span class='op'>)</span>
+<span class='va'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span><span class='op'>(</span><span class='st'>"rats"</span><span class='op'>)</span>
+<span class='va'>p</span> <span class='op'>=</span> <span class='va'>learn</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span>, row_ids <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span><span class='op'>)</span><span class='op'>$</span><span class='fu'>predict</span><span class='op'>(</span><span class='va'>task</span>, row_ids <span class='op'>=</span> <span class='fl'>101</span><span class='op'>:</span><span class='fl'>200</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Loglik converged before variable  3 ; coefficient may be infinite. </span></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>p</span>, type <span class='op'>=</span> <span class='st'>"calib"</span>, task <span class='op'>=</span> <span class='va'>task</span><span class='op'>)</span>
+</div><div class='img'><img src='autoplot.PredictionSurv-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
