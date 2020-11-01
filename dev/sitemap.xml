@@ -31,6 +31,9 @@
     <loc>https://mlr3viz.mlr-org.com/reference/autoplot.PredictionRegr.html</loc>
   </url>
   <url>
+    <loc>https://mlr3viz.mlr-org.com/reference/autoplot.PredictionSurv.html</loc>
+  </url>
+  <url>
     <loc>https://mlr3viz.mlr-org.com/reference/autoplot.ResampleResult.html</loc>
   </url>
   <url>
