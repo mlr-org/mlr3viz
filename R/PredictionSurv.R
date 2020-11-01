@@ -4,11 +4,10 @@
 #' Generates plots for [mlr3proba::PredictionSurv], depending on argument `type`:
 #'
 #' * `"calib"` (default): Calibration plot comparing the average predicted survival distribution
-#' to a Kaplan-Meier prediction, this is *not* a comparison of a stratified `crank` or `lp`
-#' prediction. `object` must have `distr` prediction. `geom_line()` is used for comparison split
-#'  between the prediction (`Pred`) and Kaplan-Meier estimate (`KM`). In addition labels are added
-#'  for the x (`T`) and y (`S(T)`)
-#' axes.
+#'   to a Kaplan-Meier prediction, this is *not* a comparison of a stratified `crank` or `lp`
+#'   prediction. `object` must have `distr` prediction. `geom_line()` is used for comparison split
+#'   between the prediction (`Pred`) and Kaplan-Meier estimate (`KM`). In addition labels are added
+#'   for the x (`T`) and y (`S(T)`) axes.
 #'
 #' @param object ([mlr3proba::PredictionSurv]).
 #' @template param_type
@@ -22,6 +21,7 @@
 #' @param ... (`any`):
 #'   Additional arguments, currently unused.
 #'
+#' @export
 #' @examples
 #' library(mlr3)
 #' library(mlr3proba)
@@ -31,13 +31,8 @@
 #' task = tsk("rats")
 #' p = learn$train(task, row_ids = 1:100)$predict(task, row_ids = 101:200)
 #' autoplot(p, type = "calib", task = task)
-#'
-#' @export
-autoplot.PredictionSurv = function(object, type = "calib", task = NULL, row_ids = NULL, times = NULL, ...) {
-
+autoplot.PredictionSurv = function(object, type = "calib", task = NULL, row_ids = NULL, times = NULL, ...) { # nolint
   x = y = Group = NULL
-
-  type = match.arg(type)
 
   switch(type,
     "calib" = {
