@@ -19,6 +19,7 @@
 #'
 #' @export
 #' @examples
+#' \dontrun{
 #' library(mlr3)
 #' library(mlr3viz)
 #' library(mlr3learners)
@@ -34,6 +35,7 @@
 #' learner = lrn("regr.glmnet")
 #' learner$train(task)
 #' autoplot(learner)
+#' }
 autoplot.LearnerClassifGlmnet = function(object, ...) { # nolint
   plot_ggfortify(object, ...)
 }

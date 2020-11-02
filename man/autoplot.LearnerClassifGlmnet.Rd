@@ -34,6 +34,7 @@ using the package \CRANpkg{ggfortify}.
 Note that learner-specific plots are experimental and subject to change.
 }
 \examples{
+\dontrun{
 library(mlr3)
 library(mlr3viz)
 library(mlr3learners)
@@ -49,6 +50,7 @@ task = tsk("mtcars")
 learner = lrn("regr.glmnet")
 learner$train(task)
 autoplot(learner)
+}
 }
 \references{
 Tang Y, Horikoshi M, Li W (2016).
