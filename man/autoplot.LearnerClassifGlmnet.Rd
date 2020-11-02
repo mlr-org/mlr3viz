@@ -39,7 +39,7 @@ library(mlr3viz)
 library(mlr3learners)
 
 # classification
-task = tsk("spam")
+task = tsk("sonar")
 learner = lrn("classif.glmnet")
 learner$train(task)
 autoplot(learner)
