@@ -23,7 +23,6 @@
 #'
 #' head(fortify(task))
 #' autoplot(task)
-#' plot(task)
 #' autoplot(task, type = "pairs")
 autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
   assert_string(type)

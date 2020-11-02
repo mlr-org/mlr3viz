@@ -39,5 +39,4 @@ f$calculate(task)
 
 head(fortify(f))
 autoplot(f, n = 5)
-plot(f, n = 5)
 }

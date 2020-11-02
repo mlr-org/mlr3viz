@@ -30,7 +30,6 @@
 #'
 #' head(fortify(object))
 #' autoplot(object)
-#' plot(object)
 #' autoplot(object, type = "roc")
 #' autoplot(object, type = "prc")
 autoplot.PredictionClassif = function(object, type = "stacked", ...) { # nolint

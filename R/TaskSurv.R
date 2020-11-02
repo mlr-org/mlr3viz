@@ -27,7 +27,6 @@
 #'
 #' head(fortify(task))
 #' autoplot(task)
-#' plot(task)
 #' autoplot(task, rhs = "sex")
 #' autoplot(task, type = "duo")
 autoplot.TaskSurv = function(object, type = "target", ...) { # nolint

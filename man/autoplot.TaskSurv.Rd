@@ -39,7 +39,6 @@ task = tsk("lung")
 
 head(fortify(task))
 autoplot(task)
-plot(task)
 autoplot(task, rhs = "sex")
 autoplot(task, type = "duo")
 }

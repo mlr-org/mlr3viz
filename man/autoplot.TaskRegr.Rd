@@ -36,6 +36,5 @@ task$select(c("am", "carb"))
 
 head(fortify(task))
 autoplot(task)
-plot(task)
 autoplot(task, type = "pairs")
 }

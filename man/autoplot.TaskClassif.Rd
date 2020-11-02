@@ -36,7 +36,6 @@ task = tsk("iris")
 
 head(fortify(task))
 autoplot(task)
-plot(task)
 autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")),
   type = "pairs")
 autoplot(task, type = "duo")

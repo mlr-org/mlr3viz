@@ -62,7 +62,6 @@ head(fortify(object))
 
 # Default: boxplot
 autoplot(object)
-plot(object)
 
 # Histogram
 autoplot(object, type = "histogram", bins = 30)

@@ -32,7 +32,7 @@
 #' library(mlr3)
 #' library(mlr3viz)
 #'
-#' tasks = tsks(c("spam", "pima", "sonar"))
+#' tasks = tsks(c("wine", "pima", "sonar"))
 #' learner = lrns(c("classif.featureless", "classif.rpart"),
 #'   predict_type = "prob")
 #' resampling = rsmps("cv")
@@ -40,8 +40,7 @@
 #'
 #' head(fortify(object))
 #' autoplot(object)
-#' plot(object)
-#' autoplot(object$clone(deep = TRUE)$filter(task_ids = "spam"), type = "roc")
+#' autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "roc")
 #' autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "prc")
 autoplot.BenchmarkResult = function(object, # nolint
   type = "boxplot",

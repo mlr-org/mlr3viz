@@ -44,17 +44,9 @@ learner = lrn("classif.glmnet")
 learner$train(task)
 autoplot(learner)
 
-learner = lrn("classif.cv_glmnet")
-learner$train(task)
-autoplot(learner)
-
 # regression
 task = tsk("mtcars")
 learner = lrn("regr.glmnet")
-learner$train(task)
-autoplot(learner)
-
-learner = lrn("regr.cv_glmnet")
 learner$train(task)
 autoplot(learner)
 }

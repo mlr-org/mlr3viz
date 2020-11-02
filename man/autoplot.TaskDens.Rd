@@ -35,7 +35,6 @@ task = tsk("precip")
 
 head(fortify(task))
 autoplot(task, bins = 15)
-plot(task, bins = 15)
 autoplot(task, type = "freq", bins = 15)
 autoplot(task, type = "overlay", bins = 15)
 autoplot(task, type = "freqpoly", bins = 15)

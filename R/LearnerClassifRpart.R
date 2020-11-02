@@ -20,17 +20,16 @@
 #' library(mlr3viz)
 #'
 #' # classification
-#' task = tsk("spam")
+#' task = tsk("iris")
 #' learner = lrn("classif.rpart", keep_model = TRUE)
 #' learner$train(task)
 #' autoplot(learner)
 #'
 #' # regression
-#' task = tsk("boston_housing")
+#' task = tsk("mtcars")
 #' learner = lrn("regr.rpart", keep_model = TRUE)
 #' learner$train(task)
 #' autoplot(learner)
-#' plot(learner)
 autoplot.LearnerClassifRpart = function(object, ...) { # nolint
   assert_has_model(object)
 

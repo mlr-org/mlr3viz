@@ -39,8 +39,7 @@ Generates plots for \link[mlr3proba:PredictionSurv]{mlr3proba::PredictionSurv}, 
 to a Kaplan-Meier prediction, this is \emph{not} a comparison of a stratified \code{crank} or \code{lp}
 prediction. \code{object} must have \code{distr} prediction. \code{geom_line()} is used for comparison split
 between the prediction (\code{Pred}) and Kaplan-Meier estimate (\code{KM}). In addition labels are added
-for the x (\code{T}) and y (\code{S(T)})
-axes.
+for the x (\code{T}) and y (\code{S(T)}) axes.
 }
 }
 \examples{
@@ -52,5 +51,4 @@ learn = lrn("surv.coxph")
 task = tsk("rats")
 p = learn$train(task, row_ids = 1:100)$predict(task, row_ids = 101:200)
 autoplot(p, type = "calib", task = task)
-
 }

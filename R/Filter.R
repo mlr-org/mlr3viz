@@ -25,7 +25,6 @@
 #'
 #' head(fortify(f))
 #' autoplot(f, n = 5)
-#' plot(f, n = 5)
 autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
   assert_string(type)
 

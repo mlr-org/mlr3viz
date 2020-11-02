@@ -49,7 +49,6 @@ object = learner$train(task)$predict(task)
 
 head(fortify(object))
 autoplot(object)
-plot(object)
 autoplot(object, type = "histogram", binwidth = 1)
 autoplot(object, type = "residual")
 }

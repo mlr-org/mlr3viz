@@ -41,7 +41,7 @@ in package \CRANpkg{precrec}. Arguments \code{calc_avg} and \code{cb_alpha} are 
 library(mlr3)
 library(mlr3viz)
 
-tasks = tsks(c("spam", "pima", "sonar"))
+tasks = tsks(c("wine", "pima", "sonar"))
 learner = lrns(c("classif.featureless", "classif.rpart"),
   predict_type = "prob")
 resampling = rsmps("cv")
@@ -49,8 +49,7 @@ object = benchmark(benchmark_grid(tasks, learner, resampling))
 
 head(fortify(object))
 autoplot(object)
-plot(object)
-autoplot(object$clone(deep = TRUE)$filter(task_ids = "spam"), type = "roc")
+autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "roc")
 autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "prc")
 }
 \references{
