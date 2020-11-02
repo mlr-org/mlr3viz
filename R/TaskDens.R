@@ -30,7 +30,7 @@ autoplot.TaskDens = function(object, type = "dens", ...) { # nolint
 
   p = ggplot(data = object, aes_string(x = object$feature_names), ...)
   # hacky density fix
-  ..density.. == NULL
+  ..density.. = NULL
 
   if (type == "dens") {
     p + geom_histogram(aes(y = ..density..), fill = "white", color = "black", ...)
