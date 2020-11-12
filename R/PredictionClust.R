@@ -21,7 +21,7 @@
 #'   Additional arguments, passed down to the respective `geom`.
 #'
 #' @references
-#' `r tools::toRd(bibentries["ggfortify"])`
+#' `r format_bib("ggfortify")`
 #'
 #' @return [ggplot2::ggplot()] object.
 #' @export

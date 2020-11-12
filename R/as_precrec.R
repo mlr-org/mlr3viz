@@ -9,7 +9,7 @@
 #' @return Object as created by [precrec::mmdata()].
 #'
 #' @references
-#' `r tools::toRd(bibentries["precrec"])`
+#' `r format_bib("precrec")`
 #' @export
 as_precrec = function(object) {
   UseMethod("as_precrec")

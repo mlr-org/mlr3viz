@@ -36,7 +36,7 @@
 #' @return [ggplot2::ggplot()] object.
 #'
 #' @references
-#' `r tools::toRd(bibentries["precrec"])`
+#' `r format_bib("precrec")`
 #'
 #' @export
 #' @examples

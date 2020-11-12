@@ -15,7 +15,7 @@
 #' @return [ggplot2::ggplot()] object.
 #'
 #' @references
-#' `r tools::toRd(bibentries["ggfortify"])`
+#' `r format_bib("ggfortify")`
 #'
 #' @export
 #' @examples
