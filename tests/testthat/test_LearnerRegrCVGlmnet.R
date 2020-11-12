@@ -1,5 +1,6 @@
 context("LearnerRegrCVGlmnet")
 
+skip_on_solaris()
 skip_if_not_installed("mlr3learners")
 skip_if_not_installed("glmnet")
 skip_if_not_installed("ggfortify")
