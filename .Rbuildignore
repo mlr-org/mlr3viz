@@ -14,3 +14,4 @@
 ^\.github$
 ^tic\.R$
 ^\.ccache$
+^codemeta\.json$
