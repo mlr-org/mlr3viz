@@ -38,7 +38,7 @@ remotes::install_github("mlr-org/mlr3viz")
 
 ## Short Demo
 
-```{r demo, message = FALSE, warning = FALSE}
+```{r demo, message = FALSE, warning = FALSE, dpi=300}
 library(mlr3)
 library(mlr3viz)
 
