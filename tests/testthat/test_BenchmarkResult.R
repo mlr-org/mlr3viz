@@ -1,5 +1,3 @@
-context("BenchmarkResult")
-
 library(mlr3)
 tasks = tsks(c("iris", "pima", "sonar"))
 learner = lrns(c("classif.featureless", "classif.rpart"), predict_type = "prob")

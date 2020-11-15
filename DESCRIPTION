@@ -58,7 +58,9 @@ Suggests:
     rpart,
     stats,
     survival,
-    testthat
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Config/testthat/parallel: true
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no

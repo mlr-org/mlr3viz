@@ -1,6 +1,3 @@
-context("TaskSurv")
-
-
 test_that("autoplot.TaskSurv", {
   skip_if_not_installed("mlr3proba")
 
@@ -11,8 +8,8 @@ test_that("autoplot.TaskSurv", {
   expect_true(is.ggplot(p))
 
   p = autoplot(task, type = "pairs")
-  expect_is(p, "ggmatrix")
+  expect_s3_class(p, "ggmatrix")
 
   p = autoplot(task, type = "duo")
-  expect_is(p, "ggmatrix")
+  expect_s3_class(p, "ggmatrix")
 })

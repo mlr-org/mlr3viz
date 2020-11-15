@@ -1,6 +1,3 @@
-context("TaskSurv")
-
-
 test_that("autoplot.TaskDens", {
   skip_if_not_installed("mlr3proba")
 

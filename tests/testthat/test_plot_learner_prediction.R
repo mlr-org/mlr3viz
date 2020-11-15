@@ -1,5 +1,3 @@
-context("plot_learner_prediction")
-
 test_that("plot_learner_prediction.LearnerClassif", {
   task = tsk("iris")$select(c("Sepal.Length", "Sepal.Width"))
 

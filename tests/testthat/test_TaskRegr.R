@@ -1,6 +1,3 @@
-context("TaskRegr")
-
-
 test_that("autoplot.TaskRegr", {
   task = mlr_tasks$get("mtcars")$select(c("carb", "cyl"))
 
@@ -8,5 +5,5 @@ test_that("autoplot.TaskRegr", {
   expect_true(is.ggplot(p))
 
   p = autoplot(task, type = "pairs")
-  expect_is(p, "ggmatrix")
+  expect_s3_class(p, "ggmatrix")
 })

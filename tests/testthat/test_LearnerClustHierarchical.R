@@ -1,5 +1,3 @@
-context("LearnerHierarchical")
-
 skip_if_not_installed("mlr3cluster")
 skip_if_not_installed("factoextra")
 

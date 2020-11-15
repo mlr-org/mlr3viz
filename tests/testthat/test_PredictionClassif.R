@@ -1,5 +1,3 @@
-context("PredictionClassif")
-
 test_that("autoplot.PredictionClassif", {
   task = tsk("sonar")
   learner = lrn("classif.rpart", predict_type = "prob")$train(task)

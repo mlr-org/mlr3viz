@@ -1,5 +1,3 @@
-context("LearnerClassifRpart")
-
 skip_if_not_installed("rpart")
 skip_if_not_installed("partykit")
 skip_if_not_installed("ggparty")
