@@ -53,8 +53,7 @@
 to a Kaplan-Meier prediction, this is not a comparison of a stratified crank or lp
 prediction. object must have distr prediction. geom_line() is used for comparison split
 between the prediction (Pred) and Kaplan-Meier estimate (KM). In addition labels are added
-for the x (T) and y (S(T))
-axes.
+for the x (T) and y (S(T)) axes.
 
 " />
 <meta name="twitter:card" content="summary" />
@@ -90,7 +89,7 @@ axes.
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3viz <small>v0.4.0.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3viz <small>v0.5.0.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -160,8 +159,7 @@ axes.
 to a Kaplan-Meier prediction, this is <em>not</em> a comparison of a stratified <code>crank</code> or <code>lp</code>
 prediction. <code>object</code> must have <code>distr</code> prediction. <code>geom_line()</code> is used for comparison split
 between the prediction (<code>Pred</code>) and Kaplan-Meier estimate (<code>KM</code>). In addition labels are added
-for the x (<code>T</code>) and y (<code>S(T)</code>)
-axes.</p></li>
+for the x (<code>T</code>) and y (<code>S(T)</code>) axes.</p></li>
 </ul>
 
     </div>
@@ -221,8 +219,7 @@ Additional arguments, currently unused.</p></td>
 <span class='va'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span><span class='op'>(</span><span class='st'>"rats"</span><span class='op'>)</span>
 <span class='va'>p</span> <span class='op'>=</span> <span class='va'>learn</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span>, row_ids <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span><span class='op'>)</span><span class='op'>$</span><span class='fu'>predict</span><span class='op'>(</span><span class='va'>task</span>, row_ids <span class='op'>=</span> <span class='fl'>101</span><span class='op'>:</span><span class='fl'>200</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Loglik converged before variable  3 ; coefficient may be infinite. </span></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>p</span>, type <span class='op'>=</span> <span class='st'>"calib"</span>, task <span class='op'>=</span> <span class='va'>task</span><span class='op'>)</span>
-</div><div class='img'><img src='autoplot.PredictionSurv-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+</div><div class='img'><img src='autoplot.PredictionSurv-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
