@@ -6,10 +6,12 @@
 \usage{
 \method{autoplot}{PredictionSurv}(
   object,
-  type = "calib",
+  type = c("calib", "dcalib"),
   task = NULL,
   row_ids = NULL,
   times = NULL,
+  xyline = TRUE,
+  cuts = 11L,
   ...
 )
 }
@@ -29,6 +31,12 @@ If \code{type = "calib"} then \code{row_ids} is passed to \verb{$predict} in the
 If \code{type = "calib"} then \code{times} is the values on the x-axis to plot over,
 if \code{NULL} uses all times from \code{task}.}
 
+\item{xyline}{(\code{logical(1)}) \cr
+If \code{TRUE} (default) plots the x-y line for \code{type = "dcalib"}.}
+
+\item{cuts}{(\code{integer(1)}) \cr
+Number of cuts in \link{0,1} to plot \code{dcalib} over, default is \code{11}.}
+
 \item{...}{(\code{any}):
 Additional arguments, currently unused.}
 }
@@ -39,7 +47,11 @@ Generates plots for \link[mlr3proba:PredictionSurv]{mlr3proba::PredictionSurv}, 
 to a Kaplan-Meier prediction, this is \emph{not} a comparison of a stratified \code{crank} or \code{lp}
 prediction. \code{object} must have \code{distr} prediction. \code{geom_line()} is used for comparison split
 between the prediction (\code{Pred}) and Kaplan-Meier estimate (\code{KM}). In addition labels are added
-for the x (\code{T}) and y (\code{S(T)}) axes.
+for the x (\code{T}) and y (\code{S(T)})
+axes.
+\item \code{"dcalib"}: Distribution calibration plot. A model is D-calibrated if X\% of deaths occur before
+the X/100 quantile of the predicted distribution, e.g. if 50\% of observations die before their
+predicted median survival time. A model is D-calibrated if the resulting plot lies on x = y.
 }
 }
 \examples{
@@ -48,7 +60,18 @@ library(mlr3proba)
 library(mlr3viz)
 
 learn = lrn("surv.coxph")
-task = tsk("rats")
-p = learn$train(task, row_ids = 1:100)$predict(task, row_ids = 101:200)
-autoplot(p, type = "calib", task = task)
+task = tsk("unemployment")
+p = learn$train(task, row_ids = 1:300)$predict(task, row_ids = 301:400)
+
+# calibration by comparison of average prediction to Kaplan-Meier
+autoplot(p, type = "calib", task = task, row_ids = 301:400)
+
+# Distribution-calibration (D-Calibration)
+autoplot(p, type = "dcalib")
+
+}
+\references{
+Haider, H., Hoehn, B., Davis, S., & Greiner, R. (2020).
+Effective ways to build and evaluate individual survival distributions.
+Journal of Machine Learning Research, 21(85), 1–63.
 }
