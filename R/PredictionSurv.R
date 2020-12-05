@@ -25,7 +25,7 @@
 #' @param xyline (`logical(1)`) \cr
 #'   If `TRUE` (default) plots the x-y line for `type = "dcalib"`.
 #' @param cuts (`integer(1)`) \cr
-#'   Number of cuts in [0,1] to plot `dcalib` over, default is `11`.
+#'   Number of cuts in (0,1) to plot `dcalib` over, default is `11`.
 #' @param ... (`any`):
 #'   Additional arguments, currently unused.
 #'

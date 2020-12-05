@@ -35,7 +35,7 @@ if \code{NULL} uses all times from \code{task}.}
 If \code{TRUE} (default) plots the x-y line for \code{type = "dcalib"}.}
 
 \item{cuts}{(\code{integer(1)}) \cr
-Number of cuts in \link{0,1} to plot \code{dcalib} over, default is \code{11}.}
+Number of cuts in (0,1) to plot \code{dcalib} over, default is \code{11}.}
 
 \item{...}{(\code{any}):
 Additional arguments, currently unused.}
