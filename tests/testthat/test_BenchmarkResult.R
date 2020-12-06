@@ -1,8 +1,7 @@
-library(mlr3)
-tasks = tsks(c("iris", "pima", "sonar"))
-learner = lrns(c("classif.featureless", "classif.rpart"), predict_type = "prob")
-resampling = rsmp("cv", folds = 3)
-bmr = benchmark(benchmark_grid(tasks, learner, resampling))
+tasks = mlr3::tsks(c("iris", "pima", "sonar"))
+learner = mlr3::lrns(c("classif.featureless", "classif.rpart"), predict_type = "prob")
+resampling = mlr3::rsmp("cv", folds = 3)
+bmr = mlr3::benchmark(mlr3::benchmark_grid(tasks, learner, resampling))
 
 test_that("fortify BenchmarkResult", {
   f = fortify(bmr, measure = msr("classif.ce"))

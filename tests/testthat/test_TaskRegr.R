@@ -1,5 +1,5 @@
 test_that("autoplot.TaskRegr", {
-  task = mlr_tasks$get("mtcars")$select(c("carb", "cyl"))
+  task = mlr3::tsk("mtcars")$select(c("carb", "cyl"))
 
   p = autoplot(task, type = "target")
   expect_true(is.ggplot(p))

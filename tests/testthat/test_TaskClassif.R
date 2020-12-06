@@ -1,5 +1,5 @@
 test_that("autoplot.TaskClassif", {
-  task = mlr_tasks$get("iris")
+  task = mlr3::tsk("iris")
 
   p = autoplot(task, type = "target")
   expect_true(is.ggplot(p))

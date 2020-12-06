@@ -3,8 +3,8 @@ skip_if_not_installed("clue")
 
 test_that("autoplot.PredictionClust", {
   require_namespaces("mlr3cluster")
-  task = mlr_tasks$get("usarrests")
-  learner = lrn("clust.kmeans", centers = 3)
+  task = mlr3::tsk("usarrests")
+  learner = mlr3::lrn("clust.kmeans", centers = 3)
   prediction = learner$train(task)$predict(task)
 
   p = expect_warning(autoplot(prediction, task, type = "scatter"), "Factor variables are omitted")
