@@ -4,14 +4,13 @@
 #' Generates plots for [mlr3proba::PredictionSurv], depending on argument `type`:
 #'
 #' * `"calib"` (default): Calibration plot comparing the average predicted survival distribution
-#' to a Kaplan-Meier prediction, this is *not* a comparison of a stratified `crank` or `lp`
-#' prediction. `object` must have `distr` prediction. `geom_line()` is used for comparison split
-#'  between the prediction (`Pred`) and Kaplan-Meier estimate (`KM`). In addition labels are added
-#'  for the x (`T`) and y (`S(T)`)
-#' axes.
+#'   to a Kaplan-Meier prediction, this is *not* a comparison of a stratified `crank` or `lp`
+#'   prediction. `object` must have `distr` prediction. `geom_line()` is used for comparison split
+#'   between the prediction (`Pred`) and Kaplan-Meier estimate (`KM`). In addition labels are added
+#'   for the x (`T`) and y (`S(T)`) axes.
 #' * `"dcalib"`: Distribution calibration plot. A model is D-calibrated if X% of deaths occur before
-#' the X/100 quantile of the predicted distribution, e.g. if 50% of observations die before their
-#' predicted median survival time. A model is D-calibrated if the resulting plot lies on x = y.
+#'   the X/100 quantile of the predicted distribution, e.g. if 50% of observations die before their
+#'   predicted median survival time. A model is D-calibrated if the resulting plot lies on x = y.
 #'
 #' @param object ([mlr3proba::PredictionSurv]).
 #' @template param_type
@@ -30,9 +29,7 @@
 #'   Additional arguments, currently unused.
 #'
 #' @references
-#' Haider, H., Hoehn, B., Davis, S., & Greiner, R. (2020).
-#' Effective ways to build and evaluate individual survival distributions.
-#' Journal of Machine Learning Research, 21(85), 1–63.
+#' `r format_bib("dcalib")`
 #'
 #' @export
 #' @examples
@@ -49,8 +46,6 @@
 #'
 #' # Distribution-calibration (D-Calibration)
 #' autoplot(p, type = "dcalib")
-#'
-#' @export
 autoplot.PredictionSurv = function(object, type = c("calib", "dcalib"),
                                    task = NULL, row_ids = NULL, times = NULL, xyline = TRUE,
                                    cuts = 11L, ...) {
@@ -79,7 +74,7 @@ autoplot.PredictionSurv = function(object, type = c("calib", "dcalib"),
 
     "dcalib" = {
       p = seq.int(0, 1, length.out = cuts)
-      q = sapply(p, function(.x)
+      q = map_dbl(p, function(.x)
         sum(object$truth[, 1L] <= as.numeric(object$distr$quantile(.x)))/100)
       pl = qplot(x = p, y = q, geom = "line")
       if (xyline) {
