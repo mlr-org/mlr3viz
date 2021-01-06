@@ -37,7 +37,7 @@ Imports:
     checkmate,
     data.table,
     ggplot2 (>= 3.3.0),
-    mlr3misc,
+    mlr3misc (>= 0.7.0),
     utils
 Suggests:
     cluster,
