@@ -6,7 +6,7 @@ Package website: [release](https://mlr3viz.mlr-org.com/) \|
 
 <!-- badges: start -->
 
-[![tic](https://github.com/mlr-org/mlr3viz/workflows/tic/badge.svg?branch=master)](https://github.com/mlr-org/mlr3viz/actions)
+[![tic](https://github.com/mlr-org/mlr3viz/workflows/tic/badge.svg?branch=main)](https://github.com/mlr-org/mlr3viz/actions)
 [![CRAN](https://www.r-pkg.org/badges/version/mlr3viz)](https://cran.r-project.org/package=mlr3viz)
 [![StackOverflow](https://img.shields.io/badge/stackoverflow-mlr3-orange.svg)](https://stackoverflow.com/questions/tagged/mlr3)
 [![Mattermost](https://img.shields.io/badge/chat-mattermost-orange.svg)](https://lmmisld-lmu-stats-slds.srv.mwn.de/mlr_invite/)
