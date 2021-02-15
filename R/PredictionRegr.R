@@ -1,6 +1,5 @@
 #' @title Plot for PredictionRegr
 #'
-#' @importFrom ggplot2 fortify
 #' @description
 #' Generates plots for [mlr3::PredictionRegr], depending on argument `type`:
 #'
@@ -78,4 +77,9 @@ autoplot.PredictionRegr = function(object, # nolint
 
     stopf("Unknown plot type '%s'", type)
   )
+}
+
+#' @export
+plot.PredictionRegr = function(x, ...) {
+  print(autoplot(x, ...))
 }

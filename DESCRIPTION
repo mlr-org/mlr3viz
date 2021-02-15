@@ -1,6 +1,6 @@
 Package: mlr3viz
 Title: Visualizations for 'mlr3'
-Version: 0.2.0-9000
+Version: 0.5.1-9000
 Authors@R:
     c(person(given = "Michel",
              family = "Lang",
@@ -21,7 +21,11 @@ Authors@R:
              family = "Becker",
              role = c("aut"),
              email = "marcbecker@posteo.de",
-             comment = c(ORCID = "0000-0002-8115-0400")))
+             comment = c(ORCID = "0000-0002-8115-0400")),
+      person(given = "Damir",
+             family = "Pulatov",
+             role = "ctb",
+             email = "dpulatov@uwyo.edu")))
 Description: Provides visualizations for 'mlr3' objects such as
     tasks, predictions, resample results or benchmark results via the
     autoplot() generic of 'ggplot2'. The returned 'ggplot' objects are
@@ -38,24 +42,36 @@ Imports:
     checkmate,
     data.table,
     ggplot2 (>= 3.3.0),
-    mlr3misc,
+    mlr3misc (>= 0.7.0),
     utils
 Suggests:
-    partykit,
-    ggparty,
+    cluster,
+    distr6 (>= 1.4.4),
+    factoextra,
     GGally,
+    ggfortify (>= 0.4.11),
+    ggparty,
+    glmnet,
     lgr,
     mlr3 (>= 0.6.0),
+    mlr3cluster,
     mlr3filters,
+<<<<<<< HEAD
     mlr3proba (>= 0.2.0),
     mlr3tuning (>= 0.7.0),
     patchwork (>= 1.1.1),
+=======
+    mlr3learners,
+    mlr3proba (>= 0.2.3),
+    partykit,
+>>>>>>> main
     precrec,
     rpart,
+    stats,
     survival,
-    testthat
-Remotes:
-    mlr-org/mlr3
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Config/testthat/parallel: true
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no

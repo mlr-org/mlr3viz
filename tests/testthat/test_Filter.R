@@ -1,7 +1,5 @@
-context("Filter")
-
 test_that("autoplot.Filter", {
-  task = mlr_tasks$get("iris")
+  task = mlr3::tsk("iris")
   f = mlr3filters::mlr_filters$get("anova")
   f$calculate(task)
 

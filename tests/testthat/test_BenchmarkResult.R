@@ -1,10 +1,7 @@
-context("BenchmarkResult")
-
-library(mlr3)
-tasks = tsks(c("iris", "pima", "sonar"))
-learner = lrns(c("classif.featureless", "classif.rpart"), predict_type = "prob")
-resampling = rsmp("cv", folds = 3)
-bmr = benchmark(benchmark_grid(tasks, learner, resampling))
+tasks = mlr3::tsks(c("iris", "pima", "sonar"))
+learner = mlr3::lrns(c("classif.featureless", "classif.rpart"), predict_type = "prob")
+resampling = mlr3::rsmp("cv", folds = 3)
+bmr = mlr3::benchmark(mlr3::benchmark_grid(tasks, learner, resampling))
 
 test_that("fortify BenchmarkResult", {
   f = fortify(bmr, measure = msr("classif.ce"))
@@ -26,5 +23,20 @@ test_that("autoplot BenchmarkResult", {
 
   object = bmr$clone(deep = TRUE)$filter(task_ids = "pima")
   p = autoplot(object, type = "prc")
+  expect_true(is.ggplot(p))
+})
+
+test_that("holdout roc plot (#54)", {
+  tasks = tsks("german_credit")
+
+  learners = c("classif.featureless", "classif.rpart")
+  learners = lapply(learners, lrn,
+    predict_type = "prob")
+
+  resamplings = rsmp("holdout", ratio = .8) # holdout instead of cv
+
+  design = benchmark_grid(tasks, learners, resamplings)
+  bmr = benchmark(design)
+  p = autoplot(bmr, type = "roc")
   expect_true(is.ggplot(p))
 })

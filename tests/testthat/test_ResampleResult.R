@@ -1,10 +1,7 @@
-context("ResampleResult")
-
-library(mlr3)
-task = tsk("sonar")
-learner = lrn("classif.rpart", predict_type = "prob")
-resampling = rsmp("cv")
-rr = resample(task, learner, resampling)
+task = mlr3::tsk("sonar")
+learner = mlr3::lrn("classif.rpart", predict_type = "prob")
+resampling = mlr3::rsmp("cv")
+rr = mlr3::resample(task, learner, resampling)
 
 test_that("fortify ResampleResult", {
   f = fortify(rr, measure = msr("classif.ce"))
@@ -30,12 +27,12 @@ test_that("autoplot ResampleResult", {
 
 test_that("autoplot ResampleResult type=prediction", {
   tasks = list(
-    classif_2d = tsk("iris")$select(c("Sepal.Length", "Sepal.Width")),
-    regr_1d = tsk("boston_housing")$select(c("age")),
-    regr_2d = tsk("boston_housing")$select(c("age", "chas"))
+    classif_2d = mlr3::tsk("iris")$select(c("Sepal.Length", "Sepal.Width")),
+    regr_1d = mlr3::tsk("boston_housing")$select("age"),
+    regr_2d = mlr3::tsk("boston_housing")$select(c("age", "chas"))
   )
 
-  predict_sets = list(c(), "train", "test", c("train", "test"))
+  predict_sets = list(character(), "train", "test", c("train", "test"))
 
   resamplings = list(rsmp("cv", folds = 3), rsmp("bootstrap", repeats = 3))
 
@@ -61,16 +58,17 @@ test_that("autoplot ResampleResult type=prediction", {
   }
 
   # check errors
-  rr = resample(tsk("iris")$select(c("Sepal.Length", "Sepal.Width")),
+  rr = resample(mlr3::tsk("iris")$select(c("Sepal.Length", "Sepal.Width")),
     lrn("classif.featureless"), resampling,
     store_models = FALSE)
-  expect_error(autoplot(rr, type = "prediction"), fixed = "store_models")
-  rr = resample(tsk("iris"), lrn("classif.featureless"), resampling,
+  expect_error(autoplot(rr, type = "prediction"), regexp = "store_models")
+  rr = resample(mlr3::tsk("iris"), lrn("classif.featureless"), resampling,
     store_models = TRUE)
   expect_error(autoplot(rr, type = "prediction"),
-    fixed = "only works for tasks with two features")
-  rr = resample(tsk("boston_housing"), lrn("regr.featureless"), resampling,
+    regexp = "only works for tasks with two features")
+  rr = resample(mlr3::tsk("boston_housing"), lrn("regr.featureless"), resampling,
     store_models = TRUE)
   expect_error(autoplot(rr, type = "prediction"),
-    fixed = "only works for tasks with one or two features")
+    regexp = "Plot learner prediction only works with one or two features for
+regression!")
 })

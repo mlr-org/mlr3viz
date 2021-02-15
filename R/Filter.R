@@ -42,6 +42,11 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
 }
 
 #' @export
+plot.Filter = function(x, ...) {
+  print(autoplot(x, ...))
+}
+
+#' @export
 fortify.Filter = function(model, data = NULL, ...) { # nolint
   as.data.table(model)
 }

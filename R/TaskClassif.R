@@ -52,3 +52,8 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
     stopf("Unknown plot type '%s'", type)
   )
 }
+
+#' @export
+plot.TaskClassif = function(x, ...) {
+  print(autoplot(x, ...))
+}

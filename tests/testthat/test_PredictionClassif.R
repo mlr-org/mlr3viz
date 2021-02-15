@@ -1,8 +1,6 @@
-context("PredictionClassif")
-
 test_that("autoplot.PredictionClassif", {
-  task = tsk("sonar")
-  learner = lrn("classif.rpart", predict_type = "prob")$train(task)
+  task = mlr3::tsk("sonar")
+  learner = mlr3::lrn("classif.rpart", predict_type = "prob")$train(task)
   prediction = learner$predict(task)
 
   p = autoplot(prediction, type = "stacked")

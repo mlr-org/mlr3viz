@@ -7,6 +7,9 @@
 #' @param object (`any`)\cr
 #'   Object to convert.
 #' @return Object as created by [precrec::mmdata()].
+#'
+#' @references
+#' `r format_bib("precrec")`
 #' @export
 as_precrec = function(object) {
   UseMethod("as_precrec")
@@ -14,7 +17,7 @@ as_precrec = function(object) {
 
 
 roc_data = function(prediction) {
-  prediction = as_prediction(prediction)
+  prediction = mlr3::as_prediction(prediction)
   if (nlevels(prediction$truth) != 2L) {
     stopf("Need a binary classification problem to plot a ROC curve")
   }
@@ -35,7 +38,7 @@ roc_data = function(prediction) {
 as_precrec.PredictionClassif = function(object) { # nolint
   require_namespaces("precrec")
   data = roc_data(object)
-  precrec::mmdata(scores = data$scores, labels = data$labels)
+  precrec::mmdata(scores = data$scores, labels = data$labels, dsids = 1L)
 }
 
 
@@ -54,9 +57,7 @@ as_precrec.ResampleResult = function(object) { # nolint
 #' @rdname as_precrec
 #' @export
 as_precrec.BenchmarkResult = function(object) { # nolint
-
   require_namespaces("precrec")
-
   scores = object$score(measures = list())
 
   if (uniqueN(scores$task_id) > 1L) {

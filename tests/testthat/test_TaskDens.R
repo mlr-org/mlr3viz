@@ -1,11 +1,7 @@
-context("TaskSurv")
-
-
 test_that("autoplot.TaskDens", {
   skip_if_not_installed("mlr3proba")
-
   require_namespaces("mlr3proba")
-  task = mlr_tasks$get("precip")
+  task = mlr3::tsk("precip")
 
   p = autoplot(task, type = "dens")
   expect_true(is.ggplot(p))

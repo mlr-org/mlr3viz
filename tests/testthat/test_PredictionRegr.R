@@ -1,8 +1,6 @@
-context("PredictionRegr")
-
 test_that("autoplot.PredictionRegr", {
-  task = tsk("mtcars")$select(c("carb", "cyl"))
-  learner = lrn("regr.rpart")$train(task)
+  task = mlr3::tsk("mtcars")$select(c("carb", "cyl"))
+  learner = mlr3::lrn("regr.rpart")$train(task)
   prediction = learner$predict(task)
 
   p = autoplot(prediction, type = "xy")

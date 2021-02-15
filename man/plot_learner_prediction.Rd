@@ -41,7 +41,7 @@ ratio 1 (all observations in training set).
 library(mlr3)
 library(mlr3viz)
 
-task = tsk("pima")$select(c("age", "glucose"))
+task = mlr3::tsk("pima")$select(c("age", "glucose"))
 learner = lrn("classif.rpart", predict_type = "prob")
 p = plot_learner_prediction(learner, task)
 print(p)

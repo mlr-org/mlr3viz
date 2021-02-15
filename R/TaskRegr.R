@@ -45,3 +45,8 @@ autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
     stopf("Unknown plot type '%s'", type)
   )
 }
+
+#' @export
+plot.TaskRegr = function(x, ...) {
+  print(autoplot(x, ...))
+}

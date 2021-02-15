@@ -59,3 +59,8 @@ autoplot.TaskSurv = function(object, type = "target", ...) { # nolint
     stopf("Unknown plot type '%s'", type)
   )
 }
+
+#' @export
+plot.TaskSurv = function(x, ...) {
+  print(autoplot(x, ...))
+}
