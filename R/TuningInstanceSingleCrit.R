@@ -85,10 +85,10 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
           scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
       })  
       patchwork::wrap_plots(plots, guides = "collect")
-    }
-  )
+    },
 
-  stopf("Unknown plot type '%s'", type)
+    stopf("Unknown plot type '%s'", type)
+  )
 }
 
 fortify.TuningInstanceSingleCrit = function(model, data = NULL, ...) {
