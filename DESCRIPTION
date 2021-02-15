@@ -36,6 +36,13 @@ License: LGPL-3
 URL: https://mlr3viz.mlr-org.com,
     https://github.com/mlr-org/mlr3viz
 BugReports: https://github.com/mlr-org/mlr3viz/issues
+Config/testthat/edition: 3
+Config/testthat/parallel: true
+Encoding: UTF-8
+LazyData: true
+NeedsCompilation: no
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
 Depends:
     R (>= 3.1.0)
 Imports:
@@ -56,24 +63,14 @@ Suggests:
     mlr3 (>= 0.6.0),
     mlr3cluster,
     mlr3filters,
-<<<<<<< HEAD
-    mlr3proba (>= 0.2.0),
-    mlr3tuning (>= 0.7.0),
-    patchwork (>= 1.1.1),
-=======
     mlr3learners,
+    mlr3proba (>= 0.2.0),
     mlr3proba (>= 0.2.3),
+    mlr3tuning (>= 0.7.0),
     partykit,
->>>>>>> main
+    patchwork (>= 1.1.1),
     precrec,
     rpart,
     stats,
     survival,
     testthat (>= 3.0.0)
-Config/testthat/edition: 3
-Config/testthat/parallel: true
-Encoding: UTF-8
-LazyData: true
-NeedsCompilation: no
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
