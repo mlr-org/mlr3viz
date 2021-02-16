@@ -12,10 +12,21 @@
 \item{type}{(\code{character(1)}):
 Type of the plot. Available choices:
 \itemize{
-\item \code{"marginal"}: scatter plot of parameter versus performance. Points are filled with batch number.
+\item \code{"marginal"}: scatter plot of parameter versus performance. Points are
+filled with batch number.
 \item \code{"performance"}: scatter plot of batch number versus performance.
-\item \code{"parameter"}: scatter plot of batch number versus parameter. Points are filled with performance.
+\item \code{"parameter"}: scatter plot of batch number versus parameter. Points are
+filled with performance.
 }}
+
+\item{cols_x}{(\code{character()})\cr
+Column names of hyperparameters. By default, all untransformed
+hyperparameters are plottet. Transformed hyperparameters are prefixed with
+\code{x_domain_}.}
+
+\item{trafo}{(\code{logical(1)})\cr
+Determines if untransformed (\code{FALSE}) or transformed (\code{TRUE})
+hyperparametery are plotted.}
 
 \item{...}{(\code{any}):
 Additional arguments, possibly passed down to the underlying plot functions.}

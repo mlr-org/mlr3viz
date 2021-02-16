@@ -7,7 +7,7 @@
 \method{autoplot}{LearnerClustHierarchical}(object, ...)
 }
 \arguments{
-\item{object}{(\link[mlr3cluster:LearnerClustAgnes]{mlr3cluster::LearnerClustAgnes} | \link[mlr3cluster:LearnerClustDiana]{mlr3cluster::LearnerClustDiana}).}
+\item{object}{(\link[mlr3cluster:mlr_learners_clust.agnes]{mlr3cluster::LearnerClustAgnes} | \link[mlr3cluster:mlr_learners_clust.diana]{mlr3cluster::LearnerClustDiana}).}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to function \code{\link[factoextra:fviz_dend]{factoextra::fviz_dend()}} in package \CRANpkg{factoextra}.}
