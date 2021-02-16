@@ -19,7 +19,7 @@ Authors@R:
              comment = c(ORCID = "0000-0001-9225-4654")),
       person(given = "Marc",
              family = "Becker",
-             role = c("aut"),
+             role = "aut",
              email = "marcbecker@posteo.de",
              comment = c(ORCID = "0000-0002-8115-0400")),
       person(given = "Damir",
@@ -36,13 +36,6 @@ License: LGPL-3
 URL: https://mlr3viz.mlr-org.com,
     https://github.com/mlr-org/mlr3viz
 BugReports: https://github.com/mlr-org/mlr3viz/issues
-Config/testthat/edition: 3
-Config/testthat/parallel: true
-Encoding: UTF-8
-LazyData: true
-NeedsCompilation: no
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
 Depends:
     R (>= 3.1.0)
 Imports:
