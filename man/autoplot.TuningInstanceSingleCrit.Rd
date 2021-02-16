@@ -13,9 +13,8 @@
 Type of the plot. Available choices:
 \itemize{
 \item \code{"marginal"}: scatter plot of parameter versus performance. Points are filled with batch number.
-\item \code{"performance"}: scatter plot of performance versus batch number.
-\item \code{"parameter"}: scatter plot of parameter versus batch number. Points are filled with performance.
-\item \code{"freqpoly"}: frequency polygon plot with \code{ggplot2::geom_freqpoly}.
+\item \code{"performance"}: scatter plot of batch number versus performance.
+\item \code{"parameter"}: scatter plot of batch number versus parameter. Points are filled with performance.
 }}
 
 \item{...}{(\code{any}):
@@ -53,5 +52,4 @@ autoplot(instance, type = "marginal", cols_x = "cp")
 
 # plot transformed parameter values versus batch number
 autoplot(instance, type = "parameter", trafo = TRUE)
-
 }

@@ -6,10 +6,18 @@
 #' @param object ([mlr3tuning::TuningInstanceSingleCrit].
 #' @param type (`character(1)`):
 #'   Type of the plot. Available choices:
-#'   * `"marginal"`: scatter plot of parameter versus performance. Points are filled with batch number.
-#'   * `"performance"`: scatter plot of performance versus batch number.
-#'   * `"parameter"`: scatter plot of parameter versus batch number. Points are filled with performance.
-#'   * `"freqpoly"`: frequency polygon plot with `ggplot2::geom_freqpoly`.
+#'   * `"marginal"`: scatter plot of parameter versus performance. Points are 
+#'     filled with batch number.
+#'   * `"performance"`: scatter plot of batch number versus performance.
+#'   * `"parameter"`: scatter plot of batch number versus parameter. Points are 
+#'     filled with performance.
+#' @param cols_x (`character()`)\cr
+#'   Column names of hyperparameters. By default, all untransformed 
+#'   hyperparameters are plottet. Transformed hyperparameters are prefixed with 
+#'   `x_domain_`.
+#' @param trafo (`logical(1)`)\cr
+#'  Determines if untransformed (`FALSE`) or transformed (`TRUE`) 
+#'  hyperparametery are plotted.
 #' @param ... (`any`):
 #'   Additional arguments, possibly passed down to the underlying plot functions.
 #' @return [ggplot2::ggplot()] object.
@@ -69,8 +77,8 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
     "performance" = {
       # performance versus iteration
       max_to_min = if (has_element(object$archive$codomain$tags, "minimize")) min else max
-      data[, best:= max_to_min(get(cols_y)) == get(cols_y), by = batch_nr]
-      ggplot(data, mapping = aes(x = .data[[cols_y]], y = .data$batch_nr)) +
+      data[, "best":= max_to_min(get(cols_y)) == get(cols_y), by = "batch_nr"]
+      ggplot(data, mapping = aes(x = .data$batch_nr, y = .data[[cols_y]])) +
         geom_point(mapping = aes(fill = .data$best), shape = 21, size = 3) +
         scale_fill_manual(name = "", labels = c(cols_y, "Best"), values = c("#FDE725FF", "#440154FF")) +
         geom_line(, data = data[(best)], colour = "#440154FF", size = 1)
@@ -80,7 +88,7 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
       # each parameter versus iteration
       require_namespaces("patchwork")
       plots  = map(cols_x, function(x) {
-        ggplot(data, mapping = aes(x = .data[[x]], y = .data$batch_nr)) +
+        ggplot(data, mapping = aes(x = .data$batch_nr, y = .data[[x]])) +
           geom_point(aes(fill = .data[[cols_y]], stroke = 0.5), shape = 21, size = 3) +
           scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
       })  
