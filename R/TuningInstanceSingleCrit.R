@@ -81,7 +81,7 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
       ggplot(data, mapping = aes(x = .data$batch_nr, y = .data[[cols_y]])) +
         geom_point(mapping = aes(fill = .data$best), shape = 21, size = 3) +
         scale_fill_manual(name = "", labels = c(cols_y, "Best"), values = c("#FDE725FF", "#440154FF")) +
-        geom_line(, data = data[(best)], colour = "#440154FF", size = 1)
+        geom_line(data = data[data$best,], colour = "#440154FF", size = 1)
     },
 
     "parameter" = {
@@ -93,6 +93,50 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
           scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
       })  
       patchwork::wrap_plots(plots, guides = "collect")
+    },
+
+    "parallel" = {
+      # parallel coordinates plot
+      data = data[, c(cols_x, cols_y), with = FALSE]
+
+      x_axis = data.table(x = seq(names(data)), variable = names(data))
+
+      # split data
+      data_l = data[, .SD, .SDcols = which(sapply(data, is.character))]
+      data_n = data[, .SD, .SDcols = which(sapply(data, is.numeric))]
+      data_y = data[, cols_y, with = FALSE]
+
+      # factor columns to numeric
+      data_c = data_l[, lapply(.SD, function(x) as.numeric(as.factor(x)))]
+
+      # rescale
+      data_n = data_n[, lapply(.SD, function(x) (x - mean(x)) / sd(x))]
+      data_c = data_c[, lapply(.SD, function(x) (x - mean(unique(x))) / sd(unique(x)))]
+
+      # configuration id
+      data_c[, id := 1:nrow(data_c)]
+      data_n[, id := 1:nrow(data_n)]
+      data_y[, id := 1:nrow(data_y)]
+
+      # to long format
+      data_c = melt(data_c, measure.var = setdiff(names(data_c), "id"))
+      data_l = melt(data_l, measure.var = names(data_l), value.name = "label")[, label]
+      data_c[, label := data_l]
+      data_n = melt(data_n, measure.var = setdiff(names(data_n), "id"))
+
+      # merge
+      data = rbindlist(list(data_c, data_n), fill = TRUE)
+      data = merge(data, x_axis, by = "variable")
+      data = merge(data, data_y, by = "id")
+      setorderv(data, "x")
+
+      ggplot(data, aes(x = .data$x, y = .data$value)) +
+        geom_line(aes(group = id, colour = .data[[cols_y]]), size = 1) +
+        scale_colour_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF")) +
+        geom_vline(aes(xintercept = x)) +
+        geom_label(aes(label = .data$label)) +
+        scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
+        theme(axis.title.x=element_blank())
     },
 
     stopf("Unknown plot type '%s'", type)
