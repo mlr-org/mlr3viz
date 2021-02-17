@@ -48,7 +48,8 @@
 #' 
 #' # plot transformed parameter values versus batch number
 #' autoplot(instance, type = "parameter", trafo = TRUE)
-autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, ...) {
+autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, 
+  learner = lrn("regr.ranger"), grid_resolution = 100, ...) {
   assert_subset(cols_x, c(object$archive$cols_x, paste0("x_domain_", object$archive$cols_x)))
   assert_flag(trafo)
 
@@ -68,7 +69,7 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
       require_namespaces("patchwork")
       plots  = map(cols_x, function(x) {
         ggplot(data, mapping = aes(x = .data[[x]], y = .data[[cols_y]])) +
-          geom_point(aes(fill = .data$batch_nr, stroke = 0.5), shape = 21, size = 3) +
+          geom_point(aes(fill = .data$batch_nr), shape = 21, size = 3, stroke = 1) +
           scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
       })  
       patchwork::wrap_plots(plots, guides = "collect")
@@ -89,7 +90,7 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
       require_namespaces("patchwork")
       plots  = map(cols_x, function(x) {
         ggplot(data, mapping = aes(x = .data$batch_nr, y = .data[[x]])) +
-          geom_point(aes(fill = .data[[cols_y]], stroke = 0.5), shape = 21, size = 3) +
+          geom_point(aes(fill = .data[[cols_y]]), shape = 21, size = 3, stroke = 0.5) +
           scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
       })  
       patchwork::wrap_plots(plots, guides = "collect")
@@ -134,9 +135,39 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
         geom_line(aes(group = id, colour = .data[[cols_y]]), size = 1) +
         scale_colour_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF")) +
         geom_vline(aes(xintercept = x)) +
-        geom_label(aes(label = .data$label)) +
+        geom_label(aes(label = .data$label), data[!is.na(label),]) +
         scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
         theme(axis.title.x=element_blank())
+    },
+
+    "surface" = {
+      if(length(cols_x) > 2) {
+        stop("Surface plot cannot be drawn with more than 2 parameters.")
+      }
+
+      data = data[, c(cols_x, cols_y), with = FALSE]
+      task = TaskRegr$new("surface", data, target = cols_y)
+
+      assert_learner(learner, task)
+      assert_numeric(grid_resolution)
+
+      learner$train(task)
+
+      x_min = min(data[, cols_x[1], with=FALSE])
+      x_max = max(data[, cols_x[1], with=FALSE])
+      y_min = min(data[, cols_x[2], with=FALSE])
+      y_max = max(data[, cols_x[2], with=FALSE])
+
+      x = seq(from = x_min, to = x_max, by = (x_max-x_min)/grid_resolution)
+      y = seq(from = y_min, to = y_max, by = (y_max-y_min)/grid_resolution)
+      data_i = set_names(expand.grid(x, y), cols_x)
+
+      setDT(data_i)[, (cols_y) := learner$predict_newdata(data_i)$response]
+
+      ggplot(data_i, aes(x = .data[[cols_x[1]]], y = .data[[cols_x[2]]])) +
+        geom_raster(aes(fill = .data[[cols_y]])) +
+        scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF")) +
+        geom_point(aes(fill = .data[[cols_y]]), data = data, shape = 21, size = 3, stroke = 1)
     },
 
     stopf("Unknown plot type '%s'", type)
