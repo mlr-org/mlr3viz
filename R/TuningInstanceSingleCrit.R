@@ -6,11 +6,16 @@
 #' @param object ([mlr3tuning::TuningInstanceSingleCrit].
 #' @param type (`character(1)`):
 #'   Type of the plot. Available choices:
-#'   * `"marginal"`: scatter plot of parameter versus performance. Points are 
-#'     filled with batch number.
-#'   * `"performance"`: scatter plot of batch number versus performance.
-#'   * `"parameter"`: scatter plot of batch number versus parameter. Points are 
-#'     filled with performance.
+#'   * `"marginal"`: scatter plots of hyperparameter versus performance. The
+#'     colour of the points shows the batch number.
+#'   * `"performance"`: scatter plots of batch number versus performance.
+#'   * `"parameter"`: scatter plots of batch number versus hyperparameter. The 
+#'     colour of the points shows the performance. 
+#'   * `"parallel"` parallel coordinates plot. Parameter values are rescaled by
+#'     `(x - mean(x)) / sd(x)`.
+#'   * `"surface"`: surface plot of 2 hyperparameters versus performance. 
+#'     The performance values are interpolated with the supplied 
+#'     [mlr3::learner].
 #' @param cols_x (`character()`)\cr
 #'   Column names of hyperparameters. By default, all untransformed 
 #'   hyperparameters are plottet. Transformed hyperparameters are prefixed with 
@@ -18,6 +23,10 @@
 #' @param trafo (`logical(1)`)\cr
 #'  Determines if untransformed (`FALSE`) or transformed (`TRUE`) 
 #'  hyperparametery are plotted.
+#' @param learner ([mlr3::learner])\cr
+#'  Regression learner used to interpolate the data of the surface plot.
+#' @param grid_resolution (`numeric()`)\cr
+#'  Resolution of the surface plot.
 #' @param ... (`any`):
 #'   Additional arguments, possibly passed down to the underlying plot functions.
 #' @return [ggplot2::ggplot()] object.
@@ -48,6 +57,12 @@
 #' 
 #' # plot transformed parameter values versus batch number
 #' autoplot(instance, type = "parameter", trafo = TRUE)
+#' 
+#' # plot parallel coordinates plot
+#' autoplot(instance, type = "parallel")#
+#' 
+#' # plot parallel coordinates plot
+#' autoplot(instance, type = "surface")
 autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, 
   learner = lrn("regr.ranger"), grid_resolution = 100, ...) {
   assert_subset(cols_x, c(object$archive$cols_x, paste0("x_domain_", object$archive$cols_x)))
@@ -103,7 +118,7 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
       x_axis = data.table(x = seq(names(data)), variable = names(data))
 
       # split data
-      data_l = data[, .SD, .SDcols = which(sapply(data, is.character))]
+      data_l = data[, .SD, .SDcols = which(sapply(data, function(x) is.character(x) || is.logical(x)))]
       data_n = data[, .SD, .SDcols = which(sapply(data, is.numeric))]
       data_y = data[, cols_y, with = FALSE]
 
@@ -111,18 +126,18 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
       data_c = data_l[, lapply(.SD, function(x) as.numeric(as.factor(x)))]
 
       # rescale
-      data_n = data_n[, lapply(.SD, function(x) (x - mean(x)) / sd(x))]
-      data_c = data_c[, lapply(.SD, function(x) (x - mean(unique(x))) / sd(unique(x)))]
+      data_n = data_n[, lapply(.SD, function(x) if (sd(x) > 0) (x - mean(x)) / sd(x) else 0)]
+      data_c = data_c[, lapply(.SD, function(x) if (sd(x) > 0) (x - mean(unique(x))) / sd(unique(x)) else 0)]
 
       # configuration id
-      data_c[, id := 1:nrow(data_c)]
+      if (nrow(data_c) > 0) data_c[, id := 1:nrow(data_c)]
       data_n[, id := 1:nrow(data_n)]
       data_y[, id := 1:nrow(data_y)]
 
       # to long format
       data_c = melt(data_c, measure.var = setdiff(names(data_c), "id"))
-      data_l = melt(data_l, measure.var = names(data_l), value.name = "label")[, label]
-      data_c[, label := data_l]
+      if (nrow(data_c) > 0) data_l = melt(data_l, measure.var = names(data_l), value.name = "label")[, label]
+      if (nrow(data_c) > 0) data_c[, label := data_l]
       data_n = melt(data_n, measure.var = setdiff(names(data_n), "id"))
 
       # merge
@@ -135,14 +150,14 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
         geom_line(aes(group = id, colour = .data[[cols_y]]), size = 1) +
         scale_colour_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF")) +
         geom_vline(aes(xintercept = x)) +
-        geom_label(aes(label = .data$label), data[!is.na(label),]) +
+        {if (nrow(data_c) > 0) geom_label(aes(label = .data$label), data[!is.na(label),])} +
         scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
         theme(axis.title.x=element_blank())
     },
 
     "surface" = {
-      if(length(cols_x) > 2) {
-        stop("Surface plot cannot be drawn with more than 2 parameters.")
+      if(length(cols_x) != 2) {
+        stop("Surface plots can only be drawn with 2 parameters.")
       }
 
       data = data[, c(cols_x, cols_y), with = FALSE]

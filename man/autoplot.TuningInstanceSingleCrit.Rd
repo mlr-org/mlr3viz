@@ -4,7 +4,15 @@
 \alias{autoplot.TuningInstanceSingleCrit}
 \title{Plot for TuningInstanceSingleCrit}
 \usage{
-\method{autoplot}{TuningInstanceSingleCrit}(object, type = "marginal", cols_x = NULL, trafo = FALSE, ...)
+\method{autoplot}{TuningInstanceSingleCrit}(
+  object,
+  type = "marginal",
+  cols_x = NULL,
+  trafo = FALSE,
+  learner = lrn("regr.ranger"),
+  grid_resolution = 100,
+  ...
+)
 }
 \arguments{
 \item{object}{(\link[mlr3tuning:TuningInstanceSingleCrit]{mlr3tuning::TuningInstanceSingleCrit}.}
@@ -12,11 +20,16 @@
 \item{type}{(\code{character(1)}):
 Type of the plot. Available choices:
 \itemize{
-\item \code{"marginal"}: scatter plot of parameter versus performance. Points are
-filled with batch number.
-\item \code{"performance"}: scatter plot of batch number versus performance.
-\item \code{"parameter"}: scatter plot of batch number versus parameter. Points are
-filled with performance.
+\item \code{"marginal"}: scatter plots of hyperparameter versus performance. The
+colour of the points shows the batch number.
+\item \code{"performance"}: scatter plots of batch number versus performance.
+\item \code{"parameter"}: scatter plots of batch number versus hyperparameter. The
+colour of the points shows the performance.
+\item \code{"parallel"} parallel coordinates plot. Parameter values are rescaled by
+\code{(x - mean(x)) / sd(x)}.
+\item \code{"surface"}: surface plot of 2 hyperparameters versus performance.
+The performance values are interpolated with the supplied
+\link[mlr3:learner]{mlr3::learner}.
 }}
 
 \item{cols_x}{(\code{character()})\cr
@@ -27,6 +40,12 @@ hyperparameters are plottet. Transformed hyperparameters are prefixed with
 \item{trafo}{(\code{logical(1)})\cr
 Determines if untransformed (\code{FALSE}) or transformed (\code{TRUE})
 hyperparametery are plotted.}
+
+\item{learner}{(\link[mlr3:learner]{mlr3::learner})\cr
+Regression learner used to interpolate the data of the surface plot.}
+
+\item{grid_resolution}{(\code{numeric()})\cr
+Resolution of the surface plot.}
 
 \item{...}{(\code{any}):
 Additional arguments, possibly passed down to the underlying plot functions.}
@@ -63,4 +82,10 @@ autoplot(instance, type = "marginal", cols_x = "cp")
 
 # plot transformed parameter values versus batch number
 autoplot(instance, type = "parameter", trafo = TRUE)
+
+# plot parallel coordinates plot
+autoplot(instance, type = "parallel")#
+
+# plot parallel coordinates plot
+autoplot(instance, type = "surface")
 }
