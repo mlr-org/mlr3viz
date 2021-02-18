@@ -110,4 +110,11 @@ test_that("autoplot.TuningInstanceSingleCrit", {
   expect_error(autoplot(instance, type = "surface", cols_x = "nrounds"), 
     regexp = "Surface plots can only be drawn with 2 parameters.",
     fixed = TRUE)
+
+  instance$archive$data[1, 1] = NA
+
+  expect_error(autoplot(instance, type = "parallel"),
+    regexp = "Parallel coordinate plots cannot be displayed with missing data.",
+    fixed = TRUE)
+
 })

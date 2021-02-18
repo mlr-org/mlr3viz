@@ -112,6 +112,9 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
     "parallel" = {
       # parallel coordinates plot
       data = data[, c(cols_x, cols_y), with = FALSE]
+      if (any(data[, sapply(.SD, function(x) any(is.na(x)))])) {
+        stop("Parallel coordinate plots cannot be displayed with missing data.")
+      }
       x_axis = data.table(x = seq(names(data)), variable = names(data))
 
       # split data
