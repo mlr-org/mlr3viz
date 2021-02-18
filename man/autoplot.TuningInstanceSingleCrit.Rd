@@ -9,7 +9,7 @@
   type = "marginal",
   cols_x = NULL,
   trafo = FALSE,
-  learner = lrn("regr.ranger"),
+  learner = mlr3::lrn("regr.ranger"),
   grid_resolution = 100,
   ...
 )
@@ -29,7 +29,7 @@ colour of the points shows the performance.
 \code{(x - mean(x)) / sd(x)}.
 \item \code{"surface"}: surface plot of 2 hyperparameters versus performance.
 The performance values are interpolated with the supplied
-\link[mlr3:learner]{mlr3::learner}.
+\link[mlr3:Learner]{mlr3::Learner}.
 }}
 
 \item{cols_x}{(\code{character()})\cr
@@ -41,7 +41,7 @@ hyperparameters are plottet. Transformed hyperparameters are prefixed with
 Determines if untransformed (\code{FALSE}) or transformed (\code{TRUE})
 hyperparametery are plotted.}
 
-\item{learner}{(\link[mlr3:learner]{mlr3::learner})\cr
+\item{learner}{(\link[mlr3:Learner]{mlr3::Learner})\cr
 Regression learner used to interpolate the data of the surface plot.}
 
 \item{grid_resolution}{(\code{numeric()})\cr
@@ -57,6 +57,7 @@ Additional arguments, possibly passed down to the underlying plot functions.}
 Generates plots for \link[mlr3tuning:TuningInstanceSingleCrit]{mlr3tuning::TuningInstanceSingleCrit}.
 }
 \examples{
+if(requireNamespace("mlr3tuning") && requireNamespace("patchwork")) {
 library(mlr3tuning)
 
 learner = lrn("classif.rpart")
@@ -84,8 +85,5 @@ autoplot(instance, type = "marginal", cols_x = "cp")
 autoplot(instance, type = "parameter", trafo = TRUE)
 
 # plot parallel coordinates plot
-autoplot(instance, type = "parallel")#
-
-# plot parallel coordinates plot
-autoplot(instance, type = "surface")
+autoplot(instance, type = "parallel")}
 }

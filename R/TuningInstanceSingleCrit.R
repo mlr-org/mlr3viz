@@ -15,7 +15,7 @@
 #'     `(x - mean(x)) / sd(x)`.
 #'   * `"surface"`: surface plot of 2 hyperparameters versus performance. 
 #'     The performance values are interpolated with the supplied 
-#'     [mlr3::learner].
+#'     [mlr3::Learner].
 #' @param cols_x (`character()`)\cr
 #'   Column names of hyperparameters. By default, all untransformed 
 #'   hyperparameters are plottet. Transformed hyperparameters are prefixed with 
@@ -23,7 +23,7 @@
 #' @param trafo (`logical(1)`)\cr
 #'  Determines if untransformed (`FALSE`) or transformed (`TRUE`) 
 #'  hyperparametery are plotted.
-#' @param learner ([mlr3::learner])\cr
+#' @param learner ([mlr3::Learner])\cr
 #'  Regression learner used to interpolate the data of the surface plot.
 #' @param grid_resolution (`numeric()`)\cr
 #'  Resolution of the surface plot.
@@ -32,6 +32,7 @@
 #' @return [ggplot2::ggplot()] object.
 #' @export
 #' @examples
+#' if(requireNamespace("mlr3tuning") && requireNamespace("patchwork")) {
 #' library(mlr3tuning)
 #' 
 #' learner = lrn("classif.rpart")
@@ -59,12 +60,9 @@
 #' autoplot(instance, type = "parameter", trafo = TRUE)
 #' 
 #' # plot parallel coordinates plot
-#' autoplot(instance, type = "parallel")#
-#' 
-#' # plot parallel coordinates plot
-#' autoplot(instance, type = "surface")
+#' autoplot(instance, type = "parallel")}
 autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, 
-  learner = lrn("regr.ranger"), grid_resolution = 100, ...) {
+  learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, ...) {
   assert_subset(cols_x, c(object$archive$cols_x, paste0("x_domain_", object$archive$cols_x)))
   assert_flag(trafo)
 
@@ -114,7 +112,6 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
     "parallel" = {
       # parallel coordinates plot
       data = data[, c(cols_x, cols_y), with = FALSE]
-
       x_axis = data.table(x = seq(names(data)), variable = names(data))
 
       # split data
@@ -126,19 +123,22 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
       data_c = data_l[, lapply(.SD, function(x) as.numeric(as.factor(x)))]
 
       # rescale
-      data_n = data_n[, lapply(.SD, function(x) if (sd(x) > 0) (x - mean(x)) / sd(x) else 0)]
-      data_c = data_c[, lapply(.SD, function(x) if (sd(x) > 0) (x - mean(unique(x))) / sd(unique(x)) else 0)]
-
-      # configuration id
-      if (nrow(data_c) > 0) data_c[, id := 1:nrow(data_c)]
-      data_n[, id := 1:nrow(data_n)]
-      data_y[, id := 1:nrow(data_y)]
+      data_n = data_n[, lapply(.SD, function(x) if (sd(x) > 0) (x - mean(x)) / sd(x) else rep(0, length(x)))]
+      data_c = data_c[, lapply(.SD, function(x) if (sd(x) > 0) (x - mean(unique(x))) / sd(unique(x)) else rep(0, length(x)))]
 
       # to long format
-      data_c = melt(data_c, measure.var = setdiff(names(data_c), "id"))
-      if (nrow(data_c) > 0) data_l = melt(data_l, measure.var = names(data_l), value.name = "label")[, label]
-      if (nrow(data_c) > 0) data_c[, label := data_l]
+      set(data_n, j = "id", value = 1:nrow(data_n))
+      set(data_y, j = "id", value = 1:nrow(data_y))
       data_n = melt(data_n, measure.var = setdiff(names(data_n), "id"))
+
+      if (nrow(data_c) > 0) {
+        # Skip if no factor column is present
+        set(data_c, j = "id", value = 1:nrow(data_c))
+        data_c = melt(data_c, measure.var = setdiff(names(data_c), "id"))
+        data_l = data_l[, lapply(.SD, as.character)] # Logical to character
+        data_l = melt(data_l, measure.var = names(data_l), value.name = "label")[, "label"]
+        set(data_c, j = "label", value = data_l)
+      }
 
       # merge
       data = rbindlist(list(data_c, data_n), fill = TRUE)
@@ -147,10 +147,10 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
       setorderv(data, "x")
 
       ggplot(data, aes(x = .data$x, y = .data$value)) +
-        geom_line(aes(group = id, colour = .data[[cols_y]]), size = 1) +
+        geom_line(aes(group = .data$id, colour = .data[[cols_y]]), size = 1) +
         scale_colour_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF")) +
         geom_vline(aes(xintercept = x)) +
-        {if (nrow(data_c) > 0) geom_label(aes(label = .data$label), data[!is.na(label),])} +
+        {if (nrow(data_c) > 0) geom_label(aes(label = .data$label), data[!is.na(data$label),])} +
         scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
         theme(axis.title.x=element_blank())
     },
@@ -161,9 +161,9 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
       }
 
       data = data[, c(cols_x, cols_y), with = FALSE]
-      task = TaskRegr$new("surface", data, target = cols_y)
+      task = mlr3::TaskRegr$new("surface", data, target = cols_y)
 
-      assert_learner(learner, task)
+      mlr3::assert_learner(learner, task)
       assert_numeric(grid_resolution)
 
       learner$train(task)
@@ -189,6 +189,7 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
   )
 }
 
+#' @export
 fortify.TuningInstanceSingleCrit = function(model, data = NULL, ...) {
   as.data.table(model$archive)
 }
