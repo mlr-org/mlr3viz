@@ -13,6 +13,8 @@
 #'     colour of the points shows the performance. 
 #'   * `"parallel"` parallel coordinates plot. Parameter values are rescaled by
 #'     `(x - mean(x)) / sd(x)`.
+#'   * `"points"` - scatter plot of two hyperparameters versus performance. The 
+#'     colour of the points shows the performance.
 #'   * `"surface"`: surface plot of 2 hyperparameters versus performance. 
 #'     The performance values are interpolated with the supplied 
 #'     [mlr3::Learner].
@@ -21,12 +23,15 @@
 #'   hyperparameters are plottet. Transformed hyperparameters are prefixed with 
 #'   `x_domain_`.
 #' @param trafo (`logical(1)`)\cr
-#'  Determines if untransformed (`FALSE`) or transformed (`TRUE`) 
-#'  hyperparametery are plotted.
+#'   Determines if untransformed (`FALSE`) or transformed (`TRUE`) 
+#'   hyperparametery are plotted.
 #' @param learner ([mlr3::Learner])\cr
-#'  Regression learner used to interpolate the data of the surface plot.
+#'   Regression learner used to interpolate the data of the surface plot.
 #' @param grid_resolution (`numeric()`)\cr
-#'  Resolution of the surface plot.
+#'   Resolution of the surface plot.
+#' @param return_list (`logical(1)`)\cr
+#'   Determines if list of plots (`TRUE`) is returned or a composite of plots
+#'   created with the `patchwork` package (`FALSE`). 
 #' @param ... (`any`):
 #'   Additional arguments, possibly passed down to the underlying plot functions.
 #' @return [ggplot2::ggplot()] object.
@@ -62,9 +67,10 @@
 #' # plot parallel coordinates plot
 #' autoplot(instance, type = "parallel")}
 autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, 
-  learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, ...) {
+  learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, return_list = FALSE, ...) {
   assert_subset(cols_x, c(object$archive$cols_x, paste0("x_domain_", object$archive$cols_x)))
   assert_flag(trafo)
+  assert_flag(return_list)
 
   if (is.null(cols_x)) {
     cols_x = if(trafo) {
@@ -79,13 +85,18 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
   switch(type,
     "marginal" = {
       # each parameter versus performance
-      require_namespaces("patchwork")
       plots  = map(cols_x, function(x) {
         ggplot(data, mapping = aes(x = .data[[x]], y = .data[[cols_y]])) +
           geom_point(aes(fill = .data$batch_nr), shape = 21, size = 3, stroke = 1) +
           scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
       })  
-      patchwork::wrap_plots(plots, guides = "collect")
+      
+      if(return_list) {
+        plots
+      } else {
+        require_namespaces("patchwork")
+        patchwork::wrap_plots(plots, guides = "collect")
+      }
     },
 
     "performance" = {
@@ -100,13 +111,18 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
 
     "parameter" = {
       # each parameter versus iteration
-      require_namespaces("patchwork")
       plots  = map(cols_x, function(x) {
         ggplot(data, mapping = aes(x = .data$batch_nr, y = .data[[x]])) +
           geom_point(aes(fill = .data[[cols_y]]), shape = 21, size = 3, stroke = 0.5) +
           scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
-      })  
-      patchwork::wrap_plots(plots, guides = "collect")
+      })
+
+      if(return_list) {
+        plots
+      } else {
+        require_namespaces("patchwork")
+        patchwork::wrap_plots(plots, guides = "collect")
+      }
     },
 
     "parallel" = {
@@ -156,6 +172,16 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
         {if (nrow(data_c) > 0) geom_label(aes(label = .data$label), data[!is.na(data$label),])} +
         scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
         theme(axis.title.x=element_blank())
+    },
+
+    "points" = {
+      if(length(cols_x) != 2) {
+        stop("Scatter plots can only be drawn with 2 parameters.")
+      }
+
+      ggplot(data, aes(x = .data[[cols_x[1]]], y = .data[[cols_x[2]]])) +
+        geom_point(aes(fill = .data[[cols_y]]), data = data, shape = 21, size = 3, stroke = 1) +
+        scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
     },
 
     "surface" = {

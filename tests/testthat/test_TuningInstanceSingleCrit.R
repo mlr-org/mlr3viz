@@ -57,6 +57,9 @@ test_that("autoplot.TuningInstanceSingleCrit", {
   p = autoplot(instance, type = "marginal", trafo = TRUE)
   expect_true(is.ggplot(p))
 
+  p = autoplot(instance, type = "marginal", return_list = TRUE)
+  expect_list(p)
+
   p = autoplot(instance, type = "performance")
   expect_true(is.ggplot(p))
 
@@ -69,6 +72,9 @@ test_that("autoplot.TuningInstanceSingleCrit", {
   p = autoplot(instance, type = "parameter", trafo = TRUE)
   expect_true(is.ggplot(p))
 
+  p = autoplot(instance, type = "parameter", return_list = TRUE)
+  expect_list(p)
+
   p = autoplot(instance, type = "surface")
   expect_true(is.ggplot(p))
 
@@ -76,6 +82,9 @@ test_that("autoplot.TuningInstanceSingleCrit", {
   expect_true(is.ggplot(p))
 
   p = autoplot(instance, type = "surface", learner = lrn("regr.lm"))
+  expect_true(is.ggplot(p))
+
+  p = autoplot(instance, type = "points")
   expect_true(is.ggplot(p))
 
   p = autoplot(instance, type = "parallel")
