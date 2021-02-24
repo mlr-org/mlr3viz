@@ -11,7 +11,6 @@
   trafo = FALSE,
   learner = mlr3::lrn("regr.ranger"),
   grid_resolution = 100,
-  return_list = FALSE,
   ...
 )
 }
@@ -50,12 +49,12 @@ Regression learner used to interpolate the data of the surface plot.}
 \item{grid_resolution}{(\code{numeric()})\cr
 Resolution of the surface plot.}
 
+\item{...}{(\code{any}):
+Additional arguments, possibly passed down to the underlying plot functions.}
+
 \item{return_list}{(\code{logical(1)})\cr
 Determines if list of plots (\code{TRUE}) is returned or a composite of plots
 created with the \code{patchwork} package (\code{FALSE}).}
-
-\item{...}{(\code{any}):
-Additional arguments, possibly passed down to the underlying plot functions.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.

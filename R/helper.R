@@ -21,3 +21,17 @@ plot_precrec = function(object, curvetype = "ROC", cb_alpha = 0.05, show_cb = TR
 
   autoplot(precrec::evalmod(x, calc_avg = calc_avg, cb_alpha = cb_alpha), curvetype = curvetype, show_cb = show_cb, ...)
 }
+
+
+delayed_patchwork = function(li, ...) {
+  assert_list(li, min.len = 1L)
+  attr(li, ".args") = list(...)
+  class(li) = "DelayedPatchworkPlot"
+  li
+}
+
+#' @export
+print.DelayedPatchworkPlot = function(x, ...) {
+  require_namespaces("patchwork")
+  invoke(patchwork::wrap_plots, x, .args = attr(x, ".args"))
+}

@@ -9,21 +9,21 @@
 #'   * `"marginal"`: scatter plots of hyperparameter versus performance. The
 #'     colour of the points shows the batch number.
 #'   * `"performance"`: scatter plots of batch number versus performance.
-#'   * `"parameter"`: scatter plots of batch number versus hyperparameter. The 
-#'     colour of the points shows the performance. 
+#'   * `"parameter"`: scatter plots of batch number versus hyperparameter. The
+#'     colour of the points shows the performance.
 #'   * `"parallel"` parallel coordinates plot. Parameter values are rescaled by
 #'     `(x - mean(x)) / sd(x)`.
-#'   * `"points"` - scatter plot of two hyperparameters versus performance. The 
+#'   * `"points"` - scatter plot of two hyperparameters versus performance. The
 #'     colour of the points shows the performance.
-#'   * `"surface"`: surface plot of 2 hyperparameters versus performance. 
-#'     The performance values are interpolated with the supplied 
+#'   * `"surface"`: surface plot of 2 hyperparameters versus performance.
+#'     The performance values are interpolated with the supplied
 #'     [mlr3::Learner].
 #' @param cols_x (`character()`)\cr
-#'   Column names of hyperparameters. By default, all untransformed 
-#'   hyperparameters are plottet. Transformed hyperparameters are prefixed with 
+#'   Column names of hyperparameters. By default, all untransformed
+#'   hyperparameters are plottet. Transformed hyperparameters are prefixed with
 #'   `x_domain_`.
 #' @param trafo (`logical(1)`)\cr
-#'   Determines if untransformed (`FALSE`) or transformed (`TRUE`) 
+#'   Determines if untransformed (`FALSE`) or transformed (`TRUE`)
 #'   hyperparametery are plotted.
 #' @param learner ([mlr3::Learner])\cr
 #'   Regression learner used to interpolate the data of the surface plot.
@@ -31,7 +31,7 @@
 #'   Resolution of the surface plot.
 #' @param return_list (`logical(1)`)\cr
 #'   Determines if list of plots (`TRUE`) is returned or a composite of plots
-#'   created with the `patchwork` package (`FALSE`). 
+#'   created with the `patchwork` package (`FALSE`).
 #' @param ... (`any`):
 #'   Additional arguments, possibly passed down to the underlying plot functions.
 #' @return [ggplot2::ggplot()] object.
@@ -39,49 +39,48 @@
 #' @examples
 #' if(requireNamespace("mlr3tuning") && requireNamespace("patchwork")) {
 #' library(mlr3tuning)
-#' 
+#'
 #' learner = lrn("classif.rpart")
 #' learner$param_set$values$cp = to_tune(0.001, 0.1)
 #' learner$param_set$values$minsplit = to_tune(1, 10)
-#' 
+#'
 #' instance = TuningInstanceSingleCrit$new(
 #'   task = tsk("iris"),
 #'   learner = learner,
 #'   resampling = rsmp("holdout"),
 #'   measure = msr("classif.ce"),
 #'   terminator = trm("evals", n_evals = 10))
-#' 
+#'
 #' tuner = tnr("random_search")
 #'
 #' tuner$optimize(instance)
-#' 
+#'
 #' # plot performance versus batch number
 #' autoplot(instance, type = "performance")
-#' 
+#'
 #' # plot cp values versus performance
 #' autoplot(instance, type = "marginal", cols_x = "cp")
-#' 
+#'
 #' # plot transformed parameter values versus batch number
 #' autoplot(instance, type = "parameter", trafo = TRUE)
-#' 
+#'
 #' # plot parallel coordinates plot
 #' autoplot(instance, type = "parallel")}
-autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, 
-  learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, return_list = FALSE, ...) {
+autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE,
+  learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, ...) { # nolint
   assert_subset(cols_x, c(object$archive$cols_x, paste0("x_domain_", object$archive$cols_x)))
   assert_flag(trafo)
-  assert_flag(return_list)
 
   if (is.null(cols_x)) {
-    cols_x = if(trafo) {
+    cols_x = if (trafo) {
       paste0("x_domain_", object$archive$cols_x)
     } else {
       object$archive$cols_x
     }
-  } 
+  }
   cols_y = object$archive$cols_y
   data = fortify(object)
- 
+
   switch(type,
     "marginal" = {
       # each parameter versus performance
@@ -89,24 +88,19 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
         ggplot(data, mapping = aes(x = .data[[x]], y = .data[[cols_y]])) +
           geom_point(aes(fill = .data$batch_nr), shape = 21, size = 3, stroke = 1) +
           scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
-      })  
-      
-      if(return_list) {
-        plots
-      } else {
-        require_namespaces("patchwork")
-        patchwork::wrap_plots(plots, guides = "collect")
-      }
+      })
+
+      return(delayed_patchwork(plots, guides = "collect"))
     },
 
     "performance" = {
       # performance versus iteration
-      max_to_min = if (has_element(object$archive$codomain$tags, "minimize")) min else max
-      data[, "best":= max_to_min(get(cols_y)) == get(cols_y), by = "batch_nr"]
+      max_to_min = if ("minimize" %in% object$archive$codomain$tags) min else max
+      data[, "best" := max_to_min(get(cols_y)) == get(cols_y), by = "batch_nr"]
       ggplot(data, mapping = aes(x = .data$batch_nr, y = .data[[cols_y]])) +
         geom_point(mapping = aes(fill = .data$best), shape = 21, size = 3) +
         scale_fill_manual(name = "", labels = c(cols_y, "Best"), values = c("#FDE725FF", "#440154FF")) +
-        geom_line(data = data[data$best,], colour = "#440154FF", size = 1)
+        geom_line(data = data[data$best, ], colour = "#440154FF", size = 1)
     },
 
     "parameter" = {
@@ -117,12 +111,7 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
           scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
       })
 
-      if(return_list) {
-        plots
-      } else {
-        require_namespaces("patchwork")
-        patchwork::wrap_plots(plots, guides = "collect")
-      }
+      return(delayed_patchwork(plots, guides = "collect"))
     },
 
     "parallel" = {
@@ -146,13 +135,13 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
       data_c = data_c[, lapply(.SD, function(x) if (sd(x) > 0) (x - mean(unique(x))) / sd(unique(x)) else rep(0, length(x)))]
 
       # to long format
-      set(data_n, j = "id", value = 1:nrow(data_n))
-      set(data_y, j = "id", value = 1:nrow(data_y))
+      set(data_n, j = "id", value = seq_row(data_n))
+      set(data_y, j = "id", value = seq_row(data_y))
       data_n = melt(data_n, measure.var = setdiff(names(data_n), "id"))
 
-      if (nrow(data_c) > 0) {
+      if (nrow(data_c) > 0L) {
         # Skip if no factor column is present
-        set(data_c, j = "id", value = 1:nrow(data_c))
+        set(data_c, j = "id", value = seq_row(data_c))
         data_c = melt(data_c, measure.var = setdiff(names(data_c), "id"))
         data_l = data_l[, lapply(.SD, as.character)] # Logical to character
         data_l = melt(data_l, measure.var = names(data_l), value.name = "label")[, "label"]
@@ -169,13 +158,13 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
         geom_line(aes(group = .data$id, colour = .data[[cols_y]]), size = 1) +
         scale_colour_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF")) +
         geom_vline(aes(xintercept = x)) +
-        {if (nrow(data_c) > 0) geom_label(aes(label = .data$label), data[!is.na(data$label),])} +
-        scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
-        theme(axis.title.x=element_blank())
+          if (nrow(data_c) > 0L) geom_label(aes(label = .data$label), data[!is.na(data$label), ]) +
+          scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
+          theme(axis.title.x = element_blank())
     },
 
     "points" = {
-      if(length(cols_x) != 2) {
+      if (length(cols_x) != 2) {
         stop("Scatter plots can only be drawn with 2 parameters.")
       }
 
@@ -185,7 +174,7 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
     },
 
     "surface" = {
-      if(length(cols_x) != 2) {
+      if (length(cols_x) != 2) {
         stop("Surface plots can only be drawn with 2 parameters.")
       }
 
@@ -197,13 +186,13 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
 
       learner$train(task)
 
-      x_min = min(data[, cols_x[1], with=FALSE])
-      x_max = max(data[, cols_x[1], with=FALSE])
-      y_min = min(data[, cols_x[2], with=FALSE])
-      y_max = max(data[, cols_x[2], with=FALSE])
+      x_min = min(data[, cols_x[1], with = FALSE])
+      x_max = max(data[, cols_x[1], with = FALSE])
+      y_min = min(data[, cols_x[2], with = FALSE])
+      y_max = max(data[, cols_x[2], with = FALSE])
 
-      x = seq(from = x_min, to = x_max, by = (x_max-x_min)/grid_resolution)
-      y = seq(from = y_min, to = y_max, by = (y_max-y_min)/grid_resolution)
+      x = seq(from = x_min, to = x_max, by = (x_max - x_min) / grid_resolution)
+      y = seq(from = y_min, to = y_max, by = (y_max - y_min) / grid_resolution)
       data_i = set_names(expand.grid(x, y), cols_x)
 
       setDT(data_i)[, (cols_y) := learner$predict_newdata(data_i)$response]
@@ -219,6 +208,6 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
 }
 
 #' @export
-fortify.TuningInstanceSingleCrit = function(model, data = NULL, ...) {
+fortify.TuningInstanceSingleCrit = function(model, data = NULL, ...) { # nolint
   as.data.table(model$archive)
 }
