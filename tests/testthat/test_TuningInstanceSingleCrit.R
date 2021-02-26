@@ -1,5 +1,6 @@
 test_that("fortify.TuningInstanceSingleCrit", {
   skip_if_not_installed("mlr3")
+  skip_if_not_installed("paradox")
   skip_if_not_installed("mlr3tuning")
   skip_if_not_installed("patchwork")
   skip_if_not_installed("mlr3tuning")
@@ -14,7 +15,7 @@ test_that("fortify.TuningInstanceSingleCrit", {
     learner = learner,
     resampling = mlr3::rsmp("holdout"),
     measure = mlr3::msr("classif.ce"),
-    terminator = mlr3tuning::trm("evals", n_evals = 4))
+    terminator = trm("evals", n_evals = 4))
 
   tuner = tnr("random_search", batch_size = 2)
   tuner$optimize(instance)
@@ -27,6 +28,7 @@ test_that("fortify.TuningInstanceSingleCrit", {
 
 test_that("autoplot.TuningInstanceSingleCrit", {
   skip_if_not_installed("mlr3")
+  skip_if_not_installed("paradox")
   skip_if_not_installed("mlr3learners")
   skip_if_not_installed("mlr3tuning")
   skip_if_not_installed("ranger")
@@ -44,7 +46,7 @@ test_that("autoplot.TuningInstanceSingleCrit", {
     learner = learner,
     resampling = mlr3::rsmp("holdout"),
     measure = mlr3::msr("classif.ce"),
-    terminator = mlr3tuning::trm("evals", n_evals = 4))
+    terminator = trm("evals", n_evals = 4))
 
   tuner = tnr("random_search", batch_size = 2)
   tuner$optimize(instance)
@@ -110,7 +112,7 @@ test_that("autoplot.TuningInstanceSingleCrit", {
     learner = learner,
     resampling = mlr3::rsmp("holdout"),
     measure = mlr3::msr("classif.ce"),
-    terminator = mlr3tuning::trm("evals", n_evals = 4))
+    terminator = trm("evals", n_evals = 4))
 
   tuner = tnr("random_search", batch_size = 2)
   tuner$optimize(instance)
