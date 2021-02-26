@@ -17,6 +17,11 @@ Authors@R:
              role = "aut",
              email = "raphael.sonabend.15@ucl.ac.uk",
              comment = c(ORCID = "0000-0001-9225-4654")),
+      person(given = "Marc",
+             family = "Becker",
+             role = "aut",
+             email = "marcbecker@posteo.de",
+             comment = c(ORCID = "0000-0002-8115-0400")),
       person(given = "Damir",
              family = "Pulatov",
              role = "ctb",
@@ -53,12 +58,17 @@ Suggests:
     mlr3filters,
     mlr3learners,
     mlr3proba (>= 0.2.3),
+    mlr3tuning (>= 0.7.0),
+    paradox,
     partykit,
+    patchwork (>= 1.1.1),
     precrec,
+    ranger,
     rpart,
     stats,
     survival,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    xgboost
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8

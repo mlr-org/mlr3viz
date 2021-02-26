@@ -4,4 +4,5 @@
 #' @import ggplot2
 #' @importFrom utils head
 #' @importFrom graphics plot
+#' @importFrom stats sd
 "_PACKAGE"
