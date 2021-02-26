@@ -1,3 +1,7 @@
+# mlr3viz 0.5.1-9000
+
+- New autoplot for `TuningInstanceSingleCrit` from package `mlr3tuning`.
+
 # mlr3viz 0.5.1
 
 - Fix test on solaris.
