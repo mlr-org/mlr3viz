@@ -155,7 +155,7 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
         geom_line(aes(group = .data$id, colour = .data[[cols_y]]), size = 1) +
         scale_colour_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF")) +
         geom_vline(aes(xintercept = x)) +
-          if (nrow(data_c) > 0L) geom_label(aes(label = .data$label), data[!is.na(data$label), ]) +
+          {if (nrow(data_c) > 0L) geom_label(aes(label = .data$label), data[!is.na(data$label), ])} +
           scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
           theme(axis.title.x = element_blank())
     },
