@@ -51,10 +51,6 @@ Resolution of the surface plot.}
 
 \item{...}{(\code{any}):
 Additional arguments, possibly passed down to the underlying plot functions.}
-
-\item{return_list}{(\code{logical(1)})\cr
-Determines if list of plots (\code{TRUE}) is returned or a composite of plots
-created with the \code{patchwork} package (\code{FALSE}).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.

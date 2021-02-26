@@ -14,7 +14,7 @@ test_that("fortify.TuningInstanceSingleCrit", {
     learner = learner,
     resampling = mlr3::rsmp("holdout"),
     measure = mlr3::msr("classif.ce"),
-    terminator = trm("evals", n_evals = 4))
+    terminator = mlr3tuning::trm("evals", n_evals = 4))
 
   tuner = tnr("random_search", batch_size = 2)
   tuner$optimize(instance)
@@ -40,11 +40,11 @@ test_that("autoplot.TuningInstanceSingleCrit", {
   learner$param_set$values$minsplit = paradox::to_tune(1, 10)
 
   instance = TuningInstanceSingleCrit$new(
-    task = tsk("iris"),
+    task = mlr3::tsk("iris"),
     learner = learner,
-    resampling = rsmp("holdout"),
-    measure = msr("classif.ce"),
-    terminator = trm("evals", n_evals = 4))
+    resampling = mlr3::rsmp("holdout"),
+    measure = mlr3::msr("classif.ce"),
+    terminator = mlr3tuning::trm("evals", n_evals = 4))
 
   tuner = tnr("random_search", batch_size = 2)
   tuner$optimize(instance)
@@ -110,7 +110,7 @@ test_that("autoplot.TuningInstanceSingleCrit", {
     learner = learner,
     resampling = mlr3::rsmp("holdout"),
     measure = mlr3::msr("classif.ce"),
-    terminator = mlr3::trm("evals", n_evals = 4))
+    terminator = mlr3tuning::trm("evals", n_evals = 4))
 
   tuner = tnr("random_search", batch_size = 2)
   tuner$optimize(instance)

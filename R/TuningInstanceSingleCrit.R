@@ -29,9 +29,6 @@
 #'   Regression learner used to interpolate the data of the surface plot.
 #' @param grid_resolution (`numeric()`)\cr
 #'   Resolution of the surface plot.
-#' @param return_list (`logical(1)`)\cr
-#'   Determines if list of plots (`TRUE`) is returned or a composite of plots
-#'   created with the `patchwork` package (`FALSE`).
 #' @param ... (`any`):
 #'   Additional arguments, possibly passed down to the underlying plot functions.
 #' @return [ggplot2::ggplot()] object.
