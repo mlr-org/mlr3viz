@@ -53,7 +53,7 @@ autoplot.BenchmarkResult = function(object, # nolint
     task_type = task$task_type), task = task)
   measure_id = measure$id
   tab = fortify(object, measure = measure)
-  tab$nr = as.character(tab$nr)
+  tab$nr = sprintf("%09d", tab$nr)
   learner_label_map = tab[!duplicated(tab$nr), c("nr", "learner_id")]
   learner_labels = learner_label_map$learner_id
   names(learner_labels) = learner_label_map$nr
