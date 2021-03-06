@@ -82,7 +82,8 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
     "marginal" = {
       # each parameter versus performance
       plots  = map(cols_x, function(x) {
-        ggplot(data, mapping = aes(x = .data[[x]], y = .data[[cols_y]])) +
+        data_i = data[!is.na(get(x)), c(x, cols_y, "batch_nr") , with = FALSE]
+        ggplot(data_i, mapping = aes(x = .data[[x]], y = .data[[cols_y]])) +
           geom_point(aes(fill = .data$batch_nr), shape = 21, size = 3, stroke = 1) +
           scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
       })
