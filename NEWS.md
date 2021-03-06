@@ -1,6 +1,7 @@
-# mlr3viz 0.5.1-9000
+# mlr3viz 0.5.2
 
 - New autoplot for `TuningInstanceSingleCrit` from package `mlr3tuning`.
+- Fixed bugs in autoplot function for `BenchmarkResult` (#63, #65)
 
 # mlr3viz 0.5.1
 
