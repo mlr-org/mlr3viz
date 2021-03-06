@@ -2,8 +2,8 @@ test_that("autoplot.PredictionSurv", {
   skip_if_not_installed("mlr3proba")
   require_namespaces("mlr3proba")
 
-  task = tsk("rats")$filter(1:100)
-  learner = lrn("surv.kaplan")$train(task)
+  task = mlr3::tsk("rats")$filter(1:100)
+  learner = mlr3::lrn("surv.kaplan")$train(task)
   prediction = learner$predict(task)
 
   p = autoplot(prediction, type = "calib", task = task)
