@@ -217,13 +217,13 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></td>
 <span class='va'>object</span> <span class='op'>=</span> <span class='va'>learner</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span><span class='op'>$</span><span class='fu'>predict</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/fortify.html'>fortify</a></span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    row_id truth response
-#&gt; 1:      1  24.0 23.72519
-#&gt; 2:      2  21.6 19.55954
-#&gt; 3:      3  34.7 35.10313
-#&gt; 4:      4  33.4 35.10313
-#&gt; 5:      5  36.2 35.10313
-#&gt; 6:      6  28.7 29.98333</div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    row_ids truth response
+#&gt; 1:       1  24.0 23.72519
+#&gt; 2:       2  21.6 19.55954
+#&gt; 3:       3  34.7 35.10313
+#&gt; 4:       4  33.4 35.10313
+#&gt; 5:       5  36.2 35.10313
+#&gt; 6:       6  28.7 29.98333</div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='autoplot.PredictionRegr-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span>, type <span class='op'>=</span> <span class='st'>"histogram"</span>, binwidth <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 </div><div class='img'><img src='autoplot.PredictionRegr-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>object</span>, type <span class='op'>=</span> <span class='st'>"residual"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='autoplot.PredictionRegr-3.png' alt='' width='700' height='433' /></div></pre>
