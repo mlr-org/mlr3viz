@@ -33,5 +33,5 @@ delayed_patchwork = function(li, ...) {
 #' @export
 print.DelayedPatchworkPlot = function(x, ...) {
   require_namespaces("patchwork")
-  invoke(patchwork::wrap_plots, x, .args = attr(x, ".args"))
+  print(invoke(patchwork::wrap_plots, x, .args = list(attr(x, ".args"))))
 }
