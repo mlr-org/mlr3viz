@@ -72,5 +72,5 @@ autoplot(p, type = "dcalib")
 Haider H, Hoehn B, Davis S, Greiner R (2020).
 \dQuote{Effective Ways to Build and Evaluate Individual Survival Distributions.}
 \emph{Journal of Machine Learning Research}, \bold{21}(85), 1-63.
-\url{http://jmlr.org/papers/v21/18-772.html}.
+\url{https://jmlr.org/papers/v21/18-772.html}.
 }
