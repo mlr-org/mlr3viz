@@ -30,6 +30,6 @@ bibentries  = c(
     volume  = "21",
     number  = "85",
     pages   = "1-63",
-    url     = "http://jmlr.org/papers/v21/18-772.html"
+    url     = "https://jmlr.org/papers/v21/18-772.html"
   )
 )
