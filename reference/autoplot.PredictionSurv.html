@@ -54,6 +54,9 @@ to a Kaplan-Meier prediction, this is not a comparison of a stratified crank or 
 prediction. object must have distr prediction. geom_line() is used for comparison split
 between the prediction (Pred) and Kaplan-Meier estimate (KM). In addition labels are added
 for the x (T) and y (S(T)) axes.
+&quot;dcalib&quot;: Distribution calibration plot. A model is D-calibrated if X% of deaths occur before
+the X/100 quantile of the predicted distribution, e.g. if 50% of observations die before their
+predicted median survival time. A model is D-calibrated if the resulting plot lies on x = y.
 
 " />
 <meta name="twitter:card" content="summary" />
@@ -89,7 +92,7 @@ for the x (T) and y (S(T)) axes.
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3viz <small>v0.5.1</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3viz <small>v0.5.2</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -160,6 +163,9 @@ to a Kaplan-Meier prediction, this is <em>not</em> a comparison of a stratified 
 prediction. <code>object</code> must have <code>distr</code> prediction. <code>geom_line()</code> is used for comparison split
 between the prediction (<code>Pred</code>) and Kaplan-Meier estimate (<code>KM</code>). In addition labels are added
 for the x (<code>T</code>) and y (<code>S(T)</code>) axes.</p></li>
+<li><p><code>"dcalib"</code>: Distribution calibration plot. A model is D-calibrated if X% of deaths occur before
+the X/100 quantile of the predicted distribution, e.g. if 50% of observations die before their
+predicted median survival time. A model is D-calibrated if the resulting plot lies on x = y.</p></li>
 </ul>
 
     </div>
@@ -167,10 +173,12 @@ for the x (<code>T</code>) and y (<code>S(T)</code>) axes.</p></li>
     <pre class="usage"><span class='co'># S3 method for PredictionSurv</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span>
   <span class='va'>object</span>,
-  type <span class='op'>=</span> <span class='st'>"calib"</span>,
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"calib"</span>, <span class='st'>"dcalib"</span><span class='op'>)</span>,
   task <span class='op'>=</span> <span class='cn'>NULL</span>,
   row_ids <span class='op'>=</span> <span class='cn'>NULL</span>,
   times <span class='op'>=</span> <span class='cn'>NULL</span>,
+  xyline <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  cuts <span class='op'>=</span> <span class='fl'>11L</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -203,12 +211,28 @@ If <code>type = "calib"</code> then <code>times</code> is the values on the x-ax
 if <code>NULL</code> uses all times from <code>task</code>.</p></td>
     </tr>
     <tr>
+      <th>xyline</th>
+      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>) <br />
+If <code>TRUE</code> (default) plots the x-y line for <code>type = "dcalib"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>cuts</th>
+      <td><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>) <br />
+Number of cuts in (0,1) to plot <code>dcalib</code> over, default is <code>11</code>.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>(<code>any</code>):
 Additional arguments, currently unused.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Haider H, Hoehn B, Davis S, Greiner R (2020).
+&#8220;Effective Ways to Build and Evaluate Individual Survival Distributions.&#8221;
+<em>Journal of Machine Learning Research</em>, <b>21</b>(85), 1-63.
+<a href='https://jmlr.org/papers/v21/18-772.html'>https://jmlr.org/papers/v21/18-772.html</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3.mlr-org.com'>mlr3</a></span><span class='op'>)</span>
@@ -216,10 +240,15 @@ Additional arguments, currently unused.</p></td>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3viz.mlr-org.com'>mlr3viz</a></span><span class='op'>)</span>
 
 <span class='va'>learn</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"surv.coxph"</span><span class='op'>)</span>
-<span class='va'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span><span class='op'>(</span><span class='st'>"rats"</span><span class='op'>)</span>
-<span class='va'>p</span> <span class='op'>=</span> <span class='va'>learn</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span>, row_ids <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span><span class='op'>)</span><span class='op'>$</span><span class='fu'>predict</span><span class='op'>(</span><span class='va'>task</span>, row_ids <span class='op'>=</span> <span class='fl'>101</span><span class='op'>:</span><span class='fl'>200</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Loglik converged before variable  3 ; coefficient may be infinite. </span></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>p</span>, type <span class='op'>=</span> <span class='st'>"calib"</span>, task <span class='op'>=</span> <span class='va'>task</span><span class='op'>)</span>
-</div><div class='img'><img src='autoplot.PredictionSurv-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='va'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span><span class='op'>(</span><span class='st'>"unemployment"</span><span class='op'>)</span>
+<span class='va'>p</span> <span class='op'>=</span> <span class='va'>learn</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span>, row_ids <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>300</span><span class='op'>)</span><span class='op'>$</span><span class='fu'>predict</span><span class='op'>(</span><span class='va'>task</span>, row_ids <span class='op'>=</span> <span class='fl'>301</span><span class='op'>:</span><span class='fl'>400</span><span class='op'>)</span>
+
+<span class='co'># calibration by comparison of average prediction to Kaplan-Meier</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>p</span>, type <span class='op'>=</span> <span class='st'>"calib"</span>, task <span class='op'>=</span> <span class='va'>task</span>, row_ids <span class='op'>=</span> <span class='fl'>301</span><span class='op'>:</span><span class='fl'>400</span><span class='op'>)</span>
+</div><div class='img'><img src='autoplot.PredictionSurv-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Distribution-calibration (D-Calibration)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>p</span>, type <span class='op'>=</span> <span class='st'>"dcalib"</span><span class='op'>)</span>
+</div><div class='img'><img src='autoplot.PredictionSurv-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -231,7 +260,7 @@ Additional arguments, currently unused.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Michel Lang, Patrick Schratz, Raphael Sonabend.</p>
+  <p>Developed by Michel Lang, Patrick Schratz, Raphael Sonabend, Marc Becker.</p>
 </div>
 
 <div class="pkgdown">
