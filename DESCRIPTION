@@ -1,6 +1,6 @@
 Package: mlr3viz
 Title: Visualizations for 'mlr3'
-Version: 0.5.2
+Version: 0.5.3
 Authors@R:
     c(person(given = "Michel",
              family = "Lang",
@@ -57,7 +57,7 @@ Suggests:
     mlr3cluster,
     mlr3filters,
     mlr3learners,
-    mlr3proba (>= 0.2.3),
+    mlr3proba (>= 0.3.2),
     mlr3tuning (>= 0.7.0),
     paradox,
     partykit,
