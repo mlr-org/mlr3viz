@@ -1,3 +1,7 @@
+# mlr3viz 0.5.2-9000
+
+- New autoplot for `LearnerClustHclust`.
+
 # mlr3viz 0.5.2
 
 - New autoplot for `TuningInstanceSingleCrit` from package `mlr3tuning`.

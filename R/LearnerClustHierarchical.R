@@ -47,3 +47,6 @@ autoplot.LearnerClustAgnes = autoplot.LearnerClustHierarchical
 
 #' @export
 autoplot.LearnerClustDiana = autoplot.LearnerClustHierarchical
+
+#' @export
+autoplot.LearnerClustHclust = autoplot.LearnerClustHierarchical
