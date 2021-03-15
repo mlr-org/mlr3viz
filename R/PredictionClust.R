@@ -80,8 +80,8 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
         task_data = data.table(task$data(rows = row_ids), row_ids = row_ids)
       }
 
-      plot_data = merge(task_data, d, by = "row_ids")[, -"row_ids"]
-      ggplot2::autoplot(stats::prcomp(task_data),
+      plot_data = merge(task_data, d, by = "row_ids")
+      ggplot2::autoplot(stats::prcomp(task_data[, -"row_ids"]),
         data = plot_data,
         colour = "cluster", ...)
     },
