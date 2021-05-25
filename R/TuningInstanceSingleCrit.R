@@ -34,35 +34,36 @@
 #' @return [ggplot2::ggplot()] object.
 #' @export
 #' @examples
-#' if(requireNamespace("mlr3tuning") && requireNamespace("patchwork")) {
-#' library(mlr3tuning)
+#' if (requireNamespace("mlr3tuning") && requireNamespace("patchwork")) {
+#'   library(mlr3tuning)
 #'
-#' learner = lrn("classif.rpart")
-#' learner$param_set$values$cp = to_tune(0.001, 0.1)
-#' learner$param_set$values$minsplit = to_tune(1, 10)
+#'   learner = lrn("classif.rpart")
+#'   learner$param_set$values$cp = to_tune(0.001, 0.1)
+#'   learner$param_set$values$minsplit = to_tune(1, 10)
 #'
-#' instance = TuningInstanceSingleCrit$new(
-#'   task = tsk("iris"),
-#'   learner = learner,
-#'   resampling = rsmp("holdout"),
-#'   measure = msr("classif.ce"),
-#'   terminator = trm("evals", n_evals = 10))
+#'   instance = TuningInstanceSingleCrit$new(
+#'     task = tsk("iris"),
+#'     learner = learner,
+#'     resampling = rsmp("holdout"),
+#'     measure = msr("classif.ce"),
+#'     terminator = trm("evals", n_evals = 10))
 #'
-#' tuner = tnr("random_search")
+#'   tuner = tnr("random_search")
 #'
-#' tuner$optimize(instance)
+#'   tuner$optimize(instance)
 #'
-#' # plot performance versus batch number
-#' autoplot(instance, type = "performance")
+#'   # plot performance versus batch number
+#'   autoplot(instance, type = "performance")
 #'
-#' # plot cp values versus performance
-#' autoplot(instance, type = "marginal", cols_x = "cp")
+#'   # plot cp values versus performance
+#'   autoplot(instance, type = "marginal", cols_x = "cp")
 #'
-#' # plot transformed parameter values versus batch number
-#' autoplot(instance, type = "parameter", trafo = TRUE)
+#'   # plot transformed parameter values versus batch number
+#'   autoplot(instance, type = "parameter", trafo = TRUE)
 #'
-#' # plot parallel coordinates plot
-#' autoplot(instance, type = "parallel")}
+#'   # plot parallel coordinates plot
+#'   autoplot(instance, type = "parallel")
+#' }
 autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE,
   learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, ...) { # nolint
   assert_subset(cols_x, c(object$archive$cols_x, paste0("x_domain_", object$archive$cols_x)))
@@ -81,8 +82,8 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
   switch(type,
     "marginal" = {
       # each parameter versus performance
-      plots  = map(cols_x, function(x) {
-        data_i = data[!is.na(get(x)), c(x, cols_y, "batch_nr") , with = FALSE]
+      plots = map(cols_x, function(x) {
+        data_i = data[!is.na(get(x)), c(x, cols_y, "batch_nr"), with = FALSE]
         ggplot(data_i, mapping = aes(x = .data[[x]], y = .data[[cols_y]])) +
           geom_point(aes(fill = .data$batch_nr), shape = 21, size = 3, stroke = 1) +
           scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
@@ -103,7 +104,7 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
 
     "parameter" = {
       # each parameter versus iteration
-      plots  = map(cols_x, function(x) {
+      plots = map(cols_x, function(x) {
         ggplot(data, mapping = aes(x = .data$batch_nr, y = .data[[x]])) +
           geom_point(aes(fill = .data[[cols_y]]), shape = 21, size = 3, stroke = 0.5) +
           scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
@@ -156,9 +157,11 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
         geom_line(aes(group = .data$id, colour = .data[[cols_y]]), size = 1) +
         scale_colour_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF")) +
         geom_vline(aes(xintercept = x)) +
-          {if (nrow(data_c) > 0L) geom_label(aes(label = .data$label), data[!is.na(data$label), ])} +
-          scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
-          theme(axis.title.x = element_blank())
+        {
+          if (nrow(data_c) > 0L) geom_label(aes(label = .data$label), data[!is.na(data$label), ])
+        } +
+        scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
+        theme(axis.title.x = element_blank())
     },
 
     "points" = {

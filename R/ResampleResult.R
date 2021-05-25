@@ -212,8 +212,7 @@ plot_learner_prediction_resample_result = function(object, # nolint
       scale_fill = scale_fill_gradientn(colours = c(
         "#5E4FA2", "#3288BD",
         "#66C2A5", "#ABDDA4", "#E6F598", "#FFFFBF", "#FEE08B", "#FDAE61",
-        "#F46D43", "#D53E4F", "#9E0142")
-      )
+        "#F46D43", "#D53E4F", "#9E0142"))
     }
 
     g = ggplot(grid, aes_string(features[1L], features[2L])) +

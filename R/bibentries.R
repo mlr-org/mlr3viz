@@ -1,6 +1,6 @@
 #' @importFrom utils bibentry
-bibentries  = c(
-  precrec   = bibentry("article",
+bibentries = c(
+  precrec = bibentry("article",
     title   = "Precrec: fast and accurate precision-recall and ROC curve calculations in R",
     author  = "Takaya Saito and Marc Rehmsmeier",
     journal = "Bioinformatics",

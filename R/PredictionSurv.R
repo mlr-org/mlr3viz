@@ -47,8 +47,8 @@
 #' # Distribution-calibration (D-Calibration)
 #' autoplot(p, type = "dcalib")
 autoplot.PredictionSurv = function(object, type = c("calib", "dcalib"),
-                                   task = NULL, row_ids = NULL, times = NULL, xyline = TRUE,
-                                   cuts = 11L, ...) {
+  task = NULL, row_ids = NULL, times = NULL, xyline = TRUE,
+  cuts = 11L, ...) {
 
   x = y = Group = NULL
 
@@ -66,7 +66,7 @@ autoplot.PredictionSurv = function(object, type = c("calib", "dcalib"),
       }
 
       data = data.frame(x = times, y = c(1 - km_distr$cdf(times), 1 - pred_distr$cdf(times)),
-                        Group = rep(c("KM", "Pred"), each = length(times)))
+        Group = rep(c("KM", "Pred"), each = length(times)))
 
       ggplot(data, aes(x = x, y = y, group = Group, color = Group)) + geom_line() +
         labs(x = "T", y = "S(T)")
@@ -74,8 +74,9 @@ autoplot.PredictionSurv = function(object, type = c("calib", "dcalib"),
 
     "dcalib" = {
       p = seq.int(0, 1, length.out = cuts)
-      q = map_dbl(p, function(.x)
-        sum(object$truth[, 1L] <= as.numeric(object$distr$quantile(.x)))/length(object$row_ids))
+      q = map_dbl(p, function(.x) {
+        sum(object$truth[, 1L] <= as.numeric(object$distr$quantile(.x))) / length(object$row_ids)
+      })
       pl = qplot(x = p, y = q, geom = "line")
       if (xyline) {
         pl = pl + geom_abline(slope = 1, intercept = 0, color = "red")

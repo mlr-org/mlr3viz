@@ -12,9 +12,9 @@ autoplot.LearnerRegrRpart = function(object, ...) { # nolint
   target = all.vars(object$model$terms)[1L]
   autoplot(partykit::as.party(object$model), ...) +
     ggparty::geom_node_plot(gglist = list(
-        geom_boxplot(aes_string(target)),
-        coord_flip(),
-        theme(axis.ticks.x = element_blank(), axis.text.x = element_blank())
+      geom_boxplot(aes_string(target)),
+      coord_flip(),
+      theme(axis.ticks.x = element_blank(), axis.text.x = element_blank())
     )) +
     ggparty::geom_node_label(aes(label = paste0("n=", .data[["nodesize"]])), nudge_y = 0.03, ids = "terminal")
 }
