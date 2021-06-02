@@ -1,30 +1,31 @@
-#' @title Plot for TuningInstanceSingleCrit
+#' @title Plot for OptimInstanceSingleCrit
 #'
 #' @description
-#' Generates plots for [mlr3tuning::TuningInstanceSingleCrit].
+#' Generates plots for [bbotk::OptimInstanceSingleCrit].
 #'
-#' @param object ([mlr3tuning::TuningInstanceSingleCrit].
+#' @param object ([bbotk::OptimInstanceSingleCrit].
 #' @param type (`character(1)`):
 #'   Type of the plot. Available choices:
-#'   * `"marginal"`: scatter plots of hyperparameter versus performance. The
+#'   * `"marginal"`: scatter plots of x versus y The
 #'     colour of the points shows the batch number.
-#'   * `"performance"`: scatter plots of batch number versus performance.
-#'   * `"parameter"`: scatter plots of batch number versus hyperparameter. The
-#'     colour of the points shows the performance.
-#'   * `"parallel"` parallel coordinates plot. Parameter values are rescaled by
+#'   * `"performance"`: scatter plots of batch number versus y
+#'   * `"parameter"`: scatter plots of batch number versus input. The
+#'     colour of the points shows the y values.
+#'   * `"parallel"` parallel coordinates plot. x values are rescaled by
 #'     `(x - mean(x)) / sd(x)`.
-#'   * `"points"` - scatter plot of two hyperparameters versus performance. The
-#'     colour of the points shows the performance.
-#'   * `"surface"`: surface plot of 2 hyperparameters versus performance.
-#'     The performance values are interpolated with the supplied
+#'   * `"points"` - scatter plot of two x dimensions versus y The
+#'     colour of the points shows the y values.
+#'   * `"surface"`: surface plot of two x dimensions versus y values.
+#'     The y values are interpolated with the supplied
 #'     [mlr3::Learner].
+#'   * `"pairs"`: plots all x and y values against each other.
 #' @param cols_x (`character()`)\cr
-#'   Column names of hyperparameters. By default, all untransformed
-#'   hyperparameters are plottet. Transformed hyperparameters are prefixed with
+#'   Column names of x values. By default, all untransformed
+#'   x values from the search space are plotted. Transformed hyperparameters are prefixed with
 #'   `x_domain_`.
 #' @param trafo (`logical(1)`)\cr
 #'   Determines if untransformed (`FALSE`) or transformed (`TRUE`)
-#'   hyperparametery are plotted.
+#'   x values are plotted.
 #' @param learner ([mlr3::Learner])\cr
 #'   Regression learner used to interpolate the data of the surface plot.
 #' @param grid_resolution (`numeric()`)\cr
@@ -34,37 +35,10 @@
 #' @return [ggplot2::ggplot()] object.
 #' @export
 #' @examples
-#' if (requireNamespace("mlr3tuning") && requireNamespace("patchwork")) {
-#'   library(mlr3tuning)
-#'
-#'   learner = lrn("classif.rpart")
-#'   learner$param_set$values$cp = to_tune(0.001, 0.1)
-#'   learner$param_set$values$minsplit = to_tune(1, 10)
-#'
-#'   instance = TuningInstanceSingleCrit$new(
-#'     task = tsk("iris"),
-#'     learner = learner,
-#'     resampling = rsmp("holdout"),
-#'     measure = msr("classif.ce"),
-#'     terminator = trm("evals", n_evals = 10))
-#'
-#'   tuner = tnr("random_search")
-#'
-#'   tuner$optimize(instance)
-#'
-#'   # plot performance versus batch number
-#'   autoplot(instance, type = "performance")
-#'
-#'   # plot cp values versus performance
-#'   autoplot(instance, type = "marginal", cols_x = "cp")
-#'
-#'   # plot transformed parameter values versus batch number
-#'   autoplot(instance, type = "parameter", trafo = TRUE)
-#'
-#'   # plot parallel coordinates plot
-#'   autoplot(instance, type = "parallel")
+#' if (requireNamespace("bbotk") && requireNamespace("patchwork")) {
+#'   library(bbotk)
 #' }
-autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE,
+autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE,
   learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, ...) { # nolint
   assert_subset(cols_x, c(object$archive$cols_x, paste0("x_domain_", object$archive$cols_x)))
   assert_flag(trafo)
@@ -204,11 +178,21 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
         geom_point(aes(fill = .data[[cols_y]]), data = data, shape = 21, size = 3, stroke = 1)
     },
 
+    "pairs" = {
+      require_namespaces("GGally")
+      GGally::ggpairs(
+        data[, c(cols_x, cols_y, "batch_nr"), with = FALSE],
+        switch = "both",
+        upper = list(continuous = "points", combo = "facethist", discrete = "facetbar", na = "na"),
+        lower = list(continuous = "cor", combo = "box_no_facet", discrete = "count", na = "na"),
+        ...)
+    },
+
     stopf("Unknown plot type '%s'", type)
   )
 }
 
 #' @export
-fortify.TuningInstanceSingleCrit = function(model, data = NULL, ...) { # nolint
+fortify.OptimInstanceSingleCrit = function(model, data = NULL, ...) { # nolint
   as.data.table(model$archive)
 }
