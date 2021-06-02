@@ -21,22 +21,23 @@
 Type of the plot. Available choices:
 \itemize{
 \item \code{"marginal"}: scatter plots of hyperparameter versus performance. The
-colour of the points shows the batch number.
+color of the points shows the batch number.
 \item \code{"performance"}: scatter plots of batch number versus performance.
 \item \code{"parameter"}: scatter plots of batch number versus hyperparameter. The
-colour of the points shows the performance.
+color of the points shows the performance.
 \item \code{"parallel"} parallel coordinates plot. Parameter values are rescaled by
 \code{(x - mean(x)) / sd(x)}.
 \item \code{"points"} - scatter plot of two hyperparameters versus performance. The
-colour of the points shows the performance.
+color of the points shows the performance.
 \item \code{"surface"}: surface plot of 2 hyperparameters versus performance.
 The performance values are interpolated with the supplied
 \link[mlr3:Learner]{mlr3::Learner}.
+\item \code{"pairs"}: plots all hyperparameters and performance values against each other.
 }}
 
 \item{cols_x}{(\code{character()})\cr
 Column names of hyperparameters. By default, all untransformed
-hyperparameters are plottet. Transformed hyperparameters are prefixed with
+hyperparameters are plotted. Transformed hyperparameters are prefixed with
 \code{x_domain_}.}
 
 \item{trafo}{(\code{logical(1)})\cr
@@ -59,33 +60,34 @@ Additional arguments, possibly passed down to the underlying plot functions.}
 Generates plots for \link[mlr3tuning:TuningInstanceSingleCrit]{mlr3tuning::TuningInstanceSingleCrit}.
 }
 \examples{
-if(requireNamespace("mlr3tuning") && requireNamespace("patchwork")) {
-library(mlr3tuning)
+if (requireNamespace("mlr3tuning") && requireNamespace("patchwork")) {
+  library(mlr3tuning)
 
-learner = lrn("classif.rpart")
-learner$param_set$values$cp = to_tune(0.001, 0.1)
-learner$param_set$values$minsplit = to_tune(1, 10)
+  learner = lrn("classif.rpart")
+  learner$param_set$values$cp = to_tune(0.001, 0.1)
+  learner$param_set$values$minsplit = to_tune(1, 10)
 
-instance = TuningInstanceSingleCrit$new(
-  task = tsk("iris"),
-  learner = learner,
-  resampling = rsmp("holdout"),
-  measure = msr("classif.ce"),
-  terminator = trm("evals", n_evals = 10))
+  instance = TuningInstanceSingleCrit$new(
+    task = tsk("iris"),
+    learner = learner,
+    resampling = rsmp("holdout"),
+    measure = msr("classif.ce"),
+    terminator = trm("evals", n_evals = 10))
 
-tuner = tnr("random_search")
+  tuner = tnr("random_search")
 
-tuner$optimize(instance)
+  tuner$optimize(instance)
 
-# plot performance versus batch number
-autoplot(instance, type = "performance")
+  # plot performance versus batch number
+  autoplot(instance, type = "performance")
 
-# plot cp values versus performance
-autoplot(instance, type = "marginal", cols_x = "cp")
+  # plot cp values versus performance
+  autoplot(instance, type = "marginal", cols_x = "cp")
 
-# plot transformed parameter values versus batch number
-autoplot(instance, type = "parameter", trafo = TRUE)
+  # plot transformed parameter values versus batch number
+  autoplot(instance, type = "parameter", trafo = TRUE)
 
-# plot parallel coordinates plot
-autoplot(instance, type = "parallel")}
+  # plot parallel coordinates plot
+  autoplot(instance, type = "parallel")
+}
 }
