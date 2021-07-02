@@ -3,10 +3,13 @@ test_that("autoplot.TaskClassif", {
 
   p = autoplot(task, type = "target")
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("taskclassif_target", p)
 
   p = autoplot(task, type = "pairs")
   expect_s3_class(p, "ggmatrix")
+  vdiffr::expect_doppelganger("taskclassif_pairs", p)
 
   p = autoplot(task, type = "duo")
   expect_s3_class(p, "ggmatrix")
+  vdiffr::expect_doppelganger("taskclassif_duo", p)
 })

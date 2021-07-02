@@ -1,6 +1,6 @@
 Package: mlr3viz
 Title: Visualizations for 'mlr3'
-Version: 0.5.4
+Version: 0.6.0
 Authors@R:
     c(person(given = "Michel",
              family = "Lang",
@@ -68,6 +68,7 @@ Suggests:
     stats,
     survival,
     testthat (>= 3.0.0),
+    vdiffr (>= 1.0.2),
     xgboost
 Config/testthat/edition: 3
 Config/testthat/parallel: true

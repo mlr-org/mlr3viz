@@ -8,4 +8,5 @@ test_that("autoplot.LearnerClassifGlmnet", {
   learner = mlr3::lrn("classif.glmnet")$train(mlr3::tsk("sonar"))
   p = autoplot(learner)
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("learner_classif.glmnet", p)
 })

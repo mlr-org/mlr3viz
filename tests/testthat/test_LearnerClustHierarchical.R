@@ -7,4 +7,5 @@ test_that("autoplot.LearnerClutsHierarchical", {
   learner = mlr3::lrn("clust.agnes")$train(mlr3::tsk("usarrests"))
   p = autoplot(learner)
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("learner_clust.agnes", p)
 })

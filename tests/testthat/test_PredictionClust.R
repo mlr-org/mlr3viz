@@ -9,10 +9,13 @@ test_that("autoplot.PredictionClust", {
 
   p = expect_warning(autoplot(prediction, task, type = "scatter"), "Factor variables are omitted")
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("predictionclust_scatter", p)
 
   p = autoplot(prediction, task, type = "sil")
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("predictionclust_sil", p)
 
   p = autoplot(prediction, task, type = "pca")
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("predictionclust_pca", p)
 })
