@@ -4,4 +4,5 @@ test_that("autoplot.TaskClust", {
 
   p = autoplot(task, type = "pairs")
   expect_s3_class(p, "ggmatrix")
+  vdiffr::expect_doppelganger("taskclust_pairs", p)
 })

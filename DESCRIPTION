@@ -68,6 +68,7 @@ Suggests:
     stats,
     survival,
     testthat (>= 3.0.0),
+    vdiffr (>= 1.0.2),
     xgboost
 Config/testthat/edition: 3
 Config/testthat/parallel: true
