@@ -14,4 +14,8 @@ test_that("autoplot.PredictionClassif", {
   p = autoplot(prediction, type = "prc")
   expect_true(is.ggplot(p))
   vdiffr::expect_doppelganger("predictionclassif_prc", p)
+
+  p = autoplot(prediction, type = "threshold")
+  expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("predictionclassif_threshold", p)
 })

@@ -4,13 +4,16 @@
 \alias{autoplot.PredictionClassif}
 \title{Plot for PredictionClassif}
 \usage{
-\method{autoplot}{PredictionClassif}(object, type = "stacked", ...)
+\method{autoplot}{PredictionClassif}(object, type = "stacked", measure = NULL, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:PredictionClassif]{mlr3::PredictionClassif}).}
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
+
+\item{measure}{(\link[mlr3:Measure]{mlr3::Measure})\cr
+Performance measure to use.}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to the respective \code{geom} or plotting function.}
@@ -26,6 +29,8 @@ Generates plots for \link[mlr3:PredictionClassif]{mlr3::PredictionClassif}, depe
 Requires package \CRANpkg{precrec}.
 \item \code{"prc"}: Precision recall curve.
 Requires package \CRANpkg{precrec}.
+\item \code{"threshold"}: Systematically varies the threshold of the \link[mlr3:PredictionClassif]{mlr3::PredictionClassif}
+object and plots the resulting performance as returned by \code{measure}.
 }
 }
 \examples{

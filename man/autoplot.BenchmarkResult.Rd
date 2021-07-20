@@ -12,7 +12,8 @@
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
 
-\item{measure}{(\link[mlr3:Measure]{mlr3::Measure}).}
+\item{measure}{(\link[mlr3:Measure]{mlr3::Measure})\cr
+Performance measure to use.}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to the respective \code{geom} or plotting function.}
