@@ -11,4 +11,7 @@ test_that("autoplot.PredictionClassif", {
 
   p = autoplot(prediction, type = "prc")
   expect_true(is.ggplot(p))
+
+  p = autoplot(prediction, type = "threshold")
+  expect_true(is.ggplot(p))
 })

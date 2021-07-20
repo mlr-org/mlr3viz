@@ -18,7 +18,7 @@
 #'
 #' @param object ([mlr3::BenchmarkResult]).
 #' @template param_type
-#' @param measure ([mlr3::Measure]).
+#' @template param_measure
 #' @param ... (`any`):
 #'   Additional arguments, passed down to the respective `geom` or plotting function.
 #'
