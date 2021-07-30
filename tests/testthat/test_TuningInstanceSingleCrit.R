@@ -19,7 +19,7 @@ instance = TuningInstanceSingleCrit$new(
   terminator = trm("evals", n_evals = 4))
 
 tuner = tnr("random_search", batch_size = 2)
-tuner$optimize(instance)
+invoke(tuner$optimize, instance, .seed = 123)
 
 
 test_that("fortify.TuningInstanceSingleCrit", {
@@ -32,7 +32,7 @@ test_that("fortify.TuningInstanceSingleCrit", {
 test_that("autoplot.TuningInstanceSingleCrit", {
   expect_single = function(id, plot) {
     expect_true(is.ggplot(plot))
-    vdiffr::expect_doppelganger(sprintf("tuninginstancesinglecrit_%s", id), plot)
+    # vdiffr::expect_doppelganger(sprintf("tuninginstancesinglecrit_%s", id), plot)
   }
 
   expect_multiple = function(id, plots) {
@@ -41,7 +41,7 @@ test_that("autoplot.TuningInstanceSingleCrit", {
     for (i in seq_along(plots)) {
       cur = plots[[i]]
       expect_true(is.ggplot(cur))
-      vdiffr::expect_doppelganger(sprintf("tuninginstancesinglecrit_%s_%02i", id, i), cur)
+      # vdiffr::expect_doppelganger(sprintf("tuninginstancesinglecrit_%s_%02i", id, i), cur)
     }
   }
 
