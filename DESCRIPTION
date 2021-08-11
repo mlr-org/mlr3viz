@@ -1,6 +1,6 @@
 Package: mlr3viz
 Title: Visualizations for 'mlr3'
-Version: 0.5.4
+Version: 0.5.5
 Authors@R:
     c(person(given = "Michel",
              family = "Lang",

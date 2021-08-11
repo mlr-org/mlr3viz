@@ -39,4 +39,8 @@ test_that("holdout roc plot (#54)", {
   bmr = benchmark(design)
   p = autoplot(bmr, type = "roc")
   expect_true(is.ggplot(p))
+
+  # roc is not inverted?
+  tab = as.data.table(precrec::auc(precrec::evalmod(as_precrec(bmr))))
+  expect_number(tab[modnames == "classif.rpart" & curvetypes == "ROC", aucs], lower = 0.5)
 })

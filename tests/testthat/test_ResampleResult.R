@@ -72,3 +72,11 @@ test_that("autoplot ResampleResult type=prediction", {
     regexp = "Plot learner prediction only works with one or two features for
 regression!")
 })
+
+
+test_that("roc is not inverted", {
+  autoplot(rr, type = "roc")
+  skip_if_not_installed("precrec")
+  tab = as.data.table(precrec::auc(precrec::evalmod(as_precrec(rr))))
+  expect_number(mean(tab[curvetypes == "ROC", aucs]), lower = 0.5)
+})
