@@ -1,5 +1,6 @@
 skip_if_not_installed("mlr3cluster")
 skip_if_not_installed("factoextra")
+set.seed(42)
 
 test_that("autoplot.LearnerClutsHierarchical", {
   require_namespaces("mlr3cluster")

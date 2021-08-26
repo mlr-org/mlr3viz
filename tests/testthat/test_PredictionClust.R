@@ -1,6 +1,8 @@
 skip_if_not_installed("mlr3cluster")
 skip_if_not_installed("clue")
 
+set.seed(42)
+
 test_that("autoplot.PredictionClust", {
   require_namespaces("mlr3cluster")
   task = mlr3::tsk("usarrests")

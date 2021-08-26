@@ -1,3 +1,4 @@
+set.seed(42)
 task = mlr3::tsk("sonar")
 learner = mlr3::lrn("classif.rpart", predict_type = "prob")
 resampling = mlr3::rsmp("cv")
@@ -12,6 +13,7 @@ test_that("fortify ResampleResult", {
 })
 
 test_that("autoplot ResampleResult", {
+  set.seed(42)
   p = autoplot(rr, measure = msr("classif.ce"), type = "boxplot")
   expect_true(is.ggplot(p))
   vdiffr::expect_doppelganger("resampleresult_boxplot", p)
