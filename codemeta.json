@@ -1,20 +1,20 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "mlr3viz",
-  "description": "Provides visualizations for 'mlr3' objects such as\n    tasks, predictions, resample results or benchmark results via the\n    autoplot() generic of 'ggplot2'. The returned 'ggplot' objects are\n    intended to provide sensible defaults, yet can easily be customized to\n    create camera-ready figures. Visualizations include barplots,\n    boxplots, histograms, ROC curves, and Precision-Recall curves.",
+  "description": "Provides visualizations for 'mlr3' objects such as tasks,\n    predictions, resample results or benchmark results via the autoplot()\n    generic of 'ggplot2'. The returned 'ggplot' objects are intended to\n    provide sensible defaults, yet can easily be customized to create\n    camera-ready figures. Visualizations include barplots, boxplots,\n    histograms, ROC curves, and Precision-Recall curves.",
   "name": "mlr3viz: Visualizations for 'mlr3'",
   "codeRepository": "https://github.com/mlr-org/mlr3viz",
-  "relatedLink": ["https://mlr3viz.mlr-org.com", "https://CRAN.R-project.org/package=mlr3viz"],
+  "relatedLink": "https://mlr3viz.mlr-org.com",
   "issueTracker": "https://github.com/mlr-org/mlr3viz/issues",
   "license": "https://spdx.org/licenses/LGPL-3.0",
-  "version": "0.5.0",
+  "version": "0.5.5",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.3 Patched (2020-11-13 r79429)",
+  "runtimePlatform": "R version 4.1.1 (2021-08-10)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -42,6 +42,13 @@
       "familyName": "Sonabend",
       "email": "raphael.sonabend.15@ucl.ac.uk",
       "@id": "https://orcid.org/0000-0001-9225-4654"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Marc",
+      "familyName": "Becker",
+      "email": "marcbecker@posteo.de",
+      "@id": "https://orcid.org/0000-0002-8115-0400"
     }
   ],
   "contributor": [
@@ -52,8 +59,6 @@
       "email": "dpulatov@uwyo.edu"
     }
   ],
-  "copyrightHolder": {},
-  "funder": {},
   "maintainer": [
     {
       "@type": "Person",
@@ -215,7 +220,7 @@
       "@type": "SoftwareApplication",
       "identifier": "mlr3proba",
       "name": "mlr3proba",
-      "version": ">= 0.2.3",
+      "version": ">= 0.3.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -223,6 +228,31 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=mlr3proba"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "mlr3tuning",
+      "name": "mlr3tuning",
+      "version": ">= 0.7.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=mlr3tuning"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "paradox",
+      "name": "paradox",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=paradox"
     },
     {
       "@type": "SoftwareApplication",
@@ -238,6 +268,19 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "patchwork",
+      "name": "patchwork",
+      "version": ">= 1.1.1",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=patchwork"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "precrec",
       "name": "precrec",
       "provider": {
@@ -247,6 +290,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=precrec"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "ranger",
+      "name": "ranger",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ranger"
     },
     {
       "@type": "SoftwareApplication",
@@ -289,16 +344,28 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "xgboost",
+      "name": "xgboost",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=xgboost"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.1.0"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "checkmate",
       "name": "checkmate",
@@ -310,7 +377,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=checkmate"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "data.table",
       "name": "data.table",
@@ -322,7 +389,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=data.table"
     },
-    {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
@@ -335,10 +402,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ggplot2"
     },
-    {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "mlr3misc",
       "name": "mlr3misc",
+      "version": ">= 0.7.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -347,14 +415,12 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=mlr3misc"
     },
-    {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
-    }
-  ],
-  "releaseNotes": "https://github.com/mlr-org/mlr3viz/blob/master/NEWS.md",
-  "readme": "https://github.com/mlr-org/mlr3viz/blob/master/README.md",
-  "fileSize": "247.976KB",
-  "keywords": ["mlr3", "visualization", "r", "ggplot2", "visualizations"]
+    },
+    "SystemRequirements": null
+  },
+  "fileSize": "1689.198KB"
 }
