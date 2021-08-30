@@ -1,6 +1,8 @@
 skip_if_not_installed("mlr3cluster")
 skip_if_not_installed("clue")
 
+set.seed(42)
+
 test_that("autoplot.PredictionClust", {
   require_namespaces("mlr3cluster")
   task = mlr3::tsk("usarrests")
@@ -9,10 +11,13 @@ test_that("autoplot.PredictionClust", {
 
   p = expect_warning(autoplot(prediction, task, type = "scatter"), "Factor variables are omitted")
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("predictionclust_scatter", p)
 
   p = autoplot(prediction, task, type = "sil")
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("predictionclust_sil", p)
 
   p = autoplot(prediction, task, type = "pca")
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("predictionclust_pca", p)
 })

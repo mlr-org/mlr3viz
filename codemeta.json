@@ -347,6 +347,19 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "vdiffr",
+      "name": "vdiffr",
+      "version": ">= 1.0.2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=vdiffr"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "xgboost",
       "name": "xgboost",
       "provider": {
@@ -422,5 +435,5 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "1689.198KB"
+  "fileSize": "4441.319KB"
 }
