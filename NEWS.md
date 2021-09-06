@@ -1,3 +1,10 @@
+<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+
+# mlr3viz 0.5.5.9000
+
+- Same as previous version.
+
+
 # mlr3viz 0.5.5
 
 - Fixed another bug for ROC- and Precision-recall-curves (#79).
