@@ -8,13 +8,13 @@
   "relatedLink": "https://mlr3viz.mlr-org.com",
   "issueTracker": "https://github.com/mlr-org/mlr3viz/issues",
   "license": "https://spdx.org/licenses/LGPL-3.0",
-  "version": "0.5.5",
+  "version": "0.5.5.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.1 (2021-08-10)",
+  "runtimePlatform": "R version 4.1.1 Patched (2021-08-27 r80829)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -435,5 +435,5 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "4441.319KB"
+  "fileSize": "3364.975KB"
 }
