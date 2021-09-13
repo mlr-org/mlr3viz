@@ -24,9 +24,9 @@ invoke(tuner$optimize, instance, .seed = 123)
 
 test_that("fortify.TuningInstanceSingleCrit", {
   f = fortify(instance)
-  expect_data_table(f, nrows = 4, ncols = 8)
-  expect_names(names(f), permutation.of = c("cp", "minsplit", "classif.ce", "uhash", "timestamp", "batch_nr",
-    "x_domain_cp", "x_domain_minsplit"))
+  expect_data_table(f, nrows = 4, ncols = 9)
+  expect_names(names(f), permutation.of = c("cp", "minsplit", "classif.ce", "x_domain_cp", "x_domain_minsplit",
+    "runtime_learners", "timestamp", "batch_nr", "resample_result"))
 })
 
 test_that("autoplot.TuningInstanceSingleCrit", {
