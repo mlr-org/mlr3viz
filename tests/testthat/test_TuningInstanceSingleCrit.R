@@ -32,7 +32,7 @@ test_that("fortify.TuningInstanceSingleCrit", {
 test_that("autoplot.TuningInstanceSingleCrit", {
   expect_single = function(id, plot) {
     expect_true(is.ggplot(plot))
-    # vdiffr::expect_doppelganger(sprintf("tuninginstancesinglecrit_%s", id), plot)
+    vdiffr::expect_doppelganger(sprintf("tisc_%s", id), plot)
   }
 
   expect_multiple = function(id, plots) {
@@ -41,7 +41,7 @@ test_that("autoplot.TuningInstanceSingleCrit", {
     for (i in seq_along(plots)) {
       cur = plots[[i]]
       expect_true(is.ggplot(cur))
-      # vdiffr::expect_doppelganger(sprintf("tuninginstancesinglecrit_%s_%02i", id, i), cur)
+      vdiffr::expect_doppelganger(sprintf("tisc_%s_%02i", id, i), cur)
     }
   }
 
@@ -104,7 +104,8 @@ test_that("autoplot.TuningInstanceSingleCrit", {
   expect_single("parallel_xgboost_1", p)
 
   p = autoplot(instance, type = "parallel", cols_x = c("maximize", "booster"))
-  expect_single("parallel_xgboost_1", p)
+  expect_true(is.ggplot(p))
+  # expect_single("parallel_xgboost_1", p)
 
   expect_error(autoplot(instance, type = "surface"),
     regexp = "Surface plots can only be drawn with 2 parameters.",
