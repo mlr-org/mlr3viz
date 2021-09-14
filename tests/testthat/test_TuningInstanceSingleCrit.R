@@ -6,6 +6,7 @@ skip_if_not_installed("mlr3tuning")
 skip_if_not_installed("mlr3learners")
 library(mlr3tuning)
 requireNamespace("mlr3learners")
+set.seed(42)
 
 learner = mlr3::lrn("classif.rpart")
 learner$param_set$values$cp = paradox::to_tune(0.001, 0.1)
