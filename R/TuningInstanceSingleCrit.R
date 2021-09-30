@@ -64,6 +64,9 @@
 #'
 #'   # plot parallel coordinates plot
 #'   autoplot(instance, type = "parallel")
+#'
+#'   # plot pairs
+#'   autoplot(instance, type = "pairs")
 #' }
 autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE,
                                              learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, ...) { # nolint
