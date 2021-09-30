@@ -89,5 +89,8 @@ if (requireNamespace("mlr3tuning") && requireNamespace("patchwork")) {
 
   # plot parallel coordinates plot
   autoplot(instance, type = "parallel")
+
+  # plot pairs
+  autoplot(instance, type = "pairs")
 }
 }

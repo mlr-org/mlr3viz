@@ -62,5 +62,39 @@ Generates plots for \link[bbotk:OptimInstanceSingleCrit]{bbotk::OptimInstanceSin
 \examples{
 if (requireNamespace("bbotk") && requireNamespace("patchwork")) {
   library(bbotk)
+  library(paradox)
+
+  fun = function(xs) {
+    c(y = - (xs[[1]] - 2)^2 - (xs[[2]] + 3)^2 + 10)
+  }
+  domain = ps(
+    x1 = p_dbl(-10,10),
+    x2 = p_dbl(-5, 5)
+  )
+  codomain = ps(
+    y = p_dbl(tags = "maximize")
+  )
+  obfun = ObjectiveRFun$new(
+    fun = fun,
+    domain = domain,
+    codomain = codomain
+  )
+
+  instance = OptimInstanceSingleCrit$new(objective = obfun, terminator = trm("evals", n_evals = 20))
+
+  optimizer = opt("random_search", batch_size = 2)
+  optimizer$optimize(instance)
+
+  # plot y versus batch number
+  autoplot(instance, type = "performance")
+
+  # plot x1 values versus performance
+  autoplot(instance, type = "marginal", cols_x = "x1")
+
+  # plot parallel coordinates plot
+  autoplot(instance, type = "parallel")
+
+  # plot pairs
+  autoplot(instance, type = "pairs")
 }
 }
