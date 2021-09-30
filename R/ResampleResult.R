@@ -24,7 +24,7 @@
 #'
 #' @param object ([mlr3::ResampleResult]).
 #' @template param_type
-#' @param measure ([mlr3::Measure]).
+#' @template param_measure
 #' @param predict_sets (`character()`)\cr
 #'   Only for `type` set to `"prediction"`.
 #'   Which points should be shown in the plot?

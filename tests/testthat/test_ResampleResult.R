@@ -1,3 +1,4 @@
+set.seed(42)
 task = mlr3::tsk("sonar")
 learner = mlr3::lrn("classif.rpart", predict_type = "prob")
 resampling = mlr3::rsmp("cv")
@@ -12,17 +13,22 @@ test_that("fortify ResampleResult", {
 })
 
 test_that("autoplot ResampleResult", {
+  set.seed(42)
   p = autoplot(rr, measure = msr("classif.ce"), type = "boxplot")
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("resampleresult_boxplot", p)
 
   p = autoplot(rr, measure = msr("classif.ce"), type = "histogram")
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("resampleresult_histogram", p)
 
   p = autoplot(rr, type = "roc")
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("resampleresult_roc", p)
 
   p = autoplot(rr, type = "prc")
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("resampleresult_prc", p)
 })
 
 test_that("autoplot ResampleResult type=prediction", {
@@ -52,6 +58,7 @@ test_that("autoplot ResampleResult type=prediction", {
         for (predict_set in predict_sets) {
           p = autoplot(rr, type = "prediction", predict_sets = predict_set)
           expect_true(is.ggplot(p))
+          # expect_doppelganger() not helping here
         }
       }
     }
@@ -71,4 +78,12 @@ test_that("autoplot ResampleResult type=prediction", {
   expect_error(autoplot(rr, type = "prediction"),
     regexp = "Plot learner prediction only works with one or two features for
 regression!")
+})
+
+
+test_that("roc is not inverted", {
+  autoplot(rr, type = "roc")
+  skip_if_not_installed("precrec")
+  tab = as.data.table(precrec::auc(precrec::evalmod(as_precrec(rr))))
+  expect_number(mean(tab[curvetypes == "ROC", aucs]), lower = 0.5)
 })

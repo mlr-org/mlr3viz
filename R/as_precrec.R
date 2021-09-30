@@ -27,7 +27,7 @@ roc_data = function(prediction) {
   }
 
   data.table(
-    scores = prediction$prob[, 2L],
+    scores = prediction$prob[, 1L, drop = TRUE],
     labels = prediction$truth
   )
 }
@@ -38,7 +38,12 @@ roc_data = function(prediction) {
 as_precrec.PredictionClassif = function(object) { # nolint
   require_namespaces("precrec")
   data = roc_data(object)
-  precrec::mmdata(scores = data$scores, labels = data$labels, dsids = 1L)
+  precrec::mmdata(
+    scores = data$scores,
+    labels = data$labels,
+    dsids = 1L,
+    posclass = levels(object$truth)[1L]
+  )
 }
 
 
@@ -48,9 +53,13 @@ as_precrec.ResampleResult = function(object) { # nolint
   require_namespaces("precrec")
   predictions = object$predictions()
   data = transpose_list(map(predictions, roc_data))
+
   precrec::mmdata(
-    scores = data$scores, labels = data$labels,
-    dsids = seq_along(predictions))
+    scores = data$scores,
+    labels = data$labels,
+    dsids = seq_along(predictions),
+    posclass = object$task$positive
+  )
 }
 
 
@@ -74,5 +83,11 @@ as_precrec.BenchmarkResult = function(object) { # nolint
 
   lrns = unique(scores$learner_id)
   iters = unique(scores$iteration)
-  precrec::mmdata(data$scores, data$labels, dsids = iters, modnames = lrns)
+  precrec::mmdata(
+    scores = data$scores,
+    labels = data$labels,
+    dsids = iters,
+    modnames = lrns,
+    posclass = object$tasks$task[[1L]]$positive
+  )
 }

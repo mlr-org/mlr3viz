@@ -8,7 +8,9 @@ test_that("autoplot.PredictionSurv", {
 
   p = autoplot(prediction, type = "calib", task = task)
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("predictionsurv_calib", p)
 
   p = autoplot(prediction, type = "dcalib")
   expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("predictionsurv_dcalib", p)
 })

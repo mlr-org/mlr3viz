@@ -1,6 +1,6 @@
 Package: mlr3viz
 Title: Visualizations for 'mlr3'
-Version: 0.5.3.9000
+Version: 0.5.6
 Authors@R:
     c(person(given = "Michel",
              family = "Lang",
@@ -31,15 +31,14 @@ Authors@R:
              family = "Pulatov",
              role = "ctb",
              email = "dpulatov@uwyo.edu"))
-Description: Provides visualizations for 'mlr3' objects such as
-    tasks, predictions, resample results or benchmark results via the
-    autoplot() generic of 'ggplot2'. The returned 'ggplot' objects are
-    intended to provide sensible defaults, yet can easily be customized to
-    create camera-ready figures. Visualizations include barplots,
-    boxplots, histograms, ROC curves, and Precision-Recall curves.
+Description: Provides visualizations for 'mlr3' objects such as tasks,
+    predictions, resample results or benchmark results via the autoplot()
+    generic of 'ggplot2'. The returned 'ggplot' objects are intended to
+    provide sensible defaults, yet can easily be customized to create
+    camera-ready figures. Visualizations include barplots, boxplots,
+    histograms, ROC curves, and Precision-Recall curves.
 License: LGPL-3
-URL: https://mlr3viz.mlr-org.com,
-    https://github.com/mlr-org/mlr3viz
+URL: https://mlr3viz.mlr-org.com, https://github.com/mlr-org/mlr3viz
 BugReports: https://github.com/mlr-org/mlr3viz/issues
 Depends:
     R (>= 3.1.0)
@@ -64,7 +63,7 @@ Suggests:
     mlr3filters,
     mlr3learners,
     mlr3proba (>= 0.3.2),
-    mlr3tuning (>= 0.7.0),
+    mlr3tuning (>= 0.9.0),
     paradox,
     partykit,
     patchwork (>= 1.1.1),
@@ -74,10 +73,11 @@ Suggests:
     stats,
     survival,
     testthat (>= 3.0.0),
+    vdiffr (>= 1.0.2),
     xgboost
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
