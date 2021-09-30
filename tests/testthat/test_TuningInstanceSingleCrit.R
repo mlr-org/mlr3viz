@@ -83,6 +83,11 @@ test_that("autoplot.TuningInstanceSingleCrit", {
   p = autoplot(instance, type = "parallel")
   expect_single("parallel", p)
 
+  p = autoplot(instance, type = "pairs")
+  expect_s3_class(p, "ggmatrix")
+
+  # with categoircal params
+
   learner = mlr3::lrn("classif.xgboost")
   learner$param_set$values$eta = paradox::to_tune(0.01, 0.1)
   learner$param_set$values$nrounds = paradox::to_tune(1, 2)
