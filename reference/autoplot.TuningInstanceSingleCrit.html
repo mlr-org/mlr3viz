@@ -173,24 +173,25 @@
       <td><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>):
 Type of the plot. Available choices:</p><ul>
 <li><p><code>"marginal"</code>: scatter plots of hyperparameter versus performance. The
-colour of the points shows the batch number.</p></li>
+color of the points shows the batch number.</p></li>
 <li><p><code>"performance"</code>: scatter plots of batch number versus performance.</p></li>
 <li><p><code>"parameter"</code>: scatter plots of batch number versus hyperparameter. The
-colour of the points shows the performance.</p></li>
+color of the points shows the performance.</p></li>
 <li><p><code>"parallel"</code> parallel coordinates plot. Parameter values are rescaled by
 <code>(x - mean(x)) / sd(x)</code>.</p></li>
 <li><p><code>"points"</code> - scatter plot of two hyperparameters versus performance. The
-colour of the points shows the performance.</p></li>
+color of the points shows the performance.</p></li>
 <li><p><code>"surface"</code>: surface plot of 2 hyperparameters versus performance.
 The performance values are interpolated with the supplied
 <a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a>.</p></li>
+<li><p><code>"pairs"</code>: plots all hyperparameters and performance values against each other.</p></li>
 </ul></td>
     </tr>
     <tr>
       <th>cols_x</th>
       <td><p>(<code><a href='https://rdrr.io/r/base/character.html'>character()</a></code>)<br />
 Column names of hyperparameters. By default, all untransformed
-hyperparameters are plottet. Transformed hyperparameters are prefixed with
+hyperparameters are plotted. Transformed hyperparameters are prefixed with
 <code>x_domain_</code>.</p></td>
     </tr>
     <tr>
@@ -251,7 +252,7 @@ Additional arguments, possibly passed down to the underlying plot functions.</p>
   <span class='co'># plot parallel coordinates plot</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>instance</span>, type <span class='op'>=</span> <span class='st'>"parallel"</span><span class='op'>)</span>
 <span class='op'>}</span>
-</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: mlr3tuning</span></div><div class='output co'>#&gt; <span class='message'>Loading required namespace: patchwork</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: paradox</span></div><div class='img'><img src='autoplot.TuningInstanceSingleCrit-1.png' alt='' width='700' height='433' /></div></pre>
+</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: mlr3tuning</span></div><div class='img'><img src='autoplot.TuningInstanceSingleCrit-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -263,7 +264,7 @@ Additional arguments, possibly passed down to the underlying plot functions.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Michel Lang, Patrick Schratz, Raphael Sonabend, Marc Becker.</p>
+  <p>Developed by Michel Lang, Patrick Schratz, Raphael Sonabend, Marc Becker, Jakob Richter.</p>
 </div>
 
 <div class="pkgdown">
