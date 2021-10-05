@@ -1,36 +1,19 @@
 Package: mlr3viz
 Title: Visualizations for 'mlr3'
 Version: 0.5.6
-Authors@R:
-    c(person(given = "Michel",
-             family = "Lang",
-             role = c("cre", "aut"),
-             email = "michellang@gmail.com",
-             comment = c(ORCID = "0000-0001-9754-0393")),
-      person(given = "Patrick",
-             family = "Schratz",
-             role = "aut",
-             email = "patrick.schratz@gmail.com",
-             comment = c(ORCID = "0000-0003-0748-6624")),
-      person(given = "Raphael",
-             family = "Sonabend",
-             role = "aut",
-             email = "raphael.sonabend.15@ucl.ac.uk",
-             comment = c(ORCID = "0000-0001-9225-4654")),
-      person(given = "Marc",
-             family = "Becker",
-             role = "aut",
-             email = "marcbecker@posteo.de",
-             comment = c(ORCID = "0000-0002-8115-0400")),
-      person(given = "Jakob",
-             family = "Richter",
-             role = "aut",
-             email = "jakob1richter@gmail.com",
-             comment = c(ORCID = "0000-0003-4481-5554")),
-      person(given = "Damir",
-             family = "Pulatov",
-             role = "ctb",
-             email = "dpulatov@uwyo.edu"))
+Authors@R: c(
+    person("Michel", "Lang", , "michellang@gmail.com", role = c("cre", "aut"),
+           comment = c(ORCID = "0000-0001-9754-0393")),
+    person("Patrick", "Schratz", , "patrick.schratz@gmail.com", role = "aut",
+           comment = c(ORCID = "0000-0003-0748-6624")),
+    person("Raphael", "Sonabend", , "raphael.sonabend.15@ucl.ac.uk", role = "aut",
+           comment = c(ORCID = "0000-0001-9225-4654")),
+    person("Marc", "Becker", , "marcbecker@posteo.de", role = "aut",
+           comment = c(ORCID = "0000-0002-8115-0400")),
+    person("Jakob", "Richter", , "jakob1richter@gmail.com", role = "aut",
+           comment = c(ORCID = "0000-0003-4481-5554")),
+    person("Damir", "Pulatov", , "dpulatov@uwyo.edu", role = "ctb")
+  )
 Description: Provides visualizations for 'mlr3' objects such as tasks,
     predictions, resample results or benchmark results via the autoplot()
     generic of 'ggplot2'. The returned 'ggplot' objects are intended to
@@ -47,6 +30,7 @@ Imports:
     data.table,
     ggplot2 (>= 3.3.0),
     mlr3misc (>= 0.7.0),
+    scales,
     utils
 Suggests:
     bbotk,
@@ -81,3 +65,34 @@ Encoding: UTF-8
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+Collate: 
+    'BenchmarkResult.R'
+    'Filter.R'
+    'LearnerClassifCVGlmnet.R'
+    'LearnerClassifGlmnet.R'
+    'LearnerClassifRpart.R'
+    'LearnerClustHierarchical.R'
+    'LearnerRegrCVGlmnet.R'
+    'LearnerRegrGlmnet.R'
+    'LearnerRegrRpart.R'
+    'OptimInstanceSingleCrit.R'
+    'Prediction.R'
+    'PredictionClassif.R'
+    'PredictionClust.R'
+    'PredictionRegr.R'
+    'PredictionSurv.R'
+    'ResampleResult.R'
+    'Task.R'
+    'TaskClassif.R'
+    'TaskClust.R'
+    'TaskDens.R'
+    'TaskRegr.R'
+    'TaskSurv.R'
+    'TuningInstanceSingleCrit.R'
+    'as_precrec.R'
+    'bibentries.R'
+    'helper.R'
+    'plot_learner_prediction.R'
+    'reexports.R'
+    'theme-mlr3.R'
+    'zzz.R'

@@ -51,7 +51,8 @@ autoplot.PredictionRegr = function(object, # nolint
         geom_abline(slope = 1, alpha = 0.5) +
         geom_point(...) +
         geom_rug(sides = "bl") +
-        geom_smooth(method = "lm")
+        geom_smooth(method = "lm") +
+        theme_mlr3()
     },
 
     "histogram" = {
@@ -61,7 +62,8 @@ autoplot.PredictionRegr = function(object, # nolint
           x = .data[["truth"]] - .data[["response"]],
           y = after_stat(.data[["density"]]))
       ) +
-        geom_histogram(...)
+        geom_histogram(...) +
+        theme_mlr3()
     },
 
     "residual" = {
@@ -72,7 +74,8 @@ autoplot.PredictionRegr = function(object, # nolint
       ) +
         geom_point(...) +
         geom_rug(sides = "bl") +
-        geom_smooth(method = "lm")
+        geom_smooth(method = "lm") +
+        theme_mlr3()
     },
 
     stopf("Unknown plot type '%s'", type)

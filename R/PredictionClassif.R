@@ -43,9 +43,11 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
       tab = melt(fortify(object)[, c("truth", "response")],
         measure.vars = c("truth", "response"))
       ggplot(tab, aes_string(fill = "value", x = "variable")) +
-        geom_bar(...) +
+        geom_bar(width = 0.5, ...) +
         geom_label(stat = "count", aes_string(label = "..count.."),
-          position = position_stack(vjust = 0.5))
+          position = position_stack(vjust = 0.5), colour = "white") +
+        scale_fill_viridis_d() +
+        theme_mlr3()
     },
 
     "roc" = {

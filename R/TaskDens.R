@@ -33,15 +33,19 @@ autoplot.TaskDens = function(object, type = "dens", ...) { # nolint
   ..density.. = NULL
 
   if (type == "dens") {
-    p + geom_histogram(aes(y = ..density..), fill = "white", color = "black", ...)
+    p + geom_histogram(aes(y = ..density..), fill = "white", color = "black", ...) +
+      theme_mlr3()
   } else if (type == "freq") {
-    p + geom_histogram(fill = "white", color = "black", ...)
+    p + geom_histogram(fill = "white", color = "black", ...) +
+      theme_mlr3()
   } else if (type == "overlay") {
     p +
       geom_histogram(aes(y = ..density..), colour = "black", fill = "white", ...) +
-      geom_density(alpha = 0.2, fill = "#FF6666")
+      geom_density(alpha = 0.2, fill = "#03638e") +
+      theme_mlr3()
   } else {
-    p + geom_freqpoly(...)
+    p + geom_freqpoly(...) +
+      theme_mlr3()
   }
 }
 

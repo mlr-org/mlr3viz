@@ -1,7 +1,9 @@
 plot_ggfortify = function(object, ...) {
   assert_has_model(object)
   require_namespaces("ggfortify")
-  autoplot(object$model, ...)
+  autoplot(object$model, ...) +
+    scale_color_viridis_d() +
+    theme_mlr3(legend = "right")
 }
 
 assert_has_model = function(learner) {
@@ -21,7 +23,6 @@ plot_precrec = function(object, curvetype = "ROC", cb_alpha = 0.05, show_cb = TR
 
   autoplot(precrec::evalmod(x, calc_avg = calc_avg, cb_alpha = cb_alpha), curvetype = curvetype, show_cb = show_cb, ...)
 }
-
 
 delayed_patchwork = function(li, ...) {
   assert_list(li, min.len = 1L)

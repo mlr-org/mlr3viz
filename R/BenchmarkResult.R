@@ -66,15 +66,18 @@ autoplot.BenchmarkResult = function(object, # nolint
         scale_x_discrete(labels = learner_labels) +
         # we need "free_x" to drop empty learners for certain tasks - because
         # we apply over .data$nr
-        facet_wrap(vars(.data$task_id), scales = "free_x")
+        facet_wrap(vars(.data$task_id), scales = "free_x") +
+        theme_mlr3()
     },
 
     "roc" = {
-      plot_precrec(object, curvetype = "ROC", ...)
+      plot_precrec(object, curvetype = "ROC", ...) +
+        theme_mlr3()
     },
 
     "prc" = {
-      plot_precrec(object, curvetype = "PRC", ...)
+      plot_precrec(object, curvetype = "PRC", ...) +
+        theme_mlr3()
     },
 
     stopf("Unknown plot type '%s'", type)

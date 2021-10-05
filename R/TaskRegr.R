@@ -34,12 +34,14 @@ autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
         x = as.factor(target), y = target,
         fill = target)) +
         geom_boxplot(...) +
-        xlab("")
+        xlab("") +
+        theme_mlr3()
     },
 
     "pairs" = {
       require_namespaces("GGally")
-      GGally::ggpairs(object, ...)
+      GGally::ggpairs(object, ...) +
+        theme_mlr3()
     },
 
     stopf("Unknown plot type '%s'", type)

@@ -29,7 +29,7 @@
 #' learner$train(task)
 #' autoplot(learner,
 #'   k = learner$param_set$values$k, rect_fill = TRUE,
-#'   rect = TRUE, rect_border = "red")
+#'   rect = TRUE, rect_border = "grey")
 autoplot.LearnerClustHierarchical = function(object, ...) { # nolint
   if (is.null(object$model)) {
     stopf("Learner '%s' must be trained first", object$id)
@@ -39,7 +39,8 @@ autoplot.LearnerClustHierarchical = function(object, ...) { # nolint
   }
   require_namespaces("factoextra")
 
-  factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
+  factoextra::fviz_dend(object$model, horiz = FALSE, main = NULL, ...) +
+    theme_mlr3()
 }
 
 #' @export

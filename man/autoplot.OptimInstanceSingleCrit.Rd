@@ -65,10 +65,10 @@ if (requireNamespace("bbotk") && requireNamespace("patchwork")) {
   library(paradox)
 
   fun = function(xs) {
-    c(y = - (xs[[1]] - 2)^2 - (xs[[2]] + 3)^2 + 10)
+    c(y = -(xs[[1]] - 2)^2 - (xs[[2]] + 3)^2 + 10)
   }
   domain = ps(
-    x1 = p_dbl(-10,10),
+    x1 = p_dbl(-10, 10),
     x2 = p_dbl(-5, 5)
   )
   codomain = ps(

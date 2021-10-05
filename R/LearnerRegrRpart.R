@@ -16,7 +16,8 @@ autoplot.LearnerRegrRpart = function(object, ...) { # nolint
       coord_flip(),
       theme(axis.ticks.x = element_blank(), axis.text.x = element_blank())
     )) +
-    ggparty::geom_node_label(aes(label = paste0("n=", .data[["nodesize"]])), nudge_y = 0.03, ids = "terminal")
+    ggparty::geom_node_label(aes(label = paste0("n=", .data[["nodesize"]])),
+      nudge_y = 0.03, ids = "terminal")
 }
 
 #' @export

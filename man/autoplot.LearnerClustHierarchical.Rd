@@ -38,5 +38,5 @@ learner = mlr_learners$get("clust.diana")
 learner$train(task)
 autoplot(learner,
   k = learner$param_set$values$k, rect_fill = TRUE,
-  rect = TRUE, rect_border = "red")
+  rect = TRUE, rect_border = "grey")
 }

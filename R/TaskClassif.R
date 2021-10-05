@@ -34,19 +34,25 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
   switch(type,
     "target" = {
       ggplot(object, aes_string(x = target, fill = target)) +
-        geom_bar(stat = "count")
+        geom_bar(stat = "count") +
+        scale_fill_viridis_d() +
+        theme_mlr3()
     },
 
     "duo" = {
       require_namespaces("GGally")
       GGally::ggduo(object,
         columnsX = target, columnsY = object$feature_names,
-        mapping = aes_string(color = target), ...)
+        mapping = aes_string(color = target), ...) +
+        scale_fill_viridis_d() +
+        theme_mlr3()
     },
 
     "pairs" = {
       require_namespaces("GGally")
-      GGally::ggpairs(object, aes_string(color = target), ...)
+      GGally::ggpairs(object, aes_string(color = target), ...) +
+        scale_fill_viridis_d() +
+        theme_mlr3()
     },
 
     stopf("Unknown plot type '%s'", type)

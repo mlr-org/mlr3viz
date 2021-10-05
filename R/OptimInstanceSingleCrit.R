@@ -32,6 +32,7 @@
 #'   Resolution of the surface plot.
 #' @param ... (`any`):
 #'   Additional arguments, possibly passed down to the underlying plot functions.
+#' @importFrom scales pretty_breaks
 #' @return [ggplot2::ggplot()] object.
 #' @export
 #' @examples
@@ -40,10 +41,10 @@
 #'   library(paradox)
 #'
 #'   fun = function(xs) {
-#'     c(y = - (xs[[1]] - 2)^2 - (xs[[2]] + 3)^2 + 10)
+#'     c(y = -(xs[[1]] - 2)^2 - (xs[[2]] + 3)^2 + 10)
 #'   }
 #'   domain = ps(
-#'     x1 = p_dbl(-10,10),
+#'     x1 = p_dbl(-10, 10),
 #'     x2 = p_dbl(-5, 5)
 #'   )
 #'   codomain = ps(
@@ -94,7 +95,8 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
         data_i = data[!is.na(get(x)), c(x, cols_y, "batch_nr"), with = FALSE]
         ggplot(data_i, mapping = aes(x = .data[[x]], y = .data[[cols_y]])) +
           geom_point(aes(fill = .data$batch_nr), shape = 21, size = 3, stroke = 1) +
-          scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
+          scale_fill_viridis_c("Batch number", breaks = scales::pretty_breaks()) +
+          theme_mlr3()
       })
 
       return(delayed_patchwork(plots, guides = "collect"))
@@ -105,9 +107,12 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
       max_to_min = if ("minimize" %in% object$archive$codomain$tags) min else max
       data[, "best" := max_to_min(get(cols_y)) == get(cols_y), by = "batch_nr"]
       ggplot(data, mapping = aes(x = .data$batch_nr, y = .data[[cols_y]])) +
+        geom_line(data = data[data$best, ],
+          colour = "black",
+        ) +
         geom_point(mapping = aes(fill = .data$best), shape = 21, size = 3) +
-        scale_fill_manual(name = "", labels = c(cols_y, "Best"), values = c("#FDE725FF", "#440154FF")) +
-        geom_line(data = data[data$best, ], colour = "#440154FF", size = 1)
+        scale_fill_viridis_d(breaks = scales::pretty_breaks()) +
+        theme_mlr3()
     },
 
     "parameter" = {
@@ -115,7 +120,8 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
       plots = map(cols_x, function(x) {
         ggplot(data, mapping = aes(x = .data$batch_nr, y = .data[[x]])) +
           geom_point(aes(fill = .data[[cols_y]]), shape = 21, size = 3, stroke = 0.5) +
-          scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
+          scale_fill_viridis_c(breaks = scales::pretty_breaks()) +
+          theme_mlr3()
       })
 
       return(delayed_patchwork(plots, guides = "collect"))
@@ -163,12 +169,13 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
 
       ggplot(data, aes(x = .data$x, y = .data$value)) +
         geom_line(aes(group = .data$id, colour = .data[[cols_y]]), size = 1) +
-        scale_colour_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF")) +
+        scale_color_viridis_c() +
         geom_vline(aes(xintercept = x)) +
         {
           if (nrow(data_c) > 0L) geom_label(aes(label = .data$label), data[!is.na(data$label), ])
         } +
         scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
+        theme_mlr3() +
         theme(axis.title.x = element_blank())
     },
 
@@ -179,7 +186,8 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
 
       ggplot(data, aes(x = .data[[cols_x[1]]], y = .data[[cols_x[2]]])) +
         geom_point(aes(fill = .data[[cols_y]]), data = data, shape = 21, size = 3, stroke = 1) +
-        scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF"))
+        scale_fill_viridis_c() +
+        theme_mlr3()
     },
 
     "surface" = {
@@ -208,8 +216,9 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
 
       ggplot(data_i, aes(x = .data[[cols_x[1]]], y = .data[[cols_x[2]]])) +
         geom_raster(aes(fill = .data[[cols_y]])) +
-        scale_fill_gradientn(colours = c("#FDE725FF", "#21908CFF", "#440154FF")) +
-        geom_point(aes(fill = .data[[cols_y]]), data = data, shape = 21, size = 3, stroke = 1)
+        scale_fill_viridis_c() +
+        geom_point(aes(fill = .data[[cols_y]]), data = data, shape = 21, size = 3, stroke = 1) +
+        theme_mlr3()
     },
 
     "pairs" = {
