@@ -176,6 +176,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "lgr",
       "name": "lgr",
       "provider": {
@@ -466,5 +478,5 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "4424.566KB"
+  "fileSize": "7550.81KB"
 }
