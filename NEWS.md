@@ -1,3 +1,7 @@
+# mlr3viz 0.5.7
+
+- Compatibility fix for testthat.
+
 # mlr3viz 0.5.6
 
 - Compatibility fix for mlr3tuning.
