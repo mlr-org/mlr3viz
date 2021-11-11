@@ -30,16 +30,26 @@
 #' autoplot(learner,
 #'   k = learner$param_set$values$k, rect_fill = TRUE,
 #'   rect = TRUE, rect_border = "red")
-autoplot.LearnerClustHierarchical = function(object, ...) { # nolint
+autoplot.LearnerClustHierarchical = function(object, type="dend", ...) { # nolint
+  assert_string(type)
   if (is.null(object$model)) {
     stopf("Learner '%s' must be trained first", object$id)
   }
   if (!("hierarchical" %in% object$properties)) {
     stopf("Learner '%s' must be hierarchical", object$id)
   }
-  require_namespaces("factoextra")
 
-  factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
+  switch(type,
+    "dend" = {
+  	require_namespaces("factoextra")
+
+  	factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
+	}, 
+
+	"scree" = {
+		data = data.table(Height = object$model$height, Clusters = length(object$model$height):1)
+		ggplot(data, aes(x = Clusters, y = Height)) + geom_point() + geom_line()
+	})
 }
 
 #' @export
