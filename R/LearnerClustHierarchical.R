@@ -1,12 +1,16 @@
 #' @title Plot for Hierarchical Clustering Learners
 #'
 #' @description
-#' Visualize dendrograms for hierarchical clusterers
-#' using the package \CRANpkg{factoextra}.
+#' Generates plots for hierarchical clusterers, depending on argument `type`:
+#' 
+#' * `"dend"` (default): dendrograms using \CRANpkg{factoextra} package.
+#' 
+#' * `"scree"`: scree diagram that shows the number of possible clusters on x-axis and 
+#' the height on the y-axis.
 #'
 #' Note that learner-specific plots are experimental and subject to change.
 #'
-#' @param object ([mlr3cluster::LearnerClustAgnes] | [mlr3cluster::LearnerClustDiana]).
+#' @param object ([mlr3cluster::LearnerClustAgnes] | [mlr3cluster::LearnerClustDiana] | [mlr3cluster::LearnerClustHclust]).
 #' @param ... (`any`):
 #'   Additional arguments, passed down to function [factoextra::fviz_dend()] in package \CRANpkg{factoextra}.
 #'
