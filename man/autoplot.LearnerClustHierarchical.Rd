@@ -19,7 +19,7 @@ Additional arguments, passed down to function \code{\link[factoextra:fviz_dend]{
 Generates plots for hierarchical clusterers, depending on argument \code{type}:
 \itemize{
 \item \code{"dend"} (default): dendrograms using \CRANpkg{factoextra} package.
-\item \code{"scree"}: scree diagram that shows the number of possible clusters on x-axis and
+\item \code{"scree"}: scree plot that shows the number of possible clusters on x-axis and
 the height on the y-axis.
 }
 
@@ -43,4 +43,9 @@ learner$train(task)
 autoplot(learner,
   k = learner$param_set$values$k, rect_fill = TRUE,
   rect = TRUE, rect_border = "red")
+
+# hclust clustering
+learner = mlr_learners$get("clust.hclust")
+learner$train(task)
+autoplot(learner, type="scree")
 }

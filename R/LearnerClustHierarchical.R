@@ -5,7 +5,7 @@
 #' 
 #' * `"dend"` (default): dendrograms using \CRANpkg{factoextra} package.
 #' 
-#' * `"scree"`: scree diagram that shows the number of possible clusters on x-axis and 
+#' * `"scree"`: scree plot that shows the number of possible clusters on x-axis and 
 #' the height on the y-axis.
 #'
 #' Note that learner-specific plots are experimental and subject to change.
@@ -34,6 +34,11 @@
 #' autoplot(learner,
 #'   k = learner$param_set$values$k, rect_fill = TRUE,
 #'   rect = TRUE, rect_border = "red")
+#'
+#' # hclust clustering
+#' learner = mlr_learners$get("clust.hclust")
+#' learner$train(task)
+#' autoplot(learner, type="scree")
 autoplot.LearnerClustHierarchical = function(object, type="dend", ...) { # nolint
   assert_string(type)
   if (is.null(object$model)) {
