@@ -9,6 +9,9 @@
 \arguments{
 \item{object}{(\link[mlr3cluster:mlr_learners_clust.agnes]{mlr3cluster::LearnerClustAgnes} | \link[mlr3cluster:mlr_learners_clust.diana]{mlr3cluster::LearnerClustDiana} | \link[mlr3cluster:mlr_learners_clust.hclust]{mlr3cluster::LearnerClustHclust}).}
 
+\item{type}{(character(1)):\cr
+Type of the plot. See description.}
+
 \item{...}{(\code{any}):
 Additional arguments, passed down to function \code{\link[factoextra:fviz_dend]{factoextra::fviz_dend()}} in package \CRANpkg{factoextra}.}
 }
