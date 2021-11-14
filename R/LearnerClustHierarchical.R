@@ -11,6 +11,7 @@
 #' Note that learner-specific plots are experimental and subject to change.
 #'
 #' @param object ([mlr3cluster::LearnerClustAgnes] | [mlr3cluster::LearnerClustDiana] | [mlr3cluster::LearnerClustHclust]).
+#' @template param_type
 #' @param ... (`any`):
 #'   Additional arguments, passed down to function [factoextra::fviz_dend()] in package \CRANpkg{factoextra}.
 #'
@@ -57,7 +58,7 @@ autoplot.LearnerClustHierarchical = function(object, type="dend", ...) { # nolin
 
 	"scree" = {
 		data = data.table(Height = object$model$height, Clusters = length(object$model$height):1)
-		ggplot(data, aes(x = Clusters, y = Height)) + geom_point() + geom_line()
+		ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line()
 	})
 }
 
