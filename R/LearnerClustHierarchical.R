@@ -58,7 +58,8 @@ autoplot.LearnerClustHierarchical = function(object, type="dend", ...) { # nolin
 
 	"scree" = {
 		data = data.table(Height = object$model$height, Clusters = length(object$model$height):1)
-		ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line()
+		ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line() + 
+			xlab("Clusters") + ylab("Height")
 	})
 }
 
