@@ -51,16 +51,16 @@ autoplot.LearnerClustHierarchical = function(object, type="dend", ...) { # nolin
 
   switch(type,
     "dend" = {
-  	require_namespaces("factoextra")
+    require_namespaces("factoextra")
 
-  	factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
-	}, 
+    factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
+  }, 
 
-	"scree" = {
-		data = data.table(Height = object$model$height, Clusters = length(object$model$height):1)
-		ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line() + 
-			xlab("Clusters") + ylab("Height")
-	})
+  "scree" = {
+    data = data.table(Height = object$model$height, Clusters = length(object$model$height):1)
+    ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line() + 
+      xlab("Clusters") + ylab("Height")
+  })
 }
 
 #' @export
