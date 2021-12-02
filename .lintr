@@ -7,4 +7,3 @@ linters: with_defaults(
     commented_code_linter = NULL, # allow code in comments
     line_length_linter = line_length_linter(120)
     )
-
