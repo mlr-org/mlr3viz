@@ -2,11 +2,47 @@
 # R specific hooks: https://github.com/lorenzwalthert/precommit
 repos:
 -   repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.1.3.9014
+    rev: v0.2.0
     hooks:
-    -   id: style-files
-        args: [--style_pkg=styler.mlr, --style_fun=mlr_style]
-    -   id: roxygenize
+    # -   id: style-files
+    #     args: [--style_pkg=styler.mlr, --style_fun=mlr_style]
+    # -   id: roxygenize
+    #     # roxygen requires loading pkg -> add dependencies from DESCRIPTION
+    #     additional_dependencies:
+    #     -    bbotk
+    #     -    checkmate
+    #     -    cluster
+    #     -    data.table
+    #     -    distr6
+    #     -    factoextra
+    #     -    GGally
+    #     -    ggfortify
+    #     -    ggparty
+    #     -    ggplot2
+    #     -    glmnet
+    #     -    knitr
+    #     -    lgr
+    #     -    mlr3
+    #     -    mlr3cluster
+    #     -    mlr3filters
+    #     -    mlr3learners
+    #     -    mlr3misc
+    #     -    mlr3proba
+    #     -    mlr3tuning
+    #     -    paradox
+    #     -    partykit
+    #     -    patchwork
+    #     -    precrec
+    #     -    ranger
+    #     -    rpart
+    #     -    scales
+    #     -    stats
+    #     -    survival
+    #     -    testthat
+    #     -    utils
+    #     -    vdiffr
+    #     -    xgboost
+    #     -    mlr-org/styler.mlr
     -   id: use-tidy-description
     # -   id: spell-check
         exclude: >

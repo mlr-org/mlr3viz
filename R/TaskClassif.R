@@ -36,6 +36,7 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
       ggplot(object, aes_string(x = target, fill = target)) +
         geom_bar(stat = "count") +
         scale_fill_viridis_d() +
+        scale_color_viridis_d() +
         theme_mlr3()
     },
 
@@ -45,6 +46,7 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
         columnsX = target, columnsY = object$feature_names,
         mapping = aes_string(color = target), ...) +
         scale_fill_viridis_d() +
+        scale_color_viridis_d() +
         theme_mlr3()
     },
 
@@ -52,6 +54,7 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
       require_namespaces("GGally")
       GGally::ggpairs(object, aes_string(color = target), ...) +
         scale_fill_viridis_d() +
+        scale_color_viridis_d() +
         theme_mlr3()
     },
 

@@ -45,5 +45,10 @@ learner = mlr_learners$get("clust.diana")
 learner$train(task)
 autoplot(learner,
   k = learner$param_set$values$k, rect_fill = TRUE,
-  rect = TRUE, rect_border = "grey")
+  rect = TRUE, rect_border = "red")
+
+# hclust clustering
+learner = mlr_learners$get("clust.hclust")
+learner$train(task)
+autoplot(learner, type = "scree")
 }
