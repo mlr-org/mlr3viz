@@ -9,7 +9,7 @@ test_that("autoplot.PredictionClust", {
   learner = mlr3::lrn("clust.kmeans", centers = 3)
   prediction = learner$train(task)$predict(task)
 
-  p = expect_warning(autoplot(prediction, task, type = "scatter"), "Factor variables are omitted")
+  expect_warning(p <- autoplot(prediction, task, type = "scatter"), "Factor variables are omitted")
   expect_true(is.ggplot(p))
   vdiffr::expect_doppelganger("predictionclust_scatter", p)
 
