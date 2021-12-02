@@ -4,10 +4,13 @@
 \alias{autoplot.LearnerClustHierarchical}
 \title{Plot for Hierarchical Clustering Learners}
 \usage{
-\method{autoplot}{LearnerClustHierarchical}(object, ...)
+\method{autoplot}{LearnerClustHierarchical}(object, type = "dend", ...)
 }
 \arguments{
-\item{object}{(\link[mlr3cluster:mlr_learners_clust.agnes]{mlr3cluster::LearnerClustAgnes} | \link[mlr3cluster:mlr_learners_clust.diana]{mlr3cluster::LearnerClustDiana}).}
+\item{object}{(\link[mlr3cluster:mlr_learners_clust.agnes]{mlr3cluster::LearnerClustAgnes} | \link[mlr3cluster:mlr_learners_clust.diana]{mlr3cluster::LearnerClustDiana} | \link[mlr3cluster:mlr_learners_clust.hclust]{mlr3cluster::LearnerClustHclust}).}
+
+\item{type}{(character(1)):\cr
+Type of the plot. See description.}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to function \code{\link[factoextra:fviz_dend]{factoextra::fviz_dend()}} in package \CRANpkg{factoextra}.}
@@ -16,8 +19,12 @@ Additional arguments, passed down to function \code{\link[factoextra:fviz_dend]{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
 }
 \description{
-Visualize dendrograms for hierarchical clusterers
-using the package \CRANpkg{factoextra}.
+Generates plots for hierarchical clusterers, depending on argument \code{type}:
+\itemize{
+\item \code{"dend"} (default): dendrograms using \CRANpkg{factoextra} package.
+\item \code{"scree"}: scree plot that shows the number of possible clusters on x-axis and
+the height on the y-axis.
+}
 
 Note that learner-specific plots are experimental and subject to change.
 }
@@ -39,4 +46,9 @@ learner$train(task)
 autoplot(learner,
   k = learner$param_set$values$k, rect_fill = TRUE,
   rect = TRUE, rect_border = "red")
+
+# hclust clustering
+learner = mlr_learners$get("clust.hclust")
+learner$train(task)
+autoplot(learner, type="scree")
 }

@@ -1,12 +1,17 @@
 #' @title Plot for Hierarchical Clustering Learners
 #'
 #' @description
-#' Visualize dendrograms for hierarchical clusterers
-#' using the package \CRANpkg{factoextra}.
+#' Generates plots for hierarchical clusterers, depending on argument `type`:
+#' 
+#' * `"dend"` (default): dendrograms using \CRANpkg{factoextra} package.
+#' 
+#' * `"scree"`: scree plot that shows the number of possible clusters on x-axis and 
+#' the height on the y-axis.
 #'
 #' Note that learner-specific plots are experimental and subject to change.
 #'
-#' @param object ([mlr3cluster::LearnerClustAgnes] | [mlr3cluster::LearnerClustDiana]).
+#' @param object ([mlr3cluster::LearnerClustAgnes] | [mlr3cluster::LearnerClustDiana] | [mlr3cluster::LearnerClustHclust]).
+#' @template param_type
 #' @param ... (`any`):
 #'   Additional arguments, passed down to function [factoextra::fviz_dend()] in package \CRANpkg{factoextra}.
 #'
@@ -30,16 +35,32 @@
 #' autoplot(learner,
 #'   k = learner$param_set$values$k, rect_fill = TRUE,
 #'   rect = TRUE, rect_border = "red")
-autoplot.LearnerClustHierarchical = function(object, ...) { # nolint
+#'
+#' # hclust clustering
+#' learner = mlr_learners$get("clust.hclust")
+#' learner$train(task)
+#' autoplot(learner, type="scree")
+autoplot.LearnerClustHierarchical = function(object, type="dend", ...) { # nolint
+  assert_string(type)
   if (is.null(object$model)) {
     stopf("Learner '%s' must be trained first", object$id)
   }
   if (!("hierarchical" %in% object$properties)) {
     stopf("Learner '%s' must be hierarchical", object$id)
   }
-  require_namespaces("factoextra")
 
-  factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
+  switch(type,
+    "dend" = {
+    require_namespaces("factoextra")
+
+    factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
+  }, 
+
+  "scree" = {
+    data = data.table(Height = object$model$height, Clusters = length(object$model$height):1)
+    ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line() + 
+      xlab("Clusters") + ylab("Height")
+  })
 }
 
 #' @export
