@@ -86,7 +86,7 @@
 <text x='386.06' y='553.79' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>0</text>
 <text x='541.71' y='553.79' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>5</text>
 <text x='697.36' y='553.79' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>10</text>
-<text x='381.57' y='567.53' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='71.40px' lengthAdjust='spacingAndGlyphs'>x_domain_x1</text>
+<text x='381.57' y='567.53' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='12.68px' lengthAdjust='spacingAndGlyphs'>x1</text>
 <text transform='translate(14.24,310.39) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='6.00px' lengthAdjust='spacingAndGlyphs'>y</text>
 <rect x='292.04' y='24.85' width='179.05' height='43.81' style='stroke-width: 1.16; stroke: none; fill: #FFFFFF;' />
 <image width='86.40' height='17.28' x='378.72' y='30.83' preserveAspectRatio='none' xlink:href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAABCAYAAABkOJMpAAAAz0lEQVQ4jYVSyxXDMAiTnNU6QvcfpeoBGzAmyYFnRRLmE/PDrzAIkMAA6HjG5J1j0mk8Ny74Pk5Nrzmma2E8aMe9y589SEFoYaBoSL2FR3f5jS6fCxAqn3RULp2IOp0WXHjU9GJldMwYc4fGbRe638/tfSq+s0b0p8YHqOVV9hI+0Z7qRVnAnvZFYUAYtO/AwgAwKNA9cMzp5/Rz5tgvW/jkOfmRMPmkNfhJS3jN63PD5ruKZtx+rnnXnozL+wpfzfEdbvVin4fX/W98h3+O/wX2kQrGpaQGAAAAAElFTkSuQmCC'/>
@@ -106,6 +106,6 @@
 <line x1='426.70' y1='34.29' x2='426.70' y2='30.83' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
 <line x1='445.84' y1='34.29' x2='445.84' y2='30.83' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
 <line x1='464.97' y1='34.29' x2='464.97' y2='30.83' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
-<text x='49.12' y='15.89' style='font-size: 14.40px; font-family: sans;' textLength='373.08px' lengthAdjust='spacingAndGlyphs'>optiminstance_tisc_optiminstance_marginal_x_domain_01</text>
+<text x='49.12' y='15.89' style='font-size: 14.40px; font-family: sans;' textLength='108.87px' lengthAdjust='spacingAndGlyphs'>tisc_marginal_01</text>
 </g>
 </svg>

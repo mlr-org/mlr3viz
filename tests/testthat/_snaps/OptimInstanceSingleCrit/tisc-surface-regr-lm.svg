@@ -107,6 +107,6 @@
 <line x1='376.35' y1='34.29' x2='376.35' y2='30.83' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
 <line x1='397.19' y1='34.29' x2='397.19' y2='30.83' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
 <line x1='418.03' y1='34.29' x2='418.03' y2='30.83' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
-<text x='45.77' y='15.89' style='font-size: 14.40px; font-family: sans;' textLength='327.42px' lengthAdjust='spacingAndGlyphs'>optiminstance_tisc_optiminstance_surface_regr_lm</text>
+<text x='45.77' y='15.89' style='font-size: 14.40px; font-family: sans;' textLength='133.68px' lengthAdjust='spacingAndGlyphs'>tisc_surface_regr_lm</text>
 </g>
 </svg>

@@ -6,10 +6,10 @@ requireNamespace("mlr3learners")
 set.seed(42)
 
 fun = function(xs) {
-  c(y = - (xs[[1]] - 2)^2 - (xs[[2]] + 3)^2 + 10)
+  c(y = -(xs[[1]] - 2)^2 - (xs[[2]] + 3)^2 + 10)
 }
 domain = ps(
-  x1 = p_dbl(-10,10),
+  x1 = p_dbl(-10, 10),
   x2 = p_dbl(-5, 5)
 )
 codomain = ps(
@@ -35,7 +35,7 @@ test_that("fortify.OptimInstanceSingleCrit", {
 test_that("autoplot.OptimInstanceSingleCrit", {
   expect_single = function(id, plot) {
     expect_true(is.ggplot(plot))
-    vdiffr::expect_doppelganger(sprintf("optiminstance_tisc_%s", id), plot)
+    vdiffr::expect_doppelganger(sprintf("tisc_%s", id), plot)
   }
 
   expect_multiple = function(id, plots) {
@@ -44,48 +44,48 @@ test_that("autoplot.OptimInstanceSingleCrit", {
     for (i in seq_along(plots)) {
       cur = plots[[i]]
       expect_true(is.ggplot(cur))
-      vdiffr::expect_doppelganger(sprintf("optiminstance_tisc_%s_%02i", id, i), cur)
+      vdiffr::expect_doppelganger(sprintf("tisc_%s_%02i", id, i), cur)
     }
   }
 
   p = autoplot(instance, type = "marginal")
-  expect_multiple("optiminstance_marginal", p)
+  expect_multiple("marginal", p)
 
   p = autoplot(instance, type = "marginal", cols_x = "x_domain_x1")
-  expect_multiple("optiminstance_marginal_x_domain", p)
+  expect_multiple("marginal_x_domain", p)
 
   p = autoplot(instance, type = "marginal", trafo = TRUE)
-  expect_multiple("optiminstance_marginal_trafo", p)
+  expect_multiple("marginal_trafo", p)
 
   p = autoplot(instance, type = "performance")
-  expect_single("optiminstance_performance", p)
+  expect_single("performance", p)
 
   p = autoplot(instance, type = "parameter")
-  expect_multiple("optiminstance_parameter", p)
+  expect_multiple("parameter", p)
 
   p = autoplot(instance, type = "parameter", cols_x = "x_domain_x1")
-  expect_multiple("optiminstance_parameter_x_domain", p)
+  expect_multiple("parameter_x_domain", p)
 
   p = autoplot(instance, type = "parameter", trafo = TRUE)
-  expect_multiple("optiminstance_parameter_trafo", p)
+  expect_multiple("parameter_trafo", p)
 
   p = autoplot(instance, type = "parameter", return_list = TRUE)
-  expect_multiple("optiminstance_parameter_return_list", p)
+  expect_multiple("parameter_return_list", p)
 
   p = autoplot(instance, type = "surface")
-  expect_single("optiminstance_surface", p)
+  expect_single("surface", p)
 
   p = autoplot(instance, type = "surface", grid_resolution = 50)
-  expect_single("optiminstance_surface_grid_50", p)
+  expect_single("surface_grid_50", p)
 
   p = autoplot(instance, type = "surface", learner = mlr3::lrn("regr.lm"))
-  expect_single("optiminstance_surface_regr_lm", p)
+  expect_single("surface_regr_lm", p)
 
   p = autoplot(instance, type = "points")
-  expect_single("optiminstance_points", p)
+  expect_single("points", p)
 
   p = autoplot(instance, type = "parallel")
-  expect_single("optiminstance_parallel", p)
+  expect_single("parallel", p)
 
   p = autoplot(instance, type = "pairs")
   expect_s3_class(p, "ggmatrix")

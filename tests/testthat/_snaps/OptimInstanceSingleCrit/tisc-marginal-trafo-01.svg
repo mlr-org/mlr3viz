@@ -106,6 +106,6 @@
 <line x1='426.70' y1='34.29' x2='426.70' y2='30.83' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
 <line x1='445.84' y1='34.29' x2='445.84' y2='30.83' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
 <line x1='464.97' y1='34.29' x2='464.97' y2='30.83' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
-<text x='49.12' y='15.89' style='font-size: 14.40px; font-family: sans;' textLength='339.44px' lengthAdjust='spacingAndGlyphs'>optiminstance_tisc_optiminstance_marginal_trafo_01</text>
+<text x='49.12' y='15.89' style='font-size: 14.40px; font-family: sans;' textLength='145.70px' lengthAdjust='spacingAndGlyphs'>tisc_marginal_trafo_01</text>
 </g>
 </svg>
