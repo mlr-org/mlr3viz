@@ -117,3 +117,4 @@ $RECYCLE.BIN/
 
 docs/
 *.html
+renv/
