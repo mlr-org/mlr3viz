@@ -72,12 +72,18 @@ autoplot.BenchmarkResult = function(object, # nolint
 
     "roc" = {
       plot_precrec(object, curvetype = "ROC", ...) +
-        apply_theme(list(theme_mlr3()))
+        apply_theme(list(
+          scale_color_viridis_d(),
+          theme_mlr3()
+        ))
     },
 
     "prc" = {
       plot_precrec(object, curvetype = "PRC", ...) +
-        apply_theme(list(theme_mlr3()))
+        apply_theme(list(
+          scale_color_viridis_d(),
+          theme_mlr3()
+        ))
     },
 
     stopf("Unknown plot type '%s'", type)
