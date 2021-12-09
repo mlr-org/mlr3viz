@@ -36,3 +36,11 @@ print.DelayedPatchworkPlot = function(x, ...) {
   require_namespaces("patchwork")
   print(invoke(patchwork::wrap_plots, x, .args = list(attr(x, ".args"))))
 }
+
+apply_theme = function(x) {
+    if (getOption("mlr3.theme", TRUE)) {
+          x
+    } else {
+        geom_blank()
+    }
+}

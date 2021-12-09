@@ -27,7 +27,7 @@
 autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
   assert_string(type)
 
-  switch(type,
+  p = switch(type,
     "target" = {
       target = object$target_names
       ggplot(data = object, aes_string(
@@ -35,13 +35,13 @@ autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
         fill = target)) +
         geom_boxplot(...) +
         xlab("") +
-        theme_mlr3()
+        apply_theme(list(theme_mlr3()))
     },
 
     "pairs" = {
       require_namespaces("GGally")
       GGally::ggpairs(object, ...) +
-        theme_mlr3()
+        apply_theme(list(theme_mlr3()))
     },
 
     stopf("Unknown plot type '%s'", type)

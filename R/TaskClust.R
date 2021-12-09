@@ -29,7 +29,7 @@ autoplot.TaskClust = function(object, type = "pairs", ...) { # nolint
     "pairs" = {
       require_namespaces("GGally")
       GGally::ggpairs(object, ...) +
-        theme_mlr3()
+      apply_theme(list(theme_mlr3()))
     },
 
     stopf("Unknown plot type '%s'", type)

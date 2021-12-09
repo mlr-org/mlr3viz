@@ -41,14 +41,19 @@ autoplot.TaskSurv = function(object, type = "target", ...) { # nolint
           data = object$data()),
         cens.col = "#440154FF",
         cens.shape = 21) +
-          scale_color_viridis_d() +
+        apply_theme(list(
+          scale_color_viridis_d(),
           theme_mlr3()
+        ))
       } else {
         suppressMessages(GGally::ggsurv(invoke(survival::survfit,
           formula = object$formula(...),
           data = object$data())) +
-          scale_color_viridis_d() +
-          theme_mlr3())
+          apply_theme(list(
+            scale_color_viridis_d(),
+            theme_mlr3()
+          ))
+        )
       }
     },
 
@@ -56,13 +61,15 @@ autoplot.TaskSurv = function(object, type = "target", ...) { # nolint
       GGally::ggduo(object,
         columnsX = object$target_names,
         columnsY = object$feature_names, ...) +
-        scale_color_viridis_c() +
-        theme_mlr3()
+        apply_theme(list(
+          scale_color_viridis_d(),
+          theme_mlr3()
+        ))
     },
 
     "pairs" = {
       GGally::ggpairs(object, ...) +
-        theme_mlr3(base_size = 10)
+        apply_theme(list(theme_mlr3(base_size = 10)))
     },
 
     stopf("Unknown plot type '%s'", type)

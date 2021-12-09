@@ -52,7 +52,7 @@ autoplot.PredictionRegr = function(object, # nolint
         geom_point(...) +
         geom_rug(sides = "bl") +
         geom_smooth(method = "lm") +
-        theme_mlr3()
+        apply_theme(list(theme_mlr3()))
     },
 
     "histogram" = {
@@ -63,7 +63,7 @@ autoplot.PredictionRegr = function(object, # nolint
           y = after_stat(.data[["density"]]))
       ) +
         geom_histogram(...) +
-        theme_mlr3()
+        apply_theme(list(theme_mlr3()))
     },
 
     "residual" = {
@@ -75,7 +75,7 @@ autoplot.PredictionRegr = function(object, # nolint
         geom_point(...) +
         geom_rug(sides = "bl") +
         geom_smooth(method = "lm") +
-        theme_mlr3()
+        apply_theme(list(theme_mlr3()))
     },
 
     stopf("Unknown plot type '%s'", type)

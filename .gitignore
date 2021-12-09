@@ -118,3 +118,4 @@ $RECYCLE.BIN/
 docs/
 *.html
 renv/
+.Rprofile

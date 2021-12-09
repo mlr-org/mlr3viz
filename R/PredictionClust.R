@@ -56,8 +56,10 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
       data$partition = factor(data$partition)
 
       GGally::ggscatmat(data, color = "partition", ...) +
-        scale_color_viridis_d() +
-        theme_mlr3()
+        apply_theme(list(
+          scale_color_viridis_d(),
+          theme_mlr3()
+        ))
     },
 
     "sil" = {
@@ -68,8 +70,10 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
       sil = cluster::silhouette(object$data$partition, d)
 
       ggplot2::autoplot(sil, ...) +
-        scale_fill_viridis_d() +
-        theme_mlr3()
+        apply_theme(list(
+          scale_fill_viridis_d(),
+          theme_mlr3()
+        ))
     },
 
     "pca" = {
@@ -88,8 +92,10 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
       ggplot2::autoplot(stats::prcomp(task_data[, -"row_ids"]),
         data = plot_data,
         colour = "cluster", ...) +
-        scale_color_viridis_d() +
-        theme_mlr3()
+        apply_theme(list(
+          scale_color_viridis_d(),
+          theme_mlr3()
+        ))
     },
 
     stopf("Unknown plot type '%s'", type)

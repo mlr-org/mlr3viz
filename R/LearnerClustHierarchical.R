@@ -2,10 +2,10 @@
 #'
 #' @description
 #' Generates plots for hierarchical clusterers, depending on argument `type`:
-#' 
+#'
 #' * `"dend"` (default): dendrograms using \CRANpkg{factoextra} package.
-#' 
-#' * `"scree"`: scree plot that shows the number of possible clusters on x-axis and 
+#'
+#' * `"scree"`: scree plot that shows the number of possible clusters on x-axis and
 #' the height on the y-axis.
 #'
 #' Note that learner-specific plots are experimental and subject to change.
@@ -54,14 +54,14 @@ autoplot.LearnerClustHierarchical = function(object, type = "dend", ...) { # nol
     require_namespaces("factoextra")
 
     factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...) +
-    theme_mlr3()
-  }, 
+    apply_theme(list(theme_mlr3()))
+  },
 
   "scree" = {
-    data = data.table(Height = object$model$height, Clusters = length(object$model$height):1)
-    ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line() + 
+    data = data.table(Height = object$model$height, Clusters = seq(length(object$model$height), 1))
+    ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line() +
       xlab("Clusters") + ylab("Height") +
-    theme_mlr3()
+    apply_theme(list(theme_mlr3()))
   })
 }
 

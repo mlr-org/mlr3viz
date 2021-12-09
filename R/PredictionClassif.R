@@ -46,20 +46,26 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
         geom_bar(width = 0.5, ...) +
         geom_label(stat = "count", aes_string(label = "..count.."),
           position = position_stack(vjust = 0.5), colour = "white") +
-        scale_fill_viridis_d() +
-        theme_mlr3()
+        apply_theme(list(
+          scale_fill_viridis_d(),
+          theme_mlr3()
+        ))
     },
 
     "roc" = {
       plot_precrec(object, curvetype = "ROC", ...) +
-        scale_color_viridis_d() +
-        theme_mlr3(legend = "none")
+        apply_theme(list(
+          scale_color_viridis_d(),
+          theme_mlr3(legend = "none")
+        ))
     },
 
     "prc" = {
       plot_precrec(object, curvetype = "PRC", ...) +
-        scale_color_viridis_d() +
-        theme_mlr3(legend = "none")
+        apply_theme(list(
+          scale_color_viridis_d(),
+          theme_mlr3(legend = "none")
+        ))
     },
 
     "threshold" = {

@@ -35,7 +35,7 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
       ggplot(data = data, aes_string(x = "feature", y = "score")) +
         geom_bar(stat = "identity", ...) +
         scale_x_discrete(limits = data$feature) +
-        theme_mlr3()
+        apply_theme(list(theme_mlr3()))
     },
 
     stopf("Unknown plot type '%s'", type)

@@ -87,30 +87,30 @@ autoplot.ResampleResult = function(object, # nolint
       ggplot(object, measure = measure, aes_string(y = "performance")) +
         geom_boxplot(...) +
         ylab(measure$id) +
-        theme_mlr3()
+        apply_theme(list(theme_mlr3()))
     },
 
     "histogram" = {
       ggplot(object, measure = measure, aes_string(x = "performance")) +
         geom_histogram(...) +
         xlab(measure$id) +
-        theme_mlr3()
+        apply_theme(list(theme_mlr3()))
     },
 
     "roc" = {
       plot_precrec(object, curvetype = "ROC", ...) +
-        theme_mlr3(legend = "none")
+        apply_theme(list(theme_mlr3(legend = "none")))
     },
 
     "prc" = {
       plot_precrec(object, curvetype = "PRC", ...) +
-        theme_mlr3(legend = "none")
+        apply_theme(list(theme_mlr3(legend = "none")))
     },
 
     "prediction" = plot_learner_prediction_resample_result(
       object,
       predict_sets, ...) +
-      theme_mlr3(legend = "right"),
+      apply_theme(list(theme_mlr3(legend = "right"))),
 
     stopf("Unknown plot type '%s'", type)
   )
