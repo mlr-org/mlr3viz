@@ -57,15 +57,21 @@ autoplot.PredictionRegr = function(object, # nolint
 
     "histogram" = {
       object = ggplot2::fortify(object)
-      ggplot(object,
+      p = ggplot(object,
         mapping = aes(
           x = .data[["truth"]] - .data[["response"]],
           y = after_stat(.data[["density"]]))
-      ) +
-        geom_histogram(fill = "white", color = "black", ...) +
+      ) + geom_histogram(fill = "white", color = "black", ...) +
         xlab("Residuals") +
-        ylab("Density") +
-        apply_theme(list(theme_mlr3()))
+        ylab("Density")
+
+        # geom_blank errors with after_stat
+        if (getOption("mlr3.theme", TRUE)) {
+          p + theme_mlr3()
+        } else {
+
+          p
+        }
     },
 
     "residual" = {
