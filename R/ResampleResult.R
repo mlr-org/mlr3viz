@@ -87,30 +87,37 @@ autoplot.ResampleResult = function(object, # nolint
       ggplot(object, measure = measure, aes_string(y = "performance")) +
         geom_boxplot(...) +
         ylab(measure$id) +
-        apply_theme(list(theme_mlr3()))
+        apply_theme(list(theme_mlr3())) +
+        theme(axis.text.x.bottom = element_blank())
     },
 
     "histogram" = {
       ggplot(object, measure = measure, aes_string(x = "performance")) +
-        geom_histogram(...) +
+        geom_histogram(fill = "white", color = "black", ...) +
         xlab(measure$id) +
+        ylab("Count") +
         apply_theme(list(theme_mlr3()))
     },
 
     "roc" = {
       plot_precrec(object, curvetype = "ROC", ...) +
-        apply_theme(list(theme_mlr3(legend = "none")))
+        apply_theme(list(
+          scale_color_viridis_d("Learner", end = 0.8),
+          theme_mlr3(legend = "none")
+        )) +
+        theme(plot.title = element_blank())
     },
 
     "prc" = {
       plot_precrec(object, curvetype = "PRC", ...) +
-        apply_theme(list(theme_mlr3(legend = "none")))
+        apply_theme(list(
+          scale_color_viridis_d("Learner", end = 0.8),
+          theme_mlr3(legend = "none")
+        )) +
+        theme(plot.title = element_blank())
     },
 
-    "prediction" = plot_learner_prediction_resample_result(
-      object,
-      predict_sets, ...) +
-      apply_theme(list(theme_mlr3(legend = "right"))),
+    "prediction" = plot_learner_prediction_resample_result(object,predict_sets, ...),
 
     stopf("Unknown plot type '%s'", type)
   )
@@ -204,17 +211,17 @@ plot_learner_prediction_resample_result = function(object, # nolint
       # classif, probs
       raster_aes = aes_string(fill = "response", alpha = ".prob.response")
       scale_alpha = scale_alpha_continuous(name = "Prob.")
-      scale_fill = scale_fill_viridis_d()
+      scale_fill = scale_fill_viridis_d("Learner", end = 0.8)
     } else if (task_type == "classif" && learners[[1L]]$predict_type == "response") {
       # classif, no probs
       raster_aes = aes_string(fill = "response")
       scale_alpha = NULL
-      scale_fill = scale_fill_viridis_d()
+      scale_fill = scale_fill_viridis_d("Learner", end = 0.8)
     } else {
       # regr
       raster_aes = aes_string(fill = "response")
       scale_alpha = NULL
-      scale_fill = scale_fill_viridis_c()
+      scale_fill = scale_fill_viridis_c("Learner", end = 0.8)
     }
 
     g = ggplot(grid, aes_string(features[1L], features[2L])) +
@@ -227,7 +234,10 @@ plot_learner_prediction_resample_result = function(object, # nolint
         values = c(train = 21, test = 22, both = 23),
         name = "Set") +
       scale_alpha +
-      scale_fill +
+      apply_theme(list(
+        scale_fill,
+        theme_mlr3(legend = "right")
+      )) +
       labs(fill = "Response") +
       folds_facet
   }

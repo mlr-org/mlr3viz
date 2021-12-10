@@ -51,7 +51,7 @@ autoplot.PredictionRegr = function(object, # nolint
         geom_abline(slope = 1, alpha = 0.5) +
         geom_point(...) +
         geom_rug(sides = "bl") +
-        geom_smooth(method = "lm") +
+        geom_smooth(method = "lm", color = apply_theme_color(viridis::viridis(1), "#3366FF")) +
         apply_theme(list(theme_mlr3()))
     },
 
@@ -62,7 +62,9 @@ autoplot.PredictionRegr = function(object, # nolint
           x = .data[["truth"]] - .data[["response"]],
           y = after_stat(.data[["density"]]))
       ) +
-        geom_histogram(...) +
+        geom_histogram(fill = "white", color = "black", ...) +
+        xlab("Residuals") +
+        ylab("Density") +
         apply_theme(list(theme_mlr3()))
     },
 
@@ -74,7 +76,9 @@ autoplot.PredictionRegr = function(object, # nolint
       ) +
         geom_point(...) +
         geom_rug(sides = "bl") +
-        geom_smooth(method = "lm") +
+        geom_smooth(method = "lm", color = apply_theme_color(viridis::viridis(1), "#3366FF")) +
+        xlab("Response") +
+        ylab("Residuals") +
         apply_theme(list(theme_mlr3()))
     },
 

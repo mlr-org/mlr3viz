@@ -68,8 +68,15 @@ autoplot.PredictionSurv = function(object, type = c("calib", "dcalib"),
       data = data.frame(x = times, y = c(1 - km_distr$cdf(times), 1 - pred_distr$cdf(times)),
         Group = rep(c("KM", "Pred"), each = length(times)))
 
-      ggplot(data, aes(x = x, y = y, group = Group, color = Group)) + geom_line() +
-        labs(x = "T", y = "S(T)")
+      ggplot(data, aes(x = x, y = y, group = Group, color = Group)) +
+        geom_line() +
+        labs(x = "T", y = "S(T)") +
+        apply_theme(list(
+          scale_color_viridis_d(end = 0.8),
+          theme_mlr3()
+        )) +
+        theme(legend.title = element_blank())
+
     },
 
     "dcalib" = {
@@ -79,9 +86,11 @@ autoplot.PredictionSurv = function(object, type = c("calib", "dcalib"),
       })
       pl = qplot(x = p, y = q, geom = "line")
       if (xyline) {
-        pl = pl + geom_abline(slope = 1, intercept = 0, color = "red")
+        pl = pl + geom_abline(slope = 1, intercept = 0, color = "lightgray")
       }
-      pl + labs(x = "True", y = "Predicted")
+      pl +
+        labs(x = "True", y = "Predicted") +
+        apply_theme(list(theme_mlr3()))
     },
 
     stopf("Unknown plot type '%s'", type)

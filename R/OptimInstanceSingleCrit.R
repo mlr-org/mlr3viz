@@ -30,6 +30,8 @@
 #'   Regression learner used to interpolate the data of the surface plot.
 #' @param grid_resolution (`numeric()`)\cr
 #'   Resolution of the surface plot.
+#' @param batch (`integer()`)\cr
+#'  The batch number(s) to limit the plot to. Default is all batches.
 #' @param ... (`any`):
 #'   Additional arguments, possibly passed down to the underlying plot functions.
 #' @importFrom scales pretty_breaks
@@ -74,7 +76,7 @@
 #'   autoplot(instance, type = "pairs")
 #' }
 autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE,
-  learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, ...) { # nolint
+  learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, batch = NULL, ...) { # nolint
   assert_subset(cols_x, c(object$archive$cols_x, paste0("x_domain_", object$archive$cols_x)))
   assert_flag(trafo)
 
@@ -87,16 +89,24 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
   }
   cols_y = object$archive$cols_y
   data = fortify(object)
+  if (is.null(batch)) batch = seq_len(object$archive$n_batch)
+  assert_subset(batch, seq_len(object$archive$n_batch))
+  data = data[list(batch), , on = "batch_nr"]
 
   switch(type,
     "marginal" = {
       # each parameter versus performance
       plots = map(cols_x, function(x) {
         data_i = data[!is.na(get(x)), c(x, cols_y, "batch_nr"), with = FALSE]
+        breaks = pretty(data_i$batch_nr, n = 4)
+        breaks[1] = min(data_i$batch_nr)
+        breaks[length(breaks)] = max(data_i$batch_nr)
+        data_i[, batch_nr := as.factor(batch_nr)]
+
         ggplot(data_i, mapping = aes(x = .data[[x]], y = .data[[cols_y]])) +
           geom_point(aes(fill = .data$batch_nr), shape = 21, size = 3, stroke = 1) +
           apply_theme(list(
-            scale_fill_viridis_c("Batch number", breaks = scales::pretty_breaks()),
+            scale_fill_viridis_d("Batch", breaks = breaks),
             theme_mlr3()
           ))
       })
@@ -106,17 +116,22 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
 
     "performance" = {
       # performance versus iteration
-      max_to_min = if ("minimize" %in% object$archive$codomain$tags) min else max
-      data[, "best" := max_to_min(get(cols_y)) == get(cols_y), by = "batch_nr"]
-      ggplot(data, mapping = aes(x = .data$batch_nr, y = .data[[cols_y]])) +
-        geom_line(data = data[data$best, ],
-          colour = "black",
-        ) +
-        geom_point(mapping = aes(fill = .data$best), shape = 21, size = 3) +
+      max_to_min = if ("minimize" %in% object$archive$codomain$tags) which.min else which.max
+
+      data[, group := factor(1, labels = "Objective value")]
+      top_batch = data[, .SD[which.max(get(cols_y))], by = "batch_nr"]
+      top_batch[, group := factor(1, labels = "Best value")]
+
+      ggplot() +
+        geom_point(data, mapping = aes(x = .data[["batch_nr"]], y = .data[[cols_y]], fill = .data[["group"]]), shape = 21, size = 3) +
+        geom_line(top_batch, mapping = aes(x = .data[["batch_nr"]], y = .data[[cols_y]], color = .data[["group"]]), group = 1) +
+        xlab("Batch") +
         apply_theme(list(
-          scale_fill_viridis_d(breaks = scales::pretty_breaks()),
-          theme_mlr3()
-        ))
+            scale_fill_manual(values = viridis::viridis(1, begin = 0.4)),
+            scale_color_manual(values = viridis::viridis(1)),
+            theme_mlr3()
+        )) +
+        theme(legend.title = element_blank())
     },
 
     "parameter" = {
@@ -224,9 +239,11 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
 
       ggplot(data_i, aes(x = .data[[cols_x[1]]], y = .data[[cols_x[2]]])) +
         geom_raster(aes(fill = .data[[cols_y]])) +
-        scale_fill_viridis_c() +
         geom_point(aes(fill = .data[[cols_y]]), data = data, shape = 21, size = 3, stroke = 1) +
-        apply_theme(list(theme_mlr3()))
+        apply_theme(list(
+          scale_fill_viridis_c(),
+          theme_mlr3()
+        ))
     },
 
     "pairs" = {

@@ -35,14 +35,17 @@ autoplot.TaskDens = function(object, type = "dens", ...) { # nolint
   if (type == "dens") {
     p +
       geom_histogram(aes(y = ..density..), fill = "white", color = "black", ...) +
+      ylab("Density") +
       apply_theme(list(theme_mlr3()))
   } else if (type == "freq") {
     p + geom_histogram(fill = "white", color = "black", ...) +
+      ylab("Count") +
       apply_theme(list(theme_mlr3()))
   } else if (type == "overlay") {
     p +
       geom_histogram(aes(y = ..density..), colour = "black", fill = "white", ...) +
-      geom_density(alpha = 0.2, fill = "#03638e") +
+      geom_density(alpha = 0.2, fill = apply_theme_color(viridis::viridis(1), "#3366FF")) +
+      ylab("Density") +
       apply_theme(list(theme_mlr3()))
   } else {
     p +

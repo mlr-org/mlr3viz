@@ -50,7 +50,7 @@ autoplot.TaskSurv = function(object, type = "target", ...) { # nolint
           formula = object$formula(...),
           data = object$data())) +
           apply_theme(list(
-            scale_color_viridis_d(),
+            scale_color_viridis_d(end = 0.8),
             theme_mlr3()
           ))
         )
@@ -62,7 +62,7 @@ autoplot.TaskSurv = function(object, type = "target", ...) { # nolint
         columnsX = object$target_names,
         columnsY = object$feature_names, ...) +
         apply_theme(list(
-          scale_color_viridis_d(),
+          scale_color_viridis_d(end = 0.8),
           theme_mlr3()
         ))
     },

@@ -1,9 +1,7 @@
 plot_ggfortify = function(object, ...) {
   assert_has_model(object)
   require_namespaces("ggfortify")
-  autoplot(object$model, ...) +
-    scale_color_viridis_d() +
-    theme_mlr3(legend = "right")
+  autoplot(object$model, ...)
 }
 
 assert_has_model = function(learner) {
@@ -44,3 +42,15 @@ apply_theme = function(x) {
         geom_blank()
     }
 }
+
+apply_theme_color = function(theme_color, default_color) {
+  if (getOption("mlr3.theme", TRUE)) {
+    theme_color
+  } else {
+    default_color
+  }
+}
+
+
+
+

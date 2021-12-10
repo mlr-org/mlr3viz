@@ -33,9 +33,12 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
   switch(type,
     "boxplot" = {
       ggplot(data = data, aes_string(x = "feature", y = "score")) +
-        geom_bar(stat = "identity", ...) +
+        geom_bar(stat = "identity", fill = "white", color = "black", ...) +
         scale_x_discrete(limits = data$feature) +
-        apply_theme(list(theme_mlr3()))
+        xlab("Feature") +
+        ylab("Score") +
+        apply_theme(list(theme_mlr3())) +
+        theme(axis.text.x = element_text(angle = 45, hjust=1))
     },
 
     stopf("Unknown plot type '%s'", type)

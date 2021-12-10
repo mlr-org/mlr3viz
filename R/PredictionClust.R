@@ -57,8 +57,9 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
 
       GGally::ggscatmat(data, color = "partition", ...) +
         apply_theme(list(
-          scale_color_viridis_d(),
-          theme_mlr3()
+          scale_color_viridis_d("Partition", end = 0.8),
+          theme_mlr3() +
+          theme(axis.title.x.bottom = element_blank(), axis.title.y.left = element_blank())
         ))
     },
 
@@ -71,7 +72,7 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
 
       ggplot2::autoplot(sil, ...) +
         apply_theme(list(
-          scale_fill_viridis_d(),
+          scale_fill_viridis_d("Cluster", end = 0.8),
           theme_mlr3()
         ))
     },
@@ -93,7 +94,7 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
         data = plot_data,
         colour = "cluster", ...) +
         apply_theme(list(
-          scale_color_viridis_d(),
+          scale_color_viridis_d("Cluster", end = 0.8),
           theme_mlr3()
         ))
     },

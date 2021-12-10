@@ -46,8 +46,10 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
         geom_bar(width = 0.5, ...) +
         geom_label(stat = "count", aes_string(label = "..count.."),
           position = position_stack(vjust = 0.5), colour = "white") +
+        xlab("Feature") +
+        ylab("Count") +
         apply_theme(list(
-          scale_fill_viridis_d(),
+          scale_fill_viridis_d("Feature", end = 0.8),
           theme_mlr3()
         ))
     },
@@ -56,15 +58,18 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
       plot_precrec(object, curvetype = "ROC", ...) +
         apply_theme(list(
           scale_color_viridis_d(),
-          theme_mlr3(legend = "none")
+          theme_mlr3(legend = "none"),
+          theme(plot.title = element_blank())
         ))
+
     },
 
     "prc" = {
       plot_precrec(object, curvetype = "PRC", ...) +
         apply_theme(list(
           scale_color_viridis_d(),
-          theme_mlr3(legend = "none")
+          theme_mlr3(legend = "none"),
+          theme(plot.title = element_blank())
         ))
     },
 
@@ -74,9 +79,13 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
       tab = data.table(prob = seq(from = 0, to = 1, by = 0.01))
       tab$score = map_dbl(tab$prob, function(p) pred$set_threshold(p)$score(measure))
       ggplot(tab, aes_string(x = "prob", y = "score")) +
-        geom_line() +
+        geom_line(color = apply_theme_color(viridis::viridis(1), "#3366FF")) +
         xlab("Probability Threshold") +
-        ylab(measure$id)
+        ylab(measure$id) +
+        apply_theme(list(
+          scale_color_viridis_d(),
+          theme_mlr3()
+        ))
     },
 
     stopf("Unknown plot type '%s'", type)

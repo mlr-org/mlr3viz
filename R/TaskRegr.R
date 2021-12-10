@@ -27,15 +27,15 @@
 autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
   assert_string(type)
 
-  p = switch(type,
+  switch(type,
     "target" = {
       target = object$target_names
       ggplot(data = object, aes_string(
         x = as.factor(target), y = target,
         fill = target)) +
         geom_boxplot(...) +
-        xlab("") +
-        apply_theme(list(theme_mlr3()))
+        apply_theme(list(theme_mlr3())) +
+        theme(axis.text.x.bottom = element_blank(), axis.title.x.bottom = element_blank())
     },
 
     "pairs" = {

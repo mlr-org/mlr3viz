@@ -53,8 +53,12 @@ autoplot.LearnerClustHierarchical = function(object, type = "dend", ...) { # nol
     "dend" = {
     require_namespaces("factoextra")
 
-    factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...) +
-    apply_theme(list(theme_mlr3()))
+    p = factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
+    if (getOption("mlr3.theme", TRUE)) p$scales$scales <- list()
+
+    p +
+      apply_theme(list(scale_color_viridis_d(end = 0.8), theme_mlr3())) +
+      theme(legend.position="none")
   },
 
   "scree" = {
