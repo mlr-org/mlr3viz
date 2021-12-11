@@ -31,7 +31,8 @@ Imports:
     ggplot2 (>= 3.3.0),
     mlr3misc (>= 0.7.0),
     scales,
-    utils
+    utils,
+    viridis
 Suggests:
     bbotk,
     cluster,
@@ -66,7 +67,7 @@ Encoding: UTF-8
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
-Collate: 
+Collate:
     'BenchmarkResult.R'
     'Filter.R'
     'LearnerClassifCVGlmnet.R'

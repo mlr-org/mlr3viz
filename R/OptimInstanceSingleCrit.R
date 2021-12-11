@@ -101,7 +101,7 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
         breaks = pretty(data_i$batch_nr, n = 4)
         breaks[1] = min(data_i$batch_nr)
         breaks[length(breaks)] = max(data_i$batch_nr)
-        data_i[, batch_nr := as.factor(batch_nr)]
+        data_i[, "batch_nr" := as.factor(get("batch_nr"))]
 
         p = ggplot(data_i, mapping = aes(x = .data[[x]], y = .data[[cols_y]])) +
           geom_point(aes(fill = .data$batch_nr), shape = 21, size = 3, stroke = 1) +
@@ -121,9 +121,9 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
       # performance versus iteration
       max_to_min = if ("minimize" %in% object$archive$codomain$tags) which.min else which.max
 
-      data[, group := factor(1, labels = "Objective value")]
+      data[, "group" := factor(1, labels = "Objective value")]
       top_batch = data[, .SD[which.max(get(cols_y))], by = "batch_nr"]
-      top_batch[, group := factor(1, labels = "Best value")]
+      top_batch[, "group" := factor(1, labels = "Best value")]
 
       ggplot() +
         geom_point(data, mapping = aes(x = .data[["batch_nr"]], y = .data[[cols_y]], fill = .data[["group"]]), shape = 21, size = 3) +

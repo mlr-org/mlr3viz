@@ -11,6 +11,7 @@
   trafo = FALSE,
   learner = mlr3::lrn("regr.ranger"),
   grid_resolution = 100,
+  batch = NULL,
   ...
 )
 }
@@ -49,6 +50,9 @@ Regression learner used to interpolate the data of the surface plot.}
 
 \item{grid_resolution}{(\code{numeric()})\cr
 Resolution of the surface plot.}
+
+\item{batch}{(\code{integer()})\cr
+The batch number(s) to limit the plot to. Default is all batches.}
 
 \item{...}{(\code{any}):
 Additional arguments, possibly passed down to the underlying plot functions.}
