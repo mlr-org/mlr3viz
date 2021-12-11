@@ -79,7 +79,7 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
       tab = data.table(prob = seq(from = 0, to = 1, by = 0.01))
       tab$score = map_dbl(tab$prob, function(p) pred$set_threshold(p)$score(measure))
       ggplot(tab, aes_string(x = "prob", y = "score")) +
-        geom_line(color = apply_theme_color(viridis::viridis(1), "#3366FF")) +
+        geom_line(color = apply_theme(viridis::viridis(1), "#3366FF")) +
         xlab("Probability Threshold") +
         ylab(measure$id) +
         apply_theme(list(

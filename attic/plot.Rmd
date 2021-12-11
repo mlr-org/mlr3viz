@@ -157,7 +157,6 @@ autoplot(instance, type = "performance", batch = seq(1, 500, by = 20))
 autoplot(instance, type = "marginal", cols_x = "x1")
 ```
 
-
 ```{r}
 autoplot(instance, type = "parallel", batch = seq(1, 500, by = 20))
 ```

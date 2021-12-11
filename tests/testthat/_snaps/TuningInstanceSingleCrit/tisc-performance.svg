@@ -45,11 +45,11 @@
 <polyline points='384.57,540.15 384.57,66.05 ' style='stroke-width: 0.58; stroke: #DEDEDE; stroke-linecap: butt;' />
 <polyline points='534.32,540.15 534.32,66.05 ' style='stroke-width: 0.58; stroke: #DEDEDE; stroke-linecap: butt;' />
 <polyline points='684.07,540.15 684.07,66.05 ' style='stroke-width: 0.58; stroke: #DEDEDE; stroke-linecap: butt;' />
-<polyline points='85.08,518.60 684.07,87.60 684.07,87.60 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<circle cx='85.08' cy='518.60' r='3.56' style='stroke-width: 0.71; fill: #FDE725;' />
-<circle cx='85.08' cy='87.60' r='3.56' style='stroke-width: 0.71; fill: #440154;' />
-<circle cx='684.07' cy='87.60' r='3.56' style='stroke-width: 0.71; fill: #FDE725;' />
-<circle cx='684.07' cy='87.60' r='3.56' style='stroke-width: 0.71; fill: #FDE725;' />
+<circle cx='85.08' cy='518.60' r='3.56' style='stroke-width: 0.71; fill: #2A788E;' />
+<circle cx='85.08' cy='87.60' r='3.56' style='stroke-width: 0.71; fill: #2A788E;' />
+<circle cx='684.07' cy='87.60' r='3.56' style='stroke-width: 0.71; fill: #2A788E;' />
+<circle cx='684.07' cy='87.60' r='3.56' style='stroke-width: 0.71; fill: #2A788E;' />
+<polyline points='85.08,87.60 684.07,87.60 ' style='stroke-width: 1.07; stroke: #440154; stroke-linecap: butt;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 <polyline points='55.13,540.15 55.13,66.05 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
@@ -74,14 +74,14 @@
 <text x='384.57' y='553.79' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='23.36px' lengthAdjust='spacingAndGlyphs'>1.50</text>
 <text x='534.32' y='553.79' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='23.36px' lengthAdjust='spacingAndGlyphs'>1.75</text>
 <text x='684.07' y='553.79' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='23.36px' lengthAdjust='spacingAndGlyphs'>2.00</text>
-<text x='384.57' y='567.53' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='46.71px' lengthAdjust='spacingAndGlyphs'>batch_nr</text>
+<text x='384.57' y='567.53' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='30.69px' lengthAdjust='spacingAndGlyphs'>Batch</text>
 <text transform='translate(14.24,303.10) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='49.36px' lengthAdjust='spacingAndGlyphs'>classif.ce</text>
-<rect x='309.74' y='24.85' width='149.67' height='29.24' style='stroke-width: 1.16; stroke: none; fill: #FFFFFF;' />
-<text x='315.72' y='43.60' style='font-size: 12.00px; font-family: sans;' textLength='22.69px' lengthAdjust='spacingAndGlyphs'>best</text>
-<circle cx='353.02' cy='39.47' r='3.56' style='stroke-width: 0.71; fill: #440154;' />
-<circle cx='412.68' cy='39.47' r='3.56' style='stroke-width: 0.71; fill: #FDE725;' />
-<text x='367.64' y='42.78' style='font-size: 9.60px; font-family: sans;' textLength='30.42px' lengthAdjust='spacingAndGlyphs'>FALSE</text>
-<text x='427.29' y='42.78' style='font-size: 9.60px; font-family: sans;' textLength='26.14px' lengthAdjust='spacingAndGlyphs'>TRUE</text>
+<rect x='282.17' y='24.85' width='106.84' height='29.24' style='stroke-width: 1.16; stroke: none; fill: #FFFFFF;' />
+<circle cx='302.76' cy='39.47' r='3.56' style='stroke-width: 0.71; fill: #2A788E;' />
+<text x='317.38' y='42.78' style='font-size: 9.60px; font-family: sans;' textLength='65.65px' lengthAdjust='spacingAndGlyphs'>Objective value</text>
+<rect x='400.96' y='24.85' width='86.03' height='29.24' style='stroke-width: 1.16; stroke: none; fill: #FFFFFF;' />
+<line x1='414.64' y1='39.47' x2='428.46' y2='39.47' style='stroke-width: 1.07; stroke: #440154; stroke-linecap: butt;' />
+<text x='436.17' y='42.78' style='font-size: 9.60px; font-family: sans;' textLength='44.84px' lengthAdjust='spacingAndGlyphs'>Best value</text>
 <text x='55.13' y='15.89' style='font-size: 14.40px; font-family: sans;' textLength='110.47px' lengthAdjust='spacingAndGlyphs'>tisc_performance</text>
 </g>
 </svg>

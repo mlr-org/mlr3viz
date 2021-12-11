@@ -42,7 +42,7 @@ autoplot.TaskSurv = function(object, type = "target", ...) { # nolint
         cens.col = "#440154FF",
         cens.shape = 21) +
         apply_theme(list(
-          scale_color_viridis_d(),
+          scale_color_viridis_d(end = 0.8),
           theme_mlr3()
         ))
       } else {

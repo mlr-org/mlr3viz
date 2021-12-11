@@ -103,12 +103,15 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
         breaks[length(breaks)] = max(data_i$batch_nr)
         data_i[, batch_nr := as.factor(batch_nr)]
 
-        ggplot(data_i, mapping = aes(x = .data[[x]], y = .data[[cols_y]])) +
+        p = ggplot(data_i, mapping = aes(x = .data[[x]], y = .data[[cols_y]])) +
           geom_point(aes(fill = .data$batch_nr), shape = 21, size = 3, stroke = 1) +
-          apply_theme(list(
-            scale_fill_viridis_d("Batch", breaks = breaks),
-            theme_mlr3()
-          ))
+          apply_theme(list(theme_mlr3()))
+
+        if (getOption("mlr3.theme", TRUE)) {
+          p + scale_fill_viridis_d("Batch", breaks = breaks)
+        } else {
+          p + scale_fill_discrete(breaks = breaks)
+        }
       })
 
       return(delayed_patchwork(plots, guides = "collect"))
@@ -190,13 +193,13 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
 
       ggplot(data, aes(x = .data$x, y = .data$value)) +
         geom_line(aes(group = .data$id, colour = .data[[cols_y]]), size = 1) +
-        scale_color_viridis_c() +
         geom_vline(aes(xintercept = x)) +
         {
           if (nrow(data_c) > 0L) geom_label(aes(label = .data$label), data[!is.na(data$label), ])
         } +
         scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
-        apply_theme(list(theme_mlr3())) +
+        apply_theme(list(scale_color_viridis_c(), theme_mlr3()),
+          list(scale_fill_discrete())) +
         theme(axis.title.x = element_blank())
     },
 

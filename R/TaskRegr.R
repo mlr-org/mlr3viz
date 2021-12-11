@@ -31,8 +31,7 @@ autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
     "target" = {
       target = object$target_names
       ggplot(data = object, aes_string(
-        x = as.factor(target), y = target,
-        fill = target)) +
+        x = as.factor(target), y = target)) +
         geom_boxplot(...) +
         apply_theme(list(theme_mlr3())) +
         theme(axis.text.x.bottom = element_blank(), axis.title.x.bottom = element_blank())
