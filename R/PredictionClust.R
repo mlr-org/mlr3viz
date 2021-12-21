@@ -59,7 +59,7 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
         apply_theme(list(
           scale_color_viridis_d("Partition", end = 0.8),
           theme_mlr3() +
-          theme(axis.title.x.bottom = element_blank(), axis.title.y.left = element_blank())
+            theme(axis.title.x.bottom = element_blank(), axis.title.y.left = element_blank())
         ))
     },
 
