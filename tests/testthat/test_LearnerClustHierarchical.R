@@ -11,7 +11,7 @@ test_that("autoplot.LearnerClustHierarchical", {
   vdiffr::expect_doppelganger("learner_clust.agnes", p)
 
   learner = mlr3::lrn("clust.hclust")$train(mlr3::tsk("usarrests"))
-  p = autoplot(learner, type="scree")
+  p = autoplot(learner, type = "scree")
   expect_true(is.ggplot(p))
   vdiffr::expect_doppelganger("learner_clust.hclust", p)
 })

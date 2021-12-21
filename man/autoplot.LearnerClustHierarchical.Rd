@@ -7,7 +7,7 @@
 \method{autoplot}{LearnerClustHierarchical}(object, type = "dend", ...)
 }
 \arguments{
-\item{object}{(\link[mlr3cluster:mlr_learners_clust.agnes]{mlr3cluster::LearnerClustAgnes} | \link[mlr3cluster:mlr_learners_clust.diana]{mlr3cluster::LearnerClustDiana} | \link[mlr3cluster:mlr_learners_clust.hclust]{mlr3cluster::LearnerClustHclust}).}
+\item{object}{(\link[mlr3cluster:LearnerClustAgnes]{mlr3cluster::LearnerClustAgnes} | \link[mlr3cluster:LearnerClustDiana]{mlr3cluster::LearnerClustDiana} | \link[mlr3cluster:LearnerClustHclust]{mlr3cluster::LearnerClustHclust}).}
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
@@ -50,5 +50,5 @@ autoplot(learner,
 # hclust clustering
 learner = mlr_learners$get("clust.hclust")
 learner$train(task)
-autoplot(learner, type="scree")
+autoplot(learner, type = "scree")
 }
