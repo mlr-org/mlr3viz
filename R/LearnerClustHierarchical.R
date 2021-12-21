@@ -51,22 +51,23 @@ autoplot.LearnerClustHierarchical = function(object, type = "dend", ...) { # nol
 
   switch(type,
     "dend" = {
-    require_namespaces("factoextra")
+      require_namespaces("factoextra")
 
-    p = factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
-    if (getOption("mlr3.theme", TRUE)) p$scales$scales <- list()
+      p = factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
+      if (getOption("mlr3.theme", TRUE)) p$scales$scales = list()
 
-    p +
-      apply_theme(list(scale_color_viridis_d(end = 0.8), theme_mlr3())) +
-      theme(legend.position="none")
-  },
+      p +
+        apply_theme(list(scale_color_viridis_d(end = 0.8), theme_mlr3())) +
+        theme(legend.position = "none")
+    },
 
-  "scree" = {
-    data = data.table(Height = object$model$height, Clusters = seq(length(object$model$height), 1))
-    ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line() +
-      xlab("Clusters") + ylab("Height") +
-    apply_theme(list(theme_mlr3()))
-  })
+    "scree" = {
+      data = data.table(Height = object$model$height, Clusters = seq(length(object$model$height), 1))
+      ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line() +
+        xlab("Clusters") + ylab("Height") +
+        apply_theme(list(theme_mlr3()))
+    }
+  )
 }
 
 #' @export

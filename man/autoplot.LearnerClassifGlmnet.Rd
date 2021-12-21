@@ -17,8 +17,8 @@
 \method{autoplot}{LearnerRegrGlmnet}(object, ...)
 }
 \arguments{
-\item{object}{(\link[mlr3learners:mlr_learners_classif.glmnet]{mlr3learners::LearnerClassifGlmnet} | \link[mlr3learners:mlr_learners_regr.glmnet]{mlr3learners::LearnerRegrGlmnet} |
-\link[mlr3learners:mlr_learners_regr.cv_glmnet]{mlr3learners::LearnerRegrCVGlmnet} | \link[mlr3learners:mlr_learners_regr.cv_glmnet]{mlr3learners::LearnerRegrCVGlmnet}).}
+\item{object}{(\link[mlr3learners:LearnerClassifGlmnet]{mlr3learners::LearnerClassifGlmnet} | \link[mlr3learners:LearnerRegrGlmnet]{mlr3learners::LearnerRegrGlmnet} |
+\link[mlr3learners:LearnerRegrCVGlmnet]{mlr3learners::LearnerRegrCVGlmnet} | \link[mlr3learners:LearnerRegrCVGlmnet]{mlr3learners::LearnerRegrCVGlmnet}).}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to \code{\link[ggparty:autoplot.party]{ggparty::autoplot.party()}}.}
