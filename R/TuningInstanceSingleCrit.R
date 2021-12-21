@@ -72,4 +72,3 @@ autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x =
                                              learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, ...) { # nolint
   autoplot.OptimInstanceSingleCrit(object = object, type = type, cols_x = cols_x, trafo = trafo, learner = learner, grid_resolution = grid_resolution, ...)
 }
-
