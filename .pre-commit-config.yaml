@@ -15,9 +15,21 @@ repos:
         - data.table
         - ggplot2
         - mlr3misc
-        - scales
         - utils
-        - viridis
+        - precrec
+        - mlr3learners
+        - mlr3cluster
+        - bbotk
+        - mlr3proba
+        - GGally
+        - mlr3tuning
+        - mlr3filters
+        - ggparty
+        - mlr3cluster
+        - factoextra
+        - ggfortify
+        - survival
+        - git2r
     -   id: use-tidy-description
         exclude: >
           (?x)^(
