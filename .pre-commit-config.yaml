@@ -23,6 +23,13 @@ repos:
         - mlr3proba
         - GGally
         - mlr3tuning
+        - mlr3filters
+        - ggparty
+        - mlr3cluster
+        - factoextra
+        - ggfortify
+        - survival
+        - git2r
     -   id: use-tidy-description
         exclude: >
           (?x)^(
