@@ -15,6 +15,14 @@ repos:
         - data.table
         - ggplot2
         - mlr3misc
+        - utils
+        - precrec
+        - mlr3learners
+        - mlr3cluster
+        - bbotk
+        - mlr3proba
+        - GGally
+        - mlr3tuning
     -   id: use-tidy-description
         exclude: >
           (?x)^(
