@@ -30,6 +30,13 @@ Generates plots for \link[mlr3proba:TaskSurv]{mlr3proba::TaskSurv}, depending on
 Color is set to target column.
 }
 }
+\section{Theme}{
+
+The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
+\code{autoplot()} methods. To change this behavior set
+\code{options(mlr3.theme = FALSE)}.
+}
+
 \examples{
 library(mlr3)
 library(mlr3viz)

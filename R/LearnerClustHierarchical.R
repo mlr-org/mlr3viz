@@ -16,6 +16,9 @@
 #'   Additional arguments, passed down to function [factoextra::fviz_dend()] in package \CRANpkg{factoextra}.
 #'
 #' @return [ggplot2::ggplot()] object.
+#'
+#' @template section_theme
+#'
 #' @export
 #' @examples
 #' library(mlr3)
@@ -53,13 +56,19 @@ autoplot.LearnerClustHierarchical = function(object, type = "dend", ...) { # nol
     "dend" = {
       require_namespaces("factoextra")
 
-      factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
+      p = factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
+      if (getOption("mlr3.theme", TRUE)) p$scales$scales = list()
+
+      p +
+        apply_theme(list(scale_color_viridis_d(end = 0.8), theme_mlr3())) +
+        theme(legend.position = "none")
     },
 
     "scree" = {
-      data = data.table(Height = object$model$height, Clusters = length(object$model$height):1)
+      data = data.table(Height = object$model$height, Clusters = seq(length(object$model$height), 1))
       ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line() +
-        xlab("Clusters") + ylab("Height")
+        xlab("Clusters") + ylab("Height") +
+        apply_theme(list(theme_mlr3()))
     }
   )
 }

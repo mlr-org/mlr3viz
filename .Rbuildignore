@@ -1,3 +1,5 @@
+^renv$
+^renv\.lock$
 ^README\.Rmd$
 ^LICENSE$
 .ignore
@@ -15,3 +17,4 @@
 ^tic\.R$
 ^\.ccache$
 ^codemeta\.json$
+^docs$

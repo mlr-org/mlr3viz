@@ -15,7 +15,9 @@ repos:
         -    data.table
         -    ggplot2
         -    mlr3misc
+        -    scales
         -    utils
+        -    viridis
     -   id: use-tidy-description
         exclude: >
           (?x)^(

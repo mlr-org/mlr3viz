@@ -1,0 +1,378 @@
+---
+title: "plot"
+output: html_notebook
+---
+
+```{r}
+library(mlr3)
+library(mlr3learners)
+library(mlr3viz)
+
+options(mlr3.theme = FALSE)
+lgr::get_logger("mlr3")$set_threshold("warn")
+lgr::get_logger("bbotk")$set_threshold("warn")
+```
+
+# BenchmarkResult.R
+
+```{r}
+tasks = tsks(c("pima", "sonar"))
+learner = lrns(c("classif.debug", "classif.rpart", "classif.xgboost"), predict_type = "prob")
+resampling = rsmps("cv")
+object = benchmark(benchmark_grid(tasks, learner, resampling))
+```
+
+```{r}
+autoplot(object)
+```
+
+```{r}
+autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "roc")
+```
+
+```{r}
+autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "prc")
+```
+
+# Filter.R
+
+```{r}
+library(mlr3filters)
+task = tsk("mtcars")
+f = flt("correlation")
+f$calculate(task)
+```
+
+```{r}
+autoplot(f, n = 5)
+```
+
+# LearnerClassifGlmnet.R
+
+```{r}
+library(mlr3learners)
+
+task = tsk("spam")
+learner = lrn("classif.glmnet")
+learner$train(task)
+```
+
+```{r, fig.height=10, fig.width=7}
+autoplot(learner)
+```
+
+```{r}
+task = tsk("mtcars")
+learner = lrn("regr.glmnet")
+learner$train(task)
+autoplot(learner)
+```
+
+# LearnerClassifRpart.R
+
+```{r}
+task = tsk("iris")
+learner = lrn("classif.rpart", keep_model = TRUE)
+learner$train(task)
+```
+
+```{r}
+# plot color must be changed with options
+colors = viridis::viridis(length(task$feature_names), end = 0.8)
+options(ggplot2.discrete.fill = list(colors))
+
+autoplot(learner)
+
+options(ggplot2.discrete.fill = NULL)
+```
+
+```{r}
+task = tsk("mtcars")
+learner = lrn("regr.rpart", keep_model = TRUE)
+learner$train(task)
+```
+
+```{r}
+autoplot(learner)
+```
+
+# LearnerClustHierarchical.R
+
+```{r}
+library(mlr3cluster)
+task = mlr_tasks$get("usarrests")
+```
+
+```{r, warning = FALSE, message = FALSE}
+learner = mlr_learners$get("clust.agnes")
+learner$train(task)
+autoplot(learner) # warning message
+```
+
+```{r, warning = FALSE, message = FALSE}
+learner = mlr_learners$get("clust.diana")
+learner$train(task)
+autoplot(learner, k = learner$param_set$values$k, rect_fill = TRUE, rect = TRUE)
+```
+
+```{r}
+learner = mlr_learners$get("clust.hclust")
+learner$train(task)
+autoplot(learner, type = "scree")
+```
+
+# OptimInstanceSingleCrit.R
+
+```{r}
+library(bbotk)
+library(paradox)
+
+fun = function(xs) {
+  c(y = -(xs[[1]] - 2)^2 - (xs[[2]] + 3)^2 + 10)
+}
+domain = ps(
+  x1 = p_dbl(-10, 10),
+  x2 = p_dbl(-5, 5)
+)
+codomain = ps(
+  y = p_dbl(tags = "maximize")
+)
+obfun = ObjectiveRFun$new(
+  fun = fun,
+  domain = domain,
+  codomain = codomain
+)
+
+instance = OptimInstanceSingleCrit$new(objective = obfun, terminator = trm("evals", n_evals = 1000))
+
+optimizer = opt("random_search", batch_size = 2)
+res = optimizer$optimize(instance)
+```
+
+```{r}
+autoplot(instance, type = "performance", batch = seq(1, 500, by = 20))
+```
+
+```{r}
+autoplot(instance, type = "marginal", cols_x = "x1")
+```
+
+```{r}
+autoplot(instance, type = "parallel", batch = seq(1, 500, by = 20))
+```
+
+```{r}
+autoplot(instance, type = "pairs")
+```
+
+```{r}
+library(mlr3learners)
+autoplot(instance, type = "surface")
+```
+
+# PredictionClassif.R
+
+```{r}
+task = tsk("spam")
+learner = lrn("classif.rpart", predict_type = "prob")
+object = learner$train(task)$predict(task)
+```
+
+```{r}
+autoplot(object)
+```
+
+```{r}
+autoplot(object, type = "roc")
+```
+
+```{r}
+autoplot(object, type = "prc")
+```
+
+```{r}
+autoplot(object, type = "threshold")
+```
+
+```{r}
+task = tsk("iris")
+learner = lrn("classif.rpart", predict_type = "prob")
+object = learner$train(task)$predict(task)
+```
+
+```{r}
+autoplot(object)
+```
+
+# PredictionClust.R
+
+```{r}
+library(mlr3cluster)
+
+task = tsk("usarrests")
+learner = lrn("clust.kmeans", centers = 3)
+object = learner$train(task)$predict(task)
+```
+
+
+```{r}
+autoplot(object, task)
+```
+
+```{r}
+autoplot(object, task, type = "sil")
+```
+
+```{r}
+autoplot(object, task, type = "pca")
+```
+
+# PredictionRegr.R
+
+```{r}
+task = tsk("boston_housing")
+learner = lrn("regr.rpart")
+object = learner$train(task)$predict(task)
+```
+
+```{r}
+autoplot(object)
+```
+
+```{r}
+autoplot(object, type = "histogram", binwidth = 1)
+```
+
+```{r}
+autoplot(object, type = "residual")
+```
+
+# PredictionSurv.R
+
+```{r}
+library(mlr3proba)
+learn = lrn("surv.coxph")
+task = tsk("unemployment")
+p = learn$train(task, row_ids = 1:300)$predict(task, row_ids = 301:400)
+```
+
+```{r}
+autoplot(p, type = "calib", task = task, row_ids = 301:400)
+```
+
+```{r}
+autoplot(p, type = "dcalib")
+```
+
+# ResampleResult.R
+
+```{r}
+task = tsk("sonar")
+learner = lrn("classif.rpart", predict_type = "prob")
+resampling = rsmp("cv")
+object = resample(task, learner, resampling)
+```
+
+```{r}
+autoplot(object, measure = msr("classif.auc"))
+```
+
+```{r}
+autoplot(object, type = "histogram", bins = 30)
+```
+
+```{r}
+autoplot(object, type = "roc")
+```
+
+```{r}
+task = tsk("iris")$select(c("Sepal.Length", "Sepal.Width"))
+resampling = rsmp("cv", folds = 3)
+object = resample(task, learner, resampling, store_models = TRUE)
+```
+
+```{r}
+autoplot(object, type = "prediction")
+```
+
+# TaskClassif.R
+
+```{r}
+task = tsk("iris")
+```
+
+```{r}
+autoplot(task)
+```
+
+```{r}
+autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")), type = "pairs")
+```
+
+```{r}
+autoplot(task, type = "duo")
+```
+
+# TaskClust.R
+
+```{r}
+library(mlr3cluster)
+task = mlr_tasks$get("usarrests")
+```
+
+```{r}
+autoplot(task)
+```
+
+# TaskRegr.R
+
+```{r}
+task = tsk("mtcars")
+task$select(c("am", "carb"))
+```
+
+```{r}
+autoplot(task)
+```
+
+```{r}
+autoplot(task, type = "pairs")
+```
+
+# TaskDens.R
+
+```{r}
+library(mlr3proba)
+task = tsk("precip")
+```
+
+```{r}
+autoplot(task, bins = 15)
+```
+
+```{r}
+autoplot(task, type = "freq", bins = 15)
+```
+
+```{r}
+autoplot(task, type = "overlay", bins = 15)
+```
+
+# TaskSurv.R
+
+```{r}
+library(mlr3proba)
+task = tsk("lung")
+```
+
+```{r}
+autoplot(task)
+```
+
+```{r}
+autoplot(task, rhs = "sex")
+```
+
+```{r, warning = FALSE, message = FALSE}
+autoplot(task, type = "duo")
+```

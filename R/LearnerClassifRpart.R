@@ -14,6 +14,9 @@
 #'   Additional arguments, passed down to [ggparty::autoplot.party()].
 #'
 #' @return [ggplot2::ggplot()] object.
+#'
+#' @template section_theme
+#'
 #' @export
 #' @examples
 #' library(mlr3)
@@ -38,6 +41,7 @@ autoplot.LearnerClassifRpart = function(object, ...) { # nolint
   }
 
   require_namespaces(c("partykit", "ggparty"))
+
   autoplot(partykit::as.party(object$model), ...) +
     ggparty::geom_node_label(aes(label = paste0("n=", .data[["nodesize"]])), nudge_y = 0.03, ids = "terminal")
 }

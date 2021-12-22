@@ -20,10 +20,13 @@
 #' @param ... (`any`):
 #'   Additional arguments, passed down to the respective `geom`.
 #'
+#' @return [ggplot2::ggplot()] object.
+#'
+#' @template section_theme
+#'
 #' @references
 #' `r format_bib("ggfortify")`
 #'
-#' @return [ggplot2::ggplot()] object.
 #' @export
 #' @examples
 #' library(mlr3)
@@ -55,7 +58,12 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
       data$row_id = NULL
       data$partition = factor(data$partition)
 
-      GGally::ggscatmat(data, color = "partition", ...)
+      GGally::ggscatmat(data, color = "partition", ...) +
+        apply_theme(list(
+          scale_color_viridis_d("Cluster", end = 0.8),
+          theme_mlr3() +
+            theme(axis.title.x.bottom = element_blank(), axis.title.y.left = element_blank())
+        ))
     },
 
     "sil" = {
@@ -65,7 +73,11 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
       d = stats::dist(task$data(rows = row_ids))
       sil = cluster::silhouette(object$data$partition, d)
 
-      ggplot2::autoplot(sil, ...)
+      ggplot2::autoplot(sil, ...) +
+        apply_theme(list(
+          scale_fill_viridis_d("Cluster", end = 0.8),
+          theme_mlr3()
+        ))
     },
 
     "pca" = {
@@ -83,7 +95,11 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
       plot_data = merge(task_data, d, by = "row_ids")
       ggplot2::autoplot(stats::prcomp(task_data[, -"row_ids"]),
         data = plot_data,
-        colour = "cluster", ...)
+        colour = "cluster", ...) +
+        apply_theme(list(
+          scale_color_viridis_d("Cluster", end = 0.8),
+          theme_mlr3()
+        ))
     },
 
     stopf("Unknown plot type '%s'", type)

@@ -14,6 +14,9 @@
 #' @param ... (`any`):
 #'   Additional arguments, possibly passed down to the underlying plot functions.
 #' @return [ggplot2::ggplot()] object.
+#'
+#' @template section_theme
+#'
 #' @export
 #' @examples
 #' library(mlr3)
@@ -33,15 +36,24 @@ autoplot.TaskDens = function(object, type = "dens", ...) { # nolint
   ..density.. = NULL
 
   if (type == "dens") {
-    p + geom_histogram(aes(y = ..density..), fill = "white", color = "black", ...)
+    p +
+      geom_histogram(aes(y = ..density..), fill = "white", color = "black", ...) +
+      ylab("Density") +
+      apply_theme(list(theme_mlr3()))
   } else if (type == "freq") {
-    p + geom_histogram(fill = "white", color = "black", ...)
+    p + geom_histogram(fill = "white", color = "black", ...) +
+      ylab("Count") +
+      apply_theme(list(theme_mlr3()))
   } else if (type == "overlay") {
     p +
       geom_histogram(aes(y = ..density..), colour = "black", fill = "white", ...) +
-      geom_density(alpha = 0.2, fill = "#FF6666")
+      geom_density(alpha = 0.2, fill = apply_theme(viridis::viridis(1), "#3366FF")) +
+      ylab("Density") +
+      apply_theme(list(theme_mlr3()))
   } else {
-    p + geom_freqpoly(...)
+    p +
+      geom_freqpoly(...) +
+      apply_theme(list(theme_mlr3()))
   }
 }
 

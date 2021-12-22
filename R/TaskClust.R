@@ -12,6 +12,9 @@
 #'   functions.
 #'
 #' @return [ggplot2::ggplot()] object.
+#'
+#' @template section_theme
+#'
 #' @export
 #' @examples
 #' library(mlr3)
@@ -28,7 +31,8 @@ autoplot.TaskClust = function(object, type = "pairs", ...) { # nolint
   switch(type,
     "pairs" = {
       require_namespaces("GGally")
-      GGally::ggpairs(object, ...)
+      GGally::ggpairs(object, ...) +
+        apply_theme(list(theme_mlr3()))
     },
 
     stopf("Unknown plot type '%s'", type)

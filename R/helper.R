@@ -22,7 +22,6 @@ plot_precrec = function(object, curvetype = "ROC", cb_alpha = 0.05, show_cb = TR
   autoplot(precrec::evalmod(x, calc_avg = calc_avg, cb_alpha = cb_alpha), curvetype = curvetype, show_cb = show_cb, ...)
 }
 
-
 delayed_patchwork = function(li, ...) {
   assert_list(li, min.len = 1L)
   attr(li, ".args") = list(...)
@@ -34,4 +33,8 @@ delayed_patchwork = function(li, ...) {
 print.DelayedPatchworkPlot = function(x, ...) {
   require_namespaces("patchwork")
   print(invoke(patchwork::wrap_plots, x, .args = list(attr(x, ".args"))))
+}
+
+apply_theme = function(theme_object, default_object = NULL) {
+  if (getOption("mlr3.theme", TRUE)) theme_object else default_object %??% geom_blank()
 }

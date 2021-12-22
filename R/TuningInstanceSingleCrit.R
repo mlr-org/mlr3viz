@@ -33,6 +33,9 @@
 #' @param ... (`any`):
 #'   Additional arguments, possibly passed down to the underlying plot functions.
 #' @return [ggplot2::ggplot()] object.
+#'
+#' @template section_theme
+#'
 #' @export
 #' @examples
 #' if (requireNamespace("mlr3tuning") && requireNamespace("patchwork")) {
@@ -70,5 +73,6 @@
 #' }
 autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE,
   learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, ...) { # nolint
-  autoplot.OptimInstanceSingleCrit(object = object, type = type, cols_x = cols_x, trafo = trafo, learner = learner, grid_resolution = grid_resolution, ...)
+  autoplot.OptimInstanceSingleCrit(object = object, type = type, cols_x = cols_x,
+    trafo = trafo, learner = learner, grid_resolution = grid_resolution, ...)
 }
