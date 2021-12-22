@@ -11,6 +11,7 @@
   trafo = FALSE,
   learner = mlr3::lrn("regr.ranger"),
   grid_resolution = 100,
+  batch = NULL,
   ...
 )
 }
@@ -50,6 +51,9 @@ Regression learner used to interpolate the data of the surface plot.}
 \item{grid_resolution}{(\code{numeric()})\cr
 Resolution of the surface plot.}
 
+\item{batch}{(\code{integer()})\cr
+The batch number(s) to limit the plot to. Default is all batches.}
+
 \item{...}{(\code{any}):
 Additional arguments, possibly passed down to the underlying plot functions.}
 }
@@ -59,16 +63,23 @@ Additional arguments, possibly passed down to the underlying plot functions.}
 \description{
 Generates plots for \link[bbotk:OptimInstanceSingleCrit]{bbotk::OptimInstanceSingleCrit}.
 }
+\section{Theme}{
+
+The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
+\code{autoplot()} methods. To change this behavior set
+\code{options(mlr3.theme = FALSE)}.
+}
+
 \examples{
 if (requireNamespace("bbotk") && requireNamespace("patchwork")) {
   library(bbotk)
   library(paradox)
 
   fun = function(xs) {
-    c(y = - (xs[[1]] - 2)^2 - (xs[[2]] + 3)^2 + 10)
+    c(y = -(xs[[1]] - 2)^2 - (xs[[2]] + 3)^2 + 10)
   }
   domain = ps(
-    x1 = p_dbl(-10,10),
+    x1 = p_dbl(-10, 10),
     x2 = p_dbl(-5, 5)
   )
   codomain = ps(

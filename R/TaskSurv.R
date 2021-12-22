@@ -17,6 +17,9 @@
 #'   the underlying plot functions.
 #'
 #' @return [ggplot2::ggplot()] object.
+#'
+#' @template section_theme
+#'
 #' @export
 #' @examples
 #' library(mlr3)
@@ -38,22 +41,38 @@ autoplot.TaskSurv = function(object, type = "target", ...) { # nolint
       if (...length() == 0L) {
         GGally::ggsurv(invoke(survival::survfit,
           formula = object$formula(1),
-          data = object$data()))
+          data = object$data()),
+        cens.col = "#440154FF",
+        cens.shape = 21) +
+        apply_theme(list(
+          scale_color_viridis_d(end = 0.8),
+          theme_mlr3()
+        ))
       } else {
-        GGally::ggsurv(invoke(survival::survfit,
+        suppressMessages(GGally::ggsurv(invoke(survival::survfit,
           formula = object$formula(...),
-          data = object$data()))
+          data = object$data())) +
+          apply_theme(list(
+            scale_color_viridis_d(end = 0.8),
+            theme_mlr3()
+          ))
+        )
       }
     },
 
     "duo" = {
       GGally::ggduo(object,
         columnsX = object$target_names,
-        columnsY = object$feature_names, ...)
+        columnsY = object$feature_names, ...) +
+        apply_theme(list(
+          scale_color_viridis_d(end = 0.8),
+          theme_mlr3()
+        ))
     },
 
     "pairs" = {
-      GGally::ggpairs(object, ...)
+      GGally::ggpairs(object, ...) +
+        apply_theme(list(theme_mlr3(base_size = 10)))
     },
 
     stopf("Unknown plot type '%s'", type)

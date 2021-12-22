@@ -17,3 +17,4 @@
 ^tic\.R$
 ^\.ccache$
 ^codemeta\.json$
+^docs$

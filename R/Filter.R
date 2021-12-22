@@ -12,6 +12,8 @@
 #' @param ... (`any`):
 #'   Additional argument, passed down to the respective `geom`.
 #'
+#' @template section_theme
+#'
 #' @return [ggplot2::ggplot()] object.
 #' @export
 #' @examples
@@ -33,8 +35,12 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
   switch(type,
     "boxplot" = {
       ggplot(data = data, aes_string(x = "feature", y = "score")) +
-        geom_bar(stat = "identity", ...) +
-        scale_x_discrete(limits = data$feature)
+        geom_bar(stat = "identity", fill = "white", color = "black", ...) +
+        scale_x_discrete(limits = data$feature) +
+        xlab("Feature") +
+        ylab("Score") +
+        apply_theme(list(theme_mlr3())) +
+        theme(axis.text.x = element_text(angle = 45, hjust = 1))
     },
 
     stopf("Unknown plot type '%s'", type)

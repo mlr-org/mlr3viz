@@ -2,10 +2,10 @@
 #'
 #' @description
 #' Generates plots for hierarchical clusterers, depending on argument `type`:
-#' 
+#'
 #' * `"dend"` (default): dendrograms using \CRANpkg{factoextra} package.
-#' 
-#' * `"scree"`: scree plot that shows the number of possible clusters on x-axis and 
+#'
+#' * `"scree"`: scree plot that shows the number of possible clusters on x-axis and
 #' the height on the y-axis.
 #'
 #' Note that learner-specific plots are experimental and subject to change.
@@ -16,6 +16,9 @@
 #'   Additional arguments, passed down to function [factoextra::fviz_dend()] in package \CRANpkg{factoextra}.
 #'
 #' @return [ggplot2::ggplot()] object.
+#'
+#' @template section_theme
+#'
 #' @export
 #' @examples
 #' library(mlr3)
@@ -39,8 +42,8 @@
 #' # hclust clustering
 #' learner = mlr_learners$get("clust.hclust")
 #' learner$train(task)
-#' autoplot(learner, type="scree")
-autoplot.LearnerClustHierarchical = function(object, type="dend", ...) { # nolint
+#' autoplot(learner, type = "scree")
+autoplot.LearnerClustHierarchical = function(object, type = "dend", ...) { # nolint
   assert_string(type)
   if (is.null(object$model)) {
     stopf("Learner '%s' must be trained first", object$id)
@@ -51,16 +54,23 @@ autoplot.LearnerClustHierarchical = function(object, type="dend", ...) { # nolin
 
   switch(type,
     "dend" = {
-    require_namespaces("factoextra")
+      require_namespaces("factoextra")
 
-    factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
-  }, 
+      p = factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
+      if (getOption("mlr3.theme", TRUE)) p$scales$scales = list()
 
-  "scree" = {
-    data = data.table(Height = object$model$height, Clusters = length(object$model$height):1)
-    ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line() + 
-      xlab("Clusters") + ylab("Height")
-  })
+      p +
+        apply_theme(list(scale_color_viridis_d(end = 0.8), theme_mlr3())) +
+        theme(legend.position = "none")
+    },
+
+    "scree" = {
+      data = data.table(Height = object$model$height, Clusters = seq(length(object$model$height), 1))
+      ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line() +
+        xlab("Clusters") + ylab("Height") +
+        apply_theme(list(theme_mlr3()))
+    }
+  )
 }
 
 #' @export

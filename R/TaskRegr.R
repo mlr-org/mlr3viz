@@ -13,6 +13,9 @@
 #'   functions.
 #'
 #' @return [ggplot2::ggplot()] object.
+#'
+#' @template section_theme
+#'
 #' @export
 #' @examples
 #' library(mlr3)
@@ -31,15 +34,16 @@ autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
     "target" = {
       target = object$target_names
       ggplot(data = object, aes_string(
-        x = as.factor(target), y = target,
-        fill = target)) +
+        x = as.factor(target), y = target)) +
         geom_boxplot(...) +
-        xlab("")
+        apply_theme(list(theme_mlr3())) +
+        theme(axis.text.x.bottom = element_blank(), axis.title.x.bottom = element_blank())
     },
 
     "pairs" = {
       require_namespaces("GGally")
-      GGally::ggpairs(object, ...)
+      GGally::ggpairs(object, ...) +
+        apply_theme(list(theme_mlr3()))
     },
 
     stopf("Unknown plot type '%s'", type)
