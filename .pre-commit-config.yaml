@@ -9,27 +9,13 @@ repos:
         additional_dependencies:
         - mlr-org/styler.mlr
     -   id: roxygenize
+        # roxygen requires loading pkg -> add dependencies from DESCRIPTION
         additional_dependencies:
-        - mlr3
-        - checkmate
-        - data.table
-        - ggplot2
-        - mlr3misc
-        - utils
-        - precrec
-        - mlr3learners
-        - mlr3cluster
-        - bbotk
-        - mlr3proba
-        - GGally
-        - mlr3tuning
-        - mlr3filters
-        - ggparty
-        - mlr3cluster
-        - factoextra
-        - ggfortify
-        - survival
-        - git2r
+        -    checkmate
+        -    data.table
+        -    ggplot2
+        -    mlr3misc
+        -    utils
     -   id: use-tidy-description
         exclude: >
           (?x)^(
