@@ -133,9 +133,9 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
         geom_line(top_batch, mapping = aes(x = .data[["batch_nr"]], y = .data[[cols_y]], color = .data[["group"]]), group = 1) +
         xlab("Batch") +
         apply_theme(list(
-            scale_fill_manual(values = viridis::viridis(1, begin = 0.4)),
-            scale_color_manual(values = viridis::viridis(1)),
-            theme_mlr3()
+          scale_fill_manual(values = viridis::viridis(1, begin = 0.4)),
+          scale_color_manual(values = viridis::viridis(1)),
+          theme_mlr3()
         )) +
         theme(legend.title = element_blank())
     },
@@ -217,7 +217,7 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
           scale_fill_viridis_c(),
           theme_mlr3()
         ))
-      },
+    },
 
     "surface" = {
       if (length(cols_x) != 2) {

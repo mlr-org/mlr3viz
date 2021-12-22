@@ -60,11 +60,11 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
     "pairs" = {
       require_namespaces("GGally")
       GGally::ggpairs(object, aes_string(color = target), ...) +
-      apply_theme(list(
-        scale_fill_viridis_d(end = 0.8),
-        scale_color_viridis_d(end = 0.8),
-        theme_mlr3()
-      ))
+        apply_theme(list(
+          scale_fill_viridis_d(end = 0.8),
+          scale_color_viridis_d(end = 0.8),
+          theme_mlr3()
+        ))
     },
 
     stopf("Unknown plot type '%s'", type)

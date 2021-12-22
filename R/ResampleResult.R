@@ -119,7 +119,7 @@ autoplot.ResampleResult = function(object, # nolint
         theme(plot.title = element_blank())
     },
 
-    "prediction" = plot_learner_prediction_resample_result(object,predict_sets, ...),
+    "prediction" = plot_learner_prediction_resample_result(object, predict_sets, ...),
 
     stopf("Unknown plot type '%s'", type)
   )

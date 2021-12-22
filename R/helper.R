@@ -36,5 +36,5 @@ print.DelayedPatchworkPlot = function(x, ...) {
 }
 
 apply_theme = function(theme_object, default_object = NULL) {
-    if (getOption("mlr3.theme", TRUE)) theme_object else default_object %??% geom_blank()
+  if (getOption("mlr3.theme", TRUE)) theme_object else default_object %??% geom_blank()
 }

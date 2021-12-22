@@ -70,7 +70,7 @@ autoplot.BenchmarkResult = function(object, # nolint
         # we apply over .data$nr
         facet_wrap(vars(.data$task_id), scales = "free_x") +
         apply_theme(list(theme_mlr3())) +
-        theme(axis.text.x = element_text(angle = 45, hjust=1))
+        theme(axis.text.x = element_text(angle = 45, hjust = 1))
     },
 
     "roc" = {
