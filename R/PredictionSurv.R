@@ -28,6 +28,8 @@
 #' @param ... (`any`):
 #'   Additional arguments, currently unused.
 #'
+#' @template section_theme
+#'
 #' @references
 #' `r format_bib("dcalib")`
 #'

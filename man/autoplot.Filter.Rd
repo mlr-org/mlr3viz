@@ -28,6 +28,13 @@ Generates plots for \link[mlr3filters:Filter]{mlr3filters::Filter}, depending on
 \item \code{"barplot"} (default): Bar plot of filter scores.
 }
 }
+\section{Theme}{
+
+The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
+\code{autoplot()} methods. To change this behavior set
+\code{options(mlr3.theme = FALSE)}.
+}
+
 \examples{
 library(mlr3)
 library(mlr3viz)

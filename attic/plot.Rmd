@@ -8,7 +8,7 @@ library(mlr3)
 library(mlr3learners)
 library(mlr3viz)
 
-options(mlr3.theme = TRUE)
+options(mlr3.theme = FALSE)
 lgr::get_logger("mlr3")$set_threshold("warn")
 lgr::get_logger("bbotk")$set_threshold("warn")
 ```

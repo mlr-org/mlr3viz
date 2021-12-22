@@ -33,6 +33,9 @@
 #' @param ... (`any`):
 #'   Additional arguments, possibly passed down to the underlying plot functions.
 #' @return [ggplot2::ggplot()] object.
+#'
+#' @template section_theme
+#'
 #' @export
 #' @examples
 #' if (requireNamespace("mlr3tuning") && requireNamespace("patchwork")) {

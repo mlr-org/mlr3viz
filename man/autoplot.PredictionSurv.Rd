@@ -53,6 +53,13 @@ the X/100 quantile of the predicted distribution, e.g. if 50\% of observations d
 predicted median survival time. A model is D-calibrated if the resulting plot lies on x = y.
 }
 }
+\section{Theme}{
+
+The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
+\code{autoplot()} methods. To change this behavior set
+\code{options(mlr3.theme = FALSE)}.
+}
+
 \examples{
 library(mlr3)
 library(mlr3proba)

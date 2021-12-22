@@ -38,6 +38,13 @@ in package \CRANpkg{precrec}. Arguments \code{calc_avg} and \code{cb_alpha} are 
 \item \code{"prc"}: Precision recall curve. See \code{"roc"}.
 }
 }
+\section{Theme}{
+
+The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
+\code{autoplot()} methods. To change this behavior set
+\code{options(mlr3.theme = FALSE)}.
+}
+
 \examples{
 library(mlr3)
 library(mlr3viz)

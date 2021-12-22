@@ -14,6 +14,8 @@
 #'
 #' @return [ggplot2::ggplot()] object.
 #'
+#' @template section_theme
+#'
 #' @references
 #' `r format_bib("ggfortify")`
 #'

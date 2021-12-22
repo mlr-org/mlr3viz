@@ -14,6 +14,9 @@
 #'   Additional arguments, passed down to [ggparty::autoplot.party()].
 #'
 #' @return [ggplot2::ggplot()] object.
+#'
+#' @template section_theme
+#'
 #' @export
 #' @examples
 #' library(mlr3)

@@ -12,6 +12,8 @@
 #' @param ... (`any`):
 #'   Additional argument, passed down to the respective `geom`.
 #'
+#' @template section_theme
+#'
 #' @return [ggplot2::ggplot()] object.
 #' @export
 #' @examples

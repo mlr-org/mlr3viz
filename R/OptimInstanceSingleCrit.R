@@ -36,6 +36,9 @@
 #'   Additional arguments, possibly passed down to the underlying plot functions.
 #' @importFrom scales pretty_breaks
 #' @return [ggplot2::ggplot()] object.
+#'
+#' @template section_theme
+#'
 #' @export
 #' @examples
 #' if (requireNamespace("bbotk") && requireNamespace("patchwork")) {
