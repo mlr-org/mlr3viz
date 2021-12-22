@@ -20,12 +20,12 @@
 #' @param ... (`any`):
 #'   Additional arguments, passed down to the respective `geom`.
 #'
-#' @references
-#' `r format_bib("ggfortify")`
-#'
 #' @return [ggplot2::ggplot()] object.
 #'
 #' @template section_theme
+#'
+#' @references
+#' `r format_bib("ggfortify")`
 #'
 #' @export
 #' @examples
@@ -60,7 +60,7 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
 
       GGally::ggscatmat(data, color = "partition", ...) +
         apply_theme(list(
-          scale_color_viridis_d("Partition", end = 0.8),
+          scale_color_viridis_d("Cluster", end = 0.8),
           theme_mlr3() +
             theme(axis.title.x.bottom = element_blank(), axis.title.y.left = element_blank())
         ))
