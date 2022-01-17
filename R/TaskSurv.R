@@ -44,10 +44,10 @@ autoplot.TaskSurv = function(object, type = "target", ...) { # nolint
           data = object$data()),
         cens.col = "#440154FF",
         cens.shape = 21) +
-        apply_theme(list(
-          scale_color_viridis_d(end = 0.8),
-          theme_mlr3()
-        ))
+          apply_theme(list(
+            scale_color_viridis_d(end = 0.8),
+            theme_mlr3()
+          ))
       } else {
         suppressMessages(GGally::ggsurv(invoke(survival::survfit,
           formula = object$formula(...),
@@ -55,8 +55,7 @@ autoplot.TaskSurv = function(object, type = "target", ...) { # nolint
           apply_theme(list(
             scale_color_viridis_d(end = 0.8),
             theme_mlr3()
-          ))
-        )
+          )))
       }
     },
 

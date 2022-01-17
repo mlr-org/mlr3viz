@@ -68,13 +68,13 @@ autoplot.PredictionRegr = function(object, # nolint
         xlab("Residuals") +
         ylab("Density")
 
-        # geom_blank errors with after_stat
-        if (getOption("mlr3.theme", TRUE)) {
-          p + theme_mlr3()
-        } else {
+      # geom_blank errors with after_stat
+      if (getOption("mlr3.theme", TRUE)) {
+        p + theme_mlr3()
+      } else {
 
-          p
-        }
+        p
+      }
     },
 
     "residual" = {
