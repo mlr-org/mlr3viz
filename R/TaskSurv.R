@@ -13,8 +13,10 @@
 #' @param type (`character(1)`):\cr
 #'   Type of the plot. Available choices:
 #' @param ... (`any`):
-#'   Additional argument, passed down to `$formula` of [mlr3proba::TaskSurv] or
-#'   the underlying plot functions.
+#'   Additional arguments.
+#'   `rhs` is passed down to `$formula` of [mlr3proba::TaskSurv] for stratification
+#'   for type `"target"`. Other arguments are passed to the respective underlying plot
+#'   functions.
 #'
 #' @return [ggplot2::ggplot()] object.
 #'
@@ -38,25 +40,15 @@ autoplot.TaskSurv = function(object, type = "target", ...) { # nolint
 
   switch(type,
     "target" = {
-      if (...length() == 0L) {
-        GGally::ggsurv(invoke(survival::survfit,
-          formula = object$formula(1),
-          data = object$data()),
-        cens.col = "#440154FF",
-        cens.shape = 21) +
-          apply_theme(list(
-            scale_color_viridis_d(end = 0.8),
-            theme_mlr3()
-          ))
-      } else {
-        suppressMessages(GGally::ggsurv(invoke(survival::survfit,
-          formula = object$formula(...),
-          data = object$data())) +
-          apply_theme(list(
-            scale_color_viridis_d(end = 0.8),
-            theme_mlr3()
-          )))
-      }
+      ddd = list(...)
+
+      sf = survival::survfit(
+        object$formula(ddd$rhs %??% 1),
+        data = object$data()
+      )
+
+      plot = GGally::ggsurv(sf, remove_named(ddd, "rhs"))
+      plot + apply_theme(list(scale_color_viridis_d(end = 0.8), theme_mlr3()))
     },
 
     "duo" = {
