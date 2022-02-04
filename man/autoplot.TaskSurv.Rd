@@ -13,8 +13,10 @@
 Type of the plot. Available choices:}
 
 \item{...}{(\code{any}):
-Additional argument, passed down to \verb{$formula} of \link[mlr3proba:TaskSurv]{mlr3proba::TaskSurv} or
-the underlying plot functions.}
+Additional arguments.
+\code{rhs} is passed down to \verb{$formula} of \link[mlr3proba:TaskSurv]{mlr3proba::TaskSurv} for stratification
+for type \code{"target"}. Other arguments are passed to the respective underlying plot
+functions.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
