@@ -77,7 +77,7 @@ autoplot.PredictionSurv = function(object, type = c("calib", "dcalib"),
       km_surv = colMeans(1 - km_pred$distr$cdf(times))
 
       data = data.frame(x = times, y = c(km_surv, pred_surv),
-                        Group = rep(c("KM", "Pred"), each = length(times)))
+        Group = rep(c("KM", "Pred"), each = length(times)))
 
       ggplot(data, aes(x = x, y = y, group = Group, color = Group)) +
         geom_line() +
