@@ -10,4 +10,3 @@ test_that("autoplot.LearnerSurvRpart", {
   expect_true(is.ggplot(p))
   vdiffr::expect_doppelganger("learner_regr.rpart", p)
 })
-
