@@ -55,7 +55,6 @@ Suggests:
     patchwork (>= 1.1.1),
     precrec,
     ranger,
-    reshape2,
     rpart,
     stats,
     survival,

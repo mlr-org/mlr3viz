@@ -52,16 +52,14 @@
 #'
 #' # Predictions
 #' autoplot(p, type = "preds")
-autoplot.PredictionSurv = function(object, type = c("calib", "dcalib"),
+autoplot.PredictionSurv = function(object, type = "dcalib",
   task = NULL, row_ids = NULL, times = NULL, xyline = TRUE,
   cuts = 11L, ...) {
 
+  assert("distr" %in% object$predict_types)
   x = y = Group = NULL
-
   switch(type,
     "calib" = {
-      assert("distr" %in% object$predict_types)
-
       if (is.null(times)) {
         times = sort(unique(task$truth()[, 1]))
       }
@@ -105,8 +103,12 @@ autoplot.PredictionSurv = function(object, type = c("calib", "dcalib"),
     },
 
     "preds" = {
-      surv = reshape2::melt(1 - distr6::gprm(object$distr, "cdf"))
-      surv$Var1 = factor(surv$Var1)
+      v = 1 - distr6::gprm(object$distr, "cdf")
+      surv = data.table(
+        Var1 = as.factor(seq_len(nrow(v))),
+        Var2 = rep(as.numeric(colnames(v)), each = nrow(v)),
+        value = invoke(c, .args = as.data.frame(v))
+      )
       ggplot(surv, aes(x = Var2, y = value, group = Var1, color = Var1)) +
         geom_line() +
         labs(x = "T", y = "S(T)") +
