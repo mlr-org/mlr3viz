@@ -6,7 +6,7 @@
 \usage{
 \method{autoplot}{PredictionSurv}(
   object,
-  type = c("calib", "dcalib"),
+  type = "dcalib",
   task = NULL,
   row_ids = NULL,
   times = NULL,
