@@ -3,7 +3,7 @@ test_that("autoplot.PredictionSurv", {
   require_namespaces("mlr3proba")
 
   task = mlr3::tsk("rats")$filter(1:100)
-  learner = mlr3::lrn("surv.kaplan")$train(task)
+  learner = suppressWarnings(mlr3::lrn("surv.coxph")$train(task))
   prediction = learner$predict(task)
 
   p = autoplot(prediction, type = "calib", task = task)
@@ -13,4 +13,8 @@ test_that("autoplot.PredictionSurv", {
   p = autoplot(prediction, type = "dcalib")
   expect_true(is.ggplot(p))
   vdiffr::expect_doppelganger("predictionsurv_dcalib", p)
+
+  p = autoplot(prediction, type = "preds")
+  expect_true(is.ggplot(p))
+  vdiffr::expect_doppelganger("predictionsurv_preds", p)
 })

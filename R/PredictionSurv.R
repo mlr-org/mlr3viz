@@ -11,6 +11,7 @@
 #' * `"dcalib"`: Distribution calibration plot. A model is D-calibrated if X% of deaths occur before
 #'   the X/100 quantile of the predicted distribution, e.g. if 50% of observations die before their
 #'   predicted median survival time. A model is D-calibrated if the resulting plot lies on x = y.
+#' * `"preds"`: Matplots the survival curves for all predictions
 #'
 #' @param object ([mlr3proba::PredictionSurv]).
 #' @template param_type
@@ -48,6 +49,9 @@
 #'
 #' # Distribution-calibration (D-Calibration)
 #' autoplot(p, type = "dcalib")
+#'
+#' # Predictions
+#' autoplot(p, type = "preds")
 autoplot.PredictionSurv = function(object, type = c("calib", "dcalib"),
   task = NULL, row_ids = NULL, times = NULL, xyline = TRUE,
   cuts = 11L, ...) {
@@ -57,17 +61,22 @@ autoplot.PredictionSurv = function(object, type = c("calib", "dcalib"),
   switch(type,
     "calib" = {
       assert("distr" %in% object$predict_types)
-      pred_distr = distr6::as.MixtureDistribution(object$distr)
-
-      km = mlr3::lrn("surv.kaplan")
-      km_pred = km$train(task, row_ids = row_ids)$predict(task, row_ids = row_ids)
-      km_distr = distr6::as.MixtureDistribution(km_pred$distr)
 
       if (is.null(times)) {
         times = sort(unique(task$truth()[, 1]))
       }
 
-      data = data.frame(x = times, y = c(1 - km_distr$cdf(times), 1 - pred_distr$cdf(times)),
+      if (inherits(object$distr, "VectorDistribution")) {
+        pred_surv = 1 - distr6::as.MixtureDistribution(object$distr)$cdf(times)
+      } else {
+        pred_surv = colMeans(1 - object$distr$cdf(times))
+      }
+
+      km = mlr3::lrn("surv.kaplan")
+      km_pred = km$train(task, row_ids = row_ids)$predict(task, row_ids = row_ids)
+      km_surv = colMeans(1 - km_pred$distr$cdf(times))
+
+      data = data.frame(x = times, y = c(km_surv, pred_surv),
         Group = rep(c("KM", "Pred"), each = length(times)))
 
       ggplot(data, aes(x = x, y = y, group = Group, color = Group)) +
@@ -93,6 +102,16 @@ autoplot.PredictionSurv = function(object, type = c("calib", "dcalib"),
       pl +
         labs(x = "True", y = "Predicted") +
         apply_theme(list(theme_mlr3()))
+    },
+
+    "preds" = {
+      surv = reshape2::melt(1 - distr6::gprm(object$distr, "cdf"))
+      surv$Var1 = factor(surv$Var1)
+      ggplot(surv, aes(x = Var2, y = value, group = Var1, color = Var1)) +
+        geom_line() +
+        labs(x = "T", y = "S(T)") +
+        apply_theme(list(theme_mlr3())) +
+        theme(legend.position = "n")
     },
 
     stopf("Unknown plot type '%s'", type)
