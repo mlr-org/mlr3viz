@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://mlr3viz.mlr-org.com/404.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3viz.mlr-org.com/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3viz.mlr-org.com/authors.html</loc>
+  </url>
+  <url>
     <loc>https://mlr3viz.mlr-org.com/index.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3viz.mlr-org.com/news/index.html</loc>
   </url>
   <url>
     <loc>https://mlr3viz.mlr-org.com/reference/as_precrec.html</loc>
@@ -58,6 +70,9 @@
     <loc>https://mlr3viz.mlr-org.com/reference/autoplot.TuningInstanceSingleCrit.html</loc>
   </url>
   <url>
+    <loc>https://mlr3viz.mlr-org.com/reference/index.html</loc>
+  </url>
+  <url>
     <loc>https://mlr3viz.mlr-org.com/reference/mlr3viz-package.html</loc>
   </url>
   <url>
@@ -68,5 +83,8 @@
   </url>
   <url>
     <loc>https://mlr3viz.mlr-org.com/reference/reexports.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3viz.mlr-org.com/reference/theme_mlr3.html</loc>
   </url>
 </urlset>
