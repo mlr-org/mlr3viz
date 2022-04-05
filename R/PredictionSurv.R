@@ -57,7 +57,7 @@ autoplot.PredictionSurv = function(object, type = "dcalib",
   cuts = 11L, ...) {
 
   assert("distr" %in% object$predict_types)
-  x = y = Group = NULL
+
   switch(type,
     "calib" = {
       if (is.null(times)) {
@@ -77,7 +77,7 @@ autoplot.PredictionSurv = function(object, type = "dcalib",
       data = data.frame(x = times, y = c(km_surv, pred_surv),
         Group = rep(c("KM", "Pred"), each = length(times)))
 
-      ggplot(data, aes(x = x, y = y, group = Group, color = Group)) +
+      ggplot(data, aes(x = .data[["x"]], y = .data[["y"]], group = .data[["Group"]], color = .data[["Group"]])) +
         geom_line() +
         labs(x = "T", y = "S(T)") +
         apply_theme(list(
@@ -104,12 +104,13 @@ autoplot.PredictionSurv = function(object, type = "dcalib",
 
     "preds" = {
       v = 1 - distr6::gprm(object$distr, "cdf")
-      surv = data.table(
+      surv = data.frame(
         Var1 = as.factor(seq_len(nrow(v))),
         Var2 = rep(as.numeric(colnames(v)), each = nrow(v)),
         value = invoke(c, .args = as.data.frame(v))
       )
-      ggplot(surv, aes(x = Var2, y = value, group = Var1, color = Var1)) +
+
+      ggplot(surv, aes(x = .data[["Var2"]], y = .data[["value"]], group = .data[["Var1"]], color = .data[["Var1"]])) +
         geom_line() +
         labs(x = "T", y = "S(T)") +
         apply_theme(list(theme_mlr3())) +
