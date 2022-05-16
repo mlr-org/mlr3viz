@@ -84,7 +84,6 @@ Collate:
     'Task.R'
     'TaskClassif.R'
     'TaskClust.R'
-    'TaskDens.R'
     'TaskRegr.R'
     'TuningInstanceSingleCrit.R'
     'as_precrec.R'
