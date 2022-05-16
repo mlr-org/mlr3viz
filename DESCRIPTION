@@ -48,7 +48,6 @@ Suggests:
     mlr3cluster,
     mlr3filters,
     mlr3learners,
-    mlr3proba (>= 0.3.2),
     mlr3tuning (>= 0.9.0),
     paradox,
     partykit,
@@ -57,7 +56,6 @@ Suggests:
     ranger,
     rpart,
     stats,
-    survival,
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.2),
     xgboost
@@ -82,14 +80,12 @@ Collate:
     'PredictionClassif.R'
     'PredictionClust.R'
     'PredictionRegr.R'
-    'PredictionSurv.R'
     'ResampleResult.R'
     'Task.R'
     'TaskClassif.R'
     'TaskClust.R'
     'TaskDens.R'
     'TaskRegr.R'
-    'TaskSurv.R'
     'TuningInstanceSingleCrit.R'
     'as_precrec.R'
     'bibentries.R'

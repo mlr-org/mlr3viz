@@ -1,7 +1,7 @@
 
 # mlr3viz
 
-Package website: [release](https://mlr3viz.mlr-org.com/) \|
+Package website: [release](https://mlr3viz.mlr-org.com/) |
 [dev](https://mlr3viz.mlr-org.com/dev/)
 
 <!-- badges: start -->
@@ -62,8 +62,8 @@ respective functions.
 
 {mlr3viz} styles all plots with it’s own theme `theme_mlr3()` (which is
 heavily influenced by the `ggpubr::theme_pubr()` theme) and the
-“viridis” color palette. If you want to use a different theme or color
-palette, apply it after the `autoplot()` call as in
+“viridis” color palette. If you want to use a different theme or
+color palette, apply it after the `autoplot()` call as in
 
 ``` r
 autoplot(<object>) +
@@ -77,7 +77,7 @@ that was visualized.
 
 For even more control, you can look up the source code which ggplot2
 geoms were used internally for a specific `autoplot()` call
-(e.g. `geom_point()`) and how they were called. You can then apply these
-lines again with different arguments after the `autoplot()` call
+(e.g. `geom_point()`) and how they were called. You can then apply
+these lines again with different arguments after the `autoplot()` call
 (similar as shown above with the `theme_gray()` adjustment) to overwrite
 their appearance (for example point size, line width, etc.).
