@@ -119,3 +119,5 @@ docs/
 *.html
 renv/
 .Rprofile
+check/*
+settings.json
