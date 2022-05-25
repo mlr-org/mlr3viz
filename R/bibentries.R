@@ -20,16 +20,5 @@ bibentries = c(
     number  = "2",
     volume  = "8",
     doi     = "10.32614/RJ-2016-060"
-  ),
-
-  dcalib = bibentry("article",
-    author  = "Humza Haider and Bret Hoehn and Sarah Davis and Russell Greiner",
-    title   = "Effective Ways to Build and Evaluate Individual Survival Distributions",
-    journal = "Journal of Machine Learning Research",
-    year    = "2020",
-    volume  = "21",
-    number  = "85",
-    pages   = "1-63",
-    url     = "https://jmlr.org/papers/v21/18-772.html"
   )
 )
