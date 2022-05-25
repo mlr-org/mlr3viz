@@ -43,9 +43,6 @@
     <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.PredictionRegr.html</loc>
   </url>
   <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.PredictionSurv.html</loc>
-  </url>
-  <url>
     <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.ResampleResult.html</loc>
   </url>
   <url>
@@ -55,13 +52,7 @@
     <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TaskClust.html</loc>
   </url>
   <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TaskDens.html</loc>
-  </url>
-  <url>
     <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TaskRegr.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TaskSurv.html</loc>
   </url>
   <url>
     <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TuningInstanceSingleCrit.html</loc>
