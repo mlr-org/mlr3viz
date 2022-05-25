@@ -1,6 +1,6 @@
 # mlr3viz 0.5.9
 
-- Move survival plot functions to mlr3proba.
+- Plots for survival objects moved to mlr3proba.
 
 # mlr3viz 0.5.8
 
