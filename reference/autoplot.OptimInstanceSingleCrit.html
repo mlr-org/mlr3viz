@@ -97,6 +97,8 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>object</dt>
 <dd><p>(<a href="https://bbotk.mlr-org.com/reference/OptimInstanceSingleCrit.html" class="external-link">bbotk::OptimInstanceSingleCrit</a>.</p></dd>
+
+
 <dt>type</dt>
 <dd><p>(<code>character(1)</code>):
 Type of the plot. Available choices:</p><ul><li><p><code>"marginal"</code>: scatter plots of x versus y The
@@ -113,31 +115,46 @@ The y values are interpolated with the supplied
 <a href="https://mlr3.mlr-org.com/reference/Learner.html" class="external-link">mlr3::Learner</a>.</p></li>
 <li><p><code>"pairs"</code>: plots all x and y values against each other.</p></li>
 </ul></dd>
+
+
 <dt>cols_x</dt>
 <dd><p>(<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>)<br>
 Column names of x values. By default, all untransformed
 x values from the search space are plotted. Transformed hyperparameters are prefixed with
 <code>x_domain_</code>.</p></dd>
+
+
 <dt>trafo</dt>
 <dd><p>(<code>logical(1)</code>)<br>
 Determines if untransformed (<code>FALSE</code>) or transformed (<code>TRUE</code>)
 x values are plotted.</p></dd>
+
+
 <dt>learner</dt>
 <dd><p>(<a href="https://mlr3.mlr-org.com/reference/Learner.html" class="external-link">mlr3::Learner</a>)<br>
 Regression learner used to interpolate the data of the surface plot.</p></dd>
+
+
 <dt>grid_resolution</dt>
 <dd><p>(<code><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric()</a></code>)<br>
 Resolution of the surface plot.</p></dd>
+
+
 <dt>batch</dt>
 <dd><p>(<code><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer()</a></code>)<br>
 The batch number(s) to limit the plot to. Default is all batches.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>(<code>any</code>):
 Additional arguments, possibly passed down to the underlying plot functions.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot2::ggplot()</a></code> object.</p>
+    
+
+<p><code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot2::ggplot()</a></code> object.</p>
     </div>
     <div class="section level2">
     <h2 id="theme">Theme<a class="anchor" aria-label="anchor" href="#theme"></a></h2>
@@ -205,7 +222,7 @@ Additional arguments, possibly passed down to the underlying plot functions.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>
