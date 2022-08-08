@@ -15,6 +15,7 @@
 #' @template section_theme
 #'
 #' @return [ggplot2::ggplot()] object.
+#' @name autoplot_filter
 #' @export
 #' @examples
 #' library(mlr3)
@@ -47,6 +48,17 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
   )
 }
 
+#' @rdname autoplot_filter
+#' @export
+autoplot.PipeOpFilter = function(object, type = "boxplot", n = Inf, ...) { # nolint
+  assert_true(!is.null(object$state))
+  filter = object$filter
+  prev_scores = filter$scores
+  on.exit({filter$scores = prev_scores})
+  filter$scores = object$state$scores
+  autoplot(filter)
+}
+
 #' @export
 plot.Filter = function(x, ...) {
   print(autoplot(x, ...))
@@ -56,3 +68,4 @@ plot.Filter = function(x, ...) {
 fortify.Filter = function(model, data = NULL, ...) { # nolint
   as.data.table(model)
 }
+
