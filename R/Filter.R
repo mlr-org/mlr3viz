@@ -54,7 +54,9 @@ autoplot.PipeOpFilter = function(object, type = "boxplot", n = Inf, ...) { # nol
   assert_true(!is.null(object$state))
   filter = object$filter
   prev_scores = filter$scores
-  on.exit({filter$scores = prev_scores})
+  on.exit({
+    filter$scores = prev_scores
+  })
   filter$scores = object$state$scores
   autoplot(filter)
 }
@@ -68,4 +70,3 @@ plot.Filter = function(x, ...) {
 fortify.Filter = function(model, data = NULL, ...) { # nolint
   as.data.table(model)
 }
-
