@@ -31,7 +31,7 @@ Requires package \CRANpkg{precrec}.
 Requires package \CRANpkg{precrec}.
 \item \code{"threshold"}: Systematically varies the threshold of the \link[mlr3:PredictionClassif]{mlr3::PredictionClassif}
 object and plots the resulting performance as returned by \code{measure}.
-Arguments in \code{...} are passed down to the score function of the \link{Measure}.
+Arguments in \code{...} are passed down to the score function of the \link[mlr3:Measure]{mlr3::Measure}.
 }
 }
 \section{Theme}{

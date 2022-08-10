@@ -10,7 +10,7 @@
 #'   Requires package \CRANpkg{precrec}.
 #' * `"threshold"`: Systematically varies the threshold of the [mlr3::PredictionClassif]
 #'   object and plots the resulting performance as returned by `measure`.
-#'   Arguments in `...` are passed down to the score function of the [Measure].
+#'   Arguments in `...` are passed down to the score function of the [mlr3::Measure].
 #'
 #' @param object ([mlr3::PredictionClassif]).
 #' @template param_type
