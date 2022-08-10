@@ -16,7 +16,7 @@ Type of the plot. See description.}
 Performance measure to use.}
 
 \item{...}{(\code{any}):
-Additional arguments, passed down to the respective \code{geom} or plotting function.}
+Additional arguments, passed down to the respective \code{geom}, plotting function or measure.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -31,6 +31,7 @@ Requires package \CRANpkg{precrec}.
 Requires package \CRANpkg{precrec}.
 \item \code{"threshold"}: Systematically varies the threshold of the \link[mlr3:PredictionClassif]{mlr3::PredictionClassif}
 object and plots the resulting performance as returned by \code{measure}.
+Arguments in \code{...} are passed down to the score function of the \link[mlr3:Measure]{mlr3::Measure}.
 }
 }
 \section{Theme}{

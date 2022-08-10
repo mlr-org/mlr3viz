@@ -10,7 +10,6 @@
 ^man-roxygen$
 ^attic$
 ^pkgdown$
-^\.pre-commit-config\.yaml$
 ^\.vscode$
 ^\.lintr$
 ^\.github$
@@ -18,3 +17,4 @@
 ^\.ccache$
 ^codemeta\.json$
 ^docs$
+^\.pre-commit-config\.yaml$

@@ -10,12 +10,13 @@
 #'   Requires package \CRANpkg{precrec}.
 #' * `"threshold"`: Systematically varies the threshold of the [mlr3::PredictionClassif]
 #'   object and plots the resulting performance as returned by `measure`.
+#'   Arguments in `...` are passed down to the score function of the [mlr3::Measure].
 #'
 #' @param object ([mlr3::PredictionClassif]).
 #' @template param_type
 #' @template param_measure
 #' @param ... (`any`):
-#'   Additional arguments, passed down to the respective `geom` or plotting function.
+#'   Additional arguments, passed down to the respective `geom`, plotting function or measure.
 #'
 #' @return [ggplot2::ggplot()] object.
 #'
@@ -79,7 +80,7 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
       measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = object$task_type))
       pred = object$clone(deep = TRUE)
       tab = data.table(prob = seq(from = 0, to = 1, by = 0.01))
-      tab$score = map_dbl(tab$prob, function(p) pred$set_threshold(p)$score(measure))
+      tab$score = map_dbl(tab$prob, function(p) pred$set_threshold(p)$score(measure, ...))
       ggplot(tab, aes_string(x = "prob", y = "score")) +
         geom_line(color = apply_theme(viridis::viridis(1), "#3366FF")) +
         xlab("Probability Threshold") +
