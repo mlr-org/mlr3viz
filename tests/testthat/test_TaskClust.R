@@ -1,3 +1,5 @@
+skip_if_not_installed("mlr3cluster")
+
 test_that("autoplot.TaskClust", {
   requireNamespace("mlr3cluster")
   task = mlr3::tsk("usarrests")
