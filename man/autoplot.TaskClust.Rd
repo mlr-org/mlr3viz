@@ -34,12 +34,14 @@ The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied b
 }
 
 \examples{
-library(mlr3)
-library(mlr3cluster)
-library(mlr3viz)
+if (requireNamespace("mlr3")) {
+  library(mlr3)
+  library(mlr3cluster)
+  library(mlr3viz)
 
-task = mlr_tasks$get("usarrests")
+  task = mlr_tasks$get("usarrests")
 
-head(fortify(task))
-autoplot(task)
+  head(fortify(task))
+  autoplot(task)
+}
 }

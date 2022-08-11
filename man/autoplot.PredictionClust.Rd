@@ -42,16 +42,18 @@ The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied b
 }
 
 \examples{
-library(mlr3)
-library(mlr3cluster)
-library(mlr3viz)
+if (requireNamespace("mlr3")) {
+  library(mlr3)
+  library(mlr3cluster)
+  library(mlr3viz)
 
-task = tsk("usarrests")
-learner = lrn("clust.kmeans", centers = 3)
-object = learner$train(task)$predict(task)
+  task = tsk("usarrests")
+  learner = lrn("clust.kmeans", centers = 3)
+  object = learner$train(task)$predict(task)
 
-head(fortify(object))
-autoplot(object, task)
+  head(fortify(object))
+  autoplot(object, task)
+}
 }
 \references{
 Tang Y, Horikoshi M, Li W (2016).

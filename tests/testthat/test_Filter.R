@@ -1,3 +1,5 @@
+skip_if_not_installed("mlr3")
+
 test_that("autoplot.Filter", {
   task = mlr3::tsk("iris")
   f = mlr3filters::mlr_filters$get("anova")

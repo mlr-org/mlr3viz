@@ -1,3 +1,4 @@
+skip_if_not_installed("mlr3")
 skip_if_not_installed("mlr3cluster")
 skip_if_not_installed("clue")
 

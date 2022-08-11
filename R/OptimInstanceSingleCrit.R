@@ -41,7 +41,7 @@
 #'
 #' @export
 #' @examples
-#' if (requireNamespace("bbotk") && requireNamespace("patchwork")) {
+#' if (requireNamespace("mlr3") && requireNamespace("bbotk") && requireNamespace("patchwork")) {
 #'   library(bbotk)
 #'   library(paradox)
 #'

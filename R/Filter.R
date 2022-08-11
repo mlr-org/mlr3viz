@@ -17,16 +17,18 @@
 #' @return [ggplot2::ggplot()] object.
 #' @export
 #' @examples
-#' library(mlr3)
-#' library(mlr3viz)
-#' library(mlr3filters)
+#' if (requireNamespace("mlr3")) {
+#'   library(mlr3)
+#'   library(mlr3viz)
+#'   library(mlr3filters)
 #'
-#' task = tsk("mtcars")
-#' f = flt("correlation")
-#' f$calculate(task)
+#'   task = tsk("mtcars")
+#'   f = flt("correlation")
+#'   f$calculate(task)
 #'
-#' head(fortify(f))
-#' autoplot(f, n = 5)
+#'   head(fortify(f))
+#'   autoplot(f, n = 5)
+#' }
 autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
   assert_string(type)
 

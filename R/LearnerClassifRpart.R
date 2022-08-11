@@ -19,20 +19,22 @@
 #'
 #' @export
 #' @examples
-#' library(mlr3)
-#' library(mlr3viz)
+#' if (requireNamespace("mlr3")) {
+#'   library(mlr3)
+#'   library(mlr3viz)
 #'
-#' # classification
-#' task = tsk("iris")
-#' learner = lrn("classif.rpart", keep_model = TRUE)
-#' learner$train(task)
-#' autoplot(learner)
+#'   # classification
+#'   task = tsk("iris")
+#'   learner = lrn("classif.rpart", keep_model = TRUE)
+#'   learner$train(task)
+#'   autoplot(learner)
 #'
-#' # regression
-#' task = tsk("mtcars")
-#' learner = lrn("regr.rpart", keep_model = TRUE)
-#' learner$train(task)
-#' autoplot(learner)
+#'   # regression
+#'   task = tsk("mtcars")
+#'   learner = lrn("regr.rpart", keep_model = TRUE)
+#'   learner$train(task)
+#'   autoplot(learner)
+#' }
 autoplot.LearnerClassifRpart = function(object, ...) { # nolint
   assert_has_model(object)
 

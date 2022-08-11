@@ -1,3 +1,5 @@
+skip_if_not_installed("mlr3")
+
 test_that("autoplot.PredictionRegr", {
   task = mlr3::tsk("mtcars")$select(c("carb", "cyl"))
   learner = mlr3::lrn("regr.rpart")$train(task)

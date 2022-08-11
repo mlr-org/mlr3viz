@@ -26,13 +26,15 @@
 #' @return [ggplot2::ggplot()] object.
 #' @export
 #' @examples
-#' library(mlr3)
-#' library(mlr3viz)
+#' if (requireNamespace("mlr3")) {
+#'   library(mlr3)
+#'   library(mlr3viz)
 #'
-#' task = mlr3::tsk("pima")$select(c("age", "glucose"))
-#' learner = lrn("classif.rpart", predict_type = "prob")
-#' p = plot_learner_prediction(learner, task)
-#' print(p)
+#'   task = mlr3::tsk("pima")$select(c("age", "glucose"))
+#'   learner = lrn("classif.rpart", predict_type = "prob")
+#'   p = plot_learner_prediction(learner, task)
+#'   print(p)
+#' }
 plot_learner_prediction = function(learner, task, grid_points = 100L,
   expand_range = 0) {
   object = mlr3::resample(task, learner$clone(),

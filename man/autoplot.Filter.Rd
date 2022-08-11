@@ -36,14 +36,16 @@ The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied b
 }
 
 \examples{
-library(mlr3)
-library(mlr3viz)
-library(mlr3filters)
+if (requireNamespace("mlr3")) {
+  library(mlr3)
+  library(mlr3viz)
+  library(mlr3filters)
 
-task = tsk("mtcars")
-f = flt("correlation")
-f$calculate(task)
+  task = tsk("mtcars")
+  f = flt("correlation")
+  f$calculate(task)
 
-head(fortify(f))
-autoplot(f, n = 5)
+  head(fortify(f))
+  autoplot(f, n = 5)
+}
 }
