@@ -17,7 +17,7 @@ test_that("autoplot.Filter", {
 
 test_that("autoplot.PipeOpFilter", {
   task = mlr3::tsk("spam")
-  pop = mlr3pipelines::po("filter", mlr3filters::flt("auc"), filter.frac = 0.5)
+  pop = mlr3pipelines::po("filter", mlr3filters::flt("auc"), filter.nfeat = 3)
   pop$train(list(task))
   p = autoplot(pop)
   expect_true(is.ggplot(p))
