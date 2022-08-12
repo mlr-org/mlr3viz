@@ -1,3 +1,5 @@
+skip_if_not_installed("mlr3")
+
 set.seed(42)
 task = mlr3::tsk("sonar")
 learner = mlr3::lrn("classif.rpart", predict_type = "prob")$train(task)

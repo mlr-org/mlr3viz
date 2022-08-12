@@ -1,3 +1,5 @@
+skip_if_not_installed("mlr3")
+
 set.seed(42)
 tasks = mlr3::tsks(c("iris", "pima", "sonar"))
 learner = mlr3::lrns(c("classif.featureless", "classif.rpart"), predict_type = "prob")

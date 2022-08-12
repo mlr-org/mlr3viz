@@ -18,15 +18,17 @@
 #'
 #' @export
 #' @examples
-#' library(mlr3)
-#' library(mlr3viz)
+#' if (requireNamespace("mlr3")) {
+#'   library(mlr3)
+#'   library(mlr3viz)
 #'
-#' task = tsk("mtcars")
-#' task$select(c("am", "carb"))
+#'   task = tsk("mtcars")
+#'   task$select(c("am", "carb"))
 #'
-#' head(fortify(task))
-#' autoplot(task)
-#' autoplot(task, type = "pairs")
+#'   head(fortify(task))
+#'   autoplot(task)
+#'   autoplot(task, type = "pairs")
+#' }
 autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
   assert_string(type)
 

@@ -71,7 +71,7 @@ The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied b
 }
 
 \examples{
-if (requireNamespace("bbotk") && requireNamespace("patchwork")) {
+if (requireNamespace("mlr3") && requireNamespace("bbotk") && requireNamespace("patchwork")) {
   library(bbotk)
   library(paradox)
 

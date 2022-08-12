@@ -36,7 +36,6 @@ Imports:
 Suggests:
     bbotk,
     cluster,
-    distr6 (>= 1.6.9),
     factoextra,
     GGally,
     ggfortify (>= 0.4.11),
@@ -65,7 +64,7 @@ Config/testthat/parallel: true
 Encoding: UTF-8
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 Collate:
     'BenchmarkResult.R'
     'Filter.R'

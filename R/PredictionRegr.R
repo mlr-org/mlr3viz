@@ -30,17 +30,19 @@
 #'
 #' @export
 #' @examples
-#' library(mlr3)
-#' library(mlr3viz)
+#' if (requireNamespace("mlr3")) {
+#'   library(mlr3)
+#'   library(mlr3viz)
 #'
-#' task = tsk("boston_housing")
-#' learner = lrn("regr.rpart")
-#' object = learner$train(task)$predict(task)
+#'   task = tsk("boston_housing")
+#'   learner = lrn("regr.rpart")
+#'   object = learner$train(task)$predict(task)
 #'
-#' head(fortify(object))
-#' autoplot(object)
-#' autoplot(object, type = "histogram", binwidth = 1)
-#' autoplot(object, type = "residual")
+#'   head(fortify(object))
+#'   autoplot(object)
+#'   autoplot(object, type = "histogram", binwidth = 1)
+#'   autoplot(object, type = "residual")
+#' }
 autoplot.PredictionRegr = function(object, # nolint
   type = "xy",
   ...) {

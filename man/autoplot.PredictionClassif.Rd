@@ -16,7 +16,7 @@ Type of the plot. See description.}
 Performance measure to use.}
 
 \item{...}{(\code{any}):
-Additional arguments, passed down to the respective \code{geom} or plotting function.}
+Additional arguments, passed down to the respective \code{geom}, plotting function or measure.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -31,6 +31,7 @@ Requires package \CRANpkg{precrec}.
 Requires package \CRANpkg{precrec}.
 \item \code{"threshold"}: Systematically varies the threshold of the \link[mlr3:PredictionClassif]{mlr3::PredictionClassif}
 object and plots the resulting performance as returned by \code{measure}.
+Arguments in \code{...} are passed down to the score function of the \link[mlr3:Measure]{mlr3::Measure}.
 }
 }
 \section{Theme}{
@@ -41,17 +42,19 @@ The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied b
 }
 
 \examples{
-library(mlr3)
-library(mlr3viz)
+if (requireNamespace("mlr3")) {
+  library(mlr3)
+  library(mlr3viz)
 
-task = tsk("spam")
-learner = lrn("classif.rpart", predict_type = "prob")
-object = learner$train(task)$predict(task)
+  task = tsk("spam")
+  learner = lrn("classif.rpart", predict_type = "prob")
+  object = learner$train(task)$predict(task)
 
-head(fortify(object))
-autoplot(object)
-autoplot(object, type = "roc")
-autoplot(object, type = "prc")
+  head(fortify(object))
+  autoplot(object)
+  autoplot(object, type = "roc")
+  autoplot(object, type = "prc")
+}
 }
 \references{
 Saito T, Rehmsmeier M (2017).

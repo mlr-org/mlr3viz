@@ -17,14 +17,16 @@
 #'
 #' @export
 #' @examples
-#' library(mlr3)
-#' library(mlr3cluster)
-#' library(mlr3viz)
+#' if (requireNamespace("mlr3")) {
+#'   library(mlr3)
+#'   library(mlr3cluster)
+#'   library(mlr3viz)
 #'
-#' task = mlr_tasks$get("usarrests")
+#'   task = mlr_tasks$get("usarrests")
 #'
-#' head(fortify(task))
-#' autoplot(task)
+#'   head(fortify(task))
+#'   autoplot(task)
+#' }
 autoplot.TaskClust = function(object, type = "pairs", ...) { # nolint
   assert_string(type)
 

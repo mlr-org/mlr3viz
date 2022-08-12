@@ -1,3 +1,5 @@
+skip_if_not_installed("mlr3")
+
 test_that("plot_learner_prediction.LearnerClassif", {
   task = mlr3::tsk("iris")$select(c("Sepal.Length", "Sepal.Width"))
 

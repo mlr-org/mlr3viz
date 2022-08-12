@@ -46,18 +46,20 @@ The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied b
 }
 
 \examples{
-library(mlr3)
-library(mlr3viz)
+if (requireNamespace("mlr3")) {
+  library(mlr3)
+  library(mlr3viz)
 
-tasks = tsks(c("pima", "sonar"))
-learner = lrns(c("classif.featureless", "classif.rpart"),
-  predict_type = "prob")
-resampling = rsmps("cv")
-object = benchmark(benchmark_grid(tasks, learner, resampling))
+  tasks = tsks(c("pima", "sonar"))
+  learner = lrns(c("classif.featureless", "classif.rpart"),
+    predict_type = "prob")
+  resampling = rsmps("cv")
+  object = benchmark(benchmark_grid(tasks, learner, resampling))
 
-head(fortify(object))
-autoplot(object)
-autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "roc")
+  head(fortify(object))
+  autoplot(object)
+  autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "roc")
+}
 }
 \references{
 Saito T, Rehmsmeier M (2017).

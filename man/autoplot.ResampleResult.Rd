@@ -58,36 +58,38 @@ The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied b
 }
 
 \examples{
-library(mlr3)
-library(mlr3viz)
+if (requireNamespace("mlr3")) {
+  library(mlr3)
+  library(mlr3viz)
 
-task = tsk("sonar")
-learner = lrn("classif.rpart", predict_type = "prob")
-resampling = rsmp("cv")
-object = resample(task, learner, resampling)
+  task = tsk("sonar")
+  learner = lrn("classif.rpart", predict_type = "prob")
+  resampling = rsmp("cv")
+  object = resample(task, learner, resampling)
 
-head(fortify(object))
+  head(fortify(object))
 
-# Default: boxplot
-autoplot(object)
+  # Default: boxplot
+  autoplot(object)
 
-# Histogram
-autoplot(object, type = "histogram", bins = 30)
+  # Histogram
+  autoplot(object, type = "histogram", bins = 30)
 
-# ROC curve, averaged over resampling folds:
-autoplot(object, type = "roc")
+  # ROC curve, averaged over resampling folds:
+  autoplot(object, type = "roc")
 
-# ROC curve of joint prediction object:
-autoplot(object$prediction(), type = "roc")
+  # ROC curve of joint prediction object:
+  autoplot(object$prediction(), type = "roc")
 
-# Precision Recall Curve
-autoplot(object, type = "prc")
+  # Precision Recall Curve
+  autoplot(object, type = "prc")
 
-# Prediction Plot
-task = tsk("iris")$select(c("Sepal.Length", "Sepal.Width"))
-resampling = rsmp("cv", folds = 3)
-object = resample(task, learner, resampling, store_models = TRUE)
-autoplot(object, type = "prediction")
+  # Prediction Plot
+  task = tsk("iris")$select(c("Sepal.Length", "Sepal.Width"))
+  resampling = rsmp("cv", folds = 3)
+  object = resample(task, learner, resampling, store_models = TRUE)
+  autoplot(object, type = "prediction")
+}
 }
 \references{
 Saito T, Rehmsmeier M (2017).

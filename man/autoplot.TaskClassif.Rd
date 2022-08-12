@@ -36,14 +36,16 @@ The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied b
 }
 
 \examples{
-library(mlr3)
-library(mlr3viz)
+if (requireNamespace("mlr3")) {
+  library(mlr3)
+  library(mlr3viz)
 
-task = tsk("iris")
+  task = tsk("iris")
 
-head(fortify(task))
-autoplot(task)
-autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")),
-  type = "pairs")
-autoplot(task, type = "duo")
+  head(fortify(task))
+  autoplot(task)
+  autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")),
+    type = "pairs")
+  autoplot(task, type = "duo")
+}
 }

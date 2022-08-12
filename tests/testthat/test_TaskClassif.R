@@ -1,3 +1,5 @@
+skip_if_not_installed("mlr3")
+
 test_that("autoplot.TaskClassif", {
   task = mlr3::tsk("iris")
 

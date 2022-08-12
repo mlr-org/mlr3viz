@@ -21,28 +21,30 @@
 #'
 #' @export
 #' @examples
-#' library(mlr3)
-#' library(mlr3cluster)
-#' library(mlr3viz)
+#' if (requireNamespace("mlr3")) {
+#'   library(mlr3)
+#'   library(mlr3cluster)
+#'   library(mlr3viz)
 #'
-#' task = mlr_tasks$get("usarrests")
+#'   task = mlr_tasks$get("usarrests")
 #'
-#' # agnes clustering
-#' learner = mlr_learners$get("clust.agnes")
-#' learner$train(task)
-#' autoplot(learner)
+#'   # agnes clustering
+#'   learner = mlr_learners$get("clust.agnes")
+#'   learner$train(task)
+#'   autoplot(learner)
 #'
-#' # diana clustering
-#' learner = mlr_learners$get("clust.diana")
-#' learner$train(task)
-#' autoplot(learner,
-#'   k = learner$param_set$values$k, rect_fill = TRUE,
-#'   rect = TRUE, rect_border = "red")
+#'   # diana clustering
+#'   learner = mlr_learners$get("clust.diana")
+#'   learner$train(task)
+#'   autoplot(learner,
+#'     k = learner$param_set$values$k, rect_fill = TRUE,
+#'     rect = TRUE, rect_border = "red")
 #'
-#' # hclust clustering
-#' learner = mlr_learners$get("clust.hclust")
-#' learner$train(task)
-#' autoplot(learner, type = "scree")
+#'   # hclust clustering
+#'   learner = mlr_learners$get("clust.hclust")
+#'   learner$train(task)
+#'   autoplot(learner, type = "scree")
+#' }
 autoplot.LearnerClustHierarchical = function(object, type = "dend", ...) { # nolint
   assert_string(type)
   if (is.null(object$model)) {
