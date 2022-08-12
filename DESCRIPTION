@@ -36,7 +36,6 @@ Imports:
 Suggests:
     bbotk,
     cluster,
-    distr6 (>= 1.6.9),
     factoextra,
     GGally,
     ggfortify (>= 0.4.11),
