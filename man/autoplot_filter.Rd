@@ -6,9 +6,9 @@
 \alias{autoplot.PipeOpFilter}
 \title{Plot for Filter Scores}
 \usage{
-\method{autoplot}{Filter}(object, type = "boxplot", n = Inf, ...)
+\method{autoplot}{Filter}(object, type = "barplot", n = Inf, ...)
 
-\method{autoplot}{PipeOpFilter}(object, type = "boxplot", n = Inf, ...)
+\method{autoplot}{PipeOpFilter}(object, type = "barplot", n = Inf, ...)
 }
 \arguments{
 \item{object}{(\link[mlr3filters:Filter]{mlr3filters::Filter}).}
