@@ -55,21 +55,21 @@ theme_mlr3 = function(base_size = 12, base_family = "", border = FALSE, margin =
   }
 
   .theme = theme_light(base_size = base_size, base_family = base_family) %+replace%
-  theme(panel.border = panel.border,
-    axis.line = axis.line,
-    axis.text = element_text(color = "black"),
+    theme(panel.border = panel.border,
+      axis.line = axis.line,
+      axis.text = element_text(color = "black"),
 
-    legend.key = element_blank(),
-    # facets
-    strip.background.x = element_rect(fill = NA, colour = "black", size = 1),
-    strip.background.y = element_rect(fill = NA, colour = "black", size = 1),
-    strip.text.x = element_text(color = "black", size = base_size, margin = margin(.15, 0, .15, 0, "cm")),
-    strip.text.y = element_text(color = "black", size = base_size, margin = margin(.5, .15, .5, .15, "cm"),
-      angle = 270),
+      legend.key = element_blank(),
+      # facets
+      strip.background.x = element_rect(fill = NA, colour = "black", size = 1),
+      strip.background.y = element_rect(fill = NA, colour = "black", size = 1),
+      strip.text.x = element_text(color = "black", size = base_size, margin = margin(.15, 0, .15, 0, "cm")),
+      strip.text.y = element_text(color = "black", size = base_size, margin = margin(.5, .15, .5, .15, "cm"),
+        angle = 270),
 
-    plot.margin = plot.margin,
-    legend.position = legend,
-    complete = TRUE)
+      plot.margin = plot.margin,
+      legend.position = legend,
+      complete = TRUE)
 
   if (x.text.angle != 0) {
     .theme = .theme + theme(axis.text.x = element_text(angle = x.text.angle, hjust = xhjust))

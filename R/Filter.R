@@ -15,6 +15,7 @@
 #' @template section_theme
 #'
 #' @return [ggplot2::ggplot()] object.
+#' @name autoplot_filter
 #' @export
 #' @examples
 #' if (requireNamespace("mlr3")) {
@@ -29,13 +30,13 @@
 #'   head(fortify(f))
 #'   autoplot(f, n = 5)
 #' }
-autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
+autoplot.Filter = function(object, type = "barplot", n = Inf, ...) { # nolint
   assert_string(type)
 
   data = head(fortify(object), n)
 
   switch(type,
-    "boxplot" = {
+    "barplot" = {
       ggplot(data = data, aes_string(x = "feature", y = "score")) +
         geom_bar(stat = "identity", fill = "white", color = "black", ...) +
         scale_x_discrete(limits = data$feature) +
@@ -47,6 +48,17 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
 
     stopf("Unknown plot type '%s'", type)
   )
+}
+
+#' @rdname autoplot_filter
+#' @export
+autoplot.PipeOpFilter = function(object, type = "barplot", n = Inf, ...) { # nolint
+  if (is.null(object$state)) {
+    stopf("Filter '%s' must be trained", object$id)
+  }
+  filter = object$filter$clone(deep = TRUE)
+  filter$scores = object$state$scores
+  autoplot(filter, type = type, n = n, ...)
 }
 
 #' @export
