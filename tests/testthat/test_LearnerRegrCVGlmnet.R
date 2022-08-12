@@ -10,5 +10,5 @@ test_that("autoplot.LearnerRegrGlmnet", {
   learner = mlr3::lrn("regr.cv_glmnet")$train(mlr3::tsk("mtcars"))
   p = autoplot(learner)
   expect_true(is.ggplot(p))
-  vdiffr::expect_doppelganger("learner_regr.cv_glmnet", p)
+  expect_doppelganger("learner_regr.cv_glmnet", p)
 })

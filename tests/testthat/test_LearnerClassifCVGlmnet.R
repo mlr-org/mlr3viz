@@ -10,5 +10,5 @@ test_that("autoplot.LearnerClassifCVGlmnet", {
   learner = mlr3::lrn("classif.cv_glmnet")$train(mlr3::tsk("wine"))
   p = autoplot(learner)
   expect_true(is.ggplot(p))
-  vdiffr::expect_doppelganger("learner_classif.cv_glmnet", p)
+  expect_doppelganger("learner_classif.cv_glmnet", p)
 })

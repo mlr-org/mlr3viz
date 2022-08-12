@@ -31,7 +31,7 @@ test_that("fortify.TuningInstanceSingleCrit", {
 test_that("autoplot.TuningInstanceSingleCrit", {
   expect_single = function(id, plot) {
     expect_true(is.ggplot(plot))
-    vdiffr::expect_doppelganger(sprintf("tisc_%s", id), plot)
+    expect_doppelganger(sprintf("tisc_%s", id), plot)
   }
 
   expect_multiple = function(id, plots) {
@@ -40,7 +40,7 @@ test_that("autoplot.TuningInstanceSingleCrit", {
     for (i in seq_along(plots)) {
       cur = plots[[i]]
       expect_true(is.ggplot(cur))
-      vdiffr::expect_doppelganger(sprintf("tisc_%s_%02i", id, i), cur)
+      expect_doppelganger(sprintf("tisc_%s_%02i", id, i), cur)
     }
   }
 

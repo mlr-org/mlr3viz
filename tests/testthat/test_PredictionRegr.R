@@ -7,13 +7,13 @@ test_that("autoplot.PredictionRegr", {
 
   p = autoplot(prediction, type = "xy")
   expect_true(is.ggplot(p))
-  vdiffr::expect_doppelganger("predictionregr_xy", p)
+  expect_doppelganger("predictionregr_xy", p)
 
   p = autoplot(prediction, type = "histogram")
   expect_true(is.ggplot(p))
-  vdiffr::expect_doppelganger("predictionregr_histogram", p)
+  expect_doppelganger("predictionregr_histogram", p)
 
   p = autoplot(prediction, type = "residual")
   expect_true(is.ggplot(p))
-  vdiffr::expect_doppelganger("predictionregr_residual", p)
+  expect_doppelganger("predictionregr_residual", p)
 })

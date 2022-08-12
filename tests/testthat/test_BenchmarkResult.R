@@ -17,19 +17,19 @@ test_that("fortify BenchmarkResult", {
 test_that("autoplot BenchmarkResult", {
   p = autoplot(bmr, measure = msr("classif.ce"), type = "boxplot")
   expect_true(is.ggplot(p))
-  vdiffr::expect_doppelganger("bmr_boxplot", p)
+  expect_doppelganger("bmr_boxplot", p)
 
   expect_error(autoplot(bmr, type = "roc"), "multiple")
 
   object = bmr$clone(deep = TRUE)$filter(task_ids = "sonar")
   p = autoplot(object, type = "roc")
   expect_true(is.ggplot(p))
-  vdiffr::expect_doppelganger("bmr_roc", p)
+  expect_doppelganger("bmr_roc", p)
 
   object = bmr$clone(deep = TRUE)$filter(task_ids = "pima")
   p = autoplot(object, type = "prc")
   expect_true(is.ggplot(p))
-  vdiffr::expect_doppelganger("bmr_prc", p)
+  expect_doppelganger("bmr_prc", p)
 })
 
 test_that("holdout roc plot (#54)", {
@@ -46,5 +46,5 @@ test_that("holdout roc plot (#54)", {
   p = autoplot(bmr, type = "roc")
   expect_true(is.ggplot(p))
 
-  vdiffr::expect_doppelganger("bmr_holdout_roc", p)
+  expect_doppelganger("bmr_holdout_roc", p)
 })
