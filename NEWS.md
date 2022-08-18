@@ -1,3 +1,8 @@
+# mlr3viz 0.5.10
+
+- Improved documentation.
+- Make checks run without suggested packages.
+
 # mlr3viz 0.5.9
 
 - Plots for survival objects moved to mlr3proba.
