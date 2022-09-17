@@ -4,7 +4,13 @@
 \alias{autoplot.BenchmarkResult}
 \title{Plot for BenchmarkResult}
 \usage{
-\method{autoplot}{BenchmarkResult}(object, type = "boxplot", measure = NULL, ...)
+\method{autoplot}{BenchmarkResult}(
+  object,
+  type = "boxplot",
+  measure = NULL,
+  custom_facet_order = NULL,
+  ...
+)
 }
 \arguments{
 \item{object}{(\link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}).}
@@ -14,6 +20,9 @@ Type of the plot. See description.}
 
 \item{measure}{(\link[mlr3:Measure]{mlr3::Measure})\cr
 Performance measure to use.}
+
+\item{custom_facet_order}{(\code{character()})\cr
+Vector specyfing a custom facet order. Only applies for \code{type = "boxplot"}.}
 
 \item{...}{(\code{any}):
 Additional arguments, passed down to the respective \code{geom} or plotting function.}

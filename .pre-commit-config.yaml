@@ -13,6 +13,7 @@ repos:
         additional_dependencies:
         -    checkmate
         -    data.table
+        -    mlr3
         -    ggplot2
         -    mlr3misc
         -    scales

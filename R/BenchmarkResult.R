@@ -17,6 +17,8 @@
 #' * `"prc"`: Precision recall curve. See `"roc"`.
 #'
 #' @param object ([mlr3::BenchmarkResult]).
+#' @param custom_facet_order (`character()`)\cr
+#'   Vector specyfing a custom facet order. Only applies for `type = "boxplot"`.
 #' @template param_type
 #' @template param_measure
 #' @param ... (`any`):
@@ -48,6 +50,7 @@
 autoplot.BenchmarkResult = function(object, # nolint
   type = "boxplot",
   measure = NULL,
+  custom_facet_order = NULL,
   ...) {
 
   assert_string(type)
@@ -64,6 +67,10 @@ autoplot.BenchmarkResult = function(object, # nolint
 
   switch(type,
     "boxplot" = {
+      if (!is.null(custom_facet_order)) {
+        checkmate::assert_character(custom_facet_order)
+        tab$task_id = factor(tab$task_id, levels = custom_facet_order, ordered = TRUE)
+      }
       ggplot(tab, mapping = aes(x = .data$nr, y = .data[[measure_id]])) +
         geom_boxplot(...) +
         labs(x = "") +
