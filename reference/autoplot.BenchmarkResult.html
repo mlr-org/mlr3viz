@@ -103,12 +103,12 @@ precrec::evalmod().
     </div>
 
     <div class="ref-description section level2">
-    <p>Generates plots for <a href="https://rdrr.io/pkg/mlr3/man/BenchmarkResult.html" class="external-link">mlr3::BenchmarkResult</a>, depending on argument <code>type</code>:</p><ul><li><p><code>"boxplot"</code> (default): Boxplots of performance measures, one box per
-<a href="https://rdrr.io/pkg/mlr3/man/Learner.html" class="external-link">mlr3::Learner</a> and one facet per <a href="https://rdrr.io/pkg/mlr3/man/Task.html" class="external-link">mlr3::Task</a>.</p></li>
+    <p>Generates plots for <a href="https://mlr3.mlr-org.com/reference/BenchmarkResult.html" class="external-link">mlr3::BenchmarkResult</a>, depending on argument <code>type</code>:</p><ul><li><p><code>"boxplot"</code> (default): Boxplots of performance measures, one box per
+<a href="https://mlr3.mlr-org.com/reference/Learner.html" class="external-link">mlr3::Learner</a> and one facet per <a href="https://mlr3.mlr-org.com/reference/Task.html" class="external-link">mlr3::Task</a>.</p></li>
 <li><p><code>"roc"</code>: ROC curve (1 - specificity on x, sensitivity on y).
-The <a href="https://rdrr.io/pkg/mlr3/man/BenchmarkResult.html" class="external-link">mlr3::BenchmarkResult</a> may only have a single <a href="https://rdrr.io/pkg/mlr3/man/Task.html" class="external-link">mlr3::Task</a> and a
-single <a href="https://rdrr.io/pkg/mlr3/man/Resampling.html" class="external-link">mlr3::Resampling</a>.
-Note that you can subset any <a href="https://rdrr.io/pkg/mlr3/man/BenchmarkResult.html" class="external-link">mlr3::BenchmarkResult</a> with its <code>$filter()</code>
+The <a href="https://mlr3.mlr-org.com/reference/BenchmarkResult.html" class="external-link">mlr3::BenchmarkResult</a> may only have a single <a href="https://mlr3.mlr-org.com/reference/Task.html" class="external-link">mlr3::Task</a> and a
+single <a href="https://mlr3.mlr-org.com/reference/Resampling.html" class="external-link">mlr3::Resampling</a>.
+Note that you can subset any <a href="https://mlr3.mlr-org.com/reference/BenchmarkResult.html" class="external-link">mlr3::BenchmarkResult</a> with its <code>$filter()</code>
 method (see examples).
 Requires package <a href="https://CRAN.R-project.org/package=precrec" class="external-link"><span class="pkg">precrec</span></a>.
 Additional arguments will be passed down to the respective <code><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot()</a></code> function
@@ -126,7 +126,7 @@ in package <a href="https://CRAN.R-project.org/package=precrec" class="external-
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>object</dt>
-<dd><p>(<a href="https://rdrr.io/pkg/mlr3/man/BenchmarkResult.html" class="external-link">mlr3::BenchmarkResult</a>).</p></dd>
+<dd><p>(<a href="https://mlr3.mlr-org.com/reference/BenchmarkResult.html" class="external-link">mlr3::BenchmarkResult</a>).</p></dd>
 
 
 <dt>type</dt>
@@ -135,7 +135,7 @@ Type of the plot. See description.</p></dd>
 
 
 <dt>measure</dt>
-<dd><p>(<a href="https://rdrr.io/pkg/mlr3/man/Measure.html" class="external-link">mlr3::Measure</a>)<br>
+<dd><p>(<a href="https://mlr3.mlr-org.com/reference/Measure.html" class="external-link">mlr3::Measure</a>)<br>
 Performance measure to use.</p></dd>
 
 
@@ -173,11 +173,11 @@ Additional arguments, passed down to the respective <code>geom</code> or plottin
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3.mlr-org.com" class="external-link">mlr3</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3viz.mlr-org.com">mlr3viz</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">tasks</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/mlr3/man/mlr_sugar.html" class="external-link">tsks</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pima"</span>, <span class="st">"sonar"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">learner</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/mlr3/man/mlr_sugar.html" class="external-link">lrns</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"classif.featureless"</span>, <span class="st">"classif.rpart"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="va">tasks</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">tsks</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pima"</span>, <span class="st">"sonar"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">learner</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">lrns</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"classif.featureless"</span>, <span class="st">"classif.rpart"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    predict_type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">resampling</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/mlr3/man/mlr_sugar.html" class="external-link">rsmps</a></span><span class="op">(</span><span class="st">"cv"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">object</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/mlr3/man/benchmark.html" class="external-link">benchmark</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mlr3/man/benchmark_grid.html" class="external-link">benchmark_grid</a></span><span class="op">(</span><span class="va">tasks</span>, <span class="va">learner</span>, <span class="va">resampling</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">resampling</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">rsmps</a></span><span class="op">(</span><span class="st">"cv"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">object</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/benchmark.html" class="external-link">benchmark</a></span><span class="op">(</span><span class="fu"><a href="https://mlr3.mlr-org.com/reference/benchmark_grid.html" class="external-link">benchmark_grid</a></span><span class="op">(</span><span class="va">tasks</span>, <span class="va">learner</span>, <span class="va">resampling</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/fortify.html" class="external-link">fortify</a></span><span class="op">(</span><span class="va">object</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span></span>

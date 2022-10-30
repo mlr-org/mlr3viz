@@ -99,15 +99,15 @@ ratio 1 (all observations in training set).'><!-- mathjax --><script src="https:
     </div>
 
     <div class="ref-description section level2">
-    <p>Generates a plot for the <a href="https://rdrr.io/pkg/mlr3/man/Prediction.html" class="external-link">mlr3::Prediction</a> of a single <a href="https://rdrr.io/pkg/mlr3/man/Learner.html" class="external-link">mlr3::Learner</a> on a
-single <a href="https://rdrr.io/pkg/mlr3/man/Task.html" class="external-link">mlr3::Task</a>.</p><ul><li><p>For classification we support tasks with exactly two features and learners
+    <p>Generates a plot for the <a href="https://mlr3.mlr-org.com/reference/Prediction.html" class="external-link">mlr3::Prediction</a> of a single <a href="https://mlr3.mlr-org.com/reference/Learner.html" class="external-link">mlr3::Learner</a> on a
+single <a href="https://mlr3.mlr-org.com/reference/Task.html" class="external-link">mlr3::Task</a>.</p><ul><li><p>For classification we support tasks with exactly two features and learners
 with <code>predict_type</code> set to <code>"response"</code> or <code>"prob"</code>.</p></li>
 <li><p>For regression we support tasks with one or two features.
 For tasks with one feature we print confidence bounds if the predict type
 of the learner was set to <code>"se"</code>.
 For tasks with two features the predict type will be ignored.</p></li>
 </ul><p>Note that this function is a wrapper around <code><a href="autoplot.ResampleResult.html">autoplot.ResampleResult()</a></code> for a
-temporary <a href="https://rdrr.io/pkg/mlr3/man/ResampleResult.html" class="external-link">mlr3::ResampleResult</a> using <a href="https://rdrr.io/pkg/mlr3/man/mlr_resamplings_holdout.html" class="external-link">mlr3::mlr_resamplings_holdout</a> with
+temporary <a href="https://mlr3.mlr-org.com/reference/ResampleResult.html" class="external-link">mlr3::ResampleResult</a> using <a href="https://mlr3.mlr-org.com/reference/mlr_resamplings_holdout.html" class="external-link">mlr3::mlr_resamplings_holdout</a> with
 ratio 1 (all observations in training set).</p>
     </div>
 
@@ -119,11 +119,11 @@ ratio 1 (all observations in training set).</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>learner</dt>
-<dd><p>(<a href="https://rdrr.io/pkg/mlr3/man/Learner.html" class="external-link">mlr3::Learner</a>).</p></dd>
+<dd><p>(<a href="https://mlr3.mlr-org.com/reference/Learner.html" class="external-link">mlr3::Learner</a>).</p></dd>
 
 
 <dt>task</dt>
-<dd><p>(<a href="https://rdrr.io/pkg/mlr3/man/Task.html" class="external-link">mlr3::Task</a>).</p></dd>
+<dd><p>(<a href="https://mlr3.mlr-org.com/reference/Task.html" class="external-link">mlr3::Task</a>).</p></dd>
 
 
 <dt>grid_points</dt>
@@ -150,8 +150,8 @@ Expand the prediction range for numerical features.</p></dd>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3.mlr-org.com" class="external-link">mlr3</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3viz.mlr-org.com">mlr3viz</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">task</span> <span class="op">=</span> <span class="fu">mlr3</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mlr3/man/mlr_sugar.html" class="external-link">tsk</a></span><span class="op">(</span><span class="st">"pima"</span><span class="op">)</span><span class="op">$</span><span class="fu">select</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"glucose"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">learner</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/mlr3/man/mlr_sugar.html" class="external-link">lrn</a></span><span class="op">(</span><span class="st">"classif.rpart"</span>, predict_type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">task</span> <span class="op">=</span> <span class="fu">mlr3</span><span class="fu">::</span><span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">tsk</a></span><span class="op">(</span><span class="st">"pima"</span><span class="op">)</span><span class="op">$</span><span class="fu">select</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"glucose"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">learner</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">lrn</a></span><span class="op">(</span><span class="st">"classif.rpart"</span>, predict_type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">p</span> <span class="op">=</span> <span class="fu">plot_learner_prediction</span><span class="op">(</span><span class="va">learner</span>, <span class="va">task</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>

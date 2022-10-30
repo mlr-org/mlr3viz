@@ -107,7 +107,7 @@ to visualize the trend between x and y (by default colored blue).
     </div>
 
     <div class="ref-description section level2">
-    <p>Generates plots for <a href="https://rdrr.io/pkg/mlr3/man/PredictionRegr.html" class="external-link">mlr3::PredictionRegr</a>, depending on argument <code>type</code>:</p><ul><li><p><code>"xy"</code> (default): Scatterplot of "true" response vs. "predicted" response.
+    <p>Generates plots for <a href="https://mlr3.mlr-org.com/reference/PredictionRegr.html" class="external-link">mlr3::PredictionRegr</a>, depending on argument <code>type</code>:</p><ul><li><p><code>"xy"</code> (default): Scatterplot of "true" response vs. "predicted" response.
 By default a linear model is fitted via <code>geom_smooth(method = "lm")</code>
 to visualize the trend between x and y (by default colored blue).</p><ul><li><p>In addition <code>geom_abline()</code> with <code>slope = 1</code> is added to the plot.</p></li>
 <li><p>Note that <code>geom_smooth()</code> and <code>geom_abline()</code> may overlap, depending on
@@ -130,7 +130,7 @@ to visualize the trend between x and y (by default colored blue).</p></li>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>object</dt>
-<dd><p>(<a href="https://rdrr.io/pkg/mlr3/man/PredictionRegr.html" class="external-link">mlr3::PredictionRegr</a>).</p></dd>
+<dd><p>(<a href="https://mlr3.mlr-org.com/reference/PredictionRegr.html" class="external-link">mlr3::PredictionRegr</a>).</p></dd>
 
 
 <dt>type</dt>
@@ -164,8 +164,8 @@ Additional arguments, passed down to the respective <code>geom</code>.</p></dd>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3.mlr-org.com" class="external-link">mlr3</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3viz.mlr-org.com">mlr3viz</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">task</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/mlr3/man/mlr_sugar.html" class="external-link">tsk</a></span><span class="op">(</span><span class="st">"boston_housing"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">learner</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/mlr3/man/mlr_sugar.html" class="external-link">lrn</a></span><span class="op">(</span><span class="st">"regr.rpart"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">task</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">tsk</a></span><span class="op">(</span><span class="st">"boston_housing"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">learner</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">lrn</a></span><span class="op">(</span><span class="st">"regr.rpart"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">object</span> <span class="op">=</span> <span class="va">learner</span><span class="op">$</span><span class="fu">train</span><span class="op">(</span><span class="va">task</span><span class="op">)</span><span class="op">$</span><span class="fu">predict</span><span class="op">(</span><span class="va">task</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/fortify.html" class="external-link">fortify</a></span><span class="op">(</span><span class="va">object</span><span class="op">)</span><span class="op">)</span></span></span>
