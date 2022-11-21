@@ -39,12 +39,12 @@ theme_mlr3 = function(base_size = 12, base_family = "", border = FALSE, margin =
   if (x.text.angle > 5) xhjust = 1 else xhjust = NULL
 
   if (border) {
-    panel.border = element_rect(fill = NA, colour = "black", size = 0.7)
+    panel.border = element_rect(fill = NA, colour = "black", linewidth = 0.7)
     axis.line = element_blank()
   }
   else {
     panel.border = element_blank()
-    axis.line = element_line(colour = "black", size = 0.5)
+    axis.line = element_line(colour = "black", linewidth = 0.5)
   }
 
   if (margin) {
@@ -61,8 +61,8 @@ theme_mlr3 = function(base_size = 12, base_family = "", border = FALSE, margin =
 
       legend.key = element_blank(),
       # facets
-      strip.background.x = element_rect(fill = NA, colour = "black", size = 1),
-      strip.background.y = element_rect(fill = NA, colour = "black", size = 1),
+      strip.background.x = element_rect(fill = NA, colour = "black", linewidth = 1),
+      strip.background.y = element_rect(fill = NA, colour = "black", linewidth = 1),
       strip.text.x = element_text(color = "black", size = base_size, margin = margin(.15, 0, .15, 0, "cm")),
       strip.text.y = element_text(color = "black", size = base_size, margin = margin(.5, .15, .5, .15, "cm"),
         angle = 270),
