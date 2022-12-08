@@ -8,12 +8,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^man-roxygen$
-^attic$
 ^pkgdown$
 ^\.vscode$
 ^\.lintr$
 ^\.github$
-^tic\.R$
 ^\.ccache$
 ^codemeta\.json$
 ^docs$
