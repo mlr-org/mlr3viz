@@ -36,7 +36,7 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
 
   switch(type,
     "boxplot" = {
-      ggplot(data = data, aes_string(x = "feature", y = "score")) +
+      ggplot(data = data, aes(x = .data[["feature"]], y = .data[["score"]])) +
         geom_bar(stat = "identity", fill = "white", color = "black", ...) +
         scale_x_discrete(limits = data$feature) +
         xlab("Feature") +

@@ -88,7 +88,7 @@ autoplot.ResampleResult = function(object, # nolint
 
   switch(type,
     "boxplot" = {
-      ggplot(object, measure = measure, aes_string(y = "performance")) +
+      ggplot(object, measure = measure, aes(y = .data[["performance"]])) +
         geom_boxplot(...) +
         ylab(measure$id) +
         apply_theme(list(theme_mlr3())) +
