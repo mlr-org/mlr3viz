@@ -13,6 +13,4 @@
 ^\.lintr$
 ^\.github$
 ^\.ccache$
-^codemeta\.json$
 ^docs$
-^\.pre-commit-config\.yaml$
