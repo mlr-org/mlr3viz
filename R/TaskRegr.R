@@ -8,9 +8,6 @@
 #'
 #' @param object ([mlr3::TaskRegr]).
 #' @template param_type
-#' @param ... (`any`):
-#'   Additional argument, passed down to the underlying `geom` or plot
-#'   functions.
 #'
 #' @return [ggplot2::ggplot()] object.
 #'
@@ -35,9 +32,10 @@ autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
   switch(type,
     "target" = {
       target = object$target_names
-      ggplot(data = object, aes_string(
-        x = as.factor(target), y = target)) +
-        geom_boxplot(...) +
+      ggplot(data = object, aes(
+        x = as.factor(target), y = .data[[target]])) +
+        geom_boxplot(fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"), alpha = 0.8, ...) +
+        scale_x_discrete() +
         apply_theme(list(theme_mlr3())) +
         theme(axis.text.x.bottom = element_blank(), axis.title.x.bottom = element_blank())
     },

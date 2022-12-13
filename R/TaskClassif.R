@@ -38,10 +38,10 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
 
   switch(type,
     "target" = {
-      ggplot(object, aes_string(x = target, fill = target)) +
-        geom_bar(stat = "count") +
+      ggplot(object, aes(x = .data[[target]], fill = .data[[target]])) +
+        geom_bar(stat = "count", color = "#000000", ...) +
         apply_theme(list(
-          scale_fill_viridis_d(end = 0.8),
+          scale_fill_viridis_d(end = 0.8, alpha = 0.8, ),
           scale_color_viridis_d(end = 0.8),
           theme_mlr3()
         ))
@@ -51,9 +51,10 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
       require_namespaces("GGally")
       GGally::ggduo(object,
         columnsX = target, columnsY = object$feature_names,
-        mapping = aes_string(color = target), ...) +
+        mapping = aes(color = .data[[target]]),
+        ...) +
         apply_theme(list(
-          scale_fill_viridis_d(end = 0.8),
+          scale_fill_viridis_d(end = 0.8, alpha = 0.8),
           scale_color_viridis_d(end = 0.8),
           theme_mlr3()
         ))
@@ -61,9 +62,9 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
 
     "pairs" = {
       require_namespaces("GGally")
-      GGally::ggpairs(object, aes_string(color = target), ...) +
+      GGally::ggpairs(object, aes(color = .data[[target]]), ...) +
         apply_theme(list(
-          scale_fill_viridis_d(end = 0.8),
+          scale_fill_viridis_d(end = 0.8, alpha = 0.8),
           scale_color_viridis_d(end = 0.8),
           theme_mlr3()
         ))

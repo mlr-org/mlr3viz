@@ -7,17 +7,21 @@ autoplot.LearnerRegrRpart = function(object, ...) { # nolint
   if (is.null(object$model$model)) {
     stopf("Learner '%s' must be trained with `keep_model` set to `TRUE`", object$id)
   }
-  require_namespaces(c("partykit", "ggparty"))
 
+  require_namespaces(c("partykit", "ggparty"))
   target = all.vars(object$model$terms)[1L]
-  autoplot(partykit::as.party(object$model), ...) +
+
+  ggparty::ggparty(partykit::as.party(object$model)) +
+    ggparty::geom_edge() +
+    ggparty::geom_edge_label() +
+    ggparty::geom_node_splitvar() +
     ggparty::geom_node_plot(gglist = list(
-      geom_boxplot(aes_string(target)),
-      coord_flip(),
-      theme(axis.ticks.x = element_blank(), axis.text.x = element_blank())
-    )) +
-    ggparty::geom_node_label(aes(label = paste0("n=", .data[["nodesize"]])),
-      nudge_y = 0.03, ids = "terminal")
+      geom_boxplot(aes(.data[[target]]), fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"), alpha = 0.8),
+        coord_flip(),
+        apply_theme(list(
+          theme_mlr3(),
+          theme(axis.ticks.x = element_blank(), axis.text.x = element_blank()))))) +
+    ggparty::geom_node_label(aes(label = paste0("n=", .data[["nodesize"]])), nudge_y = 0.03, ids = "terminal")
 }
 
 #' @export

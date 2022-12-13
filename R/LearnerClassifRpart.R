@@ -43,9 +43,22 @@ autoplot.LearnerClassifRpart = function(object, ...) { # nolint
   }
 
   require_namespaces(c("partykit", "ggparty"))
+  target = all.vars(object$model$terms)[1L]
 
-  autoplot(partykit::as.party(object$model), ...) +
-    ggparty::geom_node_label(aes(label = paste0("n=", .data[["nodesize"]])), nudge_y = 0.03, ids = "terminal")
+  ggparty::ggparty(partykit::as.party(object$model)) +
+  ggparty::geom_edge() +
+  ggparty::geom_edge_label() +
+  ggparty::geom_node_splitvar() +
+  ggparty::geom_node_plot(gglist = list(
+    geom_bar(aes(x = "", fill = .data[[target]]),
+      alpha = 0.8,
+      color = "#000000",
+      position = position_fill()),
+      xlab(target),
+      apply_theme(list(theme_mlr3(), scale_fill_viridis_d(end = 0.8)))),
+      ids = "terminal",
+      shared_axis_labels= TRUE) +
+  ggparty::geom_node_label(aes(label = paste0("n=", .data[["nodesize"]])), nudge_y = 0.03, ids = "terminal")
 }
 
 #' @export

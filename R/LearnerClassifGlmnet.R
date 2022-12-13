@@ -39,9 +39,13 @@
 #' autoplot(learner)
 #' }
 autoplot.LearnerClassifGlmnet = function(object, ...) { # nolint
+  if ("twoclass" %nin% object$state$train_task$properties) {
+    stopf("Plot of %s only works with binary classification tasks.", object$id)
+  }
+
   plot_ggfortify(object, ...) +
     apply_theme(list(
-      scale_color_viridis_d("Feature", end = 0.8),
+      scale_color_viridis_d("Feature"),
       theme_mlr3()
     ))
 }

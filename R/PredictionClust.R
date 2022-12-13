@@ -77,7 +77,7 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
 
       ggplot2::autoplot(sil, ...) +
         apply_theme(list(
-          scale_fill_viridis_d("Cluster", end = 0.8),
+          scale_fill_viridis_d("Cluster", end = 0.8, alpha = 0.8),
           theme_mlr3()
         ))
     },

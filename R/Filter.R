@@ -37,7 +37,7 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
   switch(type,
     "boxplot" = {
       ggplot(data = data, aes(x = .data[["feature"]], y = .data[["score"]])) +
-        geom_bar(stat = "identity", fill = "white", color = "black", ...) +
+        geom_bar(stat = "identity", fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"), alpha = 0.8, color = "black", ...) +
         scale_x_discrete(limits = data$feature) +
         xlab("Feature") +
         ylab("Score") +

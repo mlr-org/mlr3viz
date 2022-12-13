@@ -21,8 +21,6 @@
 #'
 #' @param object ([mlr3::PredictionRegr]).
 #' @template param_type
-#' @param ... (`any`):
-#'   Additional arguments, passed down to the respective `geom`.
 #'
 #' @return [ggplot2::ggplot()] object.
 #'
@@ -44,8 +42,7 @@
 #'   autoplot(object, type = "residual")
 #' }
 autoplot.PredictionRegr = function(object, # nolint
-  type = "xy",
-  ...) {
+  type = "xy", ...) {
   checkmate::assert_string(type)
 
   switch(type,
@@ -54,9 +51,9 @@ autoplot.PredictionRegr = function(object, # nolint
         mapping = aes(x = .data[["response"]], y = .data[["truth"]])
       ) +
         geom_abline(slope = 1, alpha = 0.5) +
-        geom_point(...) +
+        geom_point(color = apply_theme(viridis::viridis(1, begin = 0.33), "#000000")) +
         geom_rug(sides = "bl") +
-        geom_smooth(method = "lm", color = apply_theme(viridis::viridis(1), "#3366FF")) +
+        geom_smooth(formula = y ~ x, method = "lm", color = apply_theme(viridis::viridis(1, begin = 0.5), "#3366FF")) +
         apply_theme(list(theme_mlr3()))
     },
 
@@ -66,7 +63,7 @@ autoplot.PredictionRegr = function(object, # nolint
         mapping = aes(
           x = .data[["truth"]] - .data[["response"]],
           y = after_stat(.data[["density"]]))
-      ) + geom_histogram(fill = "white", color = "black", ...) +
+      ) + geom_histogram(fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"), alpha = 0.8, color = "black", ...) +
         xlab("Residuals") +
         ylab("Density")
 
@@ -85,9 +82,9 @@ autoplot.PredictionRegr = function(object, # nolint
           x = .data[["response"]],
           y = .data[["truth"]] - .data[["response"]])
       ) +
-        geom_point(...) +
+        geom_point(color = apply_theme(viridis::viridis(1, begin = 0.33), "#000000")) +
         geom_rug(sides = "bl") +
-        geom_smooth(method = "lm", color = apply_theme(viridis::viridis(1), "#3366FF")) +
+        geom_smooth(formula = y ~ x, method = "lm", fill = apply_theme(viridis::viridis(1, begin = 0.5), "#3366FF"), color = apply_theme(viridis::viridis(1, begin = 0.5), "#3366FF")) +
         xlab("Response") +
         ylab("Residuals") +
         apply_theme(list(theme_mlr3()))

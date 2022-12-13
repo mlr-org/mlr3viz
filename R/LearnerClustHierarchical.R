@@ -36,9 +36,7 @@
 #'   # diana clustering
 #'   learner = mlr_learners$get("clust.diana")
 #'   learner$train(task)
-#'   autoplot(learner,
-#'     k = learner$param_set$values$k, rect_fill = TRUE,
-#'     rect = TRUE, rect_border = "red")
+#'   autoplot(learner)
 #'
 #'   # hclust clustering
 #'   learner = mlr_learners$get("clust.hclust")
@@ -58,17 +56,19 @@ autoplot.LearnerClustHierarchical = function(object, type = "dend", ...) { # nol
     "dend" = {
       require_namespaces("factoextra")
 
-      p = factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
+      p = factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_minimal(), main = NULL, ...)
       if (getOption("mlr3.theme", TRUE)) p$scales$scales = list()
 
       p +
-        apply_theme(list(scale_color_viridis_d(end = 0.8), theme_mlr3())) +
+        apply_theme(list(scale_color_viridis_d(end = 0.5), theme_mlr3())) +
         theme(legend.position = "none")
     },
 
     "scree" = {
       data = data.table(Height = object$model$height, Clusters = seq(length(object$model$height), 1))
-      ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line() +
+      ggplot(data, aes(x = data$Clusters, y = data$Height)) +
+        geom_line(color = apply_theme(viridis::viridis(1, begin = 0.5), "#000000")) +
+        geom_point(size = 3, color = apply_theme(viridis::viridis(1, begin = 0.5), "#000000")) +
         xlab("Clusters") + ylab("Height") +
         apply_theme(list(theme_mlr3()))
     }

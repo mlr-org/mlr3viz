@@ -129,12 +129,13 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
       top_batch[, "group" := factor(1, labels = "Best value")]
 
       ggplot() +
+        geom_line(top_batch, mapping = aes(x = .data[["batch_nr"]], y = .data[[cols_y]], color = .data[["group"]]), group = 1, linewidth = 1) +
         geom_point(data, mapping = aes(x = .data[["batch_nr"]], y = .data[[cols_y]], fill = .data[["group"]]), shape = 21, size = 3) +
-        geom_line(top_batch, mapping = aes(x = .data[["batch_nr"]], y = .data[[cols_y]], color = .data[["group"]]), group = 1) +
         xlab("Batch") +
+        scale_y_continuous(breaks= pretty_breaks()) +
         apply_theme(list(
-          scale_fill_manual(values = viridis::viridis(1, begin = 0.4)),
-          scale_color_manual(values = viridis::viridis(1)),
+          scale_fill_manual(values = viridis::viridis(1, begin = 0.33)),
+          scale_color_manual(values = viridis::viridis(1, begin = 0.5)),
           theme_mlr3()
         )) +
         theme(legend.title = element_blank())
@@ -246,10 +247,17 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
       ggplot(data_i, aes(x = .data[[cols_x[1]]], y = .data[[cols_x[2]]])) +
         geom_raster(aes(fill = .data[[cols_y]])) +
         geom_point(aes(fill = .data[[cols_y]]), data = data, shape = 21, size = 3, stroke = 1) +
+        scale_x_continuous(expand = c(0.01, 0.01)) +
+        scale_y_continuous(expand = c(0.01, 0.01)) +
         apply_theme(list(
           scale_fill_viridis_c(),
           theme_mlr3()
-        ))
+        )) +
+        theme(
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank(),
+          panel.background = element_blank())
     },
 
     "pairs" = {
