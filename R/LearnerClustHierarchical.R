@@ -56,11 +56,19 @@ autoplot.LearnerClustHierarchical = function(object, type = "dend", ...) { # nol
     "dend" = {
       require_namespaces("factoextra")
 
-      p = factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_minimal(), main = NULL, ...)
+      p = factoextra::fviz_dend(
+        object$model,
+        horiz = FALSE,
+        ggtheme = apply_theme(theme_minimal(), theme_classic()),
+        main = NULL,
+        ...)
+
       if (getOption("mlr3.theme", TRUE)) p$scales$scales = list()
 
       p +
-        apply_theme(list(scale_color_viridis_d(end = 0.5), theme_mlr3())) +
+        apply_theme(list(
+          scale_color_viridis_d(end = 0.5),
+          theme_mlr3())) +
         theme(legend.position = "none")
     },
 
@@ -68,8 +76,11 @@ autoplot.LearnerClustHierarchical = function(object, type = "dend", ...) { # nol
       data = data.table(Height = object$model$height, Clusters = seq(length(object$model$height), 1))
       ggplot(data, aes(x = data$Clusters, y = data$Height)) +
         geom_line(color = apply_theme(viridis::viridis(1, begin = 0.5), "#000000")) +
-        geom_point(size = 3, color = apply_theme(viridis::viridis(1, begin = 0.5), "#000000")) +
-        xlab("Clusters") + ylab("Height") +
+        geom_point(
+          size = 3,
+          color = apply_theme(viridis::viridis(1, begin = 0.5), "#000000")) +
+        xlab("Clusters") +
+        ylab("Height") +
         apply_theme(list(theme_mlr3()))
     }
   )

@@ -106,8 +106,15 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
         breaks[length(breaks)] = max(data_i$batch_nr)
         data_i[, "batch_nr" := as.factor(get("batch_nr"))]
 
-        p = ggplot(data_i, mapping = aes(x = .data[[x]], y = .data[[cols_y]])) +
-          geom_point(aes(fill = .data$batch_nr), shape = 21, size = 3, stroke = 1) +
+        p = ggplot(data_i,
+          mapping = aes(x = .data[[x]],
+          y = .data[[cols_y]])
+          ) +
+          geom_point(
+            aes(fill = .data$batch_nr),
+            shape = 21,
+            size = 3,
+            stroke = 1) +
           apply_theme(list(theme_mlr3()))
 
         if (getOption("mlr3.theme", TRUE)) {
@@ -129,10 +136,22 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
       top_batch[, "group" := factor(1, labels = "Best value")]
 
       ggplot() +
-        geom_line(top_batch, mapping = aes(x = .data[["batch_nr"]], y = .data[[cols_y]], color = .data[["group"]]), group = 1, linewidth = 1) +
-        geom_point(data, mapping = aes(x = .data[["batch_nr"]], y = .data[[cols_y]], fill = .data[["group"]]), shape = 21, size = 3) +
+        geom_line(top_batch,
+          mapping = aes(
+            x = .data[["batch_nr"]],
+            y = .data[[cols_y]],
+            color = .data[["group"]]),
+          group = 1,
+          linewidth = 1) +
+        geom_point(data,
+          mapping = aes(
+            x = .data[["batch_nr"]],
+            y = .data[[cols_y]],
+            fill = .data[["group"]]),
+          shape = 21,
+          size = 3) +
         xlab("Batch") +
-        scale_y_continuous(breaks= pretty_breaks()) +
+        scale_y_continuous(breaks = pretty_breaks()) +
         apply_theme(list(
           scale_fill_manual(values = viridis::viridis(1, begin = 0.33)),
           scale_color_manual(values = viridis::viridis(1, begin = 0.5)),
@@ -144,8 +163,16 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
     "parameter" = {
       # each parameter versus iteration
       plots = map(cols_x, function(x) {
-        ggplot(data, mapping = aes(x = .data$batch_nr, y = .data[[x]])) +
-          geom_point(aes(fill = .data[[cols_y]]), shape = 21, size = 3, stroke = 0.5) +
+        ggplot(data,
+          mapping = aes(
+            x = .data$batch_nr,
+            y = .data[[x]])) +
+          geom_point(
+            mapping = aes(
+              fill = .data[[cols_y]]),
+              shape = 21,
+              size = 3,
+              stroke = 0.5) +
           apply_theme(list(
             scale_fill_viridis_c(breaks = scales::pretty_breaks()),
             theme_mlr3()
@@ -180,7 +207,7 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
       set(data_y, j = "id", value = seq_row(data_y))
       data_n = melt(data_n, measure.var = setdiff(names(data_n), "id"))
 
-      if (nrow(data_c) > 0L) {
+      if (nrow(data_c)) {
         # Skip if no factor column is present
         set(data_c, j = "id", value = seq_row(data_c))
         data_c = melt(data_c, measure.var = setdiff(names(data_c), "id"))
@@ -195,14 +222,25 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
       data = merge(data, data_y, by = "id")
       setorderv(data, "x")
 
-      ggplot(data, aes(x = .data$x, y = .data$value)) +
-        geom_line(aes(group = .data$id, colour = .data[[cols_y]]), size = 1) +
+      ggplot(data,
+        mapping = aes(
+          x = .data[["x"]],
+          y = .data[["value"]])) +
+        geom_line(
+          mapping = aes(
+            group = .data$id,
+            colour = .data[[cols_y]]),
+          size = 1) +
         geom_vline(aes(xintercept = x)) +
         {
-          if (nrow(data_c) > 0L) geom_label(aes(label = .data$label), data[!is.na(data$label), ])
+          if (nrow(data_c)) geom_label(
+            mapping = aes(label = .data$label),
+            data = data[!is.na(data$label), ])
         } +
         scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
-        apply_theme(list(scale_color_viridis_c(), theme_mlr3()),
+        apply_theme(list(
+          scale_color_viridis_c(),
+          theme_mlr3()),
           list(scale_fill_discrete())) +
         theme(axis.title.x = element_blank())
     },
@@ -212,12 +250,19 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
         stop("Scatter plots can only be drawn with 2 parameters.")
       }
 
-      ggplot(data, aes(x = .data[[cols_x[1]]], y = .data[[cols_x[2]]])) +
-        geom_point(aes(fill = .data[[cols_y]]), data = data, shape = 21, size = 3, stroke = 1) +
+      ggplot(data,
+        mapping = aes(
+          x = .data[[cols_x[1]]],
+          y = .data[[cols_x[2]]])) +
+        geom_point(
+          mapping = aes(fill = .data[[cols_y]]),
+          data = data,
+          shape = 21,
+          size = 3,
+          stroke = 1) +
         apply_theme(list(
           scale_fill_viridis_c(),
-          theme_mlr3()
-        ))
+          theme_mlr3()))
     },
 
     "surface" = {
@@ -244,9 +289,18 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
 
       setDT(data_i)[, (cols_y) := learner$predict_newdata(data_i)$response]
 
-      ggplot(data_i, aes(x = .data[[cols_x[1]]], y = .data[[cols_x[2]]])) +
-        geom_raster(aes(fill = .data[[cols_y]])) +
-        geom_point(aes(fill = .data[[cols_y]]), data = data, shape = 21, size = 3, stroke = 1) +
+      ggplot(data_i,
+        mapping = aes(
+          x = .data[[cols_x[1]]],
+          y = .data[[cols_x[2]]])) +
+        geom_raster(
+          mapping = aes(fill = .data[[cols_y]])) +
+        geom_point(
+          mapping = aes(fill = .data[[cols_y]]),
+          data = data,
+          shape = 21,
+          size = 3,
+          stroke = 1) +
         scale_x_continuous(expand = c(0.01, 0.01)) +
         scale_y_continuous(expand = c(0.01, 0.01)) +
         apply_theme(list(
@@ -262,8 +316,7 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
 
     "pairs" = {
       require_namespaces("GGally")
-      GGally::ggpairs(
-        data[, c(cols_x, cols_y, "batch_nr"), with = FALSE],
+      GGally::ggpairs(data[, c(cols_x, cols_y, "batch_nr"), with = FALSE],
         switch = "both",
         upper = list(continuous = "points", combo = "facethist", discrete = "facetbar", na = "na"),
         lower = list(continuous = "cor", combo = "box_no_facet", discrete = "count", na = "na"),

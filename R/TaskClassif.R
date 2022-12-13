@@ -38,26 +38,30 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
 
   switch(type,
     "target" = {
-      ggplot(object, aes(x = .data[[target]], fill = .data[[target]])) +
-        geom_bar(stat = "count", color = "#000000", ...) +
+      ggplot(object,
+        mapping = aes(
+          x = .data[[target]],
+          fill = .data[[target]])) +
+        geom_bar(
+          stat = "count",
+          color = "#000000", ...) +
         apply_theme(list(
           scale_fill_viridis_d(end = 0.8, alpha = 0.8, ),
           scale_color_viridis_d(end = 0.8),
-          theme_mlr3()
-        ))
+          theme_mlr3()))
     },
 
     "duo" = {
       require_namespaces("GGally")
       GGally::ggduo(object,
-        columnsX = target, columnsY = object$feature_names,
+        columnsX = target,
+        columnsY = object$feature_names,
         mapping = aes(color = .data[[target]]),
         ...) +
         apply_theme(list(
           scale_fill_viridis_d(end = 0.8, alpha = 0.8),
           scale_color_viridis_d(end = 0.8),
-          theme_mlr3()
-        ))
+          theme_mlr3()))
     },
 
     "pairs" = {
@@ -66,8 +70,7 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
         apply_theme(list(
           scale_fill_viridis_d(end = 0.8, alpha = 0.8),
           scale_color_viridis_d(end = 0.8),
-          theme_mlr3()
-        ))
+          theme_mlr3()))
     },
 
     stopf("Unknown plot type '%s'", type)

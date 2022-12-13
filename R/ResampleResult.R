@@ -88,19 +88,30 @@ autoplot.ResampleResult = function(object, # nolint
 
   switch(type,
     "boxplot" = {
-      ggplot(object, measure = measure, aes(y = .data[["performance"]])) +
-        geom_boxplot(fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"), alpha = 0.8, show.legend = FALSE, ...) +
+      ggplot(object,
+        measure = measure,
+        mapping = aes(y = .data[["performance"]])) +
+        geom_boxplot(
+          fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"),
+          alpha = apply_theme(0.8, 1),
+          show.legend = FALSE,
+          ...) +
         scale_x_discrete() +
         ylab(measure$id) +
         apply_theme(list(
-          theme_mlr3()
-        )) +
+          theme_mlr3())) +
         theme(axis.text.x.bottom = element_blank())
     },
 
     "histogram" = {
-      ggplot(object, measure = measure, aes(x = .data[["performance"]])) +
-        geom_histogram(fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"), alpha = 0.8, color = "black", ...) +
+      ggplot(object,
+        measure = measure,
+        aes(x = .data[["performance"]])) +
+        geom_histogram(
+          fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"),
+          alpha = apply_theme(0.8, 1),
+          color = "black",
+          ...) +
         xlab(measure$id) +
         ylab("Count") +
         apply_theme(list(theme_mlr3()))
@@ -110,12 +121,14 @@ autoplot.ResampleResult = function(object, # nolint
       p = plot_precrec(object, curvetype = "ROC", ...)
       p$layers[[1]]$mapping = aes(colour = modname, fill = modname)
       # fill confidence bounds
-      p + guides(color = "none", fill = "none") +
+      p +
+        guides(
+          color = "none",
+          fill = "none") +
         apply_theme(list(
           scale_color_viridis_d("Learner", begin = 0.5),
           scale_fill_viridis_d("Learner", begin = 0.5),
-          theme_mlr3(legend = "none")
-        )) +
+          theme_mlr3(legend = "none"))) +
         theme(plot.title = element_blank())
     },
 
@@ -123,12 +136,14 @@ autoplot.ResampleResult = function(object, # nolint
       p = plot_precrec(object, curvetype = "PRC", ...)
       # fill confidence bounds
       p$layers[[1]]$mapping = aes(colour = modname, fill = modname)
-      p + guides(color = "none", fill = "none") +
+      p +
+        guides(
+          color = "none",
+          fill = "none") +
         apply_theme(list(
           scale_color_viridis_d("Learner", begin = 0.5),
           scale_fill_viridis_d("Learner", begin = 0.5),
-          theme_mlr3(legend = "none")
-        )) +
+          theme_mlr3(legend = "none"))) +
         theme(plot.title = element_blank())
     },
 
@@ -146,8 +161,7 @@ plot.ResampleResult = function(x, ...) {
 #' @export
 fortify.ResampleResult = function(model, data, measure = NULL, ...) { # nolint
   task = model$task
-  measure = mlr3::assert_measure(mlr3::as_measure(measure,
-    task_type = task$task_type), task = task)
+  measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
   data = model$score(measure)[, c("iteration", measure$id), with = FALSE]
   melt(data,
     measure.vars = measure$id,
@@ -167,25 +181,20 @@ plot_learner_prediction_resample_result = function(object, # nolint
   learners = object$learners
 
   if (any(map_lgl(map(learners, "model"), is.null))) {
-    mlr3misc::stopf("No trained models available. Set 'store_models = TRUE' in
-          'resample()'.", wrap = TRUE)
+    mlr3misc::stopf("No trained models available. Set 'store_models = TRUE' in 'resample()'.", wrap = TRUE)
   }
 
   if (task_type %nin% c("classif", "regr")) {
     stopf("Unsupported task type: %s", task_type)
   }
   if (task_type == "classif" && dim != 2L) {
-    mlr3misc::stopf("Plot learner prediction only works for tasks with two
-                    features for classification!", wrap = TRUE)
+    mlr3misc::stopf("Plot learner prediction only works for tasks with two features for classification!", wrap = TRUE)
   }
   if (task_type == "regr" && dim %nin% 1:2) {
-    mlr3misc::stopf("Plot learner prediction only works with one or two
-                    features for regression!", wrap = TRUE)
+    mlr3misc::stopf("Plot learner prediction only works with one or two features for regression!", wrap = TRUE)
   }
 
-  grid = predict_grid(learners, task,
-    grid_points = grid_points,
-    expand_range = expand_range)
+  grid = predict_grid(learners, task, grid_points = grid_points,  expand_range = expand_range)
 
   # facets for multiple resampling iterations
   if (length(learners) > 1L) {
@@ -200,18 +209,25 @@ plot_learner_prediction_resample_result = function(object, # nolint
   # 1d plot (only regression)
   if (task_type == "regr" && dim == 1L) {
     if (learners[[1L]]$predict_type == "se") {
-      se_geom = geom_ribbon(aes(
-        ymin = .data[["response"]] - .data[["se"]],
-        ymax = .data[["response"]] + .data[["se"]]), alpha = 0.2, fill = viridis::viridis(1, begin = 0.5))
+      se_geom = geom_ribbon(
+          mapping = aes(
+            ymin = .data[["response"]] - .data[["se"]],
+            ymax = .data[["response"]] + .data[["se"]]),
+          alpha = 0.2,
+          fill = viridis::viridis(1, begin = 0.5))
     } else {
       se_geom = NULL
     }
-    g = ggplot(grid, aes(.data[[features]], .data[["response"]])) +
+    g = ggplot(grid,
+      mapping = aes(
+        x = .data[[features]],
+        y = .data[["response"]])) +
       se_geom +
       geom_line(color = viridis::viridis(1, begin = 0.5)) +
       geom_point(data = task_data(object, predict_sets),
         aes(
-          y = .data[[task$target_names]], shape = .data[[".predict_set"]],
+          y = .data[[task$target_names]],
+          shape = .data[[".predict_set"]],
           color = .data[[".predict_set"]])) +
       scale_shape_manual(
         values = c(train = 16, test = 15, both = 17),
@@ -219,18 +235,20 @@ plot_learner_prediction_resample_result = function(object, # nolint
       labs(color = "Set") +
       apply_theme(list(
         scale_color_viridis_d(end = 0.8),
-        theme_mlr3()
-      )) +
+        theme_mlr3())) +
       folds_facet
 
     # 2d plot regr + classif
   } else if (dim == 2L) {
     if (task_type == "classif" && learners[[1L]]$predict_type == "prob") {
       # classif, probs
-      raster_aes = aes(fill = .data[["response"]], alpha = .data[[".prob.response"]])
-      scale_alpha = scale_alpha_continuous(name = "Probability", guide =
-        guide_legend(override.aes = list(fill = viridis::viridis(1))))
-      scale_fill = scale_fill_viridis_d(end = 0.8, )
+      raster_aes = aes(
+        fill = .data[["response"]],
+        alpha = .data[[".prob.response"]])
+      scale_alpha = scale_alpha_continuous(
+        name = "Probability",
+        guide = guide_legend(override.aes = list(fill = viridis::viridis(1))))
+      scale_fill = scale_fill_viridis_d(end = 0.8)
     } else if (task_type == "classif" && learners[[1L]]$predict_type == "response") {
       # classif, no probs
       raster_aes = aes(fill = .data[["response"]])
@@ -243,16 +261,18 @@ plot_learner_prediction_resample_result = function(object, # nolint
       scale_fill = scale_fill_viridis_c(end = 0.8)
     }
 
-    g = ggplot(grid, aes(.data[[features[1L]]], .data[[features[2L]]])) +
+    g = ggplot(grid,
+      mapping = aes(
+        x = .data[[features[1L]]],
+        y = .data[[features[2L]]])) +
       geom_raster(raster_aes) +
       geom_point(
+        mapping = aes(fill = .data[[task$target_names]], shape = .data[[".predict_set"]]),
         data = task_data(object, predict_sets),
-        aes(fill = .data[[task$target_names]], shape = .data[[".predict_set"]]),
         color = "black") +
       apply_theme(list(
         scale_fill,
-        theme_mlr3(legend = "right")
-      )) +
+        theme_mlr3(legend = "right"))) +
       scale_shape_manual(
         values = c(train = 21, test = 22, both = 23),
         name = "Set") +
@@ -337,9 +357,7 @@ sequenize = function(x, n, expand_range = 0) {
 predict_grid = function(learners, task, grid_points, expand_range) {
   grids = mlr3misc::map(learners, function(learner) {
     features = task$feature_names
-    grid = mlr3misc::map(task$data(cols = features), sequenize,
-      n = grid_points,
-      expand_range = expand_range)
+    grid = mlr3misc::map(task$data(cols = features), sequenize, n = grid_points, expand_range = expand_range)
     grid = cross_join(grid, sorted = FALSE)
     grid = cbind(
       grid,

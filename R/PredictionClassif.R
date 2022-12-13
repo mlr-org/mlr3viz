@@ -45,18 +45,21 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
 
   switch(type,
     "stacked" = {
-      tab = melt(fortify(object)[, c("truth", "response")],
-        measure.vars = c("truth", "response"))
-      ggplot(tab, aes(fill = .data[["value"]], x = .data[["variable"]])) +
+      tab = melt(fortify(object)[, c("truth", "response")], measure.vars = c("truth", "response"))
+      ggplot(tab,
+        mapping = aes(
+          fill = .data[["value"]],
+          x = .data[["variable"]])) +
         geom_bar(width = 0.5, ...) +
-        geom_label(stat = "count", aes(label = after_stat(count)),
+        geom_label(
+          mapping = aes(label = after_stat(count)),
+          stat = "count",
           position = position_stack(vjust = 0.5), colour = "white") +
         xlab("Feature") +
         ylab("Count") +
         apply_theme(list(
           scale_fill_viridis_d("Feature", end = 0.8),
-          theme_mlr3()
-        ))
+          theme_mlr3()))
     },
 
     "roc" = {
@@ -83,7 +86,10 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
       pred = object$clone(deep = TRUE)
       tab = data.table(prob = seq(from = 0, to = 1, by = 0.01))
       tab$score = map_dbl(tab$prob, function(p) pred$set_threshold(p)$score(measure, ...))
-      ggplot(tab, aes(x = .data[["prob"]], y = .data[["score"]])) +
+      ggplot(tab,
+        mapping = aes(
+          x = .data[["prob"]],
+          y = .data[["score"]])) +
         geom_line(color = apply_theme(viridis::viridis(1, begin = 0.5), "#3366FF")) +
         xlab("Probability Threshold") +
         ylab(measure$id) +

@@ -55,18 +55,25 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ..
 
   switch(type,
     "boxplot" = {
-      ggplot(tab, mapping = aes(x = .data$nr, y = .data[[measure_id]])) +
-        geom_boxplot(aes(fill = .data$learner_id), alpha = 0.7, show.legend = FALSE, ...) +
-        labs(x = "") +
+      ggplot(tab,
+        mapping = aes(
+          x = .data$nr,
+          y = .data[[measure_id]])) +
+        geom_boxplot(
+          mapping = aes(fill = .data[["learner_id"]]),
+          show.legend = FALSE,
+          ...) +
         scale_x_discrete(labels = learner_labels) +
-        # we need "free_x" to drop empty learners for certain tasks - because
-        # we apply over .data$nr
+        # we need "free_x" to drop empty learners for certain tasks - because we apply over .data$nr
         facet_wrap(vars(.data$task_id), scales = "free_x") +
         apply_theme(list(
-          scale_fill_viridis_d("Learner", end = 0.8),
+          scale_fill_viridis_d("Learner", end = 0.8, alpha = 0.8),
           theme_mlr3()
         )) +
-        theme(axis.text.x = element_text(angle = 45, hjust = 1))
+        theme(
+          axis.text.x = element_text(angle = 45, hjust = 1),
+          axis.title.x = element_blank()
+        )
     },
 
     "roc" = {
@@ -76,8 +83,7 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ..
       p +
         apply_theme(list(
           scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill")),
-          theme_mlr3()
-        )) +
+          theme_mlr3())) +
         theme(plot.title = element_blank())
     },
 
@@ -88,8 +94,7 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ..
       p +
         apply_theme(list(
           scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill")),
-          theme_mlr3()
-        )) +
+          theme_mlr3())) +
         theme(plot.title = element_blank())
     },
 
@@ -105,9 +110,6 @@ plot.BenchmarkResult = function(x, ...) {
 #' @export
 fortify.BenchmarkResult = function(model, data = NULL, measure = NULL, ...) { # nolint
   task = model$tasks$task[[1L]]
-  measure = mlr3::assert_measure(mlr3::as_measure(measure,
-    task_type = task$task_type), task = task)
-  model$score(measures = measure)[, c(
-    "nr", "task_id", "learner_id",
-    "resampling_id", measure$id), with = FALSE]
+  measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
+  model$score(measures = measure)[, c("nr", "task_id", "learner_id", "resampling_id", measure$id), with = FALSE]
 }

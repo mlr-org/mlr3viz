@@ -46,8 +46,7 @@ autoplot.LearnerClassifGlmnet = function(object, ...) { # nolint
   plot_ggfortify(object, ...) +
     apply_theme(list(
       scale_color_viridis_d("Feature"),
-      theme_mlr3()
-    ))
+      theme_mlr3()))
 }
 
 #' @export

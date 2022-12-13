@@ -3,7 +3,7 @@
 autoplot.LearnerRegrGlmnet = function(object, ...) { # nolint
   plot_ggfortify(object, ...) +
     apply_theme(list(
-      scale_color_viridis_d("Feature", end = 0.8),
+      scale_color_viridis_d("Feature"),
       theme_mlr3()
     ))
 }
