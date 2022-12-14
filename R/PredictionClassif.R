@@ -50,7 +50,7 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
         mapping = aes(
           fill = .data[["value"]],
           x = .data[["variable"]])) +
-        geom_bar(width = 0.5, ...) +
+        geom_bar(width = 0.5, color = "#000000", ...) +
         geom_label(
           mapping = aes(label = after_stat(count)),
           stat = "count",

@@ -75,7 +75,7 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
       d = stats::dist(task$data(rows = row_ids))
       sil = cluster::silhouette(object$data$partition, d)
 
-      ggplot2::autoplot(sil, ...) +
+      ggplot2::autoplot(sil, colour = "#000000", ...) +
         apply_theme(list(
           scale_fill_viridis_d("Cluster", end = 0.8, alpha = 0.8),
           theme_mlr3()

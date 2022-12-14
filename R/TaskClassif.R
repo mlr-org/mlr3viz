@@ -61,12 +61,22 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
         apply_theme(list(
           scale_fill_viridis_d(end = 0.8, alpha = 0.8),
           scale_color_viridis_d(end = 0.8),
-          theme_mlr3()))
+          theme_mlr3())) +
+        theme(
+          axis.text.x = element_text(angle = 45, hjust = 1),
+          axis.title.x = element_blank()
+        )
     },
 
     "pairs" = {
       require_namespaces("GGally")
-      GGally::ggpairs(object, aes(color = .data[[target]]), ...) +
+
+      GGally::ggpairs(object,
+        mapping = aes(color = .data[[target]]),
+        upper = list(continuous = "cor",  combo = "box_no_facet", discrete = "count", na = "na"),
+        lower = list(continuous = "points", combo = GGally::wrap("facethist", color = "#000000"), discrete = GGally::wrap("facetbar", color = "#000000"), na = "na"),
+        diag = list(continuous = "densityDiag", discrete = GGally::wrap("barDiag", color = "#000000"), na = "naDiag"),
+        ...) +
         apply_theme(list(
           scale_fill_viridis_d(end = 0.8, alpha = 0.8),
           scale_color_viridis_d(end = 0.8),

@@ -306,12 +306,7 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
         apply_theme(list(
           scale_fill_viridis_c(),
           theme_mlr3()
-        )) +
-        theme(
-          panel.grid.major = element_blank(),
-          panel.grid.minor = element_blank(),
-          panel.border = element_blank(),
-          panel.background = element_blank())
+        ))
     },
 
     "pairs" = {
