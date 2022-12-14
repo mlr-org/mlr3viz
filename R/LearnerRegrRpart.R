@@ -17,10 +17,10 @@ autoplot.LearnerRegrRpart = function(object, ...) { # nolint
     ggparty::geom_node_splitvar() +
     ggparty::geom_node_plot(
       gglist = list(
-        geom_boxplot(aes(.data[[target]]),
+        geom_boxplot(aes(y = .data[[target]]),
           fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"),
           alpha = 0.8),
-        coord_flip(),
+        scale_x_discrete(),
         apply_theme(list(
           theme_mlr3(),
           theme(
