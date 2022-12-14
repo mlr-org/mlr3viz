@@ -316,11 +316,17 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
 
     "pairs" = {
       require_namespaces("GGally")
+
+      color = apply_theme(viridis::viridis(1, begin = 0.5), "grey")
+      alpha = apply_theme(0.8, 1)
+
       GGally::ggpairs(data[, c(cols_x, cols_y, "batch_nr"), with = FALSE],
         switch = "both",
-        upper = list(continuous = "points", combo = "facethist", discrete = "facetbar", na = "na"),
-        lower = list(continuous = "cor", combo = "box_no_facet", discrete = "count", na = "na"),
-        ...)
+        upper = list(continuous = "cor",  combo = GGally::wrap("box_no_facet", fill = color, alpha = alpha), discrete = "count", na = "na"),
+        lower = list(continuous = GGally::wrap("points", color = color), combo = GGally::wrap("facethist", fill = color, alpha = alpha), discrete = GGally::wrap("facetbar", fill = color, alpha = alpha), na = "na"),
+        diag = list(continuous = GGally::wrap("densityDiag", color = color), discrete = GGally::wrap("barDiag", fill = color, alpha = alpha), na = "naDiag"),
+        ...) +
+        apply_theme(list(theme_mlr3()))
     },
 
     stopf("Unknown plot type '%s'", type)

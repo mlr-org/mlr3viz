@@ -31,11 +31,9 @@ autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
 
   switch(type,
     "target" = {
-      target = object$target_names
       ggplot(data = object,
       mapping = aes(
-        x = as.factor(target),
-        y = .data[[target]])) +
+        y = .data[[object$target_names]])) +
       geom_boxplot(
         fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"),
         alpha = apply_theme(0.8, 1),
@@ -49,7 +47,15 @@ autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
 
     "pairs" = {
       require_namespaces("GGally")
-      GGally::ggpairs(object, ...) +
+
+      color = apply_theme(viridis::viridis(1, begin = 0.5), "grey")
+      alpha = apply_theme(0.8, 1)
+
+      GGally::ggpairs(object,
+        upper = list(continuous = "cor",  combo = GGally::wrap("box_no_facet", fill = color, alpha = alpha), discrete = "count", na = "na"),
+        lower = list(continuous = GGally::wrap("points", color = color), combo = GGally::wrap("facethist", fill = color, alpha = alpha), discrete = GGally::wrap("facetbar", fill = color, alpha = alpha), na = "na"),
+        diag = list(continuous = GGally::wrap("densityDiag", color = color), discrete = GGally::wrap("barDiag", fill = color, alpha = alpha), na = "naDiag"),
+        ...) +
         apply_theme(list(theme_mlr3()))
     },
 

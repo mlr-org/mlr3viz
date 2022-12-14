@@ -83,8 +83,7 @@ autoplot.ResampleResult = function(object, # nolint
   assert_string(type)
 
   task = object$task
-  measure = mlr3::assert_measure(mlr3::as_measure(measure,
-    task_type = task$task_type), task = task)
+  measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
 
   switch(type,
     "boxplot" = {
