@@ -36,8 +36,8 @@ Imports:
 Suggests:
     bbotk,
     cluster,
-    factoextra,
     GGally,
+    ggdendro,
     ggfortify (>= 0.4.11),
     ggparty,
     glmnet,

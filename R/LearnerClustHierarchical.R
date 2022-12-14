@@ -3,17 +3,19 @@
 #' @description
 #' Generates plots for hierarchical clusterers, depending on argument `type`:
 #'
-#' * `"dend"` (default): dendrograms using \CRANpkg{factoextra} package.
+#' * `"dend"` (default): dendrograms using \CRANpkg{ggdendro} package.
 #'
-#' * `"scree"`: scree plot that shows the number of possible clusters on x-axis and
-#' the height on the y-axis.
+#' * `"scree"`: scree plot that shows the number of possible clusters on x-axis and the height on the y-axis.
 #'
 #' Note that learner-specific plots are experimental and subject to change.
 #'
 #' @param object ([mlr3cluster::LearnerClustAgnes] | [mlr3cluster::LearnerClustDiana] | [mlr3cluster::LearnerClustHclust]).
+#' @param task ([mlr3::Task])\cr
+#'  Optionally, pass the task to add labels of observations to a hclust dendrogram.
+#'  Labels are set via the row names of the task.
 #' @template param_type
 #' @param ... (`any`):
-#'   Additional arguments, passed down to function [factoextra::fviz_dend()] in package \CRANpkg{factoextra}.
+#'   Additional arguments, passed down to function `ggdendrogram()` in package \CRANpkg{ggdendro}.
 #'
 #' @return [ggplot2::ggplot()] object.
 #'
@@ -26,25 +28,26 @@
 #'   library(mlr3cluster)
 #'   library(mlr3viz)
 #'
-#'   task = mlr_tasks$get("usarrests")
+#'   task = tsk("usarrests")
 #'
 #'   # agnes clustering
-#'   learner = mlr_learners$get("clust.agnes")
+#'   learner = lrn("clust.agnes")
 #'   learner$train(task)
 #'   autoplot(learner)
 #'
 #'   # diana clustering
-#'   learner = mlr_learners$get("clust.diana")
+#'   learner = lrn("clust.diana")
 #'   learner$train(task)
 #'   autoplot(learner)
 #'
 #'   # hclust clustering
-#'   learner = mlr_learners$get("clust.hclust")
+#'   learner = lrn("clust.hclust")
 #'   learner$train(task)
 #'   autoplot(learner, type = "scree")
 #' }
-autoplot.LearnerClustHierarchical = function(object, type = "dend", ...) { # nolint
+autoplot.LearnerClustHierarchical = function(object, type = "dend", task = NULL, ...) { # nolint
   assert_string(type)
+
   if (is.null(object$model)) {
     stopf("Learner '%s' must be trained first", object$id)
   }
@@ -56,20 +59,11 @@ autoplot.LearnerClustHierarchical = function(object, type = "dend", ...) { # nol
     "dend" = {
       require_namespaces("factoextra")
 
-      p = factoextra::fviz_dend(
-        object$model,
-        horiz = FALSE,
-        ggtheme = apply_theme(theme_minimal(), theme_classic()),
-        main = NULL,
-        ...)
+      if (!is.null(task) && !is.null(task$row_names)) {
+        object$model$labels = task$row_names$row_name[match(object$model$order, task$row_names$row_id)]
+      }
 
-      if (getOption("mlr3.theme", TRUE)) p$scales$scales = list()
-
-      p +
-        apply_theme(list(
-          scale_color_viridis_d(end = 0.5),
-          theme_mlr3())) +
-        theme(legend.position = "none")
+      ggdendro::ggdendrogram(as.dendrogram(object$model), ...)
     },
 
     "scree" = {
