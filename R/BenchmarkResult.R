@@ -15,12 +15,41 @@
 #' @param object ([mlr3::BenchmarkResult]).
 #' @template param_type
 #' @template param_measure
-#' @param ... (`any`):
-#'   Additional arguments, passed down to the respective `geom` or plotting function.
+#' @template style
 #'
 #' @return [ggplot2::ggplot()] object.
 #'
-#' @template section_theme
+#' @section Style:
+#' The following arguments can be set in `style`:
+#'
+#' * `boxplot_boxplot`: List of arguments passed to [ggplot2::geom_boxplot()].
+#' * `boxplot_scales`: List of scales.
+#' * `theme_boxplot`: List of themes.
+#' * `roc_precrec`: List of arguments passed to [precrec::plot_precrec()].
+#' * `roc_scales`: List of scales.
+#' * `roc_themes`: List of themes.
+#' * `prc_precrec`: List of arguments passed to [precrec::plot_precrec()].
+#' * `prc_scales`: List of scales.
+#' * `prc_themes`: List of themes.
+#'
+#'
+#' The following default style is set:
+#'
+#' ```{r}
+#' default_style = list(
+#'    boxplot_boxplot = list(show.legend = FALSE),
+#'    boxplot_scales = list(scale_fill_viridis_d("Learner", end = 0.8, alpha = 0.8)),
+#'    theme_boxplot = list(
+#'      theme_minimal(),
+#'      theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.title.x = element_blank())),
+#'    roc_precrec = list(),
+#'    roc_scales = list(scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill"))),
+#'    roc_themes = list(theme_minimal(), theme(plot.title = element_blank())),
+#'    prc_precrec = list(),
+#'    prc_scales = list(scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill"))),
+#'    prc_themes = list(theme_minimal(), theme(plot.title = element_blank()))
+#'  )
+#'  ```
 #'
 #' @references
 #' `r format_bib("precrec")`
@@ -41,8 +70,23 @@
 #'   autoplot(object)
 #'   autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "roc")
 #' }
-autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ...) {
+autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, style = named_list()) {
   assert_string(type)
+
+  default_style = list(
+    boxplot_boxplot = list(show.legend = FALSE),
+    boxplot_scales = list(scale_fill_viridis_d("Learner", end = 0.8, alpha = 0.8)),
+    theme_boxplot = list(
+      theme_minimal(),
+      theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.title.x = element_blank())),
+    roc_precrec = list(),
+    roc_scales = list(scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill"))),
+    roc_themes = list(theme_minimal(), theme(plot.title = element_blank())),
+    prc_precrec = list(),
+    prc_scales = list(scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill"))),
+    prc_themes = list(theme_minimal(), theme(plot.title = element_blank()))
+  )
+  style = apply_style(style, default_style)
 
   task = object$tasks$task[[1L]]
   measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
@@ -59,43 +103,34 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ..
         mapping = aes(
           x = .data$nr,
           y = .data[[measure_id]])) +
-        geom_boxplot(
+        invoke(geom_boxplot,
           mapping = aes(fill = .data[["learner_id"]]),
-          show.legend = FALSE,
-          ...) +
+          .args = style$boxplot) +
         scale_x_discrete(labels = learner_labels) +
         # we need "free_x" to drop empty learners for certain tasks - because we apply over .data$nr
         facet_wrap(vars(.data$task_id), scales = "free_x") +
-        apply_theme(list(
-          scale_fill_viridis_d("Learner", end = 0.8, alpha = 0.8),
-          theme_mlr3()
-        )) +
-        theme(
-          axis.text.x = element_text(angle = 45, hjust = 1),
-          axis.title.x = element_blank()
-        )
+        style$boxplot_scales +
+        style$theme_boxplot
     },
 
     "roc" = {
-      p = plot_precrec(object, curvetype = "ROC", ...)
-      p$layers[[1]]$mapping = aes(colour = modname, fill = modname)
+      p = invoke(plot_precrec, object, curvetype = "ROC", .args = style$roc_precrec)
       # fill confidence bounds
+      p$layers[[1]]$mapping = aes(colour = modname, fill = modname)
+
       p +
-        apply_theme(list(
-          scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill")),
-          theme_mlr3())) +
-        theme(plot.title = element_blank())
+        style$roc_scales +
+        style$roc_themes
     },
 
     "prc" = {
-      p = plot_precrec(object, curvetype = "PRC", ...)
+      p = invoke(plot_precrec, object, curvetype = "PRC", .args = style$prc_precrec)
       # fill confidence bounds
       p$layers[[1]]$mapping = aes(colour = modname, fill = modname)
+
       p +
-        apply_theme(list(
-          scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill")),
-          theme_mlr3())) +
-        theme(plot.title = element_blank())
+        style$prc_scales +
+        style$prc_themes
     },
 
     stopf("Unknown plot type '%s'", type)

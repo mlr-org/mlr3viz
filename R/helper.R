@@ -38,3 +38,10 @@ print.DelayedPatchworkPlot = function(x, ...) {
 apply_theme = function(theme_object, default_object = NULL) {
   if (getOption("mlr3.theme", TRUE)) theme_object else default_object %??% geom_blank()
 }
+
+apply_style = function(style, default_style) {
+  assert_list(style)
+  if (!length(style)) return(default_style)
+  assert_names(names(style), subset.of = names(default_style))
+  insert_named(default_style, style)
+}

@@ -4,7 +4,7 @@
 \alias{autoplot.BenchmarkResult}
 \title{Plot for BenchmarkResult}
 \usage{
-\method{autoplot}{BenchmarkResult}(object, type = "boxplot", measure = NULL, ...)
+\method{autoplot}{BenchmarkResult}(object, type = "boxplot", measure = NULL, style = named_list())
 }
 \arguments{
 \item{object}{(\link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}).}
@@ -24,25 +24,47 @@ Additional arguments, passed down to the respective \code{geom} or plotting func
 \description{
 Generates plots for \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}, depending on argument \code{type}:
 \itemize{
-\item \code{"boxplot"} (default): Boxplots of performance measures, one box per
-\link[mlr3:Learner]{mlr3::Learner} and one facet per \link[mlr3:Task]{mlr3::Task}.
+\item \code{"boxplot"} (default): Boxplots of performance measures, one box per \link[mlr3:Learner]{mlr3::Learner} and one facet per \link[mlr3:Task]{mlr3::Task}.
 \item \code{"roc"}: ROC curve (1 - specificity on x, sensitivity on y).
-The \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} may only have a single \link[mlr3:Task]{mlr3::Task} and a
-single \link[mlr3:Resampling]{mlr3::Resampling}.
-Note that you can subset any \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} with its \verb{$filter()}
-method (see examples).
+The \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} may only have a single \link[mlr3:Task]{mlr3::Task} and a single \link[mlr3:Resampling]{mlr3::Resampling}.
+Note that you can subset any \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} with its \verb{$filter()}  method (see examples).
 Requires package \CRANpkg{precrec}.
-Additional arguments will be passed down to the respective \code{\link[=autoplot]{autoplot()}} function
-in package \CRANpkg{precrec}. Arguments \code{calc_avg} and \code{cb_alpha} are passed to
-\code{\link[precrec:evalmod]{precrec::evalmod()}}.
+Additional arguments will be passed down to the respective \code{\link[=autoplot]{autoplot()}} function in package \CRANpkg{precrec}.
+Arguments \code{calc_avg} and \code{cb_alpha} are passed to \code{\link[precrec:evalmod]{precrec::evalmod()}}.
 \item \code{"prc"}: Precision recall curve. See \code{"roc"}.
 }
 }
-\section{Theme}{
+\section{Style}{
 
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
+The following arguments can be set in \code{style}:
+\itemize{
+\item \code{boxplot_boxplot}: Arguments passed to \code{\link[ggplot2:geom_boxplot]{ggplot2::geom_boxplot()}}.
+\item \code{boxplot_scales}: Arguments passed as scales.
+\item \code{theme_boxplot}: Arguments passed as themes.
+\item \code{roc_precrec}: Arguments passed to \code{\link[precrec:plot_precrec]{precrec::plot_precrec()}}.
+\item \code{roc_scales}: Arguments passed as scales.
+\item \code{roc_themes}: Arguments passed as themes.
+\item \code{prc_precrec}: Arguments passed to \code{\link[precrec:plot_precrec]{precrec::plot_precrec()}}.
+\item \code{prc_scales}: Arguments passed as scales.
+\item \code{prc_themes}: Arguments passed as themes.
+}
+
+The following default style is set:
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{default_style = list(
+   boxplot_boxplot = list(show.legend = FALSE),
+   boxplot_scales = list(scale_fill_viridis_d("Learner", end = 0.8, alpha = 0.8)),
+   theme_boxplot = list(
+     theme_minimal(),
+     theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.title.x = element_blank())),
+   roc_precrec = list(),
+   roc_scales = list(scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill"))),
+   roc_themes = list(theme_minimal(), theme(plot.title = element_blank())),
+   prc_precrec = list(),
+   prc_scales = list(scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill"))),
+   prc_themes = list(theme_minimal(), theme(plot.title = element_blank()))
+ )
+}\if{html}{\out{</div>}}
 }
 
 \examples{
