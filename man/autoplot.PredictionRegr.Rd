@@ -11,9 +11,6 @@
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
-
-\item{...}{(\code{any}):
-Additional arguments, passed down to the respective \code{geom}.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
