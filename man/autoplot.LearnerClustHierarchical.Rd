@@ -4,7 +4,14 @@
 \alias{autoplot.LearnerClustHierarchical}
 \title{Plot for Hierarchical Clustering Learners}
 \usage{
-\method{autoplot}{LearnerClustHierarchical}(object, type = "dend", task = NULL, ...)
+\method{autoplot}{LearnerClustHierarchical}(
+  object,
+  type = "dend",
+  task = NULL,
+  theme = theme_minimal(),
+  theme_dendro = TRUE,
+  ...
+)
 }
 \arguments{
 \item{object}{(\link[mlr3cluster:mlr_learners_clust.agnes]{mlr3cluster::LearnerClustAgnes} | \link[mlr3cluster:mlr_learners_clust.diana]{mlr3cluster::LearnerClustDiana} | \link[mlr3cluster:mlr_learners_clust.hclust]{mlr3cluster::LearnerClustHclust}).}
@@ -16,8 +23,14 @@ Type of the plot. See description.}
 Optionally, pass the task to add labels of observations to a hclust dendrogram.
 Labels are set via the row names of the task.}
 
-\item{...}{(\code{any}):
-Additional arguments, passed down to function \code{ggdendrogram()} in package \CRANpkg{ggdendro}.}
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{theme_dendro}{(\code{logical(1)})\cr
+If \code{TRUE} (default), the special dendrogram theme from \CRANpkg{ggdendro} package is used in plot \code{"dend"}.
+Set to \code{FALSE} to use the theme passed in \code{theme}.}
+
+\item{...}{(ignored).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -31,13 +44,6 @@ Generates plots for hierarchical clusterers, depending on argument \code{type}:
 
 Note that learner-specific plots are experimental and subject to change.
 }
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
-}
-
 \examples{
 if (requireNamespace("mlr3")) {
   library(mlr3)

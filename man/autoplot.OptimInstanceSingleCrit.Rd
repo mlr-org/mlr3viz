@@ -12,6 +12,7 @@
   learner = mlr3::lrn("regr.ranger"),
   grid_resolution = 100,
   batch = NULL,
+  theme = theme_minimal(),
   ...
 )
 }
@@ -24,12 +25,12 @@ Type of the plot. Available choices:
 \item \code{"marginal"}: scatter plots of x versus y The
 colour of the points shows the batch number.
 \item \code{"performance"}: scatter plots of batch number versus y
-\item \code{"parameter"}: scatter plots of batch number versus input. The
-colour of the points shows the y values.
+\item \code{"parameter"}: scatter plots of batch number versus input.
+The colour of the points shows the y values.
 \item \code{"parallel"} parallel coordinates plot. x values are rescaled by
 \code{(x - mean(x)) / sd(x)}.
-\item \code{"points"} - scatter plot of two x dimensions versus y The
-colour of the points shows the y values.
+\item \code{"points"} - scatter plot of two x dimensions versus.
+The colour of the points shows the y values.
 \item \code{"surface"}: surface plot of two x dimensions versus y values.
 The y values are interpolated with the supplied
 \link[mlr3:Learner]{mlr3::Learner}.
@@ -52,10 +53,12 @@ Regression learner used to interpolate the data of the surface plot.}
 Resolution of the surface plot.}
 
 \item{batch}{(\code{integer()})\cr
-The batch number(s) to limit the plot to. Default is all batches.}
+The batch number(s) to limit the plot to. The default is all batches.}
 
-\item{...}{(\code{any}):
-Additional arguments, possibly passed down to the underlying plot functions.}
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{...}{(ignored).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -63,13 +66,6 @@ Additional arguments, possibly passed down to the underlying plot functions.}
 \description{
 Generates plots for \link[bbotk:OptimInstanceSingleCrit]{bbotk::OptimInstanceSingleCrit}.
 }
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
-}
-
 \examples{
 if (requireNamespace("mlr3") && requireNamespace("bbotk") && requireNamespace("patchwork")) {
   library(bbotk)

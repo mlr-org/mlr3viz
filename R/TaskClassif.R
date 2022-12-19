@@ -10,12 +10,10 @@
 #'
 #' @param object ([mlr3::TaskClassif]).
 #' @template param_type
-#' @param ... (`any`):
-#'   Additional argument, possibly passed down to the underlying plot functions.
+#' @template param_theme
+#' @param ... (ignored).
 #'
 #' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
 #'
 #' @export
 #' @examples
@@ -31,7 +29,7 @@
 #'     type = "pairs")
 #'   autoplot(task, type = "duo")
 #' }
-autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
+autoplot.TaskClassif = function(object, type = "target", theme = theme_minimal(), ...) { # nolint
   assert_string(type)
 
   target = object$target_names
@@ -44,24 +42,23 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
           fill = .data[[target]])) +
         geom_bar(
           stat = "count",
-          color = "#000000", ...) +
-        apply_theme(list(
-          scale_fill_viridis_d(end = 0.8, alpha = 0.8, ),
-          scale_color_viridis_d(end = 0.8),
-          theme_mlr3()))
+          color = "#000000",
+          linewidth = 0.5) +
+        scale_fill_viridis_d(end = 0.8, alpha = 0.8, ) +
+        scale_color_viridis_d(end = 0.8) +
+        theme
     },
 
     "duo" = {
+      # Line width!!!
       require_namespaces("GGally")
       GGally::ggduo(object,
         columnsX = target,
         columnsY = object$feature_names,
-        mapping = aes(color = .data[[target]]),
-        ...) +
-        apply_theme(list(
-          scale_fill_viridis_d(end = 0.8, alpha = 0.8),
-          scale_color_viridis_d(end = 0.8),
-          theme_mlr3())) +
+        mapping = aes(color = .data[[target]])) +
+        scale_fill_viridis_d(end = 0.8, alpha = 0.8) +
+        scale_color_viridis_d(end = 0.8) +
+        theme +
         theme(
           axis.text.x = element_text(angle = 45, hjust = 1),
           axis.title.x = element_blank()
@@ -73,14 +70,12 @@ autoplot.TaskClassif = function(object, type = "target", ...) { # nolint
 
       GGally::ggpairs(object,
         mapping = aes(color = .data[[target]]),
-        upper = list(continuous = "cor",  combo = "box_no_facet", discrete = "count", na = "na"),
-        lower = list(continuous = "points", combo = GGally::wrap("facethist", color = "#000000"), discrete = GGally::wrap("facetbar", color = "#000000"), na = "na"),
-        diag = list(continuous = "densityDiag", discrete = GGally::wrap("barDiag", color = "#000000"), na = "naDiag"),
-        ...) +
-        apply_theme(list(
-          scale_fill_viridis_d(end = 0.8, alpha = 0.8),
-          scale_color_viridis_d(end = 0.8),
-          theme_mlr3()))
+        upper = list(continuous = "cor",  combo = GGally::wrap("box_no_facet", color = "#000000", linewidth = 0.5), discrete = "count", na = "na"),
+        lower = list(continuous = GGally::wrap("points", size = 3, alpha = 0.8) , combo = GGally::wrap("facethist", color = "#000000", linewidth = 0.5), discrete = GGally::wrap("facetbar", color = "#000000", linewidth = 0.5), na = "na"),
+        diag = list(continuous = GGally::wrap("densityDiag", color = "#000000", linewidth = 0.5), discrete = GGally::wrap("barDiag",  color = "#000000", linewidth = 0.5), na = "naDiag")) +
+        scale_fill_viridis_d(end = 0.8, alpha = 0.8) +
+        scale_color_viridis_d(end = 0.8, alpha = 0.8) +
+        theme
     },
 
     stopf("Unknown plot type '%s'", type)

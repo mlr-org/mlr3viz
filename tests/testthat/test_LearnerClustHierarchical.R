@@ -1,6 +1,6 @@
 skip_if_not_installed("mlr3")
 skip_if_not_installed("mlr3cluster")
-skip_if_not_installed("factoextra")
+skip_if_not_installed("ggdendro")
 set.seed(42)
 
 test_that("autoplot.LearnerClustHierarchical", {

@@ -4,7 +4,14 @@
 \alias{autoplot.PredictionClust}
 \title{Plot for PredictionClust}
 \usage{
-\method{autoplot}{PredictionClust}(object, task, row_ids = NULL, type = "scatter", ...)
+\method{autoplot}{PredictionClust}(
+  object,
+  task,
+  row_ids = NULL,
+  type = "scatter",
+  theme = theme_minimal(),
+  ...
+)
 }
 \arguments{
 \item{object}{(\link[mlr3cluster:PredictionClust]{mlr3cluster::PredictionClust}).}
@@ -17,8 +24,10 @@ only the data used to make predictions are shown in plots.}
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
 
-\item{...}{(\code{any}):
-Additional arguments, passed down to the respective \code{geom}.}
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{...}{(ignored).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -34,13 +43,6 @@ a reference line. Requires package \CRANpkg{ggfortify}.
 assignments. Inspired by and uses \link[ggfortify:autoplot.kmeans]{ggfortify::autoplot.kmeans}.
 }
 }
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
-}
-
 \examples{
 if (requireNamespace("mlr3")) {
   library(mlr3)

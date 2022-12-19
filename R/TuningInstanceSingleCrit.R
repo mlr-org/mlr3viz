@@ -30,11 +30,10 @@
 #'   Regression learner used to interpolate the data of the surface plot.
 #' @param grid_resolution (`numeric()`)\cr
 #'   Resolution of the surface plot.
-#' @param ... (`any`):
-#'   Additional arguments, possibly passed down to the underlying plot functions.
-#' @return [ggplot2::ggplot()] object.
+#' @template param_theme
+#' @param ... (ignored).
 #'
-#' @template section_theme
+#' @return [ggplot2::ggplot()] object.
 #'
 #' @export
 #' @examples
@@ -71,8 +70,6 @@
 #'   # plot pairs
 #'   autoplot(instance, type = "pairs")
 #' }
-autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE,
-  learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, ...) { # nolint
-  autoplot.OptimInstanceSingleCrit(object = object, type = type, cols_x = cols_x,
-    trafo = trafo, learner = learner, grid_resolution = grid_resolution, ...)
+autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, theme = theme_minimal(), ...) {
+  autoplot.OptimInstanceSingleCrit(object = object, type = type, cols_x = cols_x, trafo = trafo, learner = learner, grid_resolution = grid_resolution, theme = theme, ...)
 }

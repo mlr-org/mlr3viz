@@ -1,6 +1,6 @@
 #' @export
 #' @rdname autoplot.LearnerClassifRpart
-autoplot.LearnerRegrRpart = function(object, ...) { # nolint
+autoplot.LearnerRegrRpart = function(object, theme = theme_minimal(), ...) { # nolint
   if (is.null(object$model)) {
     stopf("Learner '%s' must be trained first", object$id)
   }
@@ -18,15 +18,16 @@ autoplot.LearnerRegrRpart = function(object, ...) { # nolint
     ggparty::geom_node_plot(
       gglist = list(
         geom_boxplot(aes(y = .data[[target]]),
-          fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"),
-          alpha = 0.8),
+          fill = viridis::viridis(1, begin = 0.5),
+          alpha = 0.8,
+          color = "#000000",
+          linewidth = 0.5),
         scale_x_discrete(),
-        apply_theme(list(
-          theme_mlr3(),
-          theme(
-            axis.ticks.x = element_blank(),
-            axis.text.x = element_blank()
-          ))))) +
+        theme,
+        theme(
+          axis.ticks.x = element_blank(),
+          axis.text.x = element_blank()
+        ))) +
     ggparty::geom_node_label(
       aes(label = paste0("n=", .data[["nodesize"]])),
       nudge_y = 0.03,

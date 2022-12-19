@@ -9,10 +9,8 @@
 #' @param n (`integer(1)`)\cr
 #'   Only include the first `n` features with highest importance.
 #'   Defaults to all features.
-#' @param ... (`any`):
-#'   Additional argument, passed down to the respective `geom`.
-#'
-#' @template section_theme
+#' @template param_theme
+#' @param ... (ignored).
 #'
 #' @return [ggplot2::ggplot()] object.
 #' @export
@@ -29,7 +27,7 @@
 #'   head(fortify(f))
 #'   autoplot(f, n = 5)
 #' }
-autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
+autoplot.Filter = function(object, type = "boxplot", n = Inf, theme = theme_minimal(), ...) { # nolint
   assert_string(type)
 
   data = head(fortify(object), n)
@@ -42,14 +40,13 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
           y = .data[["score"]])) +
         geom_bar(
           stat = "identity",
-          fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"),
-          alpha = apply_theme(0.8, 1),
-          color = "#000000",
-          ...) +
+          fill = viridis::viridis(1, begin = 0.5),
+          alpha = 0.8,
+          color = "#000000") +
         scale_x_discrete(limits = data$feature) +
         xlab("Feature") +
         ylab("Score") +
-        apply_theme(list(theme_mlr3())) +
+        theme +
         theme(axis.text.x = element_text(angle = 45, hjust = 1))
     },
 

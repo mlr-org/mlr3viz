@@ -9,12 +9,10 @@
 #'
 #' @param object ([mlr3learners::LearnerClassifGlmnet] | [mlr3learners::LearnerRegrGlmnet] |
 #'   [mlr3learners::LearnerRegrCVGlmnet] | [mlr3learners::LearnerRegrCVGlmnet]).
-#' @param ... (`any`):
-#'   Additional arguments, passed down to [ggparty::autoplot.party()].
+#' @template param_theme
+#' @param ... (ignored).
 #'
 #' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
 #'
 #' @references
 #' `r format_bib("ggfortify")`
@@ -38,15 +36,14 @@
 #' learner$train(task)
 #' autoplot(learner)
 #' }
-autoplot.LearnerClassifGlmnet = function(object, ...) { # nolint
+autoplot.LearnerClassifGlmnet = function(object, theme = theme_minimal(), ...) { # nolint
   if ("twoclass" %nin% object$state$train_task$properties) {
     stopf("Plot of %s only works with binary classification tasks.", object$id)
   }
 
-  plot_ggfortify(object, ...) +
-    apply_theme(list(
-      scale_color_viridis_d("Feature"),
-      theme_mlr3()))
+  plot_ggfortify(object) +
+      scale_color_viridis_d("Feature") +
+      theme
 }
 
 #' @export

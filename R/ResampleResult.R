@@ -29,13 +29,10 @@
 #'   Only for `type` set to `"prediction"`.
 #'   Which points should be shown in the plot?
 #'   Can be a subset of (`"train"`, `"test"`) or empty.
-#'
-#' @param ... (`any`):
-#'   Additional arguments, passed down to the respective `geom` or plotting function.
+#' @template param_theme
+#' @param ... (ignored).
 #'
 #' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
 #'
 #' @references
 #' `r format_bib("precrec")`
@@ -74,12 +71,7 @@
 #'   object = resample(task, learner, resampling, store_models = TRUE)
 #'   autoplot(object, type = "prediction")
 #' }
-autoplot.ResampleResult = function(object, # nolint
-  type = "boxplot",
-  measure = NULL,
-  predict_sets = "test",
-  ...) {
-
+autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, predict_sets = "test", theme = theme_minimal(), ...) {
   assert_string(type)
 
   task = object$task
@@ -91,14 +83,12 @@ autoplot.ResampleResult = function(object, # nolint
         measure = measure,
         mapping = aes(y = .data[["performance"]])) +
         geom_boxplot(
-          fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"),
-          alpha = apply_theme(0.8, 1),
-          show.legend = FALSE,
-          ...) +
+          fill = viridis::viridis(1, begin = 0.5),
+          alpha = 0.8,
+          show.legend = FALSE) +
         scale_x_discrete() +
         ylab(measure$id) +
-        apply_theme(list(
-          theme_mlr3())) +
+        theme +
         theme(axis.text.x.bottom = element_blank())
     },
 
@@ -107,13 +97,12 @@ autoplot.ResampleResult = function(object, # nolint
         measure = measure,
         aes(x = .data[["performance"]])) +
         geom_histogram(
-          fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"),
-          alpha = apply_theme(0.8, 1),
-          color = "black",
-          ...) +
+          fill = viridis::viridis(1, begin = 0.5),
+          alpha = 0.8,
+          color = "black") +
         xlab(measure$id) +
         ylab("Count") +
-        apply_theme(list(theme_mlr3()))
+        theme
     },
 
     "roc" = {
@@ -124,29 +113,27 @@ autoplot.ResampleResult = function(object, # nolint
         guides(
           color = "none",
           fill = "none") +
-        apply_theme(list(
-          scale_color_viridis_d("Learner", begin = 0.5),
-          scale_fill_viridis_d("Learner", begin = 0.5),
-          theme_mlr3(legend = "none"))) +
-        theme(plot.title = element_blank())
+        scale_color_viridis_d("Learner", begin = 0.5) +
+        scale_fill_viridis_d("Learner", begin = 0.5) +
+        theme +
+        theme(plot.title = element_blank(), legend.position = "none")
     },
 
     "prc" = {
-      p = plot_precrec(object, curvetype = "PRC", ...)
+      p = plot_precrec(object, curvetype = "PRC")
       # fill confidence bounds
       p$layers[[1]]$mapping = aes(colour = modname, fill = modname)
       p +
         guides(
           color = "none",
           fill = "none") +
-        apply_theme(list(
-          scale_color_viridis_d("Learner", begin = 0.5),
-          scale_fill_viridis_d("Learner", begin = 0.5),
-          theme_mlr3(legend = "none"))) +
+        scale_color_viridis_d("Learner", begin = 0.5) +
+        scale_fill_viridis_d("Learner", begin = 0.5) +
+        theme +
         theme(plot.title = element_blank())
     },
 
-    "prediction" = plot_learner_prediction_resample_result(object, predict_sets, ...),
+    "prediction" = plot_learner_prediction_resample_result(object, predict_sets, theme = theme, ...),
 
     stopf("Unknown plot type '%s'", type)
   )
@@ -167,10 +154,7 @@ fortify.ResampleResult = function(model, data, measure = NULL, ...) { # nolint
     variable.name = "measure_id", value.name = "performance")
 }
 
-plot_learner_prediction_resample_result = function(object, # nolint
-  predict_sets,
-  grid_points = 100L,
-  expand_range = 0) {
+plot_learner_prediction_resample_result = function(object, predict_sets, grid_points = 100L, expand_range = 0, theme = theme_minimal()) {
 
   task = object$task
   task_type = task$task_type
@@ -217,6 +201,7 @@ plot_learner_prediction_resample_result = function(object, # nolint
     } else {
       se_geom = NULL
     }
+
     g = ggplot(grid,
       mapping = aes(
         x = .data[[features]],
@@ -224,7 +209,7 @@ plot_learner_prediction_resample_result = function(object, # nolint
       se_geom +
       geom_line(color = viridis::viridis(1, begin = 0.5)) +
       geom_point(data = task_data(object, predict_sets),
-        aes(
+        mapping = aes(
           y = .data[[task$target_names]],
           shape = .data[[".predict_set"]],
           color = .data[[".predict_set"]])) +
@@ -232,9 +217,8 @@ plot_learner_prediction_resample_result = function(object, # nolint
         values = c(train = 16, test = 15, both = 17),
         name = "Set") +
       labs(color = "Set") +
-      apply_theme(list(
-        scale_color_viridis_d(end = 0.8),
-        theme_mlr3())) +
+      scale_color_viridis_d(end = 0.8) +
+      theme +
       folds_facet
 
     # 2d plot regr + classif
@@ -260,6 +244,10 @@ plot_learner_prediction_resample_result = function(object, # nolint
       scale_fill = scale_fill_viridis_c(end = 0.8)
     }
 
+    if (!is.numeric(grid[[features[1L]]])) {
+      theme = theme + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    }
+
     g = ggplot(grid,
       mapping = aes(
         x = .data[[features[1L]]],
@@ -269,16 +257,14 @@ plot_learner_prediction_resample_result = function(object, # nolint
         mapping = aes(fill = .data[[task$target_names]], shape = .data[[".predict_set"]]),
         data = task_data(object, predict_sets),
         color = "black") +
-      apply_theme(list(
-        scale_fill,
-        theme_mlr3(legend = "right"))) +
+      scale_fill +
+      theme +
+      theme(legend.position = "right") +
       scale_shape_manual(
         values = c(train = 21, test = 22, both = 23),
         name = "Set") +
       scale_alpha +
       labs(fill = "Response") +
-      scale_x_continuous(expand = c(0.01, 0.01)) +
-      scale_y_continuous(expand = c(0.01, 0.01)) +
       folds_facet
   }
 

@@ -9,12 +9,12 @@
 #'   * `"marginal"`: scatter plots of x versus y The
 #'     colour of the points shows the batch number.
 #'   * `"performance"`: scatter plots of batch number versus y
-#'   * `"parameter"`: scatter plots of batch number versus input. The
-#'     colour of the points shows the y values.
+#'   * `"parameter"`: scatter plots of batch number versus input.
+#'      The colour of the points shows the y values.
 #'   * `"parallel"` parallel coordinates plot. x values are rescaled by
 #'     `(x - mean(x)) / sd(x)`.
-#'   * `"points"` - scatter plot of two x dimensions versus y The
-#'     colour of the points shows the y values.
+#'   * `"points"` - scatter plot of two x dimensions versus.
+#'      The colour of the points shows the y values.
 #'   * `"surface"`: surface plot of two x dimensions versus y values.
 #'     The y values are interpolated with the supplied
 #'     [mlr3::Learner].
@@ -31,13 +31,11 @@
 #' @param grid_resolution (`numeric()`)\cr
 #'   Resolution of the surface plot.
 #' @param batch (`integer()`)\cr
-#'  The batch number(s) to limit the plot to. Default is all batches.
-#' @param ... (`any`):
-#'   Additional arguments, possibly passed down to the underlying plot functions.
+#'  The batch number(s) to limit the plot to. The default is all batches.
+#' @template param_theme
+#' @param ... (ignored).
 #' @importFrom scales pretty_breaks
 #' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
 #'
 #' @export
 #' @examples
@@ -78,8 +76,7 @@
 #'   # plot pairs
 #'   autoplot(instance, type = "pairs")
 #' }
-autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE,
-  learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, batch = NULL, ...) { # nolint
+autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, batch = NULL, theme = theme_minimal(), ...) { # nolint
   assert_subset(cols_x, c(object$archive$cols_x, paste0("x_domain_", object$archive$cols_x)))
   assert_flag(trafo)
 
@@ -106,22 +103,18 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
         breaks[length(breaks)] = max(data_i$batch_nr)
         data_i[, "batch_nr" := as.factor(get("batch_nr"))]
 
-        p = ggplot(data_i,
+        ggplot(data_i,
           mapping = aes(x = .data[[x]],
           y = .data[[cols_y]])
           ) +
           geom_point(
-            aes(fill = .data$batch_nr),
+            mapping = aes(fill = .data$batch_nr),
             shape = 21,
             size = 3,
-            stroke = 1) +
-          apply_theme(list(theme_mlr3()))
-
-        if (getOption("mlr3.theme", TRUE)) {
-          p + scale_fill_viridis_d("Batch", breaks = breaks)
-        } else {
-          p + scale_fill_discrete(breaks = breaks)
-        }
+            stroke = 0.5,
+            alpha = 0.8) +
+          scale_fill_viridis_d("Batch", breaks = breaks) +
+          theme
       })
 
       return(delayed_patchwork(plots, guides = "collect"))
@@ -149,14 +142,14 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
             y = .data[[cols_y]],
             fill = .data[["group"]]),
           shape = 21,
-          size = 3) +
+          size = 3,
+          stroke = 0.5,
+          alpha = 0.8) +
         xlab("Batch") +
         scale_y_continuous(breaks = pretty_breaks()) +
-        apply_theme(list(
-          scale_fill_manual(values = viridis::viridis(1, begin = 0.33)),
-          scale_color_manual(values = viridis::viridis(1, begin = 0.5)),
-          theme_mlr3()
-        )) +
+        scale_fill_manual(values = viridis::viridis(1, begin = 0.33)) +
+        scale_color_manual(values = viridis::viridis(1, begin = 0.5)) +
+        theme +
         theme(legend.title = element_blank())
     },
 
@@ -172,11 +165,11 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
               fill = .data[[cols_y]]),
               shape = 21,
               size = 3,
-              stroke = 0.5) +
-          apply_theme(list(
-            scale_fill_viridis_c(breaks = scales::pretty_breaks()),
-            theme_mlr3()
-          ))
+              stroke = 0.5,
+              alpha = 0.8) +
+          guides(fill = guide_colourbar(barwidth = 0.5, barheight = 10)) +
+          scale_fill_viridis_c(breaks = scales::pretty_breaks()) +
+          theme
       })
 
       return(delayed_patchwork(plots, guides = "collect"))
@@ -230,7 +223,7 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
           mapping = aes(
             group = .data$id,
             colour = .data[[cols_y]]),
-          size = 1) +
+          linewidth = 1) +
         geom_vline(aes(xintercept = x)) +
         {
           if (nrow(data_c)) geom_label(
@@ -238,10 +231,9 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
             data = data[!is.na(data$label), ])
         } +
         scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
-        apply_theme(list(
-          scale_color_viridis_c(),
-          theme_mlr3()),
-          list(scale_fill_discrete())) +
+        scale_color_viridis_c() +
+        guides(color = guide_colourbar(barwidth = 0.5, barheight = 10)) +
+        theme +
         theme(axis.title.x = element_blank())
     },
 
@@ -260,9 +252,9 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
           shape = 21,
           size = 3,
           stroke = 1) +
-        apply_theme(list(
-          scale_fill_viridis_c(),
-          theme_mlr3()))
+        scale_fill_viridis_c() +
+        guides(fill = guide_colourbar(barwidth = 0.5, barheight = 10)) +
+        theme
     },
 
     "surface" = {
@@ -300,28 +292,27 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
           data = data,
           shape = 21,
           size = 3,
-          stroke = 1) +
+          stroke = 0.5,
+          alpha = 0.8) +
         scale_x_continuous(expand = c(0.01, 0.01)) +
         scale_y_continuous(expand = c(0.01, 0.01)) +
-        apply_theme(list(
-          scale_fill_viridis_c(),
-          theme_mlr3()
-        ))
+        guides(fill = guide_colourbar(barwidth = 0.5, barheight = 10)) +
+        scale_fill_viridis_c() +
+        theme
     },
 
     "pairs" = {
       require_namespaces("GGally")
 
-      color = apply_theme(viridis::viridis(1, begin = 0.5), "grey")
-      alpha = apply_theme(0.8, 1)
+      color = viridis::viridis(1, begin = 0.5)
+      alpha = 0.8
 
       GGally::ggpairs(data[, c(cols_x, cols_y, "batch_nr"), with = FALSE],
         switch = "both",
         upper = list(continuous = "cor",  combo = GGally::wrap("box_no_facet", fill = color, alpha = alpha), discrete = "count", na = "na"),
         lower = list(continuous = GGally::wrap("points", color = color), combo = GGally::wrap("facethist", fill = color, alpha = alpha), discrete = GGally::wrap("facetbar", fill = color, alpha = alpha), na = "na"),
-        diag = list(continuous = GGally::wrap("densityDiag", color = color), discrete = GGally::wrap("barDiag", fill = color, alpha = alpha), na = "naDiag"),
-        ...) +
-        apply_theme(list(theme_mlr3()))
+        diag = list(continuous = GGally::wrap("densityDiag", color = color), discrete = GGally::wrap("barDiag", fill = color, alpha = alpha), na = "naDiag")) +
+        theme
     },
 
     stopf("Unknown plot type '%s'", type)

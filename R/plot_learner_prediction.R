@@ -35,8 +35,7 @@
 #'   p = plot_learner_prediction(learner, task)
 #'   print(p)
 #' }
-plot_learner_prediction = function(learner, task, grid_points = 100L,
-  expand_range = 0) {
+plot_learner_prediction = function(learner, task, grid_points = 100L, expand_range = 0) {
   object = mlr3::resample(task, learner$clone(), mlr3::rsmp("holdout", ratio = 1), store_models = TRUE)
   autoplot(object, type = "prediction", predict_sets = "train")
 }

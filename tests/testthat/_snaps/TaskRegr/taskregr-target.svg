@@ -36,11 +36,11 @@
 <polyline points='32.79,236.26 714.52,236.26 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='32.79,130.32 714.52,130.32 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='32.79,24.37 714.52,24.37 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<circle cx='373.66' cy='47.68' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.80; fill: #333333; fill-opacity: 0.80;' />
-<line x1='373.66' y1='282.88' x2='373.66' y2='79.46' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
-<line x1='373.66' y1='439.15' x2='373.66' y2='545.62' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
-<polygon points='242.56,282.88 242.56,439.15 504.76,439.15 504.76,282.88 242.56,282.88 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #21908C; fill-opacity: 0.80;' />
-<line x1='242.56' y1='359.16' x2='504.76' y2='359.16' style='stroke-width: 2.13; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter;' />
+<circle cx='373.66' cy='47.68' r='1.95' style='stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.80; fill: #000000; fill-opacity: 0.80;' />
+<line x1='373.66' y1='282.88' x2='373.66' y2='79.46' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<line x1='373.66' y1='439.15' x2='373.66' y2='545.62' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polygon points='242.56,282.88 242.56,439.15 504.76,439.15 504.76,282.88 242.56,282.88 ' style='stroke-width: 1.07; stroke-linecap: butt; stroke-linejoin: miter; fill: #21908C; fill-opacity: 0.80;' />
+<line x1='242.56' y1='359.16' x2='504.76' y2='359.16' style='stroke-width: 2.13; stroke-linecap: butt; stroke-linejoin: miter;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 <text x='27.86' y='557.13' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='9.79px' lengthAdjust='spacingAndGlyphs'>10</text>

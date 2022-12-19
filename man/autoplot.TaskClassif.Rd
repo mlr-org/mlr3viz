@@ -4,7 +4,7 @@
 \alias{autoplot.TaskClassif}
 \title{Plot for Classification Tasks}
 \usage{
-\method{autoplot}{TaskClassif}(object, type = "target", ...)
+\method{autoplot}{TaskClassif}(object, type = "target", theme = theme_minimal(), ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:TaskClassif]{mlr3::TaskClassif}).}
@@ -12,8 +12,10 @@
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
 
-\item{...}{(\code{any}):
-Additional argument, possibly passed down to the underlying plot functions.}
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{...}{(ignored).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -28,13 +30,6 @@ Generates plots for \link[mlr3:TaskClassif]{mlr3::TaskClassif}, depending on arg
 \code{\link[GGally:ggpairs]{GGally::ggpairs()}}. Color is set to target column.
 }
 }
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
-}
-
 \examples{
 if (requireNamespace("mlr3")) {
   library(mlr3)

@@ -11,6 +11,7 @@
   trafo = FALSE,
   learner = mlr3::lrn("regr.ranger"),
   grid_resolution = 100,
+  theme = theme_minimal(),
   ...
 )
 }
@@ -50,8 +51,10 @@ Regression learner used to interpolate the data of the surface plot.}
 \item{grid_resolution}{(\code{numeric()})\cr
 Resolution of the surface plot.}
 
-\item{...}{(\code{any}):
-Additional arguments, possibly passed down to the underlying plot functions.}
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{...}{(ignored).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -59,13 +62,6 @@ Additional arguments, possibly passed down to the underlying plot functions.}
 \description{
 Generates plots for \link[mlr3tuning:TuningInstanceSingleCrit]{mlr3tuning::TuningInstanceSingleCrit}.
 }
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
-}
-
 \examples{
 if (requireNamespace("mlr3tuning") && requireNamespace("patchwork")) {
   library(mlr3tuning)

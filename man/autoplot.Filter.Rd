@@ -4,7 +4,7 @@
 \alias{autoplot.Filter}
 \title{Plot for Filter Scores}
 \usage{
-\method{autoplot}{Filter}(object, type = "boxplot", n = Inf, ...)
+\method{autoplot}{Filter}(object, type = "boxplot", n = Inf, theme = theme_minimal(), ...)
 }
 \arguments{
 \item{object}{(\link[mlr3filters:Filter]{mlr3filters::Filter}).}
@@ -16,8 +16,10 @@ Type of the plot. See description.}
 Only include the first \code{n} features with highest importance.
 Defaults to all features.}
 
-\item{...}{(\code{any}):
-Additional argument, passed down to the respective \code{geom}.}
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{...}{(ignored).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -28,13 +30,6 @@ Generates plots for \link[mlr3filters:Filter]{mlr3filters::Filter}, depending on
 \item \code{"barplot"} (default): Bar plot of filter scores.
 }
 }
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
-}
-
 \examples{
 if (requireNamespace("mlr3")) {
   library(mlr3)

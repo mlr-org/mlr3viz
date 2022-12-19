@@ -10,12 +10,10 @@
 #' Note that learner-specific plots are experimental and subject to change.
 #'
 #' @param object ([mlr3::LearnerClassifRpart] | [mlr3::LearnerRegrRpart]).
-#' @param ... (`any`):
-#'   Additional arguments, passed down to [ggparty::autoplot.party()].
+#' @template param_theme
+#' @param ... (ignored).
 #'
 #' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
 #'
 #' @export
 #' @examples
@@ -35,7 +33,7 @@
 #'   learner$train(task)
 #'   autoplot(learner)
 #' }
-autoplot.LearnerClassifRpart = function(object, ...) { # nolint
+autoplot.LearnerClassifRpart = function(object, theme = theme_minimal(), ...) { # nolint
   assert_has_model(object)
 
   if (is.null(object$model$model)) {
@@ -54,12 +52,11 @@ autoplot.LearnerClassifRpart = function(object, ...) { # nolint
         geom_bar(aes(x = "", fill = .data[[target]]),
         alpha = 0.8,
         color = "#000000",
+        linewidth = 0.5,
         position = position_fill()),
         xlab(target),
-        apply_theme(list(
-          scale_fill_viridis_d(end = 0.8),
-          theme_mlr3()
-        ))),
+        scale_fill_viridis_d(end = 0.8),
+        theme),
       ids = "terminal",
       shared_axis_labels= TRUE) +
     ggparty::geom_node_label(

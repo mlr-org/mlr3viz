@@ -4,13 +4,18 @@
 \alias{autoplot.PredictionRegr}
 \title{Plot for PredictionRegr}
 \usage{
-\method{autoplot}{PredictionRegr}(object, type = "xy", ...)
+\method{autoplot}{PredictionRegr}(object, type = "xy", theme = theme_minimal(), ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:PredictionRegr]{mlr3::PredictionRegr}).}
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
+
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{...}{(ignored).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -36,13 +41,6 @@ to visualize the trend between x and y (by default colored blue).
 }
 }
 }
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
-}
-
 \examples{
 if (requireNamespace("mlr3")) {
   library(mlr3)

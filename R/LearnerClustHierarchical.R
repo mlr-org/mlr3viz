@@ -14,12 +14,13 @@
 #'  Optionally, pass the task to add labels of observations to a hclust dendrogram.
 #'  Labels are set via the row names of the task.
 #' @template param_type
-#' @param ... (`any`):
-#'   Additional arguments, passed down to function `ggdendrogram()` in package \CRANpkg{ggdendro}.
+#' @param theme_dendro (`logical(1)`)\cr
+#'  If `TRUE` (default), the special dendrogram theme from \CRANpkg{ggdendro} package is used in plot `"dend"`.
+#'  Set to `FALSE` to use the theme passed in `theme`.
+#' @template param_theme
+#' @param ... (ignored).
 #'
 #' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
 #'
 #' @export
 #' @examples
@@ -45,7 +46,7 @@
 #'   learner$train(task)
 #'   autoplot(learner, type = "scree")
 #' }
-autoplot.LearnerClustHierarchical = function(object, type = "dend", task = NULL, ...) { # nolint
+autoplot.LearnerClustHierarchical = function(object, type = "dend", task = NULL, theme = theme_minimal(), theme_dendro = TRUE, ...) { # nolint
   assert_string(type)
 
   if (is.null(object$model)) {
@@ -57,25 +58,28 @@ autoplot.LearnerClustHierarchical = function(object, type = "dend", task = NULL,
 
   switch(type,
     "dend" = {
-      require_namespaces("factoextra")
+      require_namespaces("ggdendro")
 
       if (!is.null(task) && !is.null(task$row_names)) {
         object$model$labels = task$row_names$row_name[match(object$model$order, task$row_names$row_id)]
       }
 
-      ggdendro::ggdendrogram(as.dendrogram(object$model), ...)
+      ggdendro::ggdendrogram(as.dendrogram(object$model), theme_dendro = theme_dendro, ...) +
+        if (!theme_dendro) theme else geom_blank()
     },
 
     "scree" = {
       data = data.table(Height = object$model$height, Clusters = seq(length(object$model$height), 1))
-      ggplot(data, aes(x = data$Clusters, y = data$Height)) +
-        geom_line(color = apply_theme(viridis::viridis(1, begin = 0.5), "#000000")) +
+      ggplot(data,
+        mapping = aes(x = data$Clusters, y = data$Height)) +
+        geom_line(color = viridis::viridis(1, begin = 0.5)) +
         geom_point(
           size = 3,
-          color = apply_theme(viridis::viridis(1, begin = 0.5), "#000000")) +
+          color = viridis::viridis(1, begin = 0.5),
+          alpha = 0.8) +
         xlab("Clusters") +
         ylab("Height") +
-        apply_theme(list(theme_mlr3()))
+        theme
     }
   )
 }

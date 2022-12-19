@@ -17,12 +17,10 @@
 #' @param row_ids row ids to subset task data to ensure that
 #' only the data used to make predictions are shown in plots.
 #' @template param_type
-#' @param ... (`any`):
-#'   Additional arguments, passed down to the respective `geom`.
+#' @template param_theme
+#' @param ... (ignored).
 #'
 #' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
 #'
 #' @references
 #' `r format_bib("ggfortify")`
@@ -41,7 +39,7 @@
 #'   head(fortify(object))
 #'   autoplot(object, task)
 #' }
-autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatter", ...) { # nolint
+autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatter", theme = theme_minimal(), ...) { # nolint
   assert_string(type)
 
   switch(type,
@@ -60,12 +58,10 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
       data$row_id = NULL
       data$partition = factor(data$partition)
 
-      GGally::ggscatmat(data, color = "partition", ...) +
-        apply_theme(list(
-          scale_color_viridis_d("Cluster", end = 0.8),
-          theme_mlr3(),
-          theme(axis.title.x.bottom = element_blank(), axis.title.y.left = element_blank())
-        ))
+      GGally::ggscatmat(data, color = "partition") +
+        scale_color_viridis_d("Cluster", end = 0.8, alpha = 0.8) +
+        theme +
+        theme(axis.title.x.bottom = element_blank(), axis.title.y.left = element_blank())
     },
 
     "sil" = {
@@ -75,11 +71,9 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
       d = stats::dist(task$data(rows = row_ids))
       sil = cluster::silhouette(object$data$partition, d)
 
-      ggplot2::autoplot(sil, colour = "#000000", ...) +
-        apply_theme(list(
-          scale_fill_viridis_d("Cluster", end = 0.8, alpha = 0.8),
-          theme_mlr3()
-        ))
+      ggplot2::autoplot(sil, colour = "#000000") +
+        scale_fill_viridis_d("Cluster", end = 0.8, alpha = 0.8) +
+        theme
     },
 
     "pca" = {
@@ -97,11 +91,10 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
       plot_data = merge(task_data, d, by = "row_ids")
       ggplot2::autoplot(stats::prcomp(task_data[, -"row_ids"]),
         data = plot_data,
-        colour = "cluster", ...) +
-        apply_theme(list(
-          scale_color_viridis_d("Cluster", end = 0.8),
-          theme_mlr3()
-        ))
+        colour = "cluster",
+        size = 3) +
+        scale_color_viridis_d("Cluster", end = 0.8, alpha = 0.8) +
+        theme
     },
 
     stopf("Unknown plot type '%s'", type)

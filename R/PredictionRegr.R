@@ -21,10 +21,10 @@
 #'
 #' @param object ([mlr3::PredictionRegr]).
 #' @template param_type
+#' @template param_theme
+#' @param ... (ignored).
 #'
 #' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
 #'
 #' @export
 #' @examples
@@ -41,8 +41,7 @@
 #'   autoplot(object, type = "histogram", binwidth = 1)
 #'   autoplot(object, type = "residual")
 #' }
-autoplot.PredictionRegr = function(object, # nolint
-  type = "xy", ...) {
+autoplot.PredictionRegr = function(object, type = "xy", theme = theme_minimal(), ...) {
   checkmate::assert_string(type)
 
   switch(type,
@@ -54,31 +53,30 @@ autoplot.PredictionRegr = function(object, # nolint
         geom_abline(
           slope = 1,
           alpha = 0.5) +
-        geom_point(color = apply_theme(viridis::viridis(1, begin = 0.33), "#000000")) +
+        geom_point(
+          color = viridis::viridis(1, begin = 0.33),
+          alpha = 0.8) +
         geom_rug(sides = "bl") +
         geom_smooth(
           formula = y ~ x,
           method = "lm",
-          color = apply_theme(viridis::viridis(1, begin = 0.5), "#3366FF")) +
-        apply_theme(list(theme_mlr3()))
+          color = viridis::viridis(1, begin = 0.5)) +
+        theme
     },
 
     "histogram" = {
       object = ggplot2::fortify(object)
-      p = ggplot(object,
+      ggplot(object,
         mapping = aes(
           x = .data[["truth"]] - .data[["response"]],
           y = after_stat(.data[["density"]]))) +
         geom_histogram(
-          fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"),
-          alpha = apply_theme(0.8, 1),
-          color = "black",
-          ...) +
+          fill = viridis::viridis(1, begin = 0.5),
+          alpha = 0.8,
+          color = "black") +
         xlab("Residuals") +
-        ylab("Density")
-
-      # geom_blank errors with after_stat
-      if (getOption("mlr3.theme", TRUE)) p + theme_mlr3() else p
+        ylab("Density") +
+        theme
     },
 
     "residual" = {
@@ -86,16 +84,18 @@ autoplot.PredictionRegr = function(object, # nolint
         mapping = aes(
           x = .data[["response"]],
           y = .data[["truth"]] - .data[["response"]])) +
-        geom_point(color = apply_theme(viridis::viridis(1, begin = 0.33), "#000000")) +
+        geom_point(
+          color = viridis::viridis(1, begin = 0.33),
+          alpha = 0.8) +
         geom_rug(sides = "bl") +
         geom_smooth(
           formula = y ~ x,
           method = "lm",
-          fill = apply_theme(viridis::viridis(1, begin = 0.5), "#3366FF"),
-          color = apply_theme(viridis::viridis(1, begin = 0.5), "#3366FF")) +
+          fill = viridis::viridis(1, begin = 0.5),
+          color = viridis::viridis(1, begin = 0.5)) +
         xlab("Response") +
         ylab("Residuals") +
-        apply_theme(list(theme_mlr3()))
+        theme
     },
 
     stopf("Unknown plot type '%s'", type)

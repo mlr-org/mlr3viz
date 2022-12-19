@@ -15,12 +15,10 @@
 #' @param object ([mlr3::BenchmarkResult]).
 #' @template param_type
 #' @template param_measure
-#' @param ... (`any`):
-#'   Additional arguments, passed down to the respective `geom` or plotting function.
+#' @template param_theme
+#' @param ... (ignored).
 #'
 #' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
 #'
 #' @references
 #' `r format_bib("precrec")`
@@ -41,7 +39,7 @@
 #'   autoplot(object)
 #'   autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "roc")
 #' }
-autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ...) {
+autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, theme = theme_minimal(), ...) {
   assert_string(type)
 
   task = object$tasks$task[[1L]]
@@ -61,15 +59,12 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ..
           y = .data[[measure_id]])) +
         geom_boxplot(
           mapping = aes(fill = .data[["learner_id"]]),
-          show.legend = FALSE,
-          ...) +
+          show.legend = FALSE) +
         scale_x_discrete(labels = learner_labels) +
         # we need "free_x" to drop empty learners for certain tasks - because we apply over .data$nr
         facet_wrap(vars(.data$task_id), scales = "free_x") +
-        apply_theme(list(
-          scale_fill_viridis_d("Learner", end = 0.8, alpha = 0.8),
-          theme_mlr3()
-        )) +
+        scale_fill_viridis_d("Learner", end = 0.8, alpha = 0.8) +
+        theme +
         theme(
           axis.text.x = element_text(angle = 45, hjust = 1),
           axis.title.x = element_blank()
@@ -77,24 +72,22 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, ..
     },
 
     "roc" = {
-      p = plot_precrec(object, curvetype = "ROC", ...)
+      p = plot_precrec(object, curvetype = "ROC")
       p$layers[[1]]$mapping = aes(colour = modname, fill = modname)
       # fill confidence bounds
       p +
-        apply_theme(list(
-          scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill")),
-          theme_mlr3())) +
+        scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill")) +
+        theme +
         theme(plot.title = element_blank())
     },
 
     "prc" = {
-      p = plot_precrec(object, curvetype = "PRC", ...)
+      p = plot_precrec(object, curvetype = "PRC")
       # fill confidence bounds
       p$layers[[1]]$mapping = aes(colour = modname, fill = modname)
       p +
-        apply_theme(list(
-          scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill")),
-          theme_mlr3())) +
+        scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill")) +
+        theme +
         theme(plot.title = element_blank())
     },
 

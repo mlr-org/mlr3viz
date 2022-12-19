@@ -5,15 +5,17 @@
 \alias{autoplot.LearnerRegrRpart}
 \title{Plot for LearnerClassifRpart / LearnerRegrRpart}
 \usage{
-\method{autoplot}{LearnerClassifRpart}(object, ...)
+\method{autoplot}{LearnerClassifRpart}(object, theme = theme_minimal(), ...)
 
-\method{autoplot}{LearnerRegrRpart}(object, ...)
+\method{autoplot}{LearnerRegrRpart}(object, theme = theme_minimal(), ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:mlr_learners_classif.rpart]{mlr3::LearnerClassifRpart} | \link[mlr3:mlr_learners_regr.rpart]{mlr3::LearnerRegrRpart}).}
 
-\item{...}{(\code{any}):
-Additional arguments, passed down to \code{\link[ggparty:autoplot.party]{ggparty::autoplot.party()}}.}
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{...}{(ignored).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -27,13 +29,6 @@ regression trees.
 
 Note that learner-specific plots are experimental and subject to change.
 }
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
-}
-
 \examples{
 if (requireNamespace("mlr3")) {
   library(mlr3)

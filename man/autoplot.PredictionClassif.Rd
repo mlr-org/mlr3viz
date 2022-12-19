@@ -4,7 +4,13 @@
 \alias{autoplot.PredictionClassif}
 \title{Plot for PredictionClassif}
 \usage{
-\method{autoplot}{PredictionClassif}(object, type = "stacked", measure = NULL, ...)
+\method{autoplot}{PredictionClassif}(
+  object,
+  type = "stacked",
+  measure = NULL,
+  theme = theme_minimal(),
+  ...
+)
 }
 \arguments{
 \item{object}{(\link[mlr3:PredictionClassif]{mlr3::PredictionClassif}).}
@@ -15,8 +21,10 @@ Type of the plot. See description.}
 \item{measure}{(\link[mlr3:Measure]{mlr3::Measure})\cr
 Performance measure to use.}
 
-\item{...}{(\code{any}):
-Additional arguments, passed down to the respective \code{geom}, plotting function or measure.}
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{...}{(ignored).}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
@@ -34,13 +42,6 @@ object and plots the resulting performance as returned by \code{measure}.
 Arguments in \code{...} are passed down to the score function of the \link[mlr3:Measure]{mlr3::Measure}.
 }
 }
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
-}
-
 \examples{
 if (requireNamespace("mlr3")) {
   library(mlr3)

@@ -8,10 +8,10 @@
 #'
 #' @param object ([mlr3::TaskRegr]).
 #' @template param_type
+#' @template param_theme
+#' @param ... (ignored).
 #'
 #' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
 #'
 #' @export
 #' @examples
@@ -26,7 +26,7 @@
 #'   autoplot(task)
 #'   autoplot(task, type = "pairs")
 #' }
-autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
+autoplot.TaskRegr = function(object, type = "target", theme = theme_minimal(), ...) { # nolint
   assert_string(type)
 
   switch(type,
@@ -35,11 +35,12 @@ autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
       mapping = aes(
         y = .data[[object$target_names]])) +
       geom_boxplot(
-        fill = apply_theme(viridis::viridis(1, begin = 0.5), "#ffffff"),
-        alpha = apply_theme(0.8, 1),
-        ...) +
+        fill = viridis::viridis(1, begin = 0.5),
+        alpha = 0.8,
+        color = "#000000",
+        linewidth = 0.5) +
         scale_x_discrete() +
-        apply_theme(list(theme_mlr3())) +
+        theme +
         theme(
           axis.text.x.bottom = element_blank(),
           axis.title.x.bottom = element_blank())
@@ -48,15 +49,14 @@ autoplot.TaskRegr = function(object, type = "target", ...) { # nolint
     "pairs" = {
       require_namespaces("GGally")
 
-      color = apply_theme(viridis::viridis(1, begin = 0.5), "grey")
-      alpha = apply_theme(0.8, 1)
+      color = viridis::viridis(1, begin = 0.5)
+      alpha = 0.8
 
       GGally::ggpairs(object,
-        upper = list(continuous = "cor",  combo = GGally::wrap("box_no_facet", fill = color, alpha = alpha), discrete = "count", na = "na"),
-        lower = list(continuous = GGally::wrap("points", color = color), combo = GGally::wrap("facethist", fill = color, alpha = alpha, color = "#000000"), discrete = GGally::wrap("facetbar", fill = color, alpha = alpha), na = "na"),
-        diag = list(continuous = GGally::wrap("densityDiag", color = color), discrete = GGally::wrap("barDiag", fill = color, alpha = alpha, color = "#000000"), na = "naDiag"),
-        ...) +
-        apply_theme(list(theme_mlr3()))
+        upper = list(continuous = "cor",  combo = GGally::wrap("box_no_facet", fill = color, alpha = alpha, color = "#000000", linewidth = 0.5), discrete = "count", na = "na"),
+        lower = list(continuous = GGally::wrap("points", color = color, alpha = alpha), combo = GGally::wrap("facethist", fill = color, alpha = alpha, color = "#000000", linewidth = 0.5), discrete = GGally::wrap("facetbar", fill = color, alpha = alpha, color = "#000000", linewidth = 0.5), na = "na"),
+        diag = list(continuous = GGally::wrap("densityDiag", color = color), discrete = GGally::wrap("barDiag", fill = color, alpha = alpha, color = "#000000", linewidth = 0.5), na = "naDiag")) +
+        theme
     },
 
     stopf("Unknown plot type '%s'", type)

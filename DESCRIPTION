@@ -90,5 +90,4 @@ Collate:
     'helper.R'
     'plot_learner_prediction.R'
     'reexports.R'
-    'theme-mlr3.R'
     'zzz.R'
