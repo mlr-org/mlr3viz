@@ -1,18 +1,21 @@
-#' @title Plot for Filter Scores
+#' @title Plots for Filter Scores
 #'
 #' @description
-#' Generates plots for [mlr3filters::Filter], depending on argument `type`:
+#' Visualizations for [mlr3filters::Filter].
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
+#'
 #' * `"barplot"` (default): Bar plot of filter scores.
 #'
 #' @param object ([mlr3filters::Filter]).
 #' @template param_type
 #' @param n (`integer(1)`)\cr
-#'   Only include the first `n` features with highest importance.
-#'   Defaults to all features.
+#'  Only include the first `n` features with the highest importance.
+#'  Defaults to all features.
 #' @template param_theme
 #' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
+#' @return [ggplot2::ggplot()].
 #' @export
 #' @examples
 #' if (requireNamespace("mlr3")) {

@@ -6,7 +6,7 @@
 \alias{autoplot.LearnerClassifGlmnet}
 \alias{autoplot.LearnerRegrCVGlmnet}
 \alias{autoplot.LearnerRegrGlmnet}
-\title{Plot for LearnerClassifGlmnet / LearnerRegrGlmnet / LearnerClassifCVGlmnet / LearnerRegrCVGlmnet}
+\title{Plots for GLMNet Learners}
 \usage{
 \method{autoplot}{LearnerClassifCVGlmnet}(object, theme = theme_minimal(), ...)
 
@@ -17,8 +17,7 @@
 \method{autoplot}{LearnerRegrGlmnet}(object, theme = theme_minimal(), ...)
 }
 \arguments{
-\item{object}{(\link[mlr3learners:mlr_learners_classif.glmnet]{mlr3learners::LearnerClassifGlmnet} | \link[mlr3learners:mlr_learners_regr.glmnet]{mlr3learners::LearnerRegrGlmnet} |
-\link[mlr3learners:mlr_learners_regr.cv_glmnet]{mlr3learners::LearnerRegrCVGlmnet} | \link[mlr3learners:mlr_learners_regr.cv_glmnet]{mlr3learners::LearnerRegrCVGlmnet}).}
+\item{object}{(\link[mlr3learners:mlr_learners_classif.glmnet]{mlr3learners::LearnerClassifGlmnet} | \link[mlr3learners:mlr_learners_regr.glmnet]{mlr3learners::LearnerRegrGlmnet} | \link[mlr3learners:mlr_learners_regr.cv_glmnet]{mlr3learners::LearnerRegrCVGlmnet} | \link[mlr3learners:mlr_learners_regr.cv_glmnet]{mlr3learners::LearnerRegrCVGlmnet}).}
 
 \item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
 The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
@@ -26,14 +25,10 @@ The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by defaul
 \item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Visualizations for \link[mlr3learners:mlr_learners_classif.glmnet]{mlr3learners::mlr_learners_classif.glmnet}, \link[mlr3learners:mlr_learners_regr.glmnet]{mlr3learners::mlr_learners_regr.glmnet},
-\link[mlr3learners:mlr_learners_classif.cv_glmnet]{mlr3learners::mlr_learners_classif.cv_glmnet} and \link[mlr3learners:mlr_learners_regr.cv_glmnet]{mlr3learners::mlr_learners_regr.cv_glmnet}
-using the package \CRANpkg{ggfortify}.
-
-Note that learner-specific plots are experimental and subject to change.
+Visualizations for GLMNet learners using the package \CRANpkg{ggfortify}.
 }
 \examples{
 \dontrun{

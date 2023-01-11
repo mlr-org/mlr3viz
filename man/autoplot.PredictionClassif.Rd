@@ -2,7 +2,7 @@
 % Please edit documentation in R/PredictionClassif.R
 \name{autoplot.PredictionClassif}
 \alias{autoplot.PredictionClassif}
-\title{Plot for PredictionClassif}
+\title{Plots for Classification Predictions}
 \usage{
 \method{autoplot}{PredictionClassif}(
   object,
@@ -27,19 +27,19 @@ The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by defaul
 \item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Generates plots for \link[mlr3:PredictionClassif]{mlr3::PredictionClassif}, depending on argument \code{type}:
+Visualizations for \link[mlr3:PredictionClassif]{mlr3::PredictionClassif}.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
 \itemize{
 \item \code{"stacked"} (default): Stacked barplot of true and estimated class labels.
 \item \code{"roc"}: ROC curve (1 - specificity on x, sensitivity on y).
 Requires package \CRANpkg{precrec}.
 \item \code{"prc"}: Precision recall curve.
 Requires package \CRANpkg{precrec}.
-\item \code{"threshold"}: Systematically varies the threshold of the \link[mlr3:PredictionClassif]{mlr3::PredictionClassif}
-object and plots the resulting performance as returned by \code{measure}.
-Arguments in \code{...} are passed down to the score function of the \link[mlr3:Measure]{mlr3::Measure}.
+\item \code{"threshold"}: Systematically varies the threshold of the \link[mlr3:PredictionClassif]{mlr3::PredictionClassif} object and plots the resulting performance as returned by \code{measure}.
 }
 }
 \examples{

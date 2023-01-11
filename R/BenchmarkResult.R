@@ -1,16 +1,17 @@
-#' @title Plot for BenchmarkResult
+#' @title Plots for Benchmark Results
 #'
 #' @description
-#' Generates plots for [mlr3::BenchmarkResult], depending on argument `type`:
+#' Visualizations for [mlr3::BenchmarkResult].
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
 #'
 #' * `"boxplot"` (default): Boxplots of performance measures, one box per [mlr3::Learner] and one facet per [mlr3::Task].
 #' * `"roc"`: ROC curve (1 - specificity on x, sensitivity on y).
 #'   The [mlr3::BenchmarkResult] may only have a single [mlr3::Task] and a single [mlr3::Resampling].
 #'   Note that you can subset any [mlr3::BenchmarkResult] with its `$filter()`  method (see examples).
 #'   Requires package \CRANpkg{precrec}.
-#'   Additional arguments will be passed down to the respective [autoplot()] function in package \CRANpkg{precrec}.
-#'   Arguments `calc_avg` and `cb_alpha` are passed to [precrec::evalmod()].
-#' * `"prc"`: Precision recall curve. See `"roc"`.
+#' * `"prc"`: Precision recall curve.
+#'    See `"roc"`.
 #'
 #' @param object ([mlr3::BenchmarkResult]).
 #' @template param_type
@@ -18,7 +19,7 @@
 #' @template param_theme
 #' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
+#' @return [ggplot2::ggplot()].
 #'
 #' @references
 #' `r format_bib("precrec")`
@@ -73,7 +74,7 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, th
 
     "roc" = {
       p = plot_precrec(object, curvetype = "ROC")
-      p$layers[[1]]$mapping = aes(colour = modname, fill = modname)
+      p$layers[[1]]$mapping = aes(color = modname, fill = modname)
       # fill confidence bounds
       p +
         scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill")) +
@@ -84,7 +85,7 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, th
     "prc" = {
       p = plot_precrec(object, curvetype = "PRC")
       # fill confidence bounds
-      p$layers[[1]]$mapping = aes(colour = modname, fill = modname)
+      p$layers[[1]]$mapping = aes(color = modname, fill = modname)
       p +
         scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill")) +
         theme +

@@ -2,7 +2,7 @@
 % Please edit documentation in R/BenchmarkResult.R
 \name{autoplot.BenchmarkResult}
 \alias{autoplot.BenchmarkResult}
-\title{Plot for BenchmarkResult}
+\title{Plots for Benchmark Results}
 \usage{
 \method{autoplot}{BenchmarkResult}(
   object,
@@ -27,19 +27,20 @@ The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by defaul
 \item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Generates plots for \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}, depending on argument \code{type}:
+Visualizations for \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
 \itemize{
 \item \code{"boxplot"} (default): Boxplots of performance measures, one box per \link[mlr3:Learner]{mlr3::Learner} and one facet per \link[mlr3:Task]{mlr3::Task}.
 \item \code{"roc"}: ROC curve (1 - specificity on x, sensitivity on y).
 The \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} may only have a single \link[mlr3:Task]{mlr3::Task} and a single \link[mlr3:Resampling]{mlr3::Resampling}.
 Note that you can subset any \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} with its \verb{$filter()}  method (see examples).
 Requires package \CRANpkg{precrec}.
-Additional arguments will be passed down to the respective \code{\link[=autoplot]{autoplot()}} function in package \CRANpkg{precrec}.
-Arguments \code{calc_avg} and \code{cb_alpha} are passed to \code{\link[precrec:evalmod]{precrec::evalmod()}}.
-\item \code{"prc"}: Precision recall curve. See \code{"roc"}.
+\item \code{"prc"}: Precision recall curve.
+See \code{"roc"}.
 }
 }
 \examples{

@@ -1,41 +1,45 @@
-#' @title Plot for OptimInstanceSingleCrit
+#' @title Plots for Optimization Instances
+#'
+#' @importFrom scales pretty_breaks
 #'
 #' @description
-#' Generates plots for [bbotk::OptimInstanceSingleCrit].
+#' Visualizations for [bbotk::OptimInstanceSingleCrit].
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
 #'
-#' @param object ([bbotk::OptimInstanceSingleCrit].
-#' @param type (`character(1)`):
-#'   Type of the plot. Available choices:
-#'   * `"marginal"`: scatter plots of x versus y The
-#'     colour of the points shows the batch number.
-#'   * `"performance"`: scatter plots of batch number versus y
-#'   * `"parameter"`: scatter plots of batch number versus input.
-#'      The colour of the points shows the y values.
-#'   * `"parallel"` parallel coordinates plot. x values are rescaled by
-#'     `(x - mean(x)) / sd(x)`.
-#'   * `"points"` - scatter plot of two x dimensions versus.
-#'      The colour of the points shows the y values.
-#'   * `"surface"`: surface plot of two x dimensions versus y values.
-#'     The y values are interpolated with the supplied
-#'     [mlr3::Learner].
-#'   * `"pairs"`: plots all x and y values against each other.
+#'   * `"marginal"` (default): Scatter plots of x versus y.
+#'      The color of the points shows the batch number.
+#'   * `"performance"`: Scatter plots of batch number versus y
+#'   * `"parameter"`: Scatter plots of batch number versus input.
+#'      The color of the points shows the y values.
+#'   * `"parallel"`: Parallel coordinates plot.
+#'      x values are rescaled by `(x - mean(x)) / sd(x)`.
+#'   * `"points"`: Scatter plot of two x dimensions versus.
+#'      The color of the points shows the y values.
+#'   * `"surface"`: Surface plot of two x dimensions versus y values.
+#'     The y values are interpolated with the supplied [mlr3::Learner].
+#'   * `"pairs"`: Plots all x and y values against each other.
+#'
+#' @param object ([bbotk::OptimInstanceSingleCrit]).
+#' @template param_type
 #' @param cols_x (`character()`)\cr
-#'   Column names of x values. By default, all untransformed
-#'   x values from the search space are plotted. Transformed hyperparameters are prefixed with
-#'   `x_domain_`.
+#'  Column names of x values.
+#'  By default, all untransformed x values from the search space are plotted.
+#'  Transformed hyperparameters are prefixed with `x_domain_`.
 #' @param trafo (`logical(1)`)\cr
-#'   Determines if untransformed (`FALSE`) or transformed (`TRUE`)
-#'   x values are plotted.
+#'  If `FALSE` (default), the untransformed x values are plotted.
+#'  If `TRUE`, the transformed x values are plotted.
 #' @param learner ([mlr3::Learner])\cr
 #'   Regression learner used to interpolate the data of the surface plot.
 #' @param grid_resolution (`numeric()`)\cr
 #'   Resolution of the surface plot.
 #' @param batch (`integer()`)\cr
-#'  The batch number(s) to limit the plot to. The default is all batches.
+#'  The batch number(s) to limit the plot to.
+#'  The default is all batches.
 #' @template param_theme
 #' @param ... (ignored).
-#' @importFrom scales pretty_breaks
-#' @return [ggplot2::ggplot()] object.
+#'
+#' @return [ggplot2::ggplot()].
 #'
 #' @export
 #' @examples
@@ -167,7 +171,7 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
               size = 3,
               stroke = 0.5,
               alpha = 0.8) +
-          guides(fill = guide_colourbar(barwidth = 0.5, barheight = 10)) +
+          guides(fill = guide_colorbar(barwidth = 0.5, barheight = 10)) +
           scale_fill_viridis_c(breaks = scales::pretty_breaks()) +
           theme
       })
@@ -222,7 +226,7 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
         geom_line(
           mapping = aes(
             group = .data$id,
-            colour = .data[[cols_y]]),
+            color = .data[[cols_y]]),
           linewidth = 1) +
         geom_vline(aes(xintercept = x)) +
         {
@@ -232,7 +236,7 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
         } +
         scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
         scale_color_viridis_c() +
-        guides(color = guide_colourbar(barwidth = 0.5, barheight = 10)) +
+        guides(color = guide_colorbar(barwidth = 0.5, barheight = 10)) +
         theme +
         theme(axis.title.x = element_blank())
     },
@@ -253,7 +257,7 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
           size = 3,
           stroke = 1) +
         scale_fill_viridis_c() +
-        guides(fill = guide_colourbar(barwidth = 0.5, barheight = 10)) +
+        guides(fill = guide_colorbar(barwidth = 0.5, barheight = 10)) +
         theme
     },
 
@@ -296,7 +300,7 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
           alpha = 0.8) +
         scale_x_continuous(expand = c(0.01, 0.01)) +
         scale_y_continuous(expand = c(0.01, 0.01)) +
-        guides(fill = guide_colourbar(barwidth = 0.5, barheight = 10)) +
+        guides(fill = guide_colorbar(barwidth = 0.5, barheight = 10)) +
         scale_fill_viridis_c() +
         theme
     },

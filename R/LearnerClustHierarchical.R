@@ -1,26 +1,25 @@
-#' @title Plot for Hierarchical Clustering Learners
+#' @title Plots for Hierarchical Clustering Learners
 #'
 #' @description
-#' Generates plots for hierarchical clusterers, depending on argument `type`:
+#' Visualizations for hierarchical clusters.
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
 #'
-#' * `"dend"` (default): dendrograms using \CRANpkg{ggdendro} package.
-#'
-#' * `"scree"`: scree plot that shows the number of possible clusters on x-axis and the height on the y-axis.
-#'
-#' Note that learner-specific plots are experimental and subject to change.
+#' * `"dend"` (default): Dendrograms using \CRANpkg{ggdendro} package.
+#' * `"scree"`: Scree plot that shows the number of possible clusters on the x-axis and the height on the y-axis.
 #'
 #' @param object ([mlr3cluster::LearnerClustAgnes] | [mlr3cluster::LearnerClustDiana] | [mlr3cluster::LearnerClustHclust]).
 #' @param task ([mlr3::Task])\cr
-#'  Optionally, pass the task to add labels of observations to a hclust dendrogram.
+#'  Optionally, pass the task to add labels of observations to a `hclust` dendrogram.
 #'  Labels are set via the row names of the task.
 #' @template param_type
+#' @template param_theme
 #' @param theme_dendro (`logical(1)`)\cr
 #'  If `TRUE` (default), the special dendrogram theme from \CRANpkg{ggdendro} package is used in plot `"dend"`.
 #'  Set to `FALSE` to use the theme passed in `theme`.
-#' @template param_theme
 #' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
+#' @return [ggplot2::ggplot()].
 #'
 #' @export
 #' @examples

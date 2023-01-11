@@ -1,38 +1,35 @@
-#' @title Plot for ResampleResult
+#' @title Plots for Resample Results
 #'
 #' @description
-#' Generates plots for [mlr3::ResampleResult], depending on argument `type`:
+#' Visualizations for [mlr3::ResampleResult].
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
+#'
 #' * `"boxplot"` (default): Boxplot of performance measures.
 #' * `"histogram"`: Histogram of performance measures.
 #' * `"roc"`: ROC curve (1 - specificity on x, sensitivity on y).
-#'   The predictions of the individual [mlr3::Resampling]s are merged prior to
-#'   calculating the ROC curve (micro averaged). Requires package
-#'   \CRANpkg{precrec}.
-#'   Additional arguments will be passed down to the respective [autoplot()] function
-#'   in package \CRANpkg{precrec}. Arguments `calc_avg` and `cb_alpha` are passed to
-#'   [precrec::evalmod()].
-#' * `"prc"`: Precision recall curve. See `"roc"`.
+#'    The predictions of the individual [mlr3::Resampling]s are merged prior to calculating the ROC curve (micro averaged).
+#'    Requires package \CRANpkg{precrec}.
+#' * `"prc"`: Precision recall curve.
+#'    See `"roc"`.
 #' * `"prediction"`: Plots the learner prediction for a grid of points.
-#'      Needs models to be stored. Set `store_models = TRUE` for
-#'      `[mlr3::resample]`.
-#'      For classification, we support tasks with exactly two features and
-#'      learners with `predict_type=` set to `"response"` or `"prob"`.
-#'      For regression, we support tasks with one or two features.
-#'      For tasks with one feature we can print confidence bounds if the predict
-#'      type of the learner was set to `"se"`.
-#'      For tasks with two features the predict type will be ignored.
+#'    Needs models to be stored. Set `store_models = TRUE` for `[mlr3::resample]`.
+#'    For classification, we support tasks with exactly two features and learners with `predict_type=` set to `"response"` or `"prob"`.
+#'    For regression, we support tasks with one or two features.
+#'    For tasks with one feature we can print confidence bounds if the predict type of the learner was set to `"se"`.
+#'    For tasks with two features the predict type will be ignored.
 #'
 #' @param object ([mlr3::ResampleResult]).
 #' @template param_type
 #' @template param_measure
 #' @param predict_sets (`character()`)\cr
-#'   Only for `type` set to `"prediction"`.
-#'   Which points should be shown in the plot?
-#'   Can be a subset of (`"train"`, `"test"`) or empty.
+#'  Only for `type` set to `"prediction"`.
+#'  Which points should be shown in the plot?
+#'  Can be a subset of (`"train"`, `"test"`) or empty.
 #' @template param_theme
 #' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
+#' @return [ggplot2::ggplot()].
 #'
 #' @references
 #' `r format_bib("precrec")`
@@ -107,7 +104,7 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, pre
 
     "roc" = {
       p = plot_precrec(object, curvetype = "ROC", ...)
-      p$layers[[1]]$mapping = aes(colour = modname, fill = modname)
+      p$layers[[1]]$mapping = aes(color = modname, fill = modname)
       # fill confidence bounds
       p +
         guides(
@@ -122,7 +119,7 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, pre
     "prc" = {
       p = plot_precrec(object, curvetype = "PRC")
       # fill confidence bounds
-      p$layers[[1]]$mapping = aes(colour = modname, fill = modname)
+      p$layers[[1]]$mapping = aes(color = modname, fill = modname)
       p +
         guides(
           color = "none",
@@ -232,16 +229,19 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
         name = "Probability",
         guide = guide_legend(override.aes = list(fill = viridis::viridis(1))))
       scale_fill = scale_fill_viridis_d(end = 0.8)
+      guides = NULL
     } else if (task_type == "classif" && learners[[1L]]$predict_type == "response") {
       # classif, no probs
       raster_aes = aes(fill = .data[["response"]])
       scale_alpha = NULL
       scale_fill = scale_fill_viridis_d(end = 0.8)
+      guides = NULL
     } else {
       # regr
       raster_aes = aes(fill = .data[["response"]])
       scale_alpha = NULL
       scale_fill = scale_fill_viridis_c(end = 0.8)
+      guides = guides(fill = guide_colorbar(barwidth = 0.5, barheight = 10))
     }
 
     if (!is.numeric(grid[[features[1L]]])) {
@@ -258,6 +258,7 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
         data = task_data(object, predict_sets),
         color = "black") +
       scale_fill +
+      guides +
       theme +
       theme(legend.position = "right") +
       scale_shape_manual(

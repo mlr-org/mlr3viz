@@ -2,7 +2,7 @@
 % Please edit documentation in R/TaskRegr.R
 \name{autoplot.TaskRegr}
 \alias{autoplot.TaskRegr}
-\title{Plot for Regression Tasks}
+\title{Plots for Regression Tasks}
 \usage{
 \method{autoplot}{TaskRegr}(object, type = "target", theme = theme_minimal(), ...)
 }
@@ -18,14 +18,16 @@ The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by defaul
 \item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Generates plots for \link[mlr3:TaskRegr]{mlr3::TaskRegr}, depending on argument \code{type}:
+Visualizations for \link[mlr3:TaskRegr]{mlr3::TaskRegr}.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
 \itemize{
-\item \code{"target"}: Box plot of target variable (default).
-\item \code{"pairs"}: Passes data and additional arguments down to
-\code{\link[GGally:ggpairs]{GGally::ggpairs()}}. Color is set to target column.
+\item \code{"target"} (default): Box plot of the target variable.
+\item \code{"pairs"}: Passes data to \code{\link[GGally:ggpairs]{GGally::ggpairs()}}.
+Color is set to target column.
 }
 }
 \examples{

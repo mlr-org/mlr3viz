@@ -1,17 +1,20 @@
-#' @title Plot for Regression Tasks
+#' @title Plots for Regression Tasks
 #'
 #' @description
-#' Generates plots for [mlr3::TaskRegr], depending on argument `type`:
-#'   * `"target"`: Box plot of target variable (default).
-#'   * `"pairs"`: Passes data and additional arguments down to
-#'   [GGally::ggpairs()]. Color is set to target column.
+#' Visualizations for [mlr3::TaskRegr].
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
+#'
+#'   * `"target"` (default): Box plot of the target variable.
+#'   * `"pairs"`: Passes data to [GGally::ggpairs()].
+#'      Color is set to target column.
 #'
 #' @param object ([mlr3::TaskRegr]).
 #' @template param_type
 #' @template param_theme
 #' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
+#' @return [ggplot2::ggplot()].
 #'
 #' @export
 #' @examples

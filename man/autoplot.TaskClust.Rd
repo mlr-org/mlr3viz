@@ -2,7 +2,7 @@
 % Please edit documentation in R/TaskClust.R
 \name{autoplot.TaskClust}
 \alias{autoplot.TaskClust}
-\title{Plot for Clustering Tasks}
+\title{Plots for Clustering Tasks}
 \usage{
 \method{autoplot}{TaskClust}(object, type = "pairs", theme = theme_minimal(), ...)
 }
@@ -18,13 +18,14 @@ The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by defaul
 \item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Generates plots for \link[mlr3cluster:TaskClust]{mlr3cluster::TaskClust}, depending on argument \code{type}:
+Visualizations for \link[mlr3cluster:TaskClust]{mlr3cluster::TaskClust}.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
 \itemize{
-\item \code{"pairs"}: Passes data and additional arguments down to
-\code{\link[GGally:ggpairs]{GGally::ggpairs()}} (default).
+\item \code{"pairs"} (default): Passes data \code{\link[GGally:ggpairs]{GGally::ggpairs()}}.
 }
 }
 \examples{

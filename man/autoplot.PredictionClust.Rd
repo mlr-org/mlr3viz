@@ -2,7 +2,7 @@
 % Please edit documentation in R/PredictionClust.R
 \name{autoplot.PredictionClust}
 \alias{autoplot.PredictionClust}
-\title{Plot for PredictionClust}
+\title{Plots for Cluster Predictions}
 \usage{
 \method{autoplot}{PredictionClust}(
   object,
@@ -18,8 +18,8 @@
 
 \item{task}{(\link[mlr3cluster:TaskClust]{mlr3cluster::TaskClust}).}
 
-\item{row_ids}{row ids to subset task data to ensure that
-only the data used to make predictions are shown in plots.}
+\item{row_ids}{(\code{integer()})
+Row ids to subset task data to ensure that only the data used to make predictions are shown in plots.}
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
@@ -30,17 +30,18 @@ The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by defaul
 \item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Generates plots for \link[mlr3cluster:PredictionClust]{mlr3cluster::PredictionClust}, depending on argument \code{type}:
+Visualizations for \link[mlr3cluster:PredictionClust]{mlr3cluster::PredictionClust}.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
 \itemize{
-\item \code{"scatter"} (default): scatterplot with correlation values
-and colored cluster assignments.
-\item \code{"sil"}: Silhouette plot with mean silhouette value as
-a reference line. Requires package \CRANpkg{ggfortify}.
-\item \code{"pca"}: Perform PCA on data and color code cluster
-assignments. Inspired by and uses \link[ggfortify:autoplot.kmeans]{ggfortify::autoplot.kmeans}.
+\item \code{"scatter"} (default): scatterplot with correlation values and colored cluster assignments.
+\item \code{"sil"}: Silhouette plot with mean silhouette value as the reference line.
+Requires package \CRANpkg{ggfortify}.
+\item \code{"pca"}: Perform PCA on data and color code cluster assignments.
+Inspired by and uses \link[ggfortify:autoplot.kmeans]{ggfortify::autoplot.kmeans}.
 }
 }
 \examples{

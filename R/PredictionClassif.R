@@ -1,16 +1,16 @@
-#' @title Plot for PredictionClassif
+#' @title Plots for Classification Predictions
 #'
 #' @description
-#' Generates plots for [mlr3::PredictionClassif], depending on argument `type`:
+#' Visualizations for [mlr3::PredictionClassif].
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
 #'
 #' * `"stacked"` (default): Stacked barplot of true and estimated class labels.
 #' * `"roc"`: ROC curve (1 - specificity on x, sensitivity on y).
 #'   Requires package \CRANpkg{precrec}.
 #' * `"prc"`: Precision recall curve.
 #'   Requires package \CRANpkg{precrec}.
-#' * `"threshold"`: Systematically varies the threshold of the [mlr3::PredictionClassif]
-#'   object and plots the resulting performance as returned by `measure`.
-#'   Arguments in `...` are passed down to the score function of the [mlr3::Measure].
+#' * `"threshold"`: Systematically varies the threshold of the [mlr3::PredictionClassif] object and plots the resulting performance as returned by `measure`.
 #'
 #' @param object ([mlr3::PredictionClassif]).
 #' @template param_type
@@ -18,7 +18,7 @@
 #' @template param_theme
 #' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
+#' @return [ggplot2::ggplot()].
 #'
 #' @references
 #' `r format_bib("precrec")`
@@ -56,7 +56,7 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
           mapping = aes(label = after_stat(count)),
           stat = "count",
           position = position_stack(vjust = 0.5),
-          colour = "#000000") +
+          color = "#000000") +
         xlab("Feature") +
         ylab("Count") +
         scale_fill_viridis_d("Feature", end = 0.8) +

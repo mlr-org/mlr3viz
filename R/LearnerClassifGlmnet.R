@@ -1,18 +1,13 @@
-#' @title Plot for LearnerClassifGlmnet / LearnerRegrGlmnet / LearnerClassifCVGlmnet / LearnerRegrCVGlmnet
+#' @title Plots for GLMNet Learners
 #'
 #' @description
-#' Visualizations for [mlr3learners::mlr_learners_classif.glmnet], [mlr3learners::mlr_learners_regr.glmnet],
-#' [mlr3learners::mlr_learners_classif.cv_glmnet] and [mlr3learners::mlr_learners_regr.cv_glmnet]
-#' using the package \CRANpkg{ggfortify}.
+#' Visualizations for GLMNet learners using the package \CRANpkg{ggfortify}.
 #'
-#' Note that learner-specific plots are experimental and subject to change.
-#'
-#' @param object ([mlr3learners::LearnerClassifGlmnet] | [mlr3learners::LearnerRegrGlmnet] |
-#'   [mlr3learners::LearnerRegrCVGlmnet] | [mlr3learners::LearnerRegrCVGlmnet]).
+#' @param object ([mlr3learners::LearnerClassifGlmnet] | [mlr3learners::LearnerRegrGlmnet] | [mlr3learners::LearnerRegrCVGlmnet] | [mlr3learners::LearnerRegrCVGlmnet]).
 #' @template param_theme
 #' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
+#' @return [ggplot2::ggplot()].
 #'
 #' @references
 #' `r format_bib("ggfortify")`

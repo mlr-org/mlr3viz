@@ -2,7 +2,7 @@
 % Please edit documentation in R/TaskClassif.R
 \name{autoplot.TaskClassif}
 \alias{autoplot.TaskClassif}
-\title{Plot for Classification Tasks}
+\title{Plots for Classification Tasks}
 \usage{
 \method{autoplot}{TaskClassif}(object, type = "target", theme = theme_minimal(), ...)
 }
@@ -18,16 +18,18 @@ The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by defaul
 \item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Generates plots for \link[mlr3:TaskClassif]{mlr3::TaskClassif}, depending on argument \code{type}:
+Visualizations for \link[mlr3:TaskClassif]{mlr3::TaskClassif}.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
 \itemize{
 \item \code{"target"} (default): Bar plot of the target variable (default).
-\item \code{"duo"}: Passes data and additional arguments down to \code{\link[GGally:ggduo]{GGally::ggduo()}}.
+\item \code{"duo"}: Passes data to \code{\link[GGally:ggduo]{GGally::ggduo()}}.
 \code{columnsX} is target, \code{columnsY} is features.
-\item \code{"pairs"}: Passes data and additional arguments down to
-\code{\link[GGally:ggpairs]{GGally::ggpairs()}}. Color is set to target column.
+\item \code{"pairs"}: Passes data to \code{\link[GGally:ggpairs]{GGally::ggpairs()}}.
+Color is set to target column.
 }
 }
 \examples{

@@ -1,31 +1,32 @@
-#' @title Plot for TuningInstanceSingleCrit
+#' @title Plots for Tuning Instances
 #'
 #' @description
-#' Generates plots for [mlr3tuning::TuningInstanceSingleCrit].
+#' Visualizations for [mlr3tuning::TuningInstanceSingleCrit].
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
+#'
+#'   * `"marginal"` (default): Scatter plots of x versus y.
+#'      The color of the points shows the batch number.
+#'   * `"performance"`: Scatter plots of batch number versus y
+#'   * `"parameter"`: Scatter plots of batch number versus input.
+#'      The color of the points shows the y values.
+#'   * `"parallel"`: Parallel coordinates plot.
+#'      hyperparameters are rescaled by `(x - mean(x)) / sd(x)`.
+#'   * `"points"`: Scatter plot of two x dimensions versus.
+#'      The color of the points shows the y values.
+#'   * `"surface"`: Surface plot of two x dimensions versus y values.
+#'     The y values are interpolated with the supplied [mlr3::Learner].
+#'   * `"pairs"`: Plots all x and y values against each other.
 #'
 #' @param object ([mlr3tuning::TuningInstanceSingleCrit].
-#' @param type (`character(1)`):
-#'   Type of the plot. Available choices:
-#'   * `"marginal"`: scatter plots of hyperparameter versus performance. The
-#'     color of the points shows the batch number.
-#'   * `"performance"`: scatter plots of batch number versus performance.
-#'   * `"parameter"`: scatter plots of batch number versus hyperparameter. The
-#'     color of the points shows the performance.
-#'   * `"parallel"` parallel coordinates plot. Parameter values are rescaled by
-#'     `(x - mean(x)) / sd(x)`.
-#'   * `"points"` - scatter plot of two hyperparameters versus performance. The
-#'     color of the points shows the performance.
-#'   * `"surface"`: surface plot of 2 hyperparameters versus performance.
-#'     The performance values are interpolated with the supplied
-#'     [mlr3::Learner].
-#'   * `"pairs"`: plots all hyperparameters and performance values against each other.
+#' @template param_type
 #' @param cols_x (`character()`)\cr
-#'   Column names of hyperparameters. By default, all untransformed
-#'   hyperparameters are plotted. Transformed hyperparameters are prefixed with
-#'   `x_domain_`.
+#'  Column names of hyperparameters.
+#'  By default, all untransformed hyperparameters are plotted.
+#'  Transformed hyperparameters are prefixed with `x_domain_`.
 #' @param trafo (`logical(1)`)\cr
-#'   Determines if untransformed (`FALSE`) or transformed (`TRUE`)
-#'   hyperparametery are plotted.
+#'  If `FALSE` (default), the untransformed hyperparameters are plotted.
+#'  If `TRUE`, the transformed hyperparameters are plotted.
 #' @param learner ([mlr3::Learner])\cr
 #'   Regression learner used to interpolate the data of the surface plot.
 #' @param grid_resolution (`numeric()`)\cr
@@ -33,7 +34,7 @@
 #' @template param_theme
 #' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
+#' @return [ggplot2::ggplot()].
 #'
 #' @export
 #' @examples

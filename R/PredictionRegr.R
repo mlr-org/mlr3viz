@@ -1,30 +1,24 @@
-#' @title Plot for PredictionRegr
+#' @title Plots for Regression Predictions
 #'
 #' @description
-#' Generates plots for [mlr3::PredictionRegr], depending on argument `type`:
+#' Visualizations for [mlr3::PredictionRegr].
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
 #'
 #' * `"xy"` (default): Scatterplot of "true" response vs. "predicted" response.
-#'   By default a linear model is fitted via `geom_smooth(method = "lm")`
-#'   to visualize the trend between x and y (by default colored blue).
-#'
-#'   * In addition `geom_abline()` with `slope = 1` is added to the plot.
-#'
-#'   * Note that `geom_smooth()` and `geom_abline()` may overlap, depending on
-#'     the given data.
-#' * `"histogram"`: Histogram of residuals:
-#'    \eqn{r = y - \hat{y}}{r = y - y.hat}.
-#' * `"residual"`: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat}
-#' on the "x" and the residuals on the "y" axis.
-#'
-#'   * By default a linear model is fitted via `geom_smooth(method = "lm")`
-#'   to visualize the trend between x and y (by default colored blue).
+#'    By default a linear model is fitted via `geom_smooth(method = "lm")` to visualize the trend between x and y (by default colored blue).
+#'    In addition `geom_abline()` with `slope = 1` is added to the plot.
+#'    Note that `geom_smooth()` and `geom_abline()` may overlap, depending on the given data.
+#' * `"histogram"`: Histogram of residuals: \eqn{r = y - \hat{y}}{r = y - y.hat}.
+#' * `"residual"`: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat} on the "x" and the residuals on the "y" axis.
+#'    By default a linear model is fitted via `geom_smooth(method = "lm")` to visualize the trend between x and y (by default colored blue).
 #'
 #' @param object ([mlr3::PredictionRegr]).
 #' @template param_type
 #' @template param_theme
 #' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
+#' @return [ggplot2::ggplot()].
 #'
 #' @export
 #' @examples

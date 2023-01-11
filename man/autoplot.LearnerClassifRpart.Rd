@@ -3,7 +3,7 @@
 \name{autoplot.LearnerClassifRpart}
 \alias{autoplot.LearnerClassifRpart}
 \alias{autoplot.LearnerRegrRpart}
-\title{Plot for LearnerClassifRpart / LearnerRegrRpart}
+\title{Plots for Rpart Learners}
 \usage{
 \method{autoplot}{LearnerClassifRpart}(object, theme = theme_minimal(), ...)
 
@@ -18,16 +18,10 @@ The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by defaul
 \item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Visualize trees for \link[mlr3:mlr_learners_classif.rpart]{mlr3::mlr_learners_classif.rpart} and
-\link[mlr3:mlr_learners_regr.rpart]{mlr3::mlr_learners_regr.rpart} using the package \CRANpkg{ggparty}.
-
-Contrary to \CRANpkg{ggparty}, boxplots are shown in the terminal nodes for
-regression trees.
-
-Note that learner-specific plots are experimental and subject to change.
+Visualizations rpart trees using the package \CRANpkg{ggparty}.
 }
 \examples{
 if (requireNamespace("mlr3")) {

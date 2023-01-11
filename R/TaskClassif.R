@@ -1,19 +1,22 @@
-#' @title Plot for Classification Tasks
+#' @title Plots for Classification Tasks
 #'
 #' @description
-#' Generates plots for [mlr3::TaskClassif], depending on argument `type`:
+#' Visualizations for [mlr3::TaskClassif].
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
+#'
 #' * `"target"` (default): Bar plot of the target variable (default).
-#' * `"duo"`: Passes data and additional arguments down to [GGally::ggduo()].
+#' * `"duo"`: Passes data to [GGally::ggduo()].
 #'   `columnsX` is target, `columnsY` is features.
-#' * `"pairs"`: Passes data and additional arguments down to
-#' [GGally::ggpairs()]. Color is set to target column.
+#' * `"pairs"`: Passes data to [GGally::ggpairs()].
+#'   Color is set to target column.
 #'
 #' @param object ([mlr3::TaskClassif]).
 #' @template param_type
 #' @template param_theme
 #' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
+#' @return [ggplot2::ggplot()].
 #'
 #' @export
 #' @examples

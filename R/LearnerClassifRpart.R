@@ -1,19 +1,13 @@
-#' @title Plot for LearnerClassifRpart / LearnerRegrRpart
+#' @title Plots for Rpart Learners
 #'
 #' @description
-#' Visualize trees for [mlr3::mlr_learners_classif.rpart] and
-#' [mlr3::mlr_learners_regr.rpart] using the package \CRANpkg{ggparty}.
-#'
-#' Contrary to \CRANpkg{ggparty}, boxplots are shown in the terminal nodes for
-#' regression trees.
-#'
-#' Note that learner-specific plots are experimental and subject to change.
+#' Visualizations rpart trees using the package \CRANpkg{ggparty}.
 #'
 #' @param object ([mlr3::LearnerClassifRpart] | [mlr3::LearnerRegrRpart]).
 #' @template param_theme
 #' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
+#' @return [ggplot2::ggplot()].
 #'
 #' @export
 #' @examples

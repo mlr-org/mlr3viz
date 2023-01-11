@@ -1,26 +1,25 @@
-#' @title Plot for PredictionClust
+#' @title Plots for Cluster Predictions
 #'
 #' @description
-#' Generates plots for [mlr3cluster::PredictionClust], depending on argument `type`:
+#' Visualizations for [mlr3cluster::PredictionClust].
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
 #'
-#' * `"scatter"` (default): scatterplot with correlation values
-#' and colored cluster assignments.
-#'
-#' * `"sil"`: Silhouette plot with mean silhouette value as
-#'   a reference line. Requires package \CRANpkg{ggfortify}.
-#'
-#' * `"pca"`: Perform PCA on data and color code cluster
-#'   assignments. Inspired by and uses [ggfortify::autoplot.kmeans].
+#' * `"scatter"` (default): scatterplot with correlation values and colored cluster assignments.
+#' * `"sil"`: Silhouette plot with mean silhouette value as the reference line.
+#'    Requires package \CRANpkg{ggfortify}.
+#' * `"pca"`: Perform PCA on data and color code cluster assignments.
+#'    Inspired by and uses [ggfortify::autoplot.kmeans].
 #'
 #' @param object ([mlr3cluster::PredictionClust]).
 #' @param task ([mlr3cluster::TaskClust]).
-#' @param row_ids row ids to subset task data to ensure that
-#' only the data used to make predictions are shown in plots.
+#' @param row_ids (`integer()`)
+#' Row ids to subset task data to ensure that only the data used to make predictions are shown in plots.
 #' @template param_type
 #' @template param_theme
 #' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
+#' @return [ggplot2::ggplot()].
 #'
 #' @references
 #' `r format_bib("ggfortify")`
@@ -71,7 +70,7 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
       d = stats::dist(task$data(rows = row_ids))
       sil = cluster::silhouette(object$data$partition, d)
 
-      ggplot2::autoplot(sil, colour = "#000000") +
+      ggplot2::autoplot(sil, color = "#000000") +
         scale_fill_viridis_d("Cluster", end = 0.8, alpha = 0.8) +
         theme
     },
@@ -91,7 +90,7 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
       plot_data = merge(task_data, d, by = "row_ids")
       ggplot2::autoplot(stats::prcomp(task_data[, -"row_ids"]),
         data = plot_data,
-        colour = "cluster",
+        color = "cluster",
         size = 3) +
         scale_color_viridis_d("Cluster", end = 0.8, alpha = 0.8) +
         theme

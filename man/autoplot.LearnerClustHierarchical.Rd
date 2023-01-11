@@ -2,7 +2,7 @@
 % Please edit documentation in R/LearnerClustHierarchical.R
 \name{autoplot.LearnerClustHierarchical}
 \alias{autoplot.LearnerClustHierarchical}
-\title{Plot for Hierarchical Clustering Learners}
+\title{Plots for Hierarchical Clustering Learners}
 \usage{
 \method{autoplot}{LearnerClustHierarchical}(
   object,
@@ -20,7 +20,7 @@
 Type of the plot. See description.}
 
 \item{task}{(\link[mlr3:Task]{mlr3::Task})\cr
-Optionally, pass the task to add labels of observations to a hclust dendrogram.
+Optionally, pass the task to add labels of observations to a \code{hclust} dendrogram.
 Labels are set via the row names of the task.}
 
 \item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
@@ -33,16 +33,16 @@ Set to \code{FALSE} to use the theme passed in \code{theme}.}
 \item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Generates plots for hierarchical clusterers, depending on argument \code{type}:
+Visualizations for hierarchical clusters.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
 \itemize{
-\item \code{"dend"} (default): dendrograms using \CRANpkg{ggdendro} package.
-\item \code{"scree"}: scree plot that shows the number of possible clusters on x-axis and the height on the y-axis.
+\item \code{"dend"} (default): Dendrograms using \CRANpkg{ggdendro} package.
+\item \code{"scree"}: Scree plot that shows the number of possible clusters on the x-axis and the height on the y-axis.
 }
-
-Note that learner-specific plots are experimental and subject to change.
 }
 \examples{
 if (requireNamespace("mlr3")) {
