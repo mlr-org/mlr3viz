@@ -15,3 +15,5 @@
 ^\.github$
 ^\.ccache$
 ^docs$
+^revdep$
+^cran-comments\.md$
