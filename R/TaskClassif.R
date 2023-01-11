@@ -7,7 +7,7 @@
 #'
 #' * `"target"` (default): Bar plot of the target variable (default).
 #' * `"duo"`: Passes data to [GGally::ggduo()].
-#'   `columnsX` is target, `columnsY` is features.
+#'   `columnsX` is the target and `columnsY` are the features.
 #' * `"pairs"`: Passes data to [GGally::ggpairs()].
 #'   Color is set to target column.
 #'

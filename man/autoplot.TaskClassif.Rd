@@ -27,7 +27,7 @@ Possible choices are:
 \itemize{
 \item \code{"target"} (default): Bar plot of the target variable (default).
 \item \code{"duo"}: Passes data to \code{\link[GGally:ggduo]{GGally::ggduo()}}.
-\code{columnsX} is target, \code{columnsY} is features.
+\code{columnsX} is the target and \code{columnsY} are the features.
 \item \code{"pairs"}: Passes data to \code{\link[GGally:ggpairs]{GGally::ggpairs()}}.
 Color is set to target column.
 }
