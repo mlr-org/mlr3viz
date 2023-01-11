@@ -1,6 +1,7 @@
 ^renv$
 ^renv\.lock$
 ^README\.Rmd$
+^README\.html$
 ^LICENSE$
 .ignore
 .editorconfig
