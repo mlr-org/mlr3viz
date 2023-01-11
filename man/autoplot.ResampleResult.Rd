@@ -2,9 +2,16 @@
 % Please edit documentation in R/ResampleResult.R
 \name{autoplot.ResampleResult}
 \alias{autoplot.ResampleResult}
-\title{Plot for ResampleResult}
+\title{Plots for Resample Results}
 \usage{
-\method{autoplot}{ResampleResult}(object, type = "boxplot", measure = NULL, predict_sets = "test", ...)
+\method{autoplot}{ResampleResult}(
+  object,
+  type = "boxplot",
+  measure = NULL,
+  predict_sets = "test",
+  theme = theme_minimal(),
+  ...
+)
 }
 \arguments{
 \item{object}{(\link[mlr3:ResampleResult]{mlr3::ResampleResult}).}
@@ -20,43 +27,34 @@ Only for \code{type} set to \code{"prediction"}.
 Which points should be shown in the plot?
 Can be a subset of (\code{"train"}, \code{"test"}) or empty.}
 
-\item{...}{(\code{any}):
-Additional arguments, passed down to the respective \code{geom} or plotting function.}
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Generates plots for \link[mlr3:ResampleResult]{mlr3::ResampleResult}, depending on argument \code{type}:
+Visualizations for \link[mlr3:ResampleResult]{mlr3::ResampleResult}.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
 \itemize{
 \item \code{"boxplot"} (default): Boxplot of performance measures.
 \item \code{"histogram"}: Histogram of performance measures.
 \item \code{"roc"}: ROC curve (1 - specificity on x, sensitivity on y).
-The predictions of the individual \link[mlr3:Resampling]{mlr3::Resampling}s are merged prior to
-calculating the ROC curve (micro averaged). Requires package
-\CRANpkg{precrec}.
-Additional arguments will be passed down to the respective \code{\link[=autoplot]{autoplot()}} function
-in package \CRANpkg{precrec}. Arguments \code{calc_avg} and \code{cb_alpha} are passed to
-\code{\link[precrec:evalmod]{precrec::evalmod()}}.
-\item \code{"prc"}: Precision recall curve. See \code{"roc"}.
+The predictions of the individual \link[mlr3:Resampling]{mlr3::Resampling}s are merged prior to calculating the ROC curve (micro averaged).
+Requires package \CRANpkg{precrec}.
+\item \code{"prc"}: Precision recall curve.
+See \code{"roc"}.
 \item \code{"prediction"}: Plots the learner prediction for a grid of points.
-Needs models to be stored. Set \code{store_models = TRUE} for
-\verb{[mlr3::resample]}.
-For classification, we support tasks with exactly two features and
-learners with \verb{predict_type=} set to \code{"response"} or \code{"prob"}.
+Needs models to be stored. Set \code{store_models = TRUE} for \verb{[mlr3::resample]}.
+For classification, we support tasks with exactly two features and learners with \verb{predict_type=} set to \code{"response"} or \code{"prob"}.
 For regression, we support tasks with one or two features.
-For tasks with one feature we can print confidence bounds if the predict
-type of the learner was set to \code{"se"}.
+For tasks with one feature we can print confidence bounds if the predict type of the learner was set to \code{"se"}.
 For tasks with two features the predict type will be ignored.
 }
 }
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
-}
-
 \examples{
 if (requireNamespace("mlr3")) {
   library(mlr3)

@@ -2,45 +2,48 @@
 % Please edit documentation in R/PredictionClust.R
 \name{autoplot.PredictionClust}
 \alias{autoplot.PredictionClust}
-\title{Plot for PredictionClust}
+\title{Plots for Cluster Predictions}
 \usage{
-\method{autoplot}{PredictionClust}(object, task, row_ids = NULL, type = "scatter", ...)
+\method{autoplot}{PredictionClust}(
+  object,
+  task,
+  row_ids = NULL,
+  type = "scatter",
+  theme = theme_minimal(),
+  ...
+)
 }
 \arguments{
 \item{object}{(\link[mlr3cluster:PredictionClust]{mlr3cluster::PredictionClust}).}
 
 \item{task}{(\link[mlr3cluster:TaskClust]{mlr3cluster::TaskClust}).}
 
-\item{row_ids}{row ids to subset task data to ensure that
-only the data used to make predictions are shown in plots.}
+\item{row_ids}{(\code{integer()})
+Row ids to subset task data to ensure that only the data used to make predictions are shown in plots.}
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
 
-\item{...}{(\code{any}):
-Additional arguments, passed down to the respective \code{geom}.}
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Generates plots for \link[mlr3cluster:PredictionClust]{mlr3cluster::PredictionClust}, depending on argument \code{type}:
+Visualizations for \link[mlr3cluster:PredictionClust]{mlr3cluster::PredictionClust}.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
 \itemize{
-\item \code{"scatter"} (default): scatterplot with correlation values
-and colored cluster assignments.
-\item \code{"sil"}: Silhouette plot with mean silhouette value as
-a reference line. Requires package \CRANpkg{ggfortify}.
-\item \code{"pca"}: Perform PCA on data and color code cluster
-assignments. Inspired by and uses \link[ggfortify:autoplot.kmeans]{ggfortify::autoplot.kmeans}.
+\item \code{"scatter"} (default): scatterplot with correlation values and colored cluster assignments.
+\item \code{"sil"}: Silhouette plot with mean silhouette value as the reference line.
+Requires package \CRANpkg{ggfortify}.
+\item \code{"pca"}: Perform PCA on data and color code cluster assignments.
+Inspired by and uses \link[ggfortify:autoplot.kmeans]{ggfortify::autoplot.kmeans}.
 }
 }
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
-}
-
 \examples{
 if (requireNamespace("mlr3")) {
   library(mlr3)

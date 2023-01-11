@@ -1,41 +1,35 @@
-#' @title Plot for ResampleResult
+#' @title Plots for Resample Results
 #'
 #' @description
-#' Generates plots for [mlr3::ResampleResult], depending on argument `type`:
+#' Visualizations for [mlr3::ResampleResult].
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
+#'
 #' * `"boxplot"` (default): Boxplot of performance measures.
 #' * `"histogram"`: Histogram of performance measures.
 #' * `"roc"`: ROC curve (1 - specificity on x, sensitivity on y).
-#'   The predictions of the individual [mlr3::Resampling]s are merged prior to
-#'   calculating the ROC curve (micro averaged). Requires package
-#'   \CRANpkg{precrec}.
-#'   Additional arguments will be passed down to the respective [autoplot()] function
-#'   in package \CRANpkg{precrec}. Arguments `calc_avg` and `cb_alpha` are passed to
-#'   [precrec::evalmod()].
-#' * `"prc"`: Precision recall curve. See `"roc"`.
+#'    The predictions of the individual [mlr3::Resampling]s are merged prior to calculating the ROC curve (micro averaged).
+#'    Requires package \CRANpkg{precrec}.
+#' * `"prc"`: Precision recall curve.
+#'    See `"roc"`.
 #' * `"prediction"`: Plots the learner prediction for a grid of points.
-#'      Needs models to be stored. Set `store_models = TRUE` for
-#'      `[mlr3::resample]`.
-#'      For classification, we support tasks with exactly two features and
-#'      learners with `predict_type=` set to `"response"` or `"prob"`.
-#'      For regression, we support tasks with one or two features.
-#'      For tasks with one feature we can print confidence bounds if the predict
-#'      type of the learner was set to `"se"`.
-#'      For tasks with two features the predict type will be ignored.
+#'    Needs models to be stored. Set `store_models = TRUE` for `[mlr3::resample]`.
+#'    For classification, we support tasks with exactly two features and learners with `predict_type=` set to `"response"` or `"prob"`.
+#'    For regression, we support tasks with one or two features.
+#'    For tasks with one feature we can print confidence bounds if the predict type of the learner was set to `"se"`.
+#'    For tasks with two features the predict type will be ignored.
 #'
 #' @param object ([mlr3::ResampleResult]).
 #' @template param_type
 #' @template param_measure
 #' @param predict_sets (`character()`)\cr
-#'   Only for `type` set to `"prediction"`.
-#'   Which points should be shown in the plot?
-#'   Can be a subset of (`"train"`, `"test"`) or empty.
+#'  Only for `type` set to `"prediction"`.
+#'  Which points should be shown in the plot?
+#'  Can be a subset of (`"train"`, `"test"`) or empty.
+#' @template param_theme
+#' @param ... (ignored).
 #'
-#' @param ... (`any`):
-#'   Additional arguments, passed down to the respective `geom` or plotting function.
-#'
-#' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
+#' @return [ggplot2::ggplot()].
 #'
 #' @references
 #' `r format_bib("precrec")`
@@ -74,54 +68,69 @@
 #'   object = resample(task, learner, resampling, store_models = TRUE)
 #'   autoplot(object, type = "prediction")
 #' }
-autoplot.ResampleResult = function(object, # nolint
-  type = "boxplot",
-  measure = NULL,
-  predict_sets = "test",
-  ...) {
-
+autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, predict_sets = "test", theme = theme_minimal(), ...) {
   assert_string(type)
 
   task = object$task
-  measure = mlr3::assert_measure(mlr3::as_measure(measure,
-    task_type = task$task_type), task = task)
+  measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
 
   switch(type,
     "boxplot" = {
-      ggplot(object, measure = measure, aes(y = .data[["performance"]])) +
-        geom_boxplot(...) +
+      ggplot(object,
+        measure = measure,
+        mapping = aes(y = .data[["performance"]])) +
+        geom_boxplot(
+          fill = viridis::viridis(1, begin = 0.5),
+          alpha = 0.8,
+          show.legend = FALSE) +
+        scale_x_discrete() +
         ylab(measure$id) +
-        apply_theme(list(theme_mlr3())) +
+        theme +
         theme(axis.text.x.bottom = element_blank())
     },
 
     "histogram" = {
-      ggplot(object, measure = measure, aes_string(x = "performance")) +
-        geom_histogram(fill = "white", color = "black", ...) +
+      ggplot(object,
+        measure = measure,
+        aes(x = .data[["performance"]])) +
+        geom_histogram(
+          fill = viridis::viridis(1, begin = 0.5),
+          alpha = 0.8,
+          color = "black") +
         xlab(measure$id) +
         ylab("Count") +
-        apply_theme(list(theme_mlr3()))
+        theme
     },
 
     "roc" = {
-      plot_precrec(object, curvetype = "ROC", ...) +
-        apply_theme(list(
-          scale_color_viridis_d("Learner", end = 0.8),
-          theme_mlr3(legend = "none")
-        )) +
-        theme(plot.title = element_blank())
+      p = plot_precrec(object, curvetype = "ROC", ...)
+      p$layers[[1]]$mapping = aes(color = modname, fill = modname)
+      # fill confidence bounds
+      p +
+        guides(
+          color = "none",
+          fill = "none") +
+        scale_color_viridis_d("Learner", begin = 0.5) +
+        scale_fill_viridis_d("Learner", begin = 0.5) +
+        theme +
+        theme(plot.title = element_blank(), legend.position = "none")
     },
 
     "prc" = {
-      plot_precrec(object, curvetype = "PRC", ...) +
-        apply_theme(list(
-          scale_color_viridis_d("Learner", end = 0.8),
-          theme_mlr3(legend = "none")
-        )) +
+      p = plot_precrec(object, curvetype = "PRC")
+      # fill confidence bounds
+      p$layers[[1]]$mapping = aes(color = modname, fill = modname)
+      p +
+        guides(
+          color = "none",
+          fill = "none") +
+        scale_color_viridis_d("Learner", begin = 0.5) +
+        scale_fill_viridis_d("Learner", begin = 0.5) +
+        theme +
         theme(plot.title = element_blank())
     },
 
-    "prediction" = plot_learner_prediction_resample_result(object, predict_sets, ...),
+    "prediction" = plot_learner_prediction_resample_result(object, predict_sets, theme = theme, ...),
 
     stopf("Unknown plot type '%s'", type)
   )
@@ -135,45 +144,37 @@ plot.ResampleResult = function(x, ...) {
 #' @export
 fortify.ResampleResult = function(model, data, measure = NULL, ...) { # nolint
   task = model$task
-  measure = mlr3::assert_measure(mlr3::as_measure(measure,
-    task_type = task$task_type), task = task)
+  measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
   data = model$score(measure)[, c("iteration", measure$id), with = FALSE]
   melt(data,
     measure.vars = measure$id,
     variable.name = "measure_id", value.name = "performance")
 }
 
-plot_learner_prediction_resample_result = function(object, # nolint
-  predict_sets,
-  grid_points = 100L,
-  expand_range = 0) {
+plot_learner_prediction_resample_result = function(object, predict_sets, grid_points = 100L, expand_range = 0, theme = theme_minimal()) {
 
   task = object$task
   task_type = task$task_type
   features = task$feature_names
+
   dim = length(features)
   learners = object$learners
 
   if (any(map_lgl(map(learners, "model"), is.null))) {
-    mlr3misc::stopf("No trained models available. Set 'store_models = TRUE' in
-          'resample()'.", wrap = TRUE)
+    mlr3misc::stopf("No trained models available. Set 'store_models = TRUE' in 'resample()'.", wrap = TRUE)
   }
 
   if (task_type %nin% c("classif", "regr")) {
     stopf("Unsupported task type: %s", task_type)
   }
   if (task_type == "classif" && dim != 2L) {
-    mlr3misc::stopf("Plot learner prediction only works for tasks with two
-                    features for classification!", wrap = TRUE)
+    mlr3misc::stopf("Plot learner prediction only works for tasks with two features for classification!", wrap = TRUE)
   }
   if (task_type == "regr" && dim %nin% 1:2) {
-    mlr3misc::stopf("Plot learner prediction only works with one or two
-                    features for regression!", wrap = TRUE)
+    mlr3misc::stopf("Plot learner prediction only works with one or two features for regression!", wrap = TRUE)
   }
 
-  grid = predict_grid(learners, task,
-    grid_points = grid_points,
-    expand_range = expand_range)
+  grid = predict_grid(learners, task, grid_points = grid_points,  expand_range = expand_range)
 
   # facets for multiple resampling iterations
   if (length(learners) > 1L) {
@@ -188,60 +189,82 @@ plot_learner_prediction_resample_result = function(object, # nolint
   # 1d plot (only regression)
   if (task_type == "regr" && dim == 1L) {
     if (learners[[1L]]$predict_type == "se") {
-      se_geom = geom_ribbon(aes_string(
-        ymin = "response-se",
-        ymax = "response+se"), alpha = 0.2)
+      se_geom = geom_ribbon(
+          mapping = aes(
+            ymin = .data[["response"]] - .data[["se"]],
+            ymax = .data[["response"]] + .data[["se"]]),
+          alpha = 0.2,
+          fill = viridis::viridis(1, begin = 0.5))
     } else {
       se_geom = NULL
     }
-    g = ggplot(grid, aes_string(features, "response")) +
+
+    g = ggplot(grid,
+      mapping = aes(
+        x = .data[[features]],
+        y = .data[["response"]])) +
       se_geom +
-      geom_line() +
-      geom_point(
-        data = task_data(object, predict_sets),
-        aes_string(
-          y = task$target_names, shape = ".predict_set",
-          color = ".predict_set")) +
+      geom_line(color = viridis::viridis(1, begin = 0.5)) +
+      geom_point(data = task_data(object, predict_sets),
+        mapping = aes(
+          y = .data[[task$target_names]],
+          shape = .data[[".predict_set"]],
+          color = .data[[".predict_set"]])) +
       scale_shape_manual(
         values = c(train = 16, test = 15, both = 17),
         name = "Set") +
       labs(color = "Set") +
-      scale_color_viridis_d() +
+      scale_color_viridis_d(end = 0.8) +
+      theme +
       folds_facet
 
     # 2d plot regr + classif
   } else if (dim == 2L) {
     if (task_type == "classif" && learners[[1L]]$predict_type == "prob") {
       # classif, probs
-      raster_aes = aes_string(fill = "response", alpha = ".prob.response")
-      scale_alpha = scale_alpha_continuous(name = "Prob.")
-      scale_fill = scale_fill_viridis_d("Learner", end = 0.8)
+      raster_aes = aes(
+        fill = .data[["response"]],
+        alpha = .data[[".prob.response"]])
+      scale_alpha = scale_alpha_continuous(
+        name = "Probability",
+        guide = guide_legend(override.aes = list(fill = viridis::viridis(1))))
+      scale_fill = scale_fill_viridis_d(end = 0.8)
+      guides = NULL
     } else if (task_type == "classif" && learners[[1L]]$predict_type == "response") {
       # classif, no probs
-      raster_aes = aes_string(fill = "response")
+      raster_aes = aes(fill = .data[["response"]])
       scale_alpha = NULL
-      scale_fill = scale_fill_viridis_d("Learner", end = 0.8)
+      scale_fill = scale_fill_viridis_d(end = 0.8)
+      guides = NULL
     } else {
       # regr
-      raster_aes = aes_string(fill = "response")
+      raster_aes = aes(fill = .data[["response"]])
       scale_alpha = NULL
-      scale_fill = scale_fill_viridis_c("Learner", end = 0.8)
+      scale_fill = scale_fill_viridis_c(end = 0.8)
+      guides = guides(fill = guide_colorbar(barwidth = 0.5, barheight = 10))
     }
 
-    g = ggplot(grid, aes_string(features[1L], features[2L])) +
+    if (!is.numeric(grid[[features[1L]]])) {
+      theme = theme + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    }
+
+    g = ggplot(grid,
+      mapping = aes(
+        x = .data[[features[1L]]],
+        y = .data[[features[2L]]])) +
       geom_raster(raster_aes) +
       geom_point(
+        mapping = aes(fill = .data[[task$target_names]], shape = .data[[".predict_set"]]),
         data = task_data(object, predict_sets),
-        aes_string(fill = task$target_names, shape = ".predict_set"),
         color = "black") +
+      scale_fill +
+      guides +
+      theme +
+      theme(legend.position = "right") +
       scale_shape_manual(
         values = c(train = 21, test = 22, both = 23),
         name = "Set") +
       scale_alpha +
-      apply_theme(list(
-        scale_fill,
-        theme_mlr3(legend = "right")
-      )) +
       labs(fill = "Response") +
       folds_facet
   }
@@ -320,9 +343,7 @@ sequenize = function(x, n, expand_range = 0) {
 predict_grid = function(learners, task, grid_points, expand_range) {
   grids = mlr3misc::map(learners, function(learner) {
     features = task$feature_names
-    grid = mlr3misc::map(task$data(cols = features), sequenize,
-      n = grid_points,
-      expand_range = expand_range)
+    grid = mlr3misc::map(task$data(cols = features), sequenize, n = grid_points, expand_range = expand_range)
     grid = cross_join(grid, sorted = FALSE)
     grid = cbind(
       grid,

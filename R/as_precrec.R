@@ -1,8 +1,7 @@
 #' @title Convert to 'precrec' Format
 #'
 #' @description
-#' Converts to a format which is understood by [precrec::evalmod()] of
-#' package \CRANpkg{precrec}.
+#' Converts to a format which is understood by [precrec::evalmod()] of package \CRANpkg{precrec}.
 #'
 #' @param object (`any`)\cr
 #'   Object to convert.
@@ -14,7 +13,6 @@
 as_precrec = function(object) {
   UseMethod("as_precrec")
 }
-
 
 roc_data = function(prediction) {
   prediction = mlr3::as_prediction(prediction)
@@ -31,7 +29,6 @@ roc_data = function(prediction) {
     labels = prediction$truth
   )
 }
-
 
 #' @rdname as_precrec
 #' @export

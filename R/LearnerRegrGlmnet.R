@@ -1,11 +1,9 @@
 #' @rdname autoplot.LearnerClassifGlmnet
 #' @export
-autoplot.LearnerRegrGlmnet = function(object, ...) { # nolint
+autoplot.LearnerRegrGlmnet = function(object, theme = theme_minimal(), ...) { # nolint
   plot_ggfortify(object, ...) +
-    apply_theme(list(
-      scale_color_viridis_d("Feature", end = 0.8),
-      theme_mlr3()
-    ))
+    scale_color_viridis_d("Feature") +
+    theme
 }
 
 #' @export

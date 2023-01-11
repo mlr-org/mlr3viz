@@ -1,32 +1,24 @@
-#' @title Plot for PredictionRegr
+#' @title Plots for Regression Predictions
 #'
 #' @description
-#' Generates plots for [mlr3::PredictionRegr], depending on argument `type`:
+#' Visualizations for [mlr3::PredictionRegr].
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
 #'
 #' * `"xy"` (default): Scatterplot of "true" response vs. "predicted" response.
-#'   By default a linear model is fitted via `geom_smooth(method = "lm")`
-#'   to visualize the trend between x and y (by default colored blue).
-#'
-#'   * In addition `geom_abline()` with `slope = 1` is added to the plot.
-#'
-#'   * Note that `geom_smooth()` and `geom_abline()` may overlap, depending on
-#'     the given data.
-#' * `"histogram"`: Histogram of residuals:
-#'    \eqn{r = y - \hat{y}}{r = y - y.hat}.
-#' * `"residual"`: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat}
-#' on the "x" and the residuals on the "y" axis.
-#'
-#'   * By default a linear model is fitted via `geom_smooth(method = "lm")`
-#'   to visualize the trend between x and y (by default colored blue).
+#'    By default a linear model is fitted via `geom_smooth(method = "lm")` to visualize the trend between x and y (by default colored blue).
+#'    In addition `geom_abline()` with `slope = 1` is added to the plot.
+#'    Note that `geom_smooth()` and `geom_abline()` may overlap, depending on the given data.
+#' * `"histogram"`: Histogram of residuals: \eqn{r = y - \hat{y}}{r = y - y.hat}.
+#' * `"residual"`: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat} on the "x" and the residuals on the "y" axis.
+#'    By default a linear model is fitted via `geom_smooth(method = "lm")` to visualize the trend between x and y (by default colored blue).
 #'
 #' @param object ([mlr3::PredictionRegr]).
 #' @template param_type
-#' @param ... (`any`):
-#'   Additional arguments, passed down to the respective `geom`.
+#' @template param_theme
+#' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
+#' @return [ggplot2::ggplot()].
 #'
 #' @export
 #' @examples
@@ -43,54 +35,61 @@
 #'   autoplot(object, type = "histogram", binwidth = 1)
 #'   autoplot(object, type = "residual")
 #' }
-autoplot.PredictionRegr = function(object, # nolint
-  type = "xy",
-  ...) {
+autoplot.PredictionRegr = function(object, type = "xy", theme = theme_minimal(), ...) {
   checkmate::assert_string(type)
 
   switch(type,
     "xy" = {
       ggplot(object,
-        mapping = aes(x = .data[["response"]], y = .data[["truth"]])
-      ) +
-        geom_abline(slope = 1, alpha = 0.5) +
-        geom_point(...) +
+        mapping = aes(
+          x = .data[["response"]],
+          y = .data[["truth"]])) +
+        geom_abline(
+          slope = 1,
+          alpha = 0.5) +
+        geom_point(
+          color = viridis::viridis(1, begin = 0.33),
+          alpha = 0.8) +
         geom_rug(sides = "bl") +
-        geom_smooth(method = "lm", color = apply_theme(viridis::viridis(1), "#3366FF")) +
-        apply_theme(list(theme_mlr3()))
+        geom_smooth(
+          formula = y ~ x,
+          method = "lm",
+          color = viridis::viridis(1, begin = 0.5)) +
+        theme
     },
 
     "histogram" = {
       object = ggplot2::fortify(object)
-      p = ggplot(object,
+      ggplot(object,
         mapping = aes(
           x = .data[["truth"]] - .data[["response"]],
-          y = after_stat(.data[["density"]]))
-      ) + geom_histogram(fill = "white", color = "black", ...) +
+          y = after_stat(.data[["density"]]))) +
+        geom_histogram(
+          fill = viridis::viridis(1, begin = 0.5),
+          alpha = 0.8,
+          color = "black") +
         xlab("Residuals") +
-        ylab("Density")
-
-      # geom_blank errors with after_stat
-      if (getOption("mlr3.theme", TRUE)) {
-        p + theme_mlr3()
-      } else {
-
-        p
-      }
+        ylab("Density") +
+        theme
     },
 
     "residual" = {
       ggplot(object,
         mapping = aes(
           x = .data[["response"]],
-          y = .data[["truth"]] - .data[["response"]])
-      ) +
-        geom_point(...) +
+          y = .data[["truth"]] - .data[["response"]])) +
+        geom_point(
+          color = viridis::viridis(1, begin = 0.33),
+          alpha = 0.8) +
         geom_rug(sides = "bl") +
-        geom_smooth(method = "lm", color = apply_theme(viridis::viridis(1), "#3366FF")) +
+        geom_smooth(
+          formula = y ~ x,
+          method = "lm",
+          fill = viridis::viridis(1, begin = 0.5),
+          color = viridis::viridis(1, begin = 0.5)) +
         xlab("Response") +
         ylab("Residuals") +
-        apply_theme(list(theme_mlr3()))
+        theme
     },
 
     stopf("Unknown plot type '%s'", type)

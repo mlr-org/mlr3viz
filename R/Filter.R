@@ -1,20 +1,21 @@
-#' @title Plot for Filter Scores
+#' @title Plots for Filter Scores
 #'
 #' @description
-#' Generates plots for [mlr3filters::Filter], depending on argument `type`:
+#' Visualizations for [mlr3filters::Filter].
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
+#'
 #' * `"barplot"` (default): Bar plot of filter scores.
 #'
 #' @param object ([mlr3filters::Filter]).
 #' @template param_type
 #' @param n (`integer(1)`)\cr
-#'   Only include the first `n` features with highest importance.
-#'   Defaults to all features.
-#' @param ... (`any`):
-#'   Additional argument, passed down to the respective `geom`.
+#'  Only include the first `n` features with the highest importance.
+#'  Defaults to all features.
+#' @template param_theme
+#' @param ... (ignored).
 #'
-#' @template section_theme
-#'
-#' @return [ggplot2::ggplot()] object.
+#' @return [ggplot2::ggplot()].
 #' @export
 #' @examples
 #' if (requireNamespace("mlr3")) {
@@ -29,19 +30,26 @@
 #'   head(fortify(f))
 #'   autoplot(f, n = 5)
 #' }
-autoplot.Filter = function(object, type = "boxplot", n = Inf, ...) { # nolint
+autoplot.Filter = function(object, type = "boxplot", n = Inf, theme = theme_minimal(), ...) { # nolint
   assert_string(type)
 
   data = head(fortify(object), n)
 
   switch(type,
     "boxplot" = {
-      ggplot(data = data, aes(x = .data[["feature"]], y = .data[["score"]])) +
-        geom_bar(stat = "identity", fill = "white", color = "black", ...) +
+      ggplot(data,
+        mapping = aes(
+          x = .data[["feature"]],
+          y = .data[["score"]])) +
+        geom_bar(
+          stat = "identity",
+          fill = viridis::viridis(1, begin = 0.5),
+          alpha = 0.8,
+          color = "#000000") +
         scale_x_discrete(limits = data$feature) +
         xlab("Feature") +
         ylab("Score") +
-        apply_theme(list(theme_mlr3())) +
+        theme +
         theme(axis.text.x = element_text(angle = 45, hjust = 1))
     },
 

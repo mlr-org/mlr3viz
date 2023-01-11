@@ -2,9 +2,9 @@
 % Please edit documentation in R/PredictionRegr.R
 \name{autoplot.PredictionRegr}
 \alias{autoplot.PredictionRegr}
-\title{Plot for PredictionRegr}
+\title{Plots for Regression Predictions}
 \usage{
-\method{autoplot}{PredictionRegr}(object, type = "xy", ...)
+\method{autoplot}{PredictionRegr}(object, type = "xy", theme = theme_minimal(), ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:PredictionRegr]{mlr3::PredictionRegr}).}
@@ -12,40 +12,28 @@
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
 
-\item{...}{(\code{any}):
-Additional arguments, passed down to the respective \code{geom}.}
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Generates plots for \link[mlr3:PredictionRegr]{mlr3::PredictionRegr}, depending on argument \code{type}:
+Visualizations for \link[mlr3:PredictionRegr]{mlr3::PredictionRegr}.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
 \itemize{
 \item \code{"xy"} (default): Scatterplot of "true" response vs. "predicted" response.
-By default a linear model is fitted via \code{geom_smooth(method = "lm")}
-to visualize the trend between x and y (by default colored blue).
-\itemize{
-\item In addition \code{geom_abline()} with \code{slope = 1} is added to the plot.
-\item Note that \code{geom_smooth()} and \code{geom_abline()} may overlap, depending on
-the given data.
-}
-\item \code{"histogram"}: Histogram of residuals:
-\eqn{r = y - \hat{y}}{r = y - y.hat}.
-\item \code{"residual"}: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat}
-on the "x" and the residuals on the "y" axis.
-\itemize{
-\item By default a linear model is fitted via \code{geom_smooth(method = "lm")}
-to visualize the trend between x and y (by default colored blue).
+By default a linear model is fitted via \code{geom_smooth(method = "lm")} to visualize the trend between x and y (by default colored blue).
+In addition \code{geom_abline()} with \code{slope = 1} is added to the plot.
+Note that \code{geom_smooth()} and \code{geom_abline()} may overlap, depending on the given data.
+\item \code{"histogram"}: Histogram of residuals: \eqn{r = y - \hat{y}}{r = y - y.hat}.
+\item \code{"residual"}: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat} on the "x" and the residuals on the "y" axis.
+By default a linear model is fitted via \code{geom_smooth(method = "lm")} to visualize the trend between x and y (by default colored blue).
 }
 }
-}
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
-}
-
 \examples{
 if (requireNamespace("mlr3")) {
   library(mlr3)

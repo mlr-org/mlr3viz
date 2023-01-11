@@ -1,23 +1,25 @@
-#' @title Plot for Hierarchical Clustering Learners
+#' @title Plots for Hierarchical Clustering Learners
 #'
 #' @description
-#' Generates plots for hierarchical clusterers, depending on argument `type`:
+#' Visualizations for hierarchical clusters.
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
 #'
-#' * `"dend"` (default): dendrograms using \CRANpkg{factoextra} package.
-#'
-#' * `"scree"`: scree plot that shows the number of possible clusters on x-axis and
-#' the height on the y-axis.
-#'
-#' Note that learner-specific plots are experimental and subject to change.
+#' * `"dend"` (default): Dendrograms using \CRANpkg{ggdendro} package.
+#' * `"scree"`: Scree plot that shows the number of possible clusters on the x-axis and the height on the y-axis.
 #'
 #' @param object ([mlr3cluster::LearnerClustAgnes] | [mlr3cluster::LearnerClustDiana] | [mlr3cluster::LearnerClustHclust]).
+#' @param task ([mlr3::Task])\cr
+#'  Optionally, pass the task to add labels of observations to a `hclust` dendrogram.
+#'  Labels are set via the row names of the task.
 #' @template param_type
-#' @param ... (`any`):
-#'   Additional arguments, passed down to function [factoextra::fviz_dend()] in package \CRANpkg{factoextra}.
+#' @template param_theme
+#' @param theme_dendro (`logical(1)`)\cr
+#'  If `TRUE` (default), the special dendrogram theme from \CRANpkg{ggdendro} package is used in plot `"dend"`.
+#'  Set to `FALSE` to use the theme passed in `theme`.
+#' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
+#' @return [ggplot2::ggplot()].
 #'
 #' @export
 #' @examples
@@ -26,27 +28,26 @@
 #'   library(mlr3cluster)
 #'   library(mlr3viz)
 #'
-#'   task = mlr_tasks$get("usarrests")
+#'   task = tsk("usarrests")
 #'
 #'   # agnes clustering
-#'   learner = mlr_learners$get("clust.agnes")
+#'   learner = lrn("clust.agnes")
 #'   learner$train(task)
 #'   autoplot(learner)
 #'
 #'   # diana clustering
-#'   learner = mlr_learners$get("clust.diana")
+#'   learner = lrn("clust.diana")
 #'   learner$train(task)
-#'   autoplot(learner,
-#'     k = learner$param_set$values$k, rect_fill = TRUE,
-#'     rect = TRUE, rect_border = "red")
+#'   autoplot(learner)
 #'
 #'   # hclust clustering
-#'   learner = mlr_learners$get("clust.hclust")
+#'   learner = lrn("clust.hclust")
 #'   learner$train(task)
 #'   autoplot(learner, type = "scree")
 #' }
-autoplot.LearnerClustHierarchical = function(object, type = "dend", ...) { # nolint
+autoplot.LearnerClustHierarchical = function(object, type = "dend", task = NULL, theme = theme_minimal(), theme_dendro = TRUE, ...) { # nolint
   assert_string(type)
+
   if (is.null(object$model)) {
     stopf("Learner '%s' must be trained first", object$id)
   }
@@ -56,21 +57,28 @@ autoplot.LearnerClustHierarchical = function(object, type = "dend", ...) { # nol
 
   switch(type,
     "dend" = {
-      require_namespaces("factoextra")
+      require_namespaces("ggdendro")
 
-      p = factoextra::fviz_dend(object$model, horiz = FALSE, ggtheme = theme_gray(), main = NULL, ...)
-      if (getOption("mlr3.theme", TRUE)) p$scales$scales = list()
+      if (!is.null(task) && !is.null(task$row_names)) {
+        object$model$labels = task$row_names$row_name[match(object$model$order, task$row_names$row_id)]
+      }
 
-      p +
-        apply_theme(list(scale_color_viridis_d(end = 0.8), theme_mlr3())) +
-        theme(legend.position = "none")
+      ggdendro::ggdendrogram(as.dendrogram(object$model), theme_dendro = theme_dendro, ...) +
+        if (!theme_dendro) theme else geom_blank()
     },
 
     "scree" = {
       data = data.table(Height = object$model$height, Clusters = seq(length(object$model$height), 1))
-      ggplot(data, aes(x = data$Clusters, y = data$Height)) + geom_point() + geom_line() +
-        xlab("Clusters") + ylab("Height") +
-        apply_theme(list(theme_mlr3()))
+      ggplot(data,
+        mapping = aes(x = data$Clusters, y = data$Height)) +
+        geom_line(color = viridis::viridis(1, begin = 0.5)) +
+        geom_point(
+          size = 3,
+          color = viridis::viridis(1, begin = 0.5),
+          alpha = 0.8) +
+        xlab("Clusters") +
+        ylab("Height") +
+        theme
     }
   )
 }

@@ -5,11 +5,18 @@ output: github_document
 ```{r, include = FALSE}
 lgr::get_logger("mlr3")$set_threshold("warn")
 knitr::opts_chunk$set(fig.path = "man/figures/README-")
-options(datatable.print.class = FALSE, datatable.print.keys = FALSE)
+knitr::opts_chunk$set(fig.path = "man/figures/README-")
 set.seed(1)
+options(
+    datatable.print.nrows = 10,
+    datatable.print.class = FALSE,
+    datatable.print.keys = FALSE,
+    width = 100)
+# mute load messages
+library("mlr3tuning")
 ```
 
-# mlr3viz
+# mlr3viz <img src="man/figures/logo.png" align="right" width = "120" />
 
 Package website: [release](https://mlr3viz.mlr-org.com/) | [dev](https://mlr3viz.mlr-org.com/dev/)
 
@@ -20,7 +27,10 @@ Package website: [release](https://mlr3viz.mlr-org.com/) | [dev](https://mlr3viz
 [![Mattermost](https://img.shields.io/badge/chat-mattermost-orange.svg)](https://lmmisld-lmu-stats-slds.srv.mwn.de/mlr_invite/)
 <!-- badges: end -->
 
-This R package provides visualizations for [mlr3](https://mlr3.mlr-org.com) objects such as tasks, predictions, resample results or benchmark results via the `autoplot()` generic of [ggplot2](https://ggplot2.tidyverse.org/).
+*mlr3viz* is the visualization package of the [mlr3](https://mlr-org.com/) ecosystem.
+It features plots for mlr3 objects such as task, learners, predictions, benchmark results, tuning instances and filters via the `autoplot()` generic of [ggplot2](https://ggplot2.tidyverse.org/).
+The package draws plots with the [viridis](https://cran.r-project.org/web/packages/viridisLite/index.html) color palette and applies the [minimal theme](https://ggplot2.tidyverse.org/reference/ggtheme.html).
+Visualizations include barplots, boxplots, histograms, ROC curves, and Precision-Recall curves.
 
 ## Installation
 
@@ -42,31 +52,15 @@ remotes::install_github("mlr-org/mlr3viz")
 library(mlr3)
 library(mlr3viz)
 
-task = tsk("iris")$select(c("Sepal.Length", "Sepal.Width"))
+task = tsk("pima")
 learner = lrn("classif.rpart", predict_type = "prob")
 rr = resample(task, learner, rsmp("cv", folds = 3), store_models = TRUE)
 
 # Default plot for task
-autoplot(task)
+autoplot(task, type = "target")
 
-# Advanced resample result prediction plot
-autoplot(rr, type = "prediction")
+# ROC curve for resample result
+autoplot(rr, type = "roc")
 ```
 
 For more examples plots you can have a look at the [pkgdown references](https://mlr3viz.mlr-org.com/reference/index.html) of the respective functions.
-
-## Theming
-
-{mlr3viz} styles all plots with it's own theme `theme_mlr3()` (which is heavily influenced by the `ggpubr::theme_pubr()` theme) and the "viridis" color palette.
-If you want to use a different theme or color palette, apply it after the `autoplot()` call as in
-
-```r
-autoplot(<object>) +
-  scale_color_discrete() +
-  theme_gray()
-```
-
-For color scheme adjustments you might need to change `*_color_*` to `*_fill_*` or `*_*_discrete` to `*_*_cotinuous`, depending on the object that was visualized.
-
-For even more control, you can look up the source code which ggplot2 geoms were used internally for a specific `autoplot()` call (e.g. `geom_point()`) and how they were called.
-You can then apply these lines again with different arguments after the `autoplot()` call (similar as shown above with the `theme_gray()` adjustment) to overwrite their appearance (for example point size, line width, etc.).

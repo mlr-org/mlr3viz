@@ -1,21 +1,13 @@
-#' @title Plot for LearnerClassifRpart / LearnerRegrRpart
+#' @title Plots for Rpart Learners
 #'
 #' @description
-#' Visualize trees for [mlr3::mlr_learners_classif.rpart] and
-#' [mlr3::mlr_learners_regr.rpart] using the package \CRANpkg{ggparty}.
-#'
-#' Contrary to \CRANpkg{ggparty}, boxplots are shown in the terminal nodes for
-#' regression trees.
-#'
-#' Note that learner-specific plots are experimental and subject to change.
+#' Visualizations rpart trees using the package \CRANpkg{ggparty}.
 #'
 #' @param object ([mlr3::LearnerClassifRpart] | [mlr3::LearnerRegrRpart]).
-#' @param ... (`any`):
-#'   Additional arguments, passed down to [ggparty::autoplot.party()].
+#' @template param_theme
+#' @param ... (ignored).
 #'
-#' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
+#' @return [ggplot2::ggplot()].
 #'
 #' @export
 #' @examples
@@ -35,7 +27,7 @@
 #'   learner$train(task)
 #'   autoplot(learner)
 #' }
-autoplot.LearnerClassifRpart = function(object, ...) { # nolint
+autoplot.LearnerClassifRpart = function(object, theme = theme_minimal(), ...) { # nolint
   assert_has_model(object)
 
   if (is.null(object$model$model)) {
@@ -43,9 +35,29 @@ autoplot.LearnerClassifRpart = function(object, ...) { # nolint
   }
 
   require_namespaces(c("partykit", "ggparty"))
+  target = all.vars(object$model$terms)[1L]
 
-  autoplot(partykit::as.party(object$model), ...) +
-    ggparty::geom_node_label(aes(label = paste0("n=", .data[["nodesize"]])), nudge_y = 0.03, ids = "terminal")
+  ggparty::ggparty(partykit::as.party(object$model)) +
+    ggparty::geom_edge() +
+    ggparty::geom_edge_label() +
+    ggparty::geom_node_splitvar() +
+    ggparty::geom_node_plot(
+      gglist = list(
+        geom_bar(aes(x = "", fill = .data[[target]]),
+        alpha = 0.8,
+        color = "#000000",
+        linewidth = 0.5,
+        position = position_fill()),
+        xlab(target),
+        scale_fill_viridis_d(end = 0.8),
+        theme),
+      ids = "terminal",
+      shared_axis_labels= TRUE) +
+    ggparty::geom_node_label(
+      mapping = aes(label = paste0("n=", .data[["nodesize"]])),
+      nudge_y = 0.03,
+      ids = "terminal"
+    )
 }
 
 #' @export

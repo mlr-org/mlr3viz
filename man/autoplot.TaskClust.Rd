@@ -2,9 +2,9 @@
 % Please edit documentation in R/TaskClust.R
 \name{autoplot.TaskClust}
 \alias{autoplot.TaskClust}
-\title{Plot for Clustering Tasks}
+\title{Plots for Clustering Tasks}
 \usage{
-\method{autoplot}{TaskClust}(object, type = "pairs", ...)
+\method{autoplot}{TaskClust}(object, type = "pairs", theme = theme_minimal(), ...)
 }
 \arguments{
 \item{object}{(\link[mlr3cluster:TaskClust]{mlr3cluster::TaskClust}).}
@@ -12,27 +12,22 @@
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
 
-\item{...}{(\code{any}):
-Additional argument, passed down to the underlying \code{geom} or plot
-functions.}
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Generates plots for \link[mlr3cluster:TaskClust]{mlr3cluster::TaskClust}, depending on argument \code{type}:
+Visualizations for \link[mlr3cluster:TaskClust]{mlr3cluster::TaskClust}.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
 \itemize{
-\item \code{"pairs"}: Passes data and additional arguments down to
-\code{\link[GGally:ggpairs]{GGally::ggpairs()}} (default).
+\item \code{"pairs"} (default): Passes data \code{\link[GGally:ggpairs]{GGally::ggpairs()}}.
 }
 }
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
-}
-
 \examples{
 if (requireNamespace("mlr3")) {
   library(mlr3)

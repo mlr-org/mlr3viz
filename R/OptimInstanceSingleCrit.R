@@ -1,43 +1,45 @@
-#' @title Plot for OptimInstanceSingleCrit
+#' @title Plots for Optimization Instances
+#'
+#' @importFrom scales pretty_breaks
 #'
 #' @description
-#' Generates plots for [bbotk::OptimInstanceSingleCrit].
+#' Visualizations for [bbotk::OptimInstanceSingleCrit].
+#' The argument `type` controls what kind of plot is drawn.
+#' Possible choices are:
 #'
-#' @param object ([bbotk::OptimInstanceSingleCrit].
-#' @param type (`character(1)`):
-#'   Type of the plot. Available choices:
-#'   * `"marginal"`: scatter plots of x versus y The
-#'     colour of the points shows the batch number.
-#'   * `"performance"`: scatter plots of batch number versus y
-#'   * `"parameter"`: scatter plots of batch number versus input. The
-#'     colour of the points shows the y values.
-#'   * `"parallel"` parallel coordinates plot. x values are rescaled by
-#'     `(x - mean(x)) / sd(x)`.
-#'   * `"points"` - scatter plot of two x dimensions versus y The
-#'     colour of the points shows the y values.
-#'   * `"surface"`: surface plot of two x dimensions versus y values.
-#'     The y values are interpolated with the supplied
-#'     [mlr3::Learner].
-#'   * `"pairs"`: plots all x and y values against each other.
+#'   * `"marginal"` (default): Scatter plots of x versus y.
+#'      The color of the points shows the batch number.
+#'   * `"performance"`: Scatter plots of batch number versus y
+#'   * `"parameter"`: Scatter plots of batch number versus input.
+#'      The color of the points shows the y values.
+#'   * `"parallel"`: Parallel coordinates plot.
+#'      x values are rescaled by `(x - mean(x)) / sd(x)`.
+#'   * `"points"`: Scatter plot of two x dimensions versus.
+#'      The color of the points shows the y values.
+#'   * `"surface"`: Surface plot of two x dimensions versus y values.
+#'     The y values are interpolated with the supplied [mlr3::Learner].
+#'   * `"pairs"`: Plots all x and y values against each other.
+#'
+#' @param object ([bbotk::OptimInstanceSingleCrit]).
+#' @template param_type
 #' @param cols_x (`character()`)\cr
-#'   Column names of x values. By default, all untransformed
-#'   x values from the search space are plotted. Transformed hyperparameters are prefixed with
-#'   `x_domain_`.
+#'  Column names of x values.
+#'  By default, all untransformed x values from the search space are plotted.
+#'  Transformed hyperparameters are prefixed with `x_domain_`.
 #' @param trafo (`logical(1)`)\cr
-#'   Determines if untransformed (`FALSE`) or transformed (`TRUE`)
-#'   x values are plotted.
+#'  If `FALSE` (default), the untransformed x values are plotted.
+#'  If `TRUE`, the transformed x values are plotted.
 #' @param learner ([mlr3::Learner])\cr
 #'   Regression learner used to interpolate the data of the surface plot.
 #' @param grid_resolution (`numeric()`)\cr
 #'   Resolution of the surface plot.
 #' @param batch (`integer()`)\cr
-#'  The batch number(s) to limit the plot to. Default is all batches.
-#' @param ... (`any`):
-#'   Additional arguments, possibly passed down to the underlying plot functions.
-#' @importFrom scales pretty_breaks
-#' @return [ggplot2::ggplot()] object.
+#'  The batch number(s) to limit the plot to.
+#'  The default is all batches.
+#' @template param_theme
+#' @param ... (ignored).
 #'
-#' @template section_theme
+#' @return [ggplot2::ggplot()].
 #'
 #' @export
 #' @examples
@@ -78,8 +80,7 @@
 #'   # plot pairs
 #'   autoplot(instance, type = "pairs")
 #' }
-autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE,
-  learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, batch = NULL, ...) { # nolint
+autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, batch = NULL, theme = theme_minimal(), ...) { # nolint
   assert_subset(cols_x, c(object$archive$cols_x, paste0("x_domain_", object$archive$cols_x)))
   assert_flag(trafo)
 
@@ -106,15 +107,18 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
         breaks[length(breaks)] = max(data_i$batch_nr)
         data_i[, "batch_nr" := as.factor(get("batch_nr"))]
 
-        p = ggplot(data_i, mapping = aes(x = .data[[x]], y = .data[[cols_y]])) +
-          geom_point(aes(fill = .data$batch_nr), shape = 21, size = 3, stroke = 1) +
-          apply_theme(list(theme_mlr3()))
-
-        if (getOption("mlr3.theme", TRUE)) {
-          p + scale_fill_viridis_d("Batch", breaks = breaks)
-        } else {
-          p + scale_fill_discrete(breaks = breaks)
-        }
+        ggplot(data_i,
+          mapping = aes(x = .data[[x]],
+          y = .data[[cols_y]])
+          ) +
+          geom_point(
+            mapping = aes(fill = .data$batch_nr),
+            shape = 21,
+            size = 3,
+            stroke = 0.5,
+            alpha = 0.8) +
+          scale_fill_viridis_d("Batch", breaks = breaks) +
+          theme
       })
 
       return(delayed_patchwork(plots, guides = "collect"))
@@ -129,26 +133,47 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
       top_batch[, "group" := factor(1, labels = "Best value")]
 
       ggplot() +
-        geom_point(data, mapping = aes(x = .data[["batch_nr"]], y = .data[[cols_y]], fill = .data[["group"]]), shape = 21, size = 3) +
-        geom_line(top_batch, mapping = aes(x = .data[["batch_nr"]], y = .data[[cols_y]], color = .data[["group"]]), group = 1) +
+        geom_line(top_batch,
+          mapping = aes(
+            x = .data[["batch_nr"]],
+            y = .data[[cols_y]],
+            color = .data[["group"]]),
+          group = 1,
+          linewidth = 1) +
+        geom_point(data,
+          mapping = aes(
+            x = .data[["batch_nr"]],
+            y = .data[[cols_y]],
+            fill = .data[["group"]]),
+          shape = 21,
+          size = 3,
+          stroke = 0.5,
+          alpha = 0.8) +
         xlab("Batch") +
-        apply_theme(list(
-          scale_fill_manual(values = viridis::viridis(1, begin = 0.4)),
-          scale_color_manual(values = viridis::viridis(1)),
-          theme_mlr3()
-        )) +
+        scale_y_continuous(breaks = pretty_breaks()) +
+        scale_fill_manual(values = viridis::viridis(1, begin = 0.33)) +
+        scale_color_manual(values = viridis::viridis(1, begin = 0.5)) +
+        theme +
         theme(legend.title = element_blank())
     },
 
     "parameter" = {
       # each parameter versus iteration
       plots = map(cols_x, function(x) {
-        ggplot(data, mapping = aes(x = .data$batch_nr, y = .data[[x]])) +
-          geom_point(aes(fill = .data[[cols_y]]), shape = 21, size = 3, stroke = 0.5) +
-          apply_theme(list(
-            scale_fill_viridis_c(breaks = scales::pretty_breaks()),
-            theme_mlr3()
-          ))
+        ggplot(data,
+          mapping = aes(
+            x = .data$batch_nr,
+            y = .data[[x]])) +
+          geom_point(
+            mapping = aes(
+              fill = .data[[cols_y]]),
+              shape = 21,
+              size = 3,
+              stroke = 0.5,
+              alpha = 0.8) +
+          guides(fill = guide_colorbar(barwidth = 0.5, barheight = 10)) +
+          scale_fill_viridis_c(breaks = scales::pretty_breaks()) +
+          theme
       })
 
       return(delayed_patchwork(plots, guides = "collect"))
@@ -179,7 +204,7 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
       set(data_y, j = "id", value = seq_row(data_y))
       data_n = melt(data_n, measure.var = setdiff(names(data_n), "id"))
 
-      if (nrow(data_c) > 0L) {
+      if (nrow(data_c)) {
         # Skip if no factor column is present
         set(data_c, j = "id", value = seq_row(data_c))
         data_c = melt(data_c, measure.var = setdiff(names(data_c), "id"))
@@ -194,15 +219,25 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
       data = merge(data, data_y, by = "id")
       setorderv(data, "x")
 
-      ggplot(data, aes(x = .data$x, y = .data$value)) +
-        geom_line(aes(group = .data$id, colour = .data[[cols_y]]), size = 1) +
+      ggplot(data,
+        mapping = aes(
+          x = .data[["x"]],
+          y = .data[["value"]])) +
+        geom_line(
+          mapping = aes(
+            group = .data$id,
+            color = .data[[cols_y]]),
+          linewidth = 1) +
         geom_vline(aes(xintercept = x)) +
         {
-          if (nrow(data_c) > 0L) geom_label(aes(label = .data$label), data[!is.na(data$label), ])
+          if (nrow(data_c)) geom_label(
+            mapping = aes(label = .data$label),
+            data = data[!is.na(data$label), ])
         } +
         scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
-        apply_theme(list(scale_color_viridis_c(), theme_mlr3()),
-          list(scale_fill_discrete())) +
+        scale_color_viridis_c() +
+        guides(color = guide_colorbar(barwidth = 0.5, barheight = 10)) +
+        theme +
         theme(axis.title.x = element_blank())
     },
 
@@ -211,12 +246,19 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
         stop("Scatter plots can only be drawn with 2 parameters.")
       }
 
-      ggplot(data, aes(x = .data[[cols_x[1]]], y = .data[[cols_x[2]]])) +
-        geom_point(aes(fill = .data[[cols_y]]), data = data, shape = 21, size = 3, stroke = 1) +
-        apply_theme(list(
-          scale_fill_viridis_c(),
-          theme_mlr3()
-        ))
+      ggplot(data,
+        mapping = aes(
+          x = .data[[cols_x[1]]],
+          y = .data[[cols_x[2]]])) +
+        geom_point(
+          mapping = aes(fill = .data[[cols_y]]),
+          data = data,
+          shape = 21,
+          size = 3,
+          stroke = 1) +
+        scale_fill_viridis_c() +
+        guides(fill = guide_colorbar(barwidth = 0.5, barheight = 10)) +
+        theme
     },
 
     "surface" = {
@@ -243,23 +285,38 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
 
       setDT(data_i)[, (cols_y) := learner$predict_newdata(data_i)$response]
 
-      ggplot(data_i, aes(x = .data[[cols_x[1]]], y = .data[[cols_x[2]]])) +
-        geom_raster(aes(fill = .data[[cols_y]])) +
-        geom_point(aes(fill = .data[[cols_y]]), data = data, shape = 21, size = 3, stroke = 1) +
-        apply_theme(list(
-          scale_fill_viridis_c(),
-          theme_mlr3()
-        ))
+      ggplot(data_i,
+        mapping = aes(
+          x = .data[[cols_x[1]]],
+          y = .data[[cols_x[2]]])) +
+        geom_raster(
+          mapping = aes(fill = .data[[cols_y]])) +
+        geom_point(
+          mapping = aes(fill = .data[[cols_y]]),
+          data = data,
+          shape = 21,
+          size = 3,
+          stroke = 0.5,
+          alpha = 0.8) +
+        scale_x_continuous(expand = c(0.01, 0.01)) +
+        scale_y_continuous(expand = c(0.01, 0.01)) +
+        guides(fill = guide_colorbar(barwidth = 0.5, barheight = 10)) +
+        scale_fill_viridis_c() +
+        theme
     },
 
     "pairs" = {
       require_namespaces("GGally")
-      GGally::ggpairs(
-        data[, c(cols_x, cols_y, "batch_nr"), with = FALSE],
+
+      color = viridis::viridis(1, begin = 0.5)
+      alpha = 0.8
+
+      GGally::ggpairs(data[, c(cols_x, cols_y, "batch_nr"), with = FALSE],
         switch = "both",
-        upper = list(continuous = "points", combo = "facethist", discrete = "facetbar", na = "na"),
-        lower = list(continuous = "cor", combo = "box_no_facet", discrete = "count", na = "na"),
-        ...)
+        upper = list(continuous = "cor",  combo = GGally::wrap("box_no_facet", fill = color, alpha = alpha), discrete = "count", na = "na"),
+        lower = list(continuous = GGally::wrap("points", color = color), combo = GGally::wrap("facethist", fill = color, alpha = alpha), discrete = GGally::wrap("facetbar", fill = color, alpha = alpha), na = "na"),
+        diag = list(continuous = GGally::wrap("densityDiag", color = color), discrete = GGally::wrap("barDiag", fill = color, alpha = alpha), na = "naDiag")) +
+        theme
     },
 
     stopf("Unknown plot type '%s'", type)

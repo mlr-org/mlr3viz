@@ -1,20 +1,13 @@
-#' @title Plot for LearnerClassifGlmnet / LearnerRegrGlmnet / LearnerClassifCVGlmnet / LearnerRegrCVGlmnet
+#' @title Plots for GLMNet Learners
 #'
 #' @description
-#' Visualizations for [mlr3learners::mlr_learners_classif.glmnet], [mlr3learners::mlr_learners_regr.glmnet],
-#' [mlr3learners::mlr_learners_classif.cv_glmnet] and [mlr3learners::mlr_learners_regr.cv_glmnet]
-#' using the package \CRANpkg{ggfortify}.
+#' Visualizations for GLMNet learners using the package \CRANpkg{ggfortify}.
 #'
-#' Note that learner-specific plots are experimental and subject to change.
+#' @param object ([mlr3learners::LearnerClassifGlmnet] | [mlr3learners::LearnerRegrGlmnet] | [mlr3learners::LearnerRegrCVGlmnet] | [mlr3learners::LearnerRegrCVGlmnet]).
+#' @template param_theme
+#' @param ... (ignored).
 #'
-#' @param object ([mlr3learners::LearnerClassifGlmnet] | [mlr3learners::LearnerRegrGlmnet] |
-#'   [mlr3learners::LearnerRegrCVGlmnet] | [mlr3learners::LearnerRegrCVGlmnet]).
-#' @param ... (`any`):
-#'   Additional arguments, passed down to [ggparty::autoplot.party()].
-#'
-#' @return [ggplot2::ggplot()] object.
-#'
-#' @template section_theme
+#' @return [ggplot2::ggplot()].
 #'
 #' @references
 #' `r format_bib("ggfortify")`
@@ -38,12 +31,14 @@
 #' learner$train(task)
 #' autoplot(learner)
 #' }
-autoplot.LearnerClassifGlmnet = function(object, ...) { # nolint
-  plot_ggfortify(object, ...) +
-    apply_theme(list(
-      scale_color_viridis_d("Feature", end = 0.8),
-      theme_mlr3()
-    ))
+autoplot.LearnerClassifGlmnet = function(object, theme = theme_minimal(), ...) { # nolint
+  if ("twoclass" %nin% object$state$train_task$properties) {
+    stopf("Plot of %s only works with binary classification tasks.", object$id)
+  }
+
+  plot_ggfortify(object) +
+      scale_color_viridis_d("Feature") +
+      theme
 }
 
 #' @export

@@ -1,6 +1,6 @@
 Package: mlr3viz
 Title: Visualizations for 'mlr3'
-Version: 0.5.10
+Version: 0.5.10.9000
 Authors@R: c(
     person("Michel", "Lang", , "michellang@gmail.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0001-9754-0393")),
@@ -14,12 +14,12 @@ Authors@R: c(
            comment = c(ORCID = "0000-0003-4481-5554")),
     person("Damir", "Pulatov", , "dpulatov@uwyo.edu", role = "ctb")
   )
-Description: Provides visualizations for 'mlr3' objects such as tasks,
-    predictions, resample results or benchmark results via the autoplot()
-    generic of 'ggplot2'. The returned 'ggplot' objects are intended to
-    provide sensible defaults, yet can easily be customized to create
-    camera-ready figures. Visualizations include barplots, boxplots,
-    histograms, ROC curves, and Precision-Recall curves.
+Description: Visualization package of the 'mlr3' ecosystem. It features plots
+    for mlr3 objects such as task, learners, predictions, benchmark results,
+    tuning instances and filters via the 'autoplot()' generic of 'ggplot2'.
+    The package draws plots with the 'viridis' color palette and applies the
+    minimal theme. Visualizations include barplots, boxplots, histograms, ROC
+    curves, and Precision-Recall curves.
 License: LGPL-3
 URL: https://mlr3viz.mlr-org.com, https://github.com/mlr-org/mlr3viz
 BugReports: https://github.com/mlr-org/mlr3viz/issues
@@ -36,8 +36,8 @@ Imports:
 Suggests:
     bbotk,
     cluster,
-    factoextra,
     GGally,
+    ggdendro,
     ggfortify (>= 0.4.11),
     ggparty,
     glmnet,
@@ -63,7 +63,7 @@ Config/testthat/parallel: true
 Encoding: UTF-8
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Collate:
     'BenchmarkResult.R'
     'Filter.R'
@@ -90,5 +90,4 @@ Collate:
     'helper.R'
     'plot_learner_prediction.R'
     'reexports.R'
-    'theme-mlr3.R'
     'zzz.R'

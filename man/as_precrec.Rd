@@ -23,8 +23,7 @@ Object to convert.}
 Object as created by \code{\link[precrec:mmdata]{precrec::mmdata()}}.
 }
 \description{
-Converts to a format which is understood by \code{\link[precrec:evalmod]{precrec::evalmod()}} of
-package \CRANpkg{precrec}.
+Converts to a format which is understood by \code{\link[precrec:evalmod]{precrec::evalmod()}} of package \CRANpkg{precrec}.
 }
 \references{
 Saito T, Rehmsmeier M (2017).

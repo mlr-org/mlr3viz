@@ -2,7 +2,7 @@
 % Please edit documentation in R/TuningInstanceSingleCrit.R
 \name{autoplot.TuningInstanceSingleCrit}
 \alias{autoplot.TuningInstanceSingleCrit}
-\title{Plot for TuningInstanceSingleCrit}
+\title{Plots for Tuning Instances}
 \usage{
 \method{autoplot}{TuningInstanceSingleCrit}(
   object,
@@ -11,38 +11,24 @@
   trafo = FALSE,
   learner = mlr3::lrn("regr.ranger"),
   grid_resolution = 100,
+  theme = theme_minimal(),
   ...
 )
 }
 \arguments{
 \item{object}{(\link[mlr3tuning:TuningInstanceSingleCrit]{mlr3tuning::TuningInstanceSingleCrit}.}
 
-\item{type}{(\code{character(1)}):
-Type of the plot. Available choices:
-\itemize{
-\item \code{"marginal"}: scatter plots of hyperparameter versus performance. The
-color of the points shows the batch number.
-\item \code{"performance"}: scatter plots of batch number versus performance.
-\item \code{"parameter"}: scatter plots of batch number versus hyperparameter. The
-color of the points shows the performance.
-\item \code{"parallel"} parallel coordinates plot. Parameter values are rescaled by
-\code{(x - mean(x)) / sd(x)}.
-\item \code{"points"} - scatter plot of two hyperparameters versus performance. The
-color of the points shows the performance.
-\item \code{"surface"}: surface plot of 2 hyperparameters versus performance.
-The performance values are interpolated with the supplied
-\link[mlr3:Learner]{mlr3::Learner}.
-\item \code{"pairs"}: plots all hyperparameters and performance values against each other.
-}}
+\item{type}{(character(1)):\cr
+Type of the plot. See description.}
 
 \item{cols_x}{(\code{character()})\cr
-Column names of hyperparameters. By default, all untransformed
-hyperparameters are plotted. Transformed hyperparameters are prefixed with
-\code{x_domain_}.}
+Column names of hyperparameters.
+By default, all untransformed hyperparameters are plotted.
+Transformed hyperparameters are prefixed with \code{x_domain_}.}
 
 \item{trafo}{(\code{logical(1)})\cr
-Determines if untransformed (\code{FALSE}) or transformed (\code{TRUE})
-hyperparametery are plotted.}
+If \code{FALSE} (default), the untransformed hyperparameters are plotted.
+If \code{TRUE}, the transformed hyperparameters are plotted.}
 
 \item{learner}{(\link[mlr3:Learner]{mlr3::Learner})\cr
 Regression learner used to interpolate the data of the surface plot.}
@@ -50,22 +36,33 @@ Regression learner used to interpolate the data of the surface plot.}
 \item{grid_resolution}{(\code{numeric()})\cr
 Resolution of the surface plot.}
 
-\item{...}{(\code{any}):
-Additional arguments, possibly passed down to the underlying plot functions.}
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Generates plots for \link[mlr3tuning:TuningInstanceSingleCrit]{mlr3tuning::TuningInstanceSingleCrit}.
+Visualizations for \link[mlr3tuning:TuningInstanceSingleCrit]{mlr3tuning::TuningInstanceSingleCrit}.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
+\itemize{
+\item \code{"marginal"} (default): Scatter plots of x versus y.
+The color of the points shows the batch number.
+\item \code{"performance"}: Scatter plots of batch number versus y
+\item \code{"parameter"}: Scatter plots of batch number versus input.
+The color of the points shows the y values.
+\item \code{"parallel"}: Parallel coordinates plot.
+hyperparameters are rescaled by \code{(x - mean(x)) / sd(x)}.
+\item \code{"points"}: Scatter plot of two x dimensions versus.
+The color of the points shows the y values.
+\item \code{"surface"}: Surface plot of two x dimensions versus y values.
+The y values are interpolated with the supplied \link[mlr3:Learner]{mlr3::Learner}.
+\item \code{"pairs"}: Plots all x and y values against each other.
 }
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
 }
-
 \examples{
 if (requireNamespace("mlr3tuning") && requireNamespace("patchwork")) {
   library(mlr3tuning)

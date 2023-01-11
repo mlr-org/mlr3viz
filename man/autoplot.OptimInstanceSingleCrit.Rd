@@ -2,7 +2,7 @@
 % Please edit documentation in R/OptimInstanceSingleCrit.R
 \name{autoplot.OptimInstanceSingleCrit}
 \alias{autoplot.OptimInstanceSingleCrit}
-\title{Plot for OptimInstanceSingleCrit}
+\title{Plots for Optimization Instances}
 \usage{
 \method{autoplot}{OptimInstanceSingleCrit}(
   object,
@@ -12,38 +12,24 @@
   learner = mlr3::lrn("regr.ranger"),
   grid_resolution = 100,
   batch = NULL,
+  theme = theme_minimal(),
   ...
 )
 }
 \arguments{
-\item{object}{(\link[bbotk:OptimInstanceSingleCrit]{bbotk::OptimInstanceSingleCrit}.}
+\item{object}{(\link[bbotk:OptimInstanceSingleCrit]{bbotk::OptimInstanceSingleCrit}).}
 
-\item{type}{(\code{character(1)}):
-Type of the plot. Available choices:
-\itemize{
-\item \code{"marginal"}: scatter plots of x versus y The
-colour of the points shows the batch number.
-\item \code{"performance"}: scatter plots of batch number versus y
-\item \code{"parameter"}: scatter plots of batch number versus input. The
-colour of the points shows the y values.
-\item \code{"parallel"} parallel coordinates plot. x values are rescaled by
-\code{(x - mean(x)) / sd(x)}.
-\item \code{"points"} - scatter plot of two x dimensions versus y The
-colour of the points shows the y values.
-\item \code{"surface"}: surface plot of two x dimensions versus y values.
-The y values are interpolated with the supplied
-\link[mlr3:Learner]{mlr3::Learner}.
-\item \code{"pairs"}: plots all x and y values against each other.
-}}
+\item{type}{(character(1)):\cr
+Type of the plot. See description.}
 
 \item{cols_x}{(\code{character()})\cr
-Column names of x values. By default, all untransformed
-x values from the search space are plotted. Transformed hyperparameters are prefixed with
-\code{x_domain_}.}
+Column names of x values.
+By default, all untransformed x values from the search space are plotted.
+Transformed hyperparameters are prefixed with \code{x_domain_}.}
 
 \item{trafo}{(\code{logical(1)})\cr
-Determines if untransformed (\code{FALSE}) or transformed (\code{TRUE})
-x values are plotted.}
+If \code{FALSE} (default), the untransformed x values are plotted.
+If \code{TRUE}, the transformed x values are plotted.}
 
 \item{learner}{(\link[mlr3:Learner]{mlr3::Learner})\cr
 Regression learner used to interpolate the data of the surface plot.}
@@ -52,24 +38,36 @@ Regression learner used to interpolate the data of the surface plot.}
 Resolution of the surface plot.}
 
 \item{batch}{(\code{integer()})\cr
-The batch number(s) to limit the plot to. Default is all batches.}
+The batch number(s) to limit the plot to.
+The default is all batches.}
 
-\item{...}{(\code{any}):
-Additional arguments, possibly passed down to the underlying plot functions.}
+\item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
+The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{...}{(ignored).}
 }
 \value{
-\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Generates plots for \link[bbotk:OptimInstanceSingleCrit]{bbotk::OptimInstanceSingleCrit}.
+Visualizations for \link[bbotk:OptimInstanceSingleCrit]{bbotk::OptimInstanceSingleCrit}.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
+\itemize{
+\item \code{"marginal"} (default): Scatter plots of x versus y.
+The color of the points shows the batch number.
+\item \code{"performance"}: Scatter plots of batch number versus y
+\item \code{"parameter"}: Scatter plots of batch number versus input.
+The color of the points shows the y values.
+\item \code{"parallel"}: Parallel coordinates plot.
+x values are rescaled by \code{(x - mean(x)) / sd(x)}.
+\item \code{"points"}: Scatter plot of two x dimensions versus.
+The color of the points shows the y values.
+\item \code{"surface"}: Surface plot of two x dimensions versus y values.
+The y values are interpolated with the supplied \link[mlr3:Learner]{mlr3::Learner}.
+\item \code{"pairs"}: Plots all x and y values against each other.
 }
-\section{Theme}{
-
-The \code{\link[=theme_mlr3]{theme_mlr3()}} and viridis color maps are applied by default to all
-\code{autoplot()} methods. To change this behavior set
-\code{options(mlr3.theme = FALSE)}.
 }
-
 \examples{
 if (requireNamespace("mlr3") && requireNamespace("bbotk") && requireNamespace("patchwork")) {
   library(bbotk)
