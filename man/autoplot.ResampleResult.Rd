@@ -9,6 +9,7 @@
   type = "boxplot",
   measure = NULL,
   predict_sets = "test",
+  binwidth = NULL,
   theme = theme_minimal(),
   ...
 )
@@ -26,6 +27,9 @@ Performance measure to use.}
 Only for \code{type} set to \code{"prediction"}.
 Which points should be shown in the plot?
 Can be a subset of (\code{"train"}, \code{"test"}) or empty.}
+
+\item{binwidth}{(\code{integer(1)})\cr
+Width of the bins for the histogram.}
 
 \item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
 The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}

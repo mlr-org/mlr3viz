@@ -1,5 +1,7 @@
 # mlr3viz (development version)
 
+- Add `binwidth` argument to histogram plots.
+
 # mlr3viz 0.6.0
 
 - Add `theme` option to `autoplot()` functions to supply a `ggplot2::theme()`.
