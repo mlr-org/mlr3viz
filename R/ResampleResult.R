@@ -26,6 +26,8 @@
 #'  Only for `type` set to `"prediction"`.
 #'  Which points should be shown in the plot?
 #'  Can be a subset of (`"train"`, `"test"`) or empty.
+#' @param binwidth (`integer(1)`)\cr
+#'  Width of the bins for the histogram.
 #' @template param_theme
 #' @param ... (ignored).
 #'
@@ -68,7 +70,7 @@
 #'   object = resample(task, learner, resampling, store_models = TRUE)
 #'   autoplot(object, type = "prediction")
 #' }
-autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, predict_sets = "test", theme = theme_minimal(), ...) {
+autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, predict_sets = "test", binwidth = NULL, theme = theme_minimal(), ...) {
   assert_string(type)
 
   task = object$task
@@ -96,7 +98,8 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, pre
         geom_histogram(
           fill = viridis::viridis(1, begin = 0.5),
           alpha = 0.8,
-          color = "black") +
+          color = "black",
+          binwidth = binwidth) +
         xlab(measure$id) +
         ylab("Count") +
         theme

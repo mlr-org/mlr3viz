@@ -15,6 +15,8 @@
 #'
 #' @param object ([mlr3::PredictionRegr]).
 #' @template param_type
+#' @param binwidth (`integer(1)`)\cr
+#'  Width of the bins for the histogram.
 #' @template param_theme
 #' @param ... (ignored).
 #'
@@ -35,7 +37,7 @@
 #'   autoplot(object, type = "histogram", binwidth = 1)
 #'   autoplot(object, type = "residual")
 #' }
-autoplot.PredictionRegr = function(object, type = "xy", theme = theme_minimal(), ...) {
+autoplot.PredictionRegr = function(object, type = "xy", binwidth = NULL, theme = theme_minimal(), ...) {
   checkmate::assert_string(type)
 
   switch(type,
@@ -67,7 +69,8 @@ autoplot.PredictionRegr = function(object, type = "xy", theme = theme_minimal(),
         geom_histogram(
           fill = viridis::viridis(1, begin = 0.5),
           alpha = 0.8,
-          color = "black") +
+          color = "black",
+          binwidth = binwidth) +
         xlab("Residuals") +
         ylab("Density") +
         theme

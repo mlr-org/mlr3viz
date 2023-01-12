@@ -4,13 +4,16 @@
 \alias{autoplot.PredictionRegr}
 \title{Plots for Regression Predictions}
 \usage{
-\method{autoplot}{PredictionRegr}(object, type = "xy", theme = theme_minimal(), ...)
+\method{autoplot}{PredictionRegr}(object, type = "xy", binwidth = NULL, theme = theme_minimal(), ...)
 }
 \arguments{
 \item{object}{(\link[mlr3:PredictionRegr]{mlr3::PredictionRegr}).}
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
+
+\item{binwidth}{(\code{integer(1)})\cr
+Width of the bins for the histogram.}
 
 \item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
 The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
