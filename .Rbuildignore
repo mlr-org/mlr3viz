@@ -1,6 +1,7 @@
 ^renv$
 ^renv\.lock$
 ^README\.Rmd$
+^README\.html$
 ^LICENSE$
 .ignore
 .editorconfig
@@ -14,3 +15,6 @@
 ^\.github$
 ^\.ccache$
 ^docs$
+^revdep$
+^cran-comments\.md$
+^CRAN-SUBMISSION$

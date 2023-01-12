@@ -1,4 +1,4 @@
-# mlr3viz 0.5.10.9000
+# mlr3viz 0.6.0
 
 - Add `theme` option to `autoplot()` functions to supply a `ggplot2::theme()`.
   The default is `ggplot2::theme_minimal()`.

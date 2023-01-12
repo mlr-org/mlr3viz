@@ -17,9 +17,8 @@ Package website: [release](https://mlr3viz.mlr-org.com/) |
 objects such as task, learners, predictions, benchmark results, tuning
 instances and filters via the `autoplot()` generic of
 [ggplot2](https://ggplot2.tidyverse.org/). The package draws plots with
-the
-[viridis](https://cran.r-project.org/web/packages/viridisLite/index.html)
-color palette and applies the [minimal
+the [viridis](https://CRAN.R-project.org/package=viridisLite) color
+palette and applies the [minimal
 theme](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 Visualizations include barplots, boxplots, histograms, ROC curves, and
 Precision-Recall curves.
