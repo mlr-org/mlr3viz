@@ -126,10 +126,10 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
 
     "performance" = {
       # performance versus iteration
-      # max_to_min = if ("minimize" %in% object$archive$codomain$tags) which.min else which.max
+      max_to_min = if ("minimize" %in% object$archive$codomain$tags) which.min else which.max
 
       data[, "group" := factor(1, labels = "Objective value")]
-      top_batch = data[, .SD[which.max(get(cols_y))], by = "batch_nr"]
+      top_batch = data[, .SD[max_to_min(get(cols_y))], by = "batch_nr"]
       top_batch[, "group" := factor(1, labels = "Best value")]
 
       ggplot() +
