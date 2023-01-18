@@ -1,6 +1,8 @@
 # mlr3viz (development version)
 
 - Add `binwidth` argument to histogram plots.
+- The `"performance"` plot always connected the maximum performance values.
+  Now the minimum values are connected when the measure is minimized.
 
 # mlr3viz 0.6.0
 
