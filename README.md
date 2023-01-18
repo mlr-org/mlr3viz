@@ -14,7 +14,7 @@ Package website: [release](https://mlr3viz.mlr-org.com/) |
 
 *mlr3viz* is the visualization package of the
 [mlr3](https://mlr-org.com/) ecosystem. It features plots for mlr3
-objects such as task, learners, predictions, benchmark results, tuning
+objects such as tasks, learners, predictions, benchmark results, tuning
 instances and filters via the `autoplot()` generic of
 [ggplot2](https://ggplot2.tidyverse.org/). The package draws plots with
 the [viridis](https://CRAN.R-project.org/package=viridisLite) color
@@ -36,6 +36,11 @@ Install the development version from GitHub:
 ``` r
 remotes::install_github("mlr-org/mlr3viz")
 ```
+
+## Resources
+
+The [gallery](https://mlr-org.com/gallery/technical/2022-12-22-mlr3viz/)
+features a showcase post of the visualization functions mlr3viz.
 
 ## Short Demo
 
@@ -60,6 +65,6 @@ autoplot(rr, type = "roc")
 
 ![](man/figures/README-demo-2.png)<!-- -->
 
-For more examples plots you can have a look at the [pkgdown
+For more example plots you can have a look at the [pkgdown
 references](https://mlr3viz.mlr-org.com/reference/index.html) of the
 respective functions.

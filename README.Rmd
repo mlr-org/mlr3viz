@@ -28,7 +28,7 @@ Package website: [release](https://mlr3viz.mlr-org.com/) | [dev](https://mlr3viz
 <!-- badges: end -->
 
 *mlr3viz* is the visualization package of the [mlr3](https://mlr-org.com/) ecosystem.
-It features plots for mlr3 objects such as task, learners, predictions, benchmark results, tuning instances and filters via the `autoplot()` generic of [ggplot2](https://ggplot2.tidyverse.org/).
+It features plots for mlr3 objects such as tasks, learners, predictions, benchmark results, tuning instances and filters via the `autoplot()` generic of [ggplot2](https://ggplot2.tidyverse.org/).
 The package draws plots with the [viridis](https://CRAN.R-project.org/package=viridisLite) color palette and applies the [minimal theme](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 Visualizations include barplots, boxplots, histograms, ROC curves, and Precision-Recall curves.
 
@@ -45,6 +45,10 @@ Install the development version from GitHub:
 ```{r, eval = FALSE}
 remotes::install_github("mlr-org/mlr3viz")
 ```
+
+## Resources
+
+The [gallery](https://mlr-org.com/gallery/technical/2022-12-22-mlr3viz/) features a showcase post of the visualization functions mlr3viz.
 
 ## Short Demo
 
@@ -63,4 +67,4 @@ autoplot(task, type = "target")
 autoplot(rr, type = "roc")
 ```
 
-For more examples plots you can have a look at the [pkgdown references](https://mlr3viz.mlr-org.com/reference/index.html) of the respective functions.
+For more example plots you can have a look at the [pkgdown references](https://mlr3viz.mlr-org.com/reference/index.html) of the respective functions.
