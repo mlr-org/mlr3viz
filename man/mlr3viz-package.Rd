@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Visualization package of the 'mlr3' ecosystem. It features plots for mlr3 objects such as task, learners, predictions, benchmark results, tuning instances and filters via the 'autoplot()' generic of 'ggplot2'. The package draws plots with the 'viridis' color palette and applies the minimal theme. Visualizations include barplots, boxplots, histograms, ROC curves, and Precision-Recall curves.
+Visualization package of the 'mlr3' ecosystem. It features plots for mlr3 objects such as tasks, learners, predictions, benchmark results, tuning instances and filters via the 'autoplot()' generic of 'ggplot2'. The package draws plots with the 'viridis' color palette and applies the minimal theme. Visualizations include barplots, boxplots, histograms, ROC curves, and Precision-Recall curves.
 }
 \seealso{
 Useful links:
