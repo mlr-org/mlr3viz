@@ -1,3 +1,5 @@
+# mlr3viz (development version)
+
 # mlr3viz 0.6.1
 
 - Add `binwidth` argument to histogram plots.
