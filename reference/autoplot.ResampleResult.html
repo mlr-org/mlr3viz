@@ -44,7 +44,7 @@ For tasks with two features the predict type will be ignored.
     
     <a class="navbar-brand me-2" href="../index.html">mlr3viz</a>
 
-    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.6.0</small>
+    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.6.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -134,6 +134,7 @@ For tasks with two features the predict type will be ignored.</p></li>
 <span>  type <span class="op">=</span> <span class="st">"boxplot"</span>,</span>
 <span>  measure <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  predict_sets <span class="op">=</span> <span class="st">"test"</span>,</span>
+<span>  binwidth <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  theme <span class="op">=</span> <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -160,6 +161,11 @@ Performance measure to use.</p></dd>
 Only for <code>type</code> set to <code>"prediction"</code>.
 Which points should be shown in the plot?
 Can be a subset of (<code>"train"</code>, <code>"test"</code>) or empty.</p></dd>
+
+
+<dt>binwidth</dt>
+<dd><p>(<code>integer(1)</code>)<br>
+Width of the bins for the histogram.</p></dd>
 
 
 <dt>theme</dt>

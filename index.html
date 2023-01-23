@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Visualization package of the mlr3 ecosystem. It features plots
-    for mlr3 objects such as task, learners, predictions, benchmark results,
+    for mlr3 objects such as tasks, learners, predictions, benchmark results,
     tuning instances and filters via the autoplot() generic of ggplot2.
     The package draws plots with the viridis color palette and applies the
     minimal theme. Visualizations include barplots, boxplots, histograms, ROC
@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Visualizations for mlr3">
 <meta property="og:description" content="Visualization package of the mlr3 ecosystem. It features plots
-    for mlr3 objects such as task, learners, predictions, benchmark results,
+    for mlr3 objects such as tasks, learners, predictions, benchmark results,
     tuning instances and filters via the autoplot() generic of ggplot2.
     The package draws plots with the viridis color palette and applies the
     minimal theme. Visualizations include barplots, boxplots, histograms, ROC
@@ -46,7 +46,7 @@
     
     <a class="navbar-brand me-2" href="index.html">mlr3viz</a>
 
-    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.6.0</small>
+    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.6.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,7 +117,7 @@
 <p>Package website: <a href="https://mlr3viz.mlr-org.com/">release</a> | <a href="https://mlr3viz.mlr-org.com/dev/">dev</a></p>
 <!-- badges: start -->
 
-<p><em>mlr3viz</em> is the visualization package of the <a href="https://mlr-org.com/" class="external-link">mlr3</a> ecosystem. It features plots for mlr3 objects such as task, learners, predictions, benchmark results, tuning instances and filters via the <code><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot()</a></code> generic of <a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot2</a>. The package draws plots with the <a href="https://CRAN.R-project.org/package=viridisLite" class="external-link">viridis</a> color palette and applies the <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">minimal theme</a>. Visualizations include barplots, boxplots, histograms, ROC curves, and Precision-Recall curves.</p>
+<p><em>mlr3viz</em> is the visualization package of the <a href="https://mlr-org.com/" class="external-link">mlr3</a> ecosystem. It features plots for mlr3 objects such as tasks, learners, predictions, benchmark results, tuning instances and filters via the <code><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot()</a></code> generic of <a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot2</a>. The package draws plots with the <a href="https://CRAN.R-project.org/package=viridisLite" class="external-link">viridis</a> color palette and applies the <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">minimal theme</a>. Visualizations include barplots, boxplots, histograms, ROC curves, and Precision-Recall curves.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -127,6 +127,11 @@
 <p>Install the development version from GitHub:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mlr-org/mlr3viz"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="resources">Resources<a class="anchor" aria-label="anchor" href="#resources"></a>
+</h2>
+<p>The <a href="https://mlr-org.com/gallery/technical/2022-12-22-mlr3viz/" class="external-link">gallery</a> features a showcase post of the visualization functions mlr3viz.</p>
 </div>
 <div class="section level2">
 <h2 id="short-demo">Short Demo<a class="anchor" aria-label="anchor" href="#short-demo"></a>
@@ -146,7 +151,7 @@
 <code class="sourceCode R"><span><span class="co"># ROC curve for resample result</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">rr</span>, type <span class="op">=</span> <span class="st">"roc"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-demo-2.png"><!-- --></p>
-<p>For more examples plots you can have a look at the <a href="https://mlr3viz.mlr-org.com/reference/index.html">pkgdown references</a> of the respective functions.</p>
+<p>For more example plots you can have a look at the <a href="https://mlr3viz.mlr-org.com/reference/index.html">pkgdown references</a> of the respective functions.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
