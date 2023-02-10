@@ -46,7 +46,7 @@ Note that \code{geom_smooth()} and \code{geom_abline()} may overlap, depending o
 \item \code{"residual"}: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat} on the "x" and the residuals on the "y" axis.
 By default a linear model is fitted via \code{geom_smooth(method = "lm")} to visualize the trend between x and y (by default colored blue).
 \item \verb{"confidence}: Scatterplot of "true" response vs. "predicted" response with
-confidence intervals. Error bars calculated as object$reponse ± object$se and so only
+confidence intervals. Error bars calculated as object$reponse +- object$se and so only
 possible with \code{predict_type = "se"}. \code{geom_abline()} with \code{slope = 1} is added to the plot.
 }
 }

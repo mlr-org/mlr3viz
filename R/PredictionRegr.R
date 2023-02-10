@@ -13,7 +13,7 @@
 #' * `"residual"`: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat} on the "x" and the residuals on the "y" axis.
 #'    By default a linear model is fitted via `geom_smooth(method = "lm")` to visualize the trend between x and y (by default colored blue).
 #' * `"confidence`: Scatterplot of "true" response vs. "predicted" response with
-#'    confidence intervals. Error bars calculated as object$reponse ± object$se and so only
+#'    confidence intervals. Error bars calculated as object$reponse +- object$se and so only
 #'    possible with `predict_type = "se"`. `geom_abline()` with `slope = 1` is added to the plot.
 #'
 #' @param object ([mlr3::PredictionRegr]).
@@ -131,7 +131,7 @@ autoplot.PredictionRegr = function(object, type = "xy", binwidth = NULL, theme =
           alpha = 0.8
         ) +
         geom_linerange() +
-        xlab(sprintf("Response ± %sse", quantile)) +
+        xlab(sprintf("Response \u00B1 %sse", quantile)) +
         ylab("Truth") +
         theme
     },
