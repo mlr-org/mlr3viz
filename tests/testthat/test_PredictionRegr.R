@@ -16,4 +16,10 @@ test_that("autoplot.PredictionRegr", {
   p = autoplot(prediction, type = "residual")
   expect_true(is.ggplot(p))
   expect_doppelganger("predictionregr_residual", p)
+
+  learner = mlr3::lrn("regr.featureless", predict_type = "se")$train(task)
+  prediction = learner$predict(task)
+  p = autoplot(prediction, type = "confidence")
+  expect_true(is.ggplot(p))
+  expect_doppelganger("predictionregr_confidence", p)
 })

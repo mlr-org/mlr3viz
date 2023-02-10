@@ -175,3 +175,4 @@ renv.lock
 
 # revdep
 revdep/
+check/*
