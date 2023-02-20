@@ -4,7 +4,14 @@
 \alias{autoplot.PredictionRegr}
 \title{Plots for Regression Predictions}
 \usage{
-\method{autoplot}{PredictionRegr}(object, type = "xy", binwidth = NULL, theme = theme_minimal(), ...)
+\method{autoplot}{PredictionRegr}(
+  object,
+  type = "xy",
+  binwidth = NULL,
+  theme = theme_minimal(),
+  quantile = 1.96,
+  ...
+)
 }
 \arguments{
 \item{object}{(\link[mlr3:PredictionRegr]{mlr3::PredictionRegr}).}
@@ -17,6 +24,9 @@ Width of the bins for the histogram.}
 
 \item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
 The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+
+\item{quantile}{(\code{numeric(1)})\cr
+Quantile multiplier for standard errors for \code{type="confidence"}. Default 1.96.}
 
 \item{...}{(ignored).}
 }
@@ -35,6 +45,9 @@ Note that \code{geom_smooth()} and \code{geom_abline()} may overlap, depending o
 \item \code{"histogram"}: Histogram of residuals: \eqn{r = y - \hat{y}}{r = y - y.hat}.
 \item \code{"residual"}: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat} on the "x" and the residuals on the "y" axis.
 By default a linear model is fitted via \code{geom_smooth(method = "lm")} to visualize the trend between x and y (by default colored blue).
+\item \verb{"confidence}: Scatterplot of "true" response vs. "predicted" response with
+confidence intervals. Error bars calculated as object$reponse +- quantile * object$se and so only
+possible with \code{predict_type = "se"}. \code{geom_abline()} with \code{slope = 1} is added to the plot.
 }
 }
 \examples{
@@ -50,5 +63,12 @@ if (requireNamespace("mlr3")) {
   autoplot(object)
   autoplot(object, type = "histogram", binwidth = 1)
   autoplot(object, type = "residual")
+
+ if (requireNamespace("mlr3learners")) {
+  library(mlr3learners)
+  learner = lrn("regr.ranger", predict_type = "se")
+  object = learner$train(task)$predict(task)
+  autoplot(object, type = "confidence")
+ }
 }
 }
