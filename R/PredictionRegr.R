@@ -125,12 +125,12 @@ autoplot.PredictionRegr = function(object, type = "xy", binwidth = NULL, theme =
           y = .data[["truth"]])) +
         geom_abline(
           slope = 1,
-          alpha = 0.5) +
+          colour = "grey",
+          linetype = 3) +
+        geom_linerange(color = viridis::viridis(1, begin = 0.33)) +
         geom_point(
-          color = viridis::viridis(1, begin = 0.33),
-          alpha = 0.8
-        ) +
-        geom_linerange() +
+          color = viridis::viridis(1, begin = 0.5),
+          alpha = 0.8) +
         xlab(sprintf("Response \u00B1 %sse", quantile)) +
         ylab("Truth") +
         theme
