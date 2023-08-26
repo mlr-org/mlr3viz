@@ -69,16 +69,16 @@
 #'   optimizer$optimize(instance)
 #'
 #'   # plot y versus batch number
-#'   autoplot(instance, type = "performance")
+#'   print(autoplot(instance, type = "performance"))
 #'
 #'   # plot x1 values versus performance
-#'   autoplot(instance, type = "marginal", cols_x = "x1")
+#'   print(autoplot(instance, type = "marginal", cols_x = "x1"))
 #'
 #'   # plot parallel coordinates plot
-#'   autoplot(instance, type = "parallel")
+#'   print(autoplot(instance, type = "parallel"))
 #'
 #'   # plot pairs
-#'   autoplot(instance, type = "pairs")
+#'   print(autoplot(instance, type = "pairs"))
 #' }
 autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, batch = NULL, theme = theme_minimal(), ...) { # nolint
   assert_subset(cols_x, c(object$archive$cols_x, paste0("x_domain_", object$archive$cols_x)))
