@@ -17,6 +17,7 @@
 #'   * `"surface"`: Surface plot of two x dimensions versus y values.
 #'     The y values are interpolated with the supplied [mlr3::Learner].
 #'   * `"pairs"`: Plots all x and y values against each other.
+#'   * `"incumbent"`: Plots the incumbent versus the number of configurations.
 #'
 #' @param object ([mlr3tuning::TuningInstanceSingleCrit].
 #' @template param_type
