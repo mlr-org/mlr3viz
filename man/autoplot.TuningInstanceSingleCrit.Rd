@@ -61,6 +61,7 @@ The color of the points shows the y values.
 \item \code{"surface"}: Surface plot of two x dimensions versus y values.
 The y values are interpolated with the supplied \link[mlr3:Learner]{mlr3::Learner}.
 \item \code{"pairs"}: Plots all x and y values against each other.
+\item \code{"incumbent"}: Plots the incumbent versus the number of configurations.
 }
 }
 \examples{

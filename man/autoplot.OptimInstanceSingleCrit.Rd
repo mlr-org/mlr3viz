@@ -66,6 +66,7 @@ The color of the points shows the y values.
 \item \code{"surface"}: Surface plot of two x dimensions versus y values.
 The y values are interpolated with the supplied \link[mlr3:Learner]{mlr3::Learner}.
 \item \code{"pairs"}: Plots all x and y values against each other.
+\item \code{"incumbent"}: Plots the incumbent versus the number of configurations.
 }
 }
 \examples{
@@ -95,15 +96,18 @@ if (requireNamespace("mlr3") && requireNamespace("bbotk") && requireNamespace("p
   optimizer$optimize(instance)
 
   # plot y versus batch number
-  autoplot(instance, type = "performance")
+  print(autoplot(instance, type = "performance"))
 
   # plot x1 values versus performance
-  autoplot(instance, type = "marginal", cols_x = "x1")
+  print(autoplot(instance, type = "marginal", cols_x = "x1"))
 
   # plot parallel coordinates plot
-  autoplot(instance, type = "parallel")
+  print(autoplot(instance, type = "parallel"))
 
   # plot pairs
-  autoplot(instance, type = "pairs")
+  print(autoplot(instance, type = "pairs"))
+
+  # plot incumbent
+  print(autoplot(instance, type = "incumbent"))
 }
 }
