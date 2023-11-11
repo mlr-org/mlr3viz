@@ -9,23 +9,23 @@ requireNamespace("mlr3learners")
 set.seed(42)
 
 learner = mlr3::lrn("classif.rpart")
-learner$param_set$values$cp = paradox::to_tune(0.001, 0.1)
-learner$param_set$values$minsplit = paradox::to_tune(1, 10)
+learner$param_set$values$cp = paradox::to_tune(1e-04, 1e-1, logscale = TRUE)
+learner$param_set$values$minsplit = paradox::to_tune(2, 128, logscale = TRUE)
 
 instance = TuningInstanceSingleCrit$new(
-  task = mlr3::tsk("iris"),
+  task = mlr3::tsk("sonar"),
   learner = learner,
-  resampling = mlr3::rsmp("holdout"),
+  resampling = mlr3::rsmp("cv", folds = 3),
   measure = mlr3::msr("classif.ce"),
-  terminator = trm("evals", n_evals = 4))
+  terminator = trm("evals", n_evals = 100))
 
-tuner = tnr("random_search", batch_size = 2)
+tuner = tnr("random_search", batch_size = 10)
 invoke(tuner$optimize, instance, .seed = 123)
 
 
 test_that("fortify.TuningInstanceSingleCrit", {
   f = fortify(instance)
-  expect_data_table(f, nrows = 4)
+  expect_data_table(f, nrows = 100)
 })
 
 test_that("autoplot.TuningInstanceSingleCrit", {
@@ -85,6 +85,9 @@ test_that("autoplot.TuningInstanceSingleCrit", {
 
   p = autoplot(instance, type = "pairs")
   expect_s3_class(p, "ggmatrix")
+
+  p = autoplot(instance, type = "incumbent")
+  expect_single("incumbent", p)
 
   # with categoircal params
 
