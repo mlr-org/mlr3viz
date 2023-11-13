@@ -34,7 +34,7 @@ Imports:
     utils,
     viridis
 Suggests:
-    bbotk,
+    bbotk (>= 0.7.3),
     cluster,
     GGally,
     ggdendro,
