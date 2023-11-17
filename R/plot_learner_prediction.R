@@ -21,6 +21,7 @@
 #' @return [ggplot2::ggplot()].
 #' @export
 #' @examples
+#' \donttest{
 #' if (requireNamespace("mlr3")) {
 #'   library(mlr3)
 #'   library(mlr3viz)
@@ -29,6 +30,7 @@
 #'   learner = lrn("classif.rpart", predict_type = "prob")
 #'   p = plot_learner_prediction(learner, task)
 #'   print(p)
+#' }
 #' }
 plot_learner_prediction = function(learner, task, grid_points = 100L, expand_range = 0) {
   object = mlr3::resample(task, learner$clone(), mlr3::rsmp("holdout", ratio = 1), store_models = TRUE)

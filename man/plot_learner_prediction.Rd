@@ -33,6 +33,7 @@ For tasks with two features the predict type will be ignored.
 Note that this function is a wrapper around \code{\link[=autoplot.ResampleResult]{autoplot.ResampleResult()}} for a temporary \link[mlr3:ResampleResult]{mlr3::ResampleResult} using \link[mlr3:mlr_resamplings_holdout]{mlr3::mlr_resamplings_holdout} with ratio 1 (all observations in the training set).
 }
 \examples{
+\donttest{
 if (requireNamespace("mlr3")) {
   library(mlr3)
   library(mlr3viz)
@@ -41,5 +42,6 @@ if (requireNamespace("mlr3")) {
   learner = lrn("classif.rpart", predict_type = "prob")
   p = plot_learner_prediction(learner, task)
   print(p)
+}
 }
 }

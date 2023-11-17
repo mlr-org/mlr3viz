@@ -43,6 +43,7 @@ Requires package \CRANpkg{precrec}.
 }
 }
 \examples{
+\donttest{
 if (requireNamespace("mlr3")) {
   library(mlr3)
   library(mlr3viz)
@@ -55,6 +56,7 @@ if (requireNamespace("mlr3")) {
   autoplot(object)
   autoplot(object, type = "roc")
   autoplot(object, type = "prc")
+}
 }
 }
 \references{
