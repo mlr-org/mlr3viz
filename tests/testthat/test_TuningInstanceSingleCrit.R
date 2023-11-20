@@ -29,6 +29,8 @@ test_that("fortify.TuningInstanceSingleCrit", {
 })
 
 test_that("autoplot.TuningInstanceSingleCrit", {
+  skip_on_cran()
+
   expect_single = function(id, plot) {
     expect_true(is.ggplot(plot))
     expect_doppelganger(sprintf("tisc_%s", id), plot)
