@@ -5,6 +5,7 @@ skip_if_not_installed("clue")
 set.seed(42)
 
 test_that("autoplot.PredictionClust", {
+  skip_on_cran()
   require_namespaces("mlr3cluster")
   task = mlr3::tsk("usarrests")
   learner = mlr3::lrn("clust.kmeans", centers = 3)
