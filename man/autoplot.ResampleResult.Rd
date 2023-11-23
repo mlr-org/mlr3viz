@@ -60,13 +60,14 @@ For tasks with two features the predict type will be ignored.
 }
 }
 \examples{
+\donttest{
 if (requireNamespace("mlr3")) {
   library(mlr3)
   library(mlr3viz)
 
   task = tsk("sonar")
   learner = lrn("classif.rpart", predict_type = "prob")
-  resampling = rsmp("cv")
+  resampling = rsmp("cv", folds = 3)
   object = resample(task, learner, resampling)
 
   head(fortify(object))
@@ -91,6 +92,7 @@ if (requireNamespace("mlr3")) {
   resampling = rsmp("cv", folds = 3)
   object = resample(task, learner, resampling, store_models = TRUE)
   autoplot(object, type = "prediction")
+}
 }
 }
 \references{

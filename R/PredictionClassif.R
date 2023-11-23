@@ -25,6 +25,7 @@
 #'
 #' @export
 #' @examples
+#' \donttest{
 #' if (requireNamespace("mlr3")) {
 #'   library(mlr3)
 #'   library(mlr3viz)
@@ -37,6 +38,7 @@
 #'   autoplot(object)
 #'   autoplot(object, type = "roc")
 #'   autoplot(object, type = "prc")
+#' }
 #' }
 autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, theme = theme_minimal(), ...) { # nolint
   assert_string(type)

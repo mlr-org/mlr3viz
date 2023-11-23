@@ -1,6 +1,6 @@
 Package: mlr3viz
 Title: Visualizations for 'mlr3'
-Version: 0.6.1.9000
+Version: 0.6.2
 Authors@R: c(
     person("Michel", "Lang", , "michellang@gmail.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0001-9754-0393")),
@@ -34,7 +34,7 @@ Imports:
     utils,
     viridis
 Suggests:
-    bbotk,
+    bbotk (>= 0.7.3),
     cluster,
     GGally,
     ggdendro,

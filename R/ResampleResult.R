@@ -38,13 +38,14 @@
 #'
 #' @export
 #' @examples
+#' \donttest{
 #' if (requireNamespace("mlr3")) {
 #'   library(mlr3)
 #'   library(mlr3viz)
 #'
 #'   task = tsk("sonar")
 #'   learner = lrn("classif.rpart", predict_type = "prob")
-#'   resampling = rsmp("cv")
+#'   resampling = rsmp("cv", folds = 3)
 #'   object = resample(task, learner, resampling)
 #'
 #'   head(fortify(object))
@@ -69,6 +70,7 @@
 #'   resampling = rsmp("cv", folds = 3)
 #'   object = resample(task, learner, resampling, store_models = TRUE)
 #'   autoplot(object, type = "prediction")
+#' }
 #' }
 autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, predict_sets = "test", binwidth = NULL, theme = theme_minimal(), ...) {
   assert_string(type)
