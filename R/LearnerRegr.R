@@ -26,7 +26,7 @@
 #' library(mlr3viz)
 #'
 #' task = tsk("mtcars")
-#' learner = lrn("classif.rpart", predict_type = "prob")
+#' learner = lrn("regr.rpart")
 #' learner$train(task)
 #'
 #' autoplot(learner, type = "prediction", task)
