@@ -8,10 +8,10 @@ knitr::opts_chunk$set(fig.path = "man/figures/README-")
 knitr::opts_chunk$set(fig.path = "man/figures/README-")
 set.seed(1)
 options(
-    datatable.print.nrows = 10,
-    datatable.print.class = FALSE,
-    datatable.print.keys = FALSE,
-    width = 100)
+  datatable.print.nrows = 10,
+  datatable.print.class = FALSE,
+  datatable.print.keys = FALSE,
+  width = 100)
 # mute load messages
 library("mlr3tuning")
 ```
@@ -32,6 +32,8 @@ It features plots for mlr3 objects such as tasks, learners, predictions, benchma
 The package draws plots with the [viridis](https://CRAN.R-project.org/package=viridisLite) color palette and applies the [minimal theme](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 Visualizations include barplots, boxplots, histograms, ROC curves, and Precision-Recall curves.
 
+The [gallery](https://mlr-org.com/gallery/technical/2022-12-22-mlr3viz/) features a **showcase post** of the plots in `mlr3viz`.
+
 ## Installation
 
 Install the last release from CRAN:
@@ -48,7 +50,7 @@ remotes::install_github("mlr-org/mlr3viz")
 
 ## Resources
 
-The [gallery](https://mlr-org.com/gallery/technical/2022-12-22-mlr3viz/) features a showcase post of the visualization functions mlr3viz.
+The [gallery](https://mlr-org.com/gallery/technical/2022-12-22-mlr3viz/) features a showcase post of the visualization functions `mlr3viz`.
 
 ## Short Demo
 

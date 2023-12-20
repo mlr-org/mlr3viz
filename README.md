@@ -1,7 +1,7 @@
 
 # mlr3viz <img src="man/figures/logo.png" align="right" width = "120" />
 
-Package website: [release](https://mlr3viz.mlr-org.com/) |
+Package website: [release](https://mlr3viz.mlr-org.com/) \|
 [dev](https://mlr3viz.mlr-org.com/dev/)
 
 <!-- badges: start -->
@@ -23,6 +23,9 @@ theme](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 Visualizations include barplots, boxplots, histograms, ROC curves, and
 Precision-Recall curves.
 
+The [gallery](https://mlr-org.com/gallery/technical/2022-12-22-mlr3viz/)
+features a **showcase post** of the plots in `mlr3viz`.
+
 ## Installation
 
 Install the last release from CRAN:
@@ -40,7 +43,7 @@ remotes::install_github("mlr-org/mlr3viz")
 ## Resources
 
 The [gallery](https://mlr-org.com/gallery/technical/2022-12-22-mlr3viz/)
-features a showcase post of the visualization functions mlr3viz.
+features a showcase post of the visualization functions `mlr3viz`.
 
 ## Short Demo
 
