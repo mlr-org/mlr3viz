@@ -25,7 +25,7 @@
 #' library(mlr3)
 #' library(mlr3viz)
 #'
-#' task = tsk("mtcars")
+#' task = tsk("mtcars")$select(c("am", "carb"))
 #' learner = lrn("regr.rpart")
 #' learner$train(task)
 #'
