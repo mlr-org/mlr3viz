@@ -44,7 +44,7 @@ autoplot.LearnerClassif = function(object, type = "prediction", task, grid_point
         mlr3misc::stopf("Plot learner prediction only works for tasks with two features for classification!", wrap = TRUE)
       }
 
-      grid = predict_grid(list(object), task, grid_points = 100L, expand_range = 0)
+      grid = predict_grid(list(object), task, grid_points = grid_points, expand_range = expand_range)
 
       if (object$predict_type == "prob") {
         # classif, probs

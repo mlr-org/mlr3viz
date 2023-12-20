@@ -44,7 +44,7 @@ autoplot.LearnerRegr = function(object, type = "prediction", task, grid_points =
         mlr3misc::stopf("Plot learner prediction only works with one or two features for regression!", wrap = TRUE)
       }
 
-      grid = predict_grid(list(object), task, grid_points = 100L, expand_range = 0)
+      grid = predict_grid(list(object), task, grid_points = grid_points, expand_range = expand_range)
 
       if (length(features) == 1) {
         if (object$predict_type == "se") {
