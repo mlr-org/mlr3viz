@@ -5,7 +5,5 @@ if (requireNamespace("lgr")) {
 }
 
 old_dt_threads = data.table::getDTthreads()
-old_omp_threads = Sys.getenv("OMP_THREAD_LIMIT")
-
 setDTthreads(1)
-Sys.setenv("OMP_THREAD_LIMIT" = 1)
+
