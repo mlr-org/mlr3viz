@@ -8,16 +8,60 @@
 \alias{autoplot.LearnerRegrGlmnet}
 \title{Plots for GLMNet Learners}
 \usage{
-\method{autoplot}{LearnerClassifCVGlmnet}(object, theme = theme_minimal(), ...)
+\method{autoplot}{LearnerClassifCVGlmnet}(
+  object,
+  type = "prediction",
+  task = NULL,
+  grid_points = 100L,
+  expand_range = 0,
+  theme = theme_minimal(),
+  ...
+)
 
-\method{autoplot}{LearnerClassifGlmnet}(object, theme = theme_minimal(), ...)
+\method{autoplot}{LearnerClassifGlmnet}(
+  object,
+  type = "prediction",
+  task = NULL,
+  grid_points = 100L,
+  expand_range = 0,
+  theme = theme_minimal(),
+  ...
+)
 
-\method{autoplot}{LearnerRegrCVGlmnet}(object, theme = theme_minimal(), ...)
+\method{autoplot}{LearnerRegrCVGlmnet}(
+  object,
+  type = "prediction",
+  task = NULL,
+  grid_points = 100L,
+  expand_range = 0,
+  theme = theme_minimal(),
+  ...
+)
 
-\method{autoplot}{LearnerRegrGlmnet}(object, theme = theme_minimal(), ...)
+\method{autoplot}{LearnerRegrGlmnet}(
+  object,
+  type = "prediction",
+  task = NULL,
+  grid_points = 100L,
+  expand_range = 0,
+  theme = theme_minimal(),
+  ...
+)
 }
 \arguments{
 \item{object}{(\link[mlr3learners:mlr_learners_classif.glmnet]{mlr3learners::LearnerClassifGlmnet} | \link[mlr3learners:mlr_learners_regr.glmnet]{mlr3learners::LearnerRegrGlmnet} | \link[mlr3learners:mlr_learners_regr.cv_glmnet]{mlr3learners::LearnerRegrCVGlmnet} | \link[mlr3learners:mlr_learners_regr.cv_glmnet]{mlr3learners::LearnerRegrCVGlmnet}).}
+
+\item{type}{(character(1)):\cr
+Type of the plot. See description.}
+
+\item{task}{(\link[mlr3:Task]{mlr3::Task})\cr
+Train task.}
+
+\item{grid_points}{(integer(1))\cr
+Number of grid points per feature dimension.}
+
+\item{expand_range}{(numeric(1))\cr
+Expand the range of the grid.}
 
 \item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
 The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
@@ -28,7 +72,13 @@ The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by defaul
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Visualizations for GLMNet learners using the package \CRANpkg{ggfortify}.
+Visualizations for \link[mlr3learners:mlr_learners_classif.glmnet]{mlr3learners::LearnerClassifGlmnet}.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
+\itemize{
+\item \code{"prediction"} (default): Decision boundary of the learner and the true class labels.
+\item \code{"ggfortify"}: Visualizes the model using the package \CRANpkg{ggfortify}.
+}
 }
 \examples{
 \dontrun{
@@ -40,13 +90,13 @@ library(mlr3learners)
 task = tsk("sonar")
 learner = lrn("classif.glmnet")
 learner$train(task)
-autoplot(learner)
+autoplot(learner, type = "ggfortify")
 
 # regression
 task = tsk("mtcars")
 learner = lrn("regr.glmnet")
 learner$train(task)
-autoplot(learner)
+autoplot(learner, type = "ggfortify")
 }
 }
 \references{

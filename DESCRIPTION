@@ -63,14 +63,16 @@ Config/testthat/parallel: true
 Encoding: UTF-8
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.2.3.9000
 Collate:
     'BenchmarkResult.R'
     'Filter.R'
+    'LearnerClassif.R'
     'LearnerClassifCVGlmnet.R'
     'LearnerClassifGlmnet.R'
     'LearnerClassifRpart.R'
     'LearnerClustHierarchical.R'
+    'LearnerRegr.R'
     'LearnerRegrCVGlmnet.R'
     'LearnerRegrGlmnet.R'
     'LearnerRegrRpart.R'

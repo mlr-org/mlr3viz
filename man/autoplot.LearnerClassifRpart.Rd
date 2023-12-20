@@ -5,12 +5,40 @@
 \alias{autoplot.LearnerRegrRpart}
 \title{Plots for Rpart Learners}
 \usage{
-\method{autoplot}{LearnerClassifRpart}(object, theme = theme_minimal(), ...)
+\method{autoplot}{LearnerClassifRpart}(
+  object,
+  type = "prediction",
+  task = NULL,
+  grid_points = 100L,
+  expand_range = 0,
+  theme = theme_minimal(),
+  ...
+)
 
-\method{autoplot}{LearnerRegrRpart}(object, theme = theme_minimal(), ...)
+\method{autoplot}{LearnerRegrRpart}(
+  object,
+  type = "prediction",
+  task = NULL,
+  grid_points = 100L,
+  expand_range = 0,
+  theme = theme_minimal(),
+  ...
+)
 }
 \arguments{
 \item{object}{(\link[mlr3:mlr_learners_classif.rpart]{mlr3::LearnerClassifRpart} | \link[mlr3:mlr_learners_regr.rpart]{mlr3::LearnerRegrRpart}).}
+
+\item{type}{(character(1)):\cr
+Type of the plot. See description.}
+
+\item{task}{(\link[mlr3:Task]{mlr3::Task})\cr
+Train task.}
+
+\item{grid_points}{(integer(1))\cr
+Number of grid points per feature dimension.}
+
+\item{expand_range}{(numeric(1))\cr
+Expand the range of the grid.}
 
 \item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
 The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
@@ -21,7 +49,13 @@ The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by defaul
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Visualizations rpart trees using the package \CRANpkg{ggparty}.
+Visualizations for \link[mlr3:mlr_learners_classif.rpart]{mlr3::LearnerClassifRpart}.
+The argument \code{type} controls what kind of plot is drawn.
+Possible choices are:
+\itemize{
+\item \code{"prediction"} (default): Decision boundary of the learner and the true class labels.
+\item \code{"ggparty"}: Visualizes the tree using the package \CRANpkg{ggparty}.
+}
 }
 \examples{
 if (requireNamespace("mlr3")) {
@@ -32,12 +66,12 @@ if (requireNamespace("mlr3")) {
   task = tsk("iris")
   learner = lrn("classif.rpart", keep_model = TRUE)
   learner$train(task)
-  autoplot(learner)
+  autoplot(learner, type = "ggparty")
 
   # regression
   task = tsk("mtcars")
   learner = lrn("regr.rpart", keep_model = TRUE)
   learner$train(task)
-  autoplot(learner)
+  autoplot(learner, type = "ggparty")
 }
 }

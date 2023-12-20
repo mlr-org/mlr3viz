@@ -8,7 +8,7 @@ set.seed(42)
 test_that("autoplot.LearnerClassifGlmnet", {
   requireNamespace("mlr3learners")
   learner = mlr3::lrn("classif.glmnet")$train(mlr3::tsk("sonar"))
-  p = autoplot(learner)
+  p = autoplot(learner, type = "ggfortify")
   expect_true(is.ggplot(p))
   expect_doppelganger("learner_classif.glmnet", p)
 })
