@@ -25,6 +25,9 @@
     <loc>https://mlr3viz.mlr-org.com/reference/autoplot.Filter.html</loc>
   </url>
   <url>
+    <loc>https://mlr3viz.mlr-org.com/reference/autoplot.LearnerClassif.html</loc>
+  </url>
+  <url>
     <loc>https://mlr3viz.mlr-org.com/reference/autoplot.LearnerClassifGlmnet.html</loc>
   </url>
   <url>
@@ -32,6 +35,9 @@
   </url>
   <url>
     <loc>https://mlr3viz.mlr-org.com/reference/autoplot.LearnerClustHierarchical.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3viz.mlr-org.com/reference/autoplot.LearnerRegr.html</loc>
   </url>
   <url>
     <loc>https://mlr3viz.mlr-org.com/reference/autoplot.OptimInstanceSingleCrit.html</loc>
