@@ -1,4 +1,4 @@
-# mlr3viz (development version)
+# mlr3viz 0.7.0
 
 - Add `"prediction"` plots for classification and regression learners.
 
