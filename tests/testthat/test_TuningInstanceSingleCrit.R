@@ -6,11 +6,12 @@ skip_if_not_installed("mlr3tuning")
 skip_if_not_installed("mlr3learners")
 library(mlr3tuning)
 requireNamespace("mlr3learners")
-set.seed(42)
 
 learner = mlr3::lrn("classif.rpart")
 learner$param_set$values$cp = paradox::to_tune(1e-04, 1e-1, logscale = TRUE)
 learner$param_set$values$minsplit = paradox::to_tune(2, 128, logscale = TRUE)
+
+set.seed(42)
 
 instance = TuningInstanceSingleCrit$new(
   task = mlr3::tsk("sonar"),
@@ -98,6 +99,8 @@ test_that("autoplot.TuningInstanceSingleCrit", {
   learner$param_set$values$nrounds = paradox::to_tune(1, 2)
   learner$param_set$values$booster = paradox::to_tune()
   learner$param_set$values$maximize = paradox::to_tune()
+
+  set.seed(42)
 
   instance = TuningInstanceSingleCrit$new(
     task = mlr3::tsk("iris"),
