@@ -100,6 +100,12 @@ test_that("autoplot.TuningInstanceSingleCrit", {
   learner$param_set$values$booster = paradox::to_tune()
   learner$param_set$values$maximize = paradox::to_tune()
 
+  # Order entries of param_set$values according to order of
+  # parameters. This is to have consistent order of output
+  # independent of whether paradox enforces this order internally.
+  learner$param_set$values = learner$param_set$values[
+    match(learner$param_set$ids(), names(learner$param_set$values), nomatch = 0)
+  ]
   set.seed(42)
 
   instance = TuningInstanceSingleCrit$new(
