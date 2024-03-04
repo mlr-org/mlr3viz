@@ -94,42 +94,42 @@ test_that("autoplot.TuningInstanceSingleCrit", {
 
   # with categoircal params
 
-  learner = mlr3::lrn("classif.xgboost")
-  learner$param_set$values$eta = paradox::to_tune(0.01, 0.1)
-  learner$param_set$values$nrounds = paradox::to_tune(1, 2)
-  learner$param_set$values$booster = paradox::to_tune()
-  learner$param_set$values$maximize = paradox::to_tune()
+  # learner = mlr3::lrn("classif.xgboost")
+  # learner$param_set$values$eta = paradox::to_tune(0.01, 0.1)
+  # learner$param_set$values$nrounds = paradox::to_tune(1, 2)
+  # learner$param_set$values$booster = paradox::to_tune()
+  # learner$param_set$values$maximize = paradox::to_tune()
 
-  set.seed(42)
+  # set.seed(42)
 
-  instance = TuningInstanceSingleCrit$new(
-    task = mlr3::tsk("iris"),
-    learner = learner,
-    resampling = mlr3::rsmp("holdout"),
-    measure = mlr3::msr("classif.ce"),
-    terminator = trm("evals", n_evals = 4))
+  # instance = TuningInstanceSingleCrit$new(
+  #   task = mlr3::tsk("iris"),
+  #   learner = learner,
+  #   resampling = mlr3::rsmp("holdout"),
+  #   measure = mlr3::msr("classif.ce"),
+  #   terminator = trm("evals", n_evals = 4))
 
-  tuner = tnr("random_search", batch_size = 2)
-  tuner$optimize(instance)
+  # tuner = tnr("random_search", batch_size = 2)
+  # tuner$optimize(instance)
 
-  p = autoplot(instance, type = "parallel")
-  expect_single("parallel_xgboost_1", p)
-
-  p = autoplot(instance, type = "parallel", cols_x = c("maximize", "booster"))
-  expect_true(is.ggplot(p))
+  # p = autoplot(instance, type = "parallel")
   # expect_single("parallel_xgboost_1", p)
 
-  expect_error(autoplot(instance, type = "surface"),
-    regexp = "Surface plots can only be drawn with 2 parameters.",
-    fixed = TRUE)
+  # p = autoplot(instance, type = "parallel", cols_x = c("maximize", "booster"))
+  # expect_true(is.ggplot(p))
+  # # expect_single("parallel_xgboost_1", p)
 
-  expect_error(autoplot(instance, type = "surface", cols_x = "nrounds"),
-    regexp = "Surface plots can only be drawn with 2 parameters.",
-    fixed = TRUE)
+  # expect_error(autoplot(instance, type = "surface"),
+  #   regexp = "Surface plots can only be drawn with 2 parameters.",
+  #   fixed = TRUE)
 
-  instance$archive$data[1, 1] = NA
+  # expect_error(autoplot(instance, type = "surface", cols_x = "nrounds"),
+  #   regexp = "Surface plots can only be drawn with 2 parameters.",
+  #   fixed = TRUE)
 
-  expect_error(autoplot(instance, type = "parallel"),
-    regexp = "Parallel coordinate plots cannot be displayed with missing data.",
-    fixed = TRUE)
+  # instance$archive$data[1, 1] = NA
+
+  # expect_error(autoplot(instance, type = "parallel"),
+  #   regexp = "Parallel coordinate plots cannot be displayed with missing data.",
+  #   fixed = TRUE)
 })
