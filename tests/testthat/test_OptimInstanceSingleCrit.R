@@ -21,18 +21,18 @@ obfun = ObjectiveRFun$new(
   codomain = codomain
 )
 
-instance = OptimInstanceSingleCrit$new(objective = obfun, terminator = trm("evals", n_evals = 20))
+instance = OptimInstanceBatchSingleCrit$new(objective = obfun, terminator = trm("evals", n_evals = 20))
 
 optimizer = opt("random_search", batch_size = 2)
 optimizer$optimize(instance)
 
-test_that("fortify.OptimInstanceSingleCrit", {
+test_that("fortify.OptimInstanceBatchSingleCrit", {
   f = fortify(instance)
   expect_data_table(f, nrows = 20, ncols = 7)
   expect_names(names(f), permutation.of = c("x1", "x2", "y", "timestamp", "batch_nr", "x_domain_x1", "x_domain_x2"))
 })
 
-test_that("autoplot.OptimInstanceSingleCrit", {
+test_that("autoplot.OptimInstanceBatchSingleCrit", {
   expect_single = function(id, plot) {
     expect_true(is.ggplot(plot))
     expect_doppelganger(sprintf("tisc_%s", id), plot)
@@ -90,5 +90,5 @@ test_that("autoplot.OptimInstanceSingleCrit", {
   p = autoplot(instance, type = "pairs")
   expect_s3_class(p, "ggmatrix")
 
-  # categorical domain is tested through test_TuningInstanceSingleCrit
+  # categorical domain is tested through test_TuningInstanceBatchSingleCrit
 })

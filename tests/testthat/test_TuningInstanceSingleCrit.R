@@ -13,7 +13,7 @@ learner$param_set$values$minsplit = paradox::to_tune(2, 128, logscale = TRUE)
 
 set.seed(42)
 
-instance = TuningInstanceSingleCrit$new(
+instance = TuningInstanceBatchSingleCrit$new(
   task = mlr3::tsk("sonar"),
   learner = learner,
   resampling = mlr3::rsmp("cv", folds = 3),
@@ -24,12 +24,12 @@ tuner = tnr("random_search", batch_size = 10)
 invoke(tuner$optimize, instance, .seed = 123)
 
 
-test_that("fortify.TuningInstanceSingleCrit", {
+test_that("fortify.TuningInstanceBatchSingleCrit", {
   f = fortify(instance)
   expect_data_table(f, nrows = 100)
 })
 
-test_that("autoplot.TuningInstanceSingleCrit", {
+test_that("autoplot.TuningInstanceBatchSingleCrit", {
   skip_on_cran()
 
   expect_single = function(id, plot) {
@@ -102,7 +102,7 @@ test_that("autoplot.TuningInstanceSingleCrit", {
 
   # set.seed(42)
 
-  # instance = TuningInstanceSingleCrit$new(
+  # instance = TuningInstanceBatchSingleCrit$new(
   #   task = mlr3::tsk("iris"),
   #   learner = learner,
   #   resampling = mlr3::rsmp("holdout"),
