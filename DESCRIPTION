@@ -12,7 +12,9 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-8115-0400")),
     person("Jakob", "Richter", , "jakob1richter@gmail.com", role = "aut",
            comment = c(ORCID = "0000-0003-4481-5554")),
-    person("Damir", "Pulatov", , "dpulatov@uwyo.edu", role = "ctb")
+    person("Damir", "Pulatov", , "dpulatov@uwyo.edu", role = "ctb"),
+    person("John", "Zobolas", , "bblodfon@gmail.com", role = "aut",
+           comment = c(ORCID = "0000-0002-3609-8674"))
   )
 Description: Visualization package of the 'mlr3' ecosystem. It features plots
     for mlr3 objects such as tasks, learners, predictions, benchmark results,
@@ -48,6 +50,7 @@ Suggests:
     mlr3filters,
     mlr3learners,
     mlr3tuning (>= 0.9.0),
+    mlr3fselect (>= 0.12.0.9000),
     paradox,
     partykit,
     patchwork (>= 1.1.1),
@@ -87,6 +90,7 @@ Collate:
     'TaskClust.R'
     'TaskRegr.R'
     'TuningInstanceSingleCrit.R'
+    'EnsembleFSResult.R'
     'as_precrec.R'
     'bibentries.R'
     'helper.R'
