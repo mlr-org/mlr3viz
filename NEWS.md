@@ -1,5 +1,7 @@
 # mlr3viz (development version)
 
+- Add plots for `EnsembleFSResult` object.
+
 # mlr3viz 0.8.0
 
 - Work with new paradox version 1.0.0
