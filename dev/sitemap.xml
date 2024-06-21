@@ -37,7 +37,7 @@
     <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.LearnerRegr.html</loc>
   </url>
   <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.OptimInstanceSingleCrit.html</loc>
+    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.OptimInstanceBatchSingleCrit.html</loc>
   </url>
   <url>
     <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.PredictionClassif.html</loc>
@@ -61,7 +61,7 @@
     <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TaskRegr.html</loc>
   </url>
   <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TuningInstanceSingleCrit.html</loc>
+    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TuningInstanceBatchSingleCrit.html</loc>
   </url>
   <url>
     <loc>https://mlr3viz.mlr-org.com/dev/reference/index.html</loc>
