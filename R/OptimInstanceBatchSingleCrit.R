@@ -3,7 +3,7 @@
 #' @importFrom scales pretty_breaks
 #'
 #' @description
-#' Visualizations for [bbotk::OptimInstanceSingleCrit].
+#' Visualizations for [bbotk::OptimInstanceBatchSingleCrit].
 #' The argument `type` controls what kind of plot is drawn.
 #' Possible choices are:
 #'
@@ -21,7 +21,7 @@
 #'   * `"pairs"`: Plots all x and y values against each other.
 #'   * `"incumbent"`: Plots the incumbent versus the number of configurations.
 #'
-#' @param object ([bbotk::OptimInstanceSingleCrit]).
+#' @param object ([bbotk::OptimInstanceBatchSingleCrit]).
 #' @template param_type
 #' @param cols_x (`character()`)\cr
 #'  Column names of x values.
@@ -64,7 +64,7 @@
 #'     codomain = codomain
 #'   )
 #'
-#'   instance = OptimInstanceSingleCrit$new(objective = obfun, terminator = trm("evals", n_evals = 20))
+#'   instance = oi(objective = obfun, terminator = trm("evals", n_evals = 20))
 #'
 #'   optimizer = opt("random_search", batch_size = 2)
 #'   optimizer$optimize(instance)
@@ -84,7 +84,7 @@
 #'   # plot incumbent
 #'   print(autoplot(instance, type = "incumbent"))
 #' }
-autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, batch = NULL, theme = theme_minimal(), ...) { # nolint
+autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, batch = NULL, theme = theme_minimal(), ...) { # nolint
   assert_subset(cols_x, c(object$archive$cols_x, paste0("x_domain_", object$archive$cols_x)))
   assert_flag(trafo)
 
@@ -345,6 +345,6 @@ autoplot.OptimInstanceSingleCrit = function(object, type = "marginal", cols_x = 
 }
 
 #' @export
-fortify.OptimInstanceSingleCrit = function(model, data = NULL, ...) { # nolint
+fortify.OptimInstanceBatchSingleCrit = function(model, data = NULL, ...) { # nolint
   as.data.table(model$archive)
 }

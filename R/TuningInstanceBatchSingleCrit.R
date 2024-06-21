@@ -1,7 +1,7 @@
 #' @title Plots for Tuning Instances
 #'
 #' @description
-#' Visualizations for [mlr3tuning::TuningInstanceSingleCrit].
+#' Visualizations for [mlr3tuning::TuningInstanceBatchSingleCrit].
 #' The argument `type` controls what kind of plot is drawn.
 #' Possible choices are:
 #'
@@ -19,7 +19,7 @@
 #'   * `"pairs"`: Plots all x and y values against each other.
 #'   * `"incumbent"`: Plots the incumbent versus the number of configurations.
 #'
-#' @param object ([mlr3tuning::TuningInstanceSingleCrit].
+#' @param object ([mlr3tuning::TuningInstanceBatchSingleCrit].
 #' @template param_type
 #' @param cols_x (`character()`)\cr
 #'  Column names of hyperparameters.
@@ -46,7 +46,7 @@
 #'   learner$param_set$values$cp = to_tune(0.001, 0.1)
 #'   learner$param_set$values$minsplit = to_tune(1, 10)
 #'
-#'   instance = TuningInstanceSingleCrit$new(
+#'   instance = ti(
 #'     task = tsk("iris"),
 #'     learner = learner,
 #'     resampling = rsmp("holdout"),
@@ -72,6 +72,6 @@
 #'   # plot pairs
 #'   autoplot(instance, type = "pairs")
 #' }
-autoplot.TuningInstanceSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, theme = theme_minimal(), ...) {
-  autoplot.OptimInstanceSingleCrit(object = object, type = type, cols_x = cols_x, trafo = trafo, learner = learner, grid_resolution = grid_resolution, theme = theme, ...)
+autoplot.TuningInstanceBatchSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, theme = theme_minimal(), ...) {
+  autoplot.OptimInstanceBatchSingleCrit(object = object, type = type, cols_x = cols_x, trafo = trafo, learner = learner, grid_resolution = grid_resolution, theme = theme, ...)
 }
