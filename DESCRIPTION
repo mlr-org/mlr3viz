@@ -61,6 +61,10 @@ Suggests:
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.2),
     xgboost
+Remotes:
+    mlr-org/mlr3,
+    mlr-org/bbotk,
+    mlr-org/mlr3tuning
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
@@ -79,7 +83,7 @@ Collate:
     'LearnerRegrCVGlmnet.R'
     'LearnerRegrGlmnet.R'
     'LearnerRegrRpart.R'
-    'OptimInstanceSingleCrit.R'
+    'OptimInstanceBatchSingleCrit.R'
     'Prediction.R'
     'PredictionClassif.R'
     'PredictionClust.R'
@@ -89,6 +93,7 @@ Collate:
     'TaskClassif.R'
     'TaskClust.R'
     'TaskRegr.R'
+    'TuningInstanceBatchSingleCrit.R'
     'TuningInstanceSingleCrit.R'
     'EnsembleFSResult.R'
     'as_precrec.R'

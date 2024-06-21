@@ -7,7 +7,7 @@ LearnerRegrCVGlmnet
 LearnerRegrRpart
 Mattermost
 ORCID
-OptimInstanceSingleCrit
+OptimInstanceBatchSingleCrit
 Precrec
 PredictionClassif
 PredictionClust
@@ -20,7 +20,7 @@ StackOverflow
 TaskClassif
 TaskClust
 TaskRegr
-TuningInstanceSingleCrit
+TuningInstanceBatchSingleCrit
 autoplot
 autoplots
 bbotk
