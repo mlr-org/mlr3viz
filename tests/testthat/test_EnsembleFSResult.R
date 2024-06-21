@@ -17,24 +17,29 @@ test_that("autoplot ResampleResult", {
     classif.ce = c(0.13, 0.24, 0.16, 0.11, 0.25, 0.18, 0.15, 0.1, 0.16)
   )
 
-  efsr = EnsembleFSResult$new(result = result, features = paste0("V", 1:20), measure_id = "classif.ce")
+  efsr = mlr3fselect::EnsembleFSResult$new(result = result, features = paste0("V", 1:20), measure_id = "classif.ce")
   # pareto (stepwise)
   p = autoplot(efsr)
   expect_true(is.ggplot(p))
+  expect_doppelganger("pareto_stepwise", p)
 
   # pareto (estimated)
   p = autoplot(efsr, pareto_front = "estimated")
   expect_true(is.ggplot(p))
+  expect_doppelganger("pareto_estimated", p)
 
   # Performance
   p = autoplot(efsr, type = "performance")
   expect_true(is.ggplot(p))
+  expect_doppelganger("pareto_performance", p)
 
   # Number of features
   p = autoplot(efsr, type = "n_features")
   expect_true(is.ggplot(p))
+  expect_doppelganger("pareto_n_features", p)
 
   # stability
   p = autoplot(efsr, type = "stability")
   expect_true(is.ggplot(p))
+  expect_doppelganger("pareto_stability", p)
 })
