@@ -29,7 +29,7 @@
 #'  One of the measures returned by [stabm::listStabilityMeasures()] in lower case.
 #'  Default is `"jaccard"`.
 #' @template param_theme
-#' @param ... (`any`)\cr
+#' @param stability_args (`list`)\cr
 #'  Additional arguments passed to the stability measure function.
 #'
 #' @return [ggplot2::ggplot()].
@@ -70,7 +70,8 @@
 autoplot.EnsembleFSResult = function(object, type = "pareto",
                                      pareto_front = "stepwise",
                                      stability_measure = "jaccard",
-                                     theme = theme_minimal(), ...) {
+                                     stability_args = NULL,
+                                     theme = theme_minimal()) {
   assert_string(type)
   assert_choice(pareto_front, choices = c("stepwise", "estimated", "none"))
   result = object$result
@@ -134,8 +135,11 @@ autoplot.EnsembleFSResult = function(object, type = "pareto",
 
          "stability" = {
            # get stability per learner
-           stab_res = object$stability(stability_measure = stability_measure,
-                                       ..., global = FALSE, reset_cache = FALSE)
+           stab_res = object$stability(
+             stability_measure = stability_measure,
+             stability_args = stability_args,
+             global = FALSE,
+             reset_cache = FALSE)
            data = data.table(learner_id = names(stab_res), value = stab_res)
 
            ggplot(data, mapping = aes(
