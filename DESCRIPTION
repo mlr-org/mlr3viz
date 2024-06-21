@@ -95,7 +95,6 @@ Collate:
     'TaskClust.R'
     'TaskRegr.R'
     'TuningInstanceBatchSingleCrit.R'
-    'TuningInstanceSingleCrit.R'
     'EnsembleFSResult.R'
     'as_precrec.R'
     'bibentries.R'
