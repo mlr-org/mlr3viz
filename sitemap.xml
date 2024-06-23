@@ -22,6 +22,9 @@
     <loc>https://mlr3viz.mlr-org.com/reference/autoplot.BenchmarkResult.html</loc>
   </url>
   <url>
+    <loc>https://mlr3viz.mlr-org.com/reference/autoplot.EnsembleFSResult.html</loc>
+  </url>
+  <url>
     <loc>https://mlr3viz.mlr-org.com/reference/autoplot.Filter.html</loc>
   </url>
   <url>
@@ -40,7 +43,7 @@
     <loc>https://mlr3viz.mlr-org.com/reference/autoplot.LearnerRegr.html</loc>
   </url>
   <url>
-    <loc>https://mlr3viz.mlr-org.com/reference/autoplot.OptimInstanceSingleCrit.html</loc>
+    <loc>https://mlr3viz.mlr-org.com/reference/autoplot.OptimInstanceBatchSingleCrit.html</loc>
   </url>
   <url>
     <loc>https://mlr3viz.mlr-org.com/reference/autoplot.PredictionClassif.html</loc>
@@ -64,7 +67,7 @@
     <loc>https://mlr3viz.mlr-org.com/reference/autoplot.TaskRegr.html</loc>
   </url>
   <url>
-    <loc>https://mlr3viz.mlr-org.com/reference/autoplot.TuningInstanceSingleCrit.html</loc>
+    <loc>https://mlr3viz.mlr-org.com/reference/autoplot.TuningInstanceBatchSingleCrit.html</loc>
   </url>
   <url>
     <loc>https://mlr3viz.mlr-org.com/reference/index.html</loc>
