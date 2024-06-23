@@ -62,10 +62,9 @@ Suggests:
     vdiffr (>= 1.0.2),
     xgboost
 Remotes:
-    mlr-org/mlr3,
     mlr-org/bbotk,
     mlr-org/mlr3tuning,
-    mlr-org/mlr3fselect@efs_updates
+    mlr-org/mlr3fselect
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
