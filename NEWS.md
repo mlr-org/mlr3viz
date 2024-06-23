@@ -1,4 +1,4 @@
-# mlr3viz (development version)
+# mlr3viz 0.9.0
 
 - Work with new bbotk 0.9.0 and mlr3tuning 0.21.0
 
