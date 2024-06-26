@@ -60,11 +60,15 @@ Suggests:
     stats,
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.2),
-    xgboost
+    xgboost,
+    survminer,
+    mlr3proba (>= 0.6.3)
 Remotes:
     mlr-org/bbotk,
     mlr-org/mlr3tuning,
     mlr-org/mlr3fselect
+Additional_repositories:
+  https://mlr-org.r-universe.dev
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
@@ -83,6 +87,7 @@ Collate:
     'LearnerRegrCVGlmnet.R'
     'LearnerRegrGlmnet.R'
     'LearnerRegrRpart.R'
+    'LearnerSurvCoxPH.R'
     'OptimInstanceBatchSingleCrit.R'
     'Prediction.R'
     'PredictionClassif.R'
