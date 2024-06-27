@@ -67,7 +67,7 @@ Remotes:
     mlr-org/bbotk,
     mlr-org/mlr3tuning,
     mlr-org/mlr3fselect,
-    mlr-org/mlr3proba (>= 0.6.3)
+    mlr-org/mlr3proba
 Additional_repositories:
   https://mlr-org.r-universe.dev
 Config/testthat/edition: 3
