@@ -1,87 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/index.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/as_precrec.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.BenchmarkResult.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.EnsembleFSResult.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.Filter.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.LearnerClassif.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.LearnerClassifGlmnet.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.LearnerClassifRpart.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.LearnerClustHierarchical.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.LearnerRegr.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.LearnerSurvCoxPH.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.OptimInstanceBatchSingleCrit.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.PredictionClassif.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.PredictionClust.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.PredictionRegr.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.ResampleResult.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TaskClassif.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TaskClust.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TaskRegr.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TuningInstanceBatchSingleCrit.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/mlr3viz-package.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/plot_learner_prediction.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/predict_grid.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3viz.mlr-org.com/dev/reference/reexports.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://mlr3viz.mlr-org.com/dev/LICENSE-text.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/authors.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/index.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/news/index.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/as_precrec.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.BenchmarkResult.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.EnsembleFSResult.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.Filter.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.LearnerClassif.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.LearnerClassifGlmnet.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.LearnerClassifRpart.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.LearnerClustHierarchical.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.LearnerRegr.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.LearnerSurvCoxPH.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.OptimInstanceBatchSingleCrit.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.PredictionClassif.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.PredictionClust.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.PredictionRegr.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.ResampleResult.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TaskClassif.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TaskClust.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TaskRegr.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/autoplot.TuningInstanceBatchSingleCrit.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/index.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/mlr3viz-package.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/plot_learner_prediction.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/predict_grid.html</loc></url>
+<url><loc>https://mlr3viz.mlr-org.com/dev/reference/reexports.html</loc></url>
 </urlset>
+
