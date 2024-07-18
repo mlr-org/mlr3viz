@@ -62,5 +62,5 @@ test_that("CI plot", {
 
   bmr = benchmark(benchmark_grid(tsk("iris"), lrn("classif.rpart"),
     rsmps(c("holdout", "cv"))))
-  expect_error(autoplot(bmr, msr("ci", "regr.mse")), "one resampling method")
+  expect_error(autoplot(bmr, "ci", msr("ci", "classif.acc")), "one resampling method")
 })
