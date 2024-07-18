@@ -12,14 +12,12 @@
 #'   Requires package \CRANpkg{precrec}.
 #' * `"prc"`: Precision recall curve.
 #'    See `"roc"`.
-#' * `"ci"`: Plot confidence intervals.
+#' * `"ci"`: Plot confidence intervals. Pass a `msr("ci", ...)` from the `mlr3inference` package as argument `measure`.
 #'
 #' @param object ([mlr3::BenchmarkResult]).
 #' @template param_type
 #' @template param_measure
 #' @template param_theme
-#' @param alpha (`numeric(1)`)\cr
-#'   The alpha level in case of a CI plot.
 #' @param ... (ignored).
 #'
 #' @return [ggplot2::ggplot()].
@@ -43,7 +41,7 @@
 #'   autoplot(object)
 #'   autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "roc")
 #' }
-autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, theme = theme_minimal(), alpha = 0.05, ...) {
+autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, theme = theme_minimal(), ...) {
   assert_string(type)
 
   task = object$tasks$task[[1L]]
@@ -52,9 +50,7 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, th
   if (identical(type, "ci")) {
     mlr3misc::require_namespaces("mlr3inference")
 
-    if (test_class(measure, "Measure") && !test_class(measure, "MeasureAbstractCi")) {
-      measure = msr("ci", measure = measure, alpha = alpha)
-    }
+    assert_class(measure, "MeasureAbstractCi")
     mid = measure$id
 
     tbl = object$aggregate(measure)
@@ -75,11 +71,15 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, th
       geom_errorbar(aes(ymin = .data[[paste0(mid, ".lower")]], ymax = .data[[paste0(mid, ".upper")]]), width = 0.2) +
       facet_wrap(vars(task_id), scales = "free_y") +
       labs(
-      title = sprintf("Confidence Intervals for alpha = %s", alpha, mid),
+      title = sprintf("Confidence Intervals for alpha = %s", measure$param_set$values$alpha),
       x = "Learner",
       y = paste0(measure$measure$id)
       ) +
-      theme
+      theme +
+      theme(
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title.x = element_blank()
+      )
     return(p)
   }
 

@@ -9,7 +9,6 @@
   type = "boxplot",
   measure = NULL,
   theme = theme_minimal(),
-  alpha = 0.05,
   ...
 )
 }
@@ -24,9 +23,6 @@ Performance measure to use.}
 
 \item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
 The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
-
-\item{alpha}{(\code{numeric(1)})\cr
-The alpha level in case of a CI plot.}
 
 \item{...}{(ignored).}
 }
@@ -45,7 +41,7 @@ Note that you can subset any \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} 
 Requires package \CRANpkg{precrec}.
 \item \code{"prc"}: Precision recall curve.
 See \code{"roc"}.
-\item \code{"ci"}: Plot confidence intervals.
+\item \code{"ci"}: Plot confidence intervals. Pass a \code{msr("ci", ...)} from the \code{mlr3inference} package as argument \code{measure}.
 }
 }
 \examples{

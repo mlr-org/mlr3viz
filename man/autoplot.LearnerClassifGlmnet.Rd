@@ -49,7 +49,7 @@
 )
 }
 \arguments{
-\item{object}{(\link[mlr3learners:LearnerClassifGlmnet]{mlr3learners::LearnerClassifGlmnet} | \link[mlr3learners:LearnerRegrGlmnet]{mlr3learners::LearnerRegrGlmnet} | \link[mlr3learners:LearnerRegrCVGlmnet]{mlr3learners::LearnerRegrCVGlmnet} | \link[mlr3learners:LearnerRegrCVGlmnet]{mlr3learners::LearnerRegrCVGlmnet}).}
+\item{object}{(\link[mlr3learners:mlr_learners_classif.glmnet]{mlr3learners::LearnerClassifGlmnet} | \link[mlr3learners:mlr_learners_regr.glmnet]{mlr3learners::LearnerRegrGlmnet} | \link[mlr3learners:mlr_learners_regr.cv_glmnet]{mlr3learners::LearnerRegrCVGlmnet} | \link[mlr3learners:mlr_learners_regr.cv_glmnet]{mlr3learners::LearnerRegrCVGlmnet}).}
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
@@ -72,7 +72,7 @@ The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by defaul
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Visualizations for \link[mlr3learners:LearnerClassifGlmnet]{mlr3learners::LearnerClassifGlmnet}.
+Visualizations for \link[mlr3learners:mlr_learners_classif.glmnet]{mlr3learners::LearnerClassifGlmnet}.
 The argument \code{type} controls what kind of plot is drawn.
 Possible choices are:
 \itemize{
