@@ -1,6 +1,7 @@
 # mlr3viz (development version)
 
 - Add plot for `LearnerSurvCoxPH`.
+- Add plot for confidence intervals (`mlr3inference`)
 
 # mlr3viz 0.9.0
 
