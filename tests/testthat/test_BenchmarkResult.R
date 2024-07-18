@@ -48,3 +48,15 @@ test_that("holdout roc plot (#54)", {
 
   expect_doppelganger("bmr_holdout_roc", p)
 })
+
+skip_if_not_installed("mlr3inference")
+skip_if_not_installed("rpart")
+
+test_that("CI plot", {
+  bmr = benchmark(benchmark_grid(tsks(c("mtcars", "boston_housing")),
+    lrns(c("regr.featureless", "regr.rpart")), rsmp("holdout")))
+
+  p = autoplot(bmr, "ci")
+  expect_true(is.ggplot(p))
+  expect_doppelganger("bmr_holdout_ci", p)
+})

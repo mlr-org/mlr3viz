@@ -49,6 +49,7 @@ Suggests:
     mlr3cluster,
     mlr3filters,
     mlr3fselect (>= 1.0.0),
+	mlr3inference,
     mlr3learners,
     mlr3tuning (>= 1.0.0),
     paradox,
@@ -72,7 +73,7 @@ Config/testthat/parallel: true
 Encoding: UTF-8
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Collate:
     'BenchmarkResult.R'
     'Filter.R'

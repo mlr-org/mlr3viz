@@ -12,11 +12,14 @@
 #'   Requires package \CRANpkg{precrec}.
 #' * `"prc"`: Precision recall curve.
 #'    See `"roc"`.
+#' * `"ci"`: Plot confidence intervals.
 #'
 #' @param object ([mlr3::BenchmarkResult]).
 #' @template param_type
 #' @template param_measure
 #' @template param_theme
+#' @param alpha (`numeric(1)`)\cr
+#'   The alpha level in case of a CI plot.
 #' @param ... (ignored).
 #'
 #' @return [ggplot2::ggplot()].
@@ -40,11 +43,38 @@
 #'   autoplot(object)
 #'   autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "roc")
 #' }
-autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, theme = theme_minimal(), ...) {
+autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, theme = theme_minimal(), alpha = 0.05, ...) {
   assert_string(type)
 
   task = object$tasks$task[[1L]]
   measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
+
+  if (identical(type, "ci")) {
+    mlr3misc::require_namespaces("mlr3inference")
+
+    if (test_class(measure, "Measure") && !test_class(measure, "MeasureAbstractCi")) {
+      measure = msr("ci", measure = measure, alpha = alpha)
+    }
+    mid = measure$id
+
+    tbl = object$aggregate(measure)
+
+    # static checker
+    .data = NULL
+    task_id = NULL
+    p = ggplot(tbl, aes(x = .data[["learner_id"]], y = .data[[mid]])) +
+      geom_point() +
+      geom_errorbar(aes(ymin = .data[[paste0(mid, ".lower")]], ymax = .data[[paste0(mid, ".upper")]]), width = 0.2) +
+      facet_wrap(vars(task_id), scales = "free_y") +
+      labs(
+      title = sprintf("Confidence Intervals for alpha = %s", alpha, mid),
+      x = "Learner",
+      y = paste0(measure$measure$id)
+      ) +
+      theme
+    return(p)
+  }
+
   measure_id = measure$id
   tab = fortify(object, measure = measure)
   tab$nr = sprintf("%09d", tab$nr)
