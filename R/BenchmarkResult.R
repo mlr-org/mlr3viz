@@ -59,6 +59,14 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, th
 
     tbl = object$aggregate(measure)
 
+    tmp = map(object$resamplings$resampling, function(x) {
+      list(class(x), x$param_set$values)
+    })
+
+    if (length(unique(tmp)) != 1) {
+      stopf("Plot of type 'ci' requires exactly one resampling method")
+    }
+
     # static checker
     .data = NULL
     task_id = NULL

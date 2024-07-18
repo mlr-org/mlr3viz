@@ -59,4 +59,8 @@ test_that("CI plot", {
   p = autoplot(bmr, "ci")
   expect_true(is.ggplot(p))
   expect_doppelganger("bmr_holdout_ci", p)
+
+  bmr = benchmark(benchmark_grid(tsk("iris"), lrn("classif.rpart"),
+    rsmps(c("holdout", "cv"))))
+  expect_error(autoplot(bmr, "ci"), "one resampling method")
 })
