@@ -1,9 +1,11 @@
 # mlr3viz (development version)
 
+- Add plot for `LearnerSurvCoxPH`.
+- Add plot for confidence intervals (`mlr3inference`)
+
 # mlr3viz 0.9.0
 
 - Work with new bbotk 0.9.0 and mlr3tuning 0.21.0
-
 - Add plots for `EnsembleFSResult` object.
 
 # mlr3viz 0.8.0

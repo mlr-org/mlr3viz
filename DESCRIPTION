@@ -49,6 +49,7 @@ Suggests:
     mlr3cluster,
     mlr3filters,
     mlr3fselect (>= 1.0.0),
+	mlr3inference,
     mlr3learners,
     mlr3tuning (>= 1.0.0),
     paradox,
@@ -60,13 +61,20 @@ Suggests:
     stats,
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.2),
-    xgboost
+    xgboost,
+    survminer,
+    mlr3proba (>= 0.6.3)
+Remotes:
+    mlr-org/mlr3proba,
+    mlr-org/mlr3inference
+Additional_repositories:
+  https://mlr-org.r-universe.dev
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Collate:
     'BenchmarkResult.R'
     'Filter.R'
@@ -79,6 +87,7 @@ Collate:
     'LearnerRegrCVGlmnet.R'
     'LearnerRegrGlmnet.R'
     'LearnerRegrRpart.R'
+    'LearnerSurvCoxPH.R'
     'OptimInstanceBatchSingleCrit.R'
     'Prediction.R'
     'PredictionClassif.R'
