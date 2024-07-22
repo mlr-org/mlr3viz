@@ -12,7 +12,7 @@
 #'   Requires package \CRANpkg{precrec}.
 #' * `"prc"`: Precision recall curve.
 #'    See `"roc"`.
-#' * `"ci"`: Plot confidence intervals. Pass a `msr("ci", ...)` from the `mlr3inference` package as argument `measure`.
+#' * `"ci"`: Plot confidence intervals. Pass a `msr("ci", ...)` from the `mlr3inferr` package as argument `measure`.
 #'
 #' @param object ([mlr3::BenchmarkResult]).
 #' @template param_type
@@ -48,7 +48,7 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, th
   measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
 
   if (identical(type, "ci")) {
-    mlr3misc::require_namespaces("mlr3inference")
+    mlr3misc::require_namespaces("mlr3inferr")
 
     assert_class(measure, "MeasureAbstractCi")
     mid = measure$id

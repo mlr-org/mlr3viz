@@ -49,7 +49,7 @@ test_that("holdout roc plot (#54)", {
   expect_doppelganger("bmr_holdout_roc", p)
 })
 
-skip_if_not_installed("mlr3inference")
+skip_if_not_installed("mlr3inferr")
 skip_if_not_installed("rpart")
 
 test_that("CI plot", {

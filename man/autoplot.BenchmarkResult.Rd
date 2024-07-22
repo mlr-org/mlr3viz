@@ -41,7 +41,7 @@ Note that you can subset any \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} 
 Requires package \CRANpkg{precrec}.
 \item \code{"prc"}: Precision recall curve.
 See \code{"roc"}.
-\item \code{"ci"}: Plot confidence intervals. Pass a \code{msr("ci", ...)} from the \code{mlr3inference} package as argument \code{measure}.
+\item \code{"ci"}: Plot confidence intervals. Pass a \code{msr("ci", ...)} from the \code{mlr3inferr} package as argument \code{measure}.
 }
 }
 \examples{
