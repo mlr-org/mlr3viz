@@ -36,7 +36,7 @@ test_that("plot_learner_prediction.LearnerClassif", {
 })
 
 test_that("plot_learner_prediction.LearnerRegr 2d", {
-  task = mlr3::tsk("boston_housing")$select(c("age", "dis"))
+  task = mlr3::tsk("mtcars")$select(c("am", "carb"))
   learner = mlr3::lrn("regr.rpart")$train(task)
   p = plot_learner_prediction(learner, task, expand_range = 0.1)
   expect_true(is.ggplot(p))
@@ -44,7 +44,7 @@ test_that("plot_learner_prediction.LearnerRegr 2d", {
 })
 
 test_that("plot_learner_prediction.LearnerRegr 1d", {
-  task = mlr3::tsk("boston_housing")$select("age")
+  task = mlr3::tsk("mtcars")$select("am")
 
   # predict_type = "response"
   learner = mlr3::lrn("regr.rpart")$train(task)

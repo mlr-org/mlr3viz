@@ -36,8 +36,8 @@ test_that("autoplot ResampleResult", {
 test_that("autoplot ResampleResult type=prediction", {
   tasks = list(
     classif_2d = mlr3::tsk("iris")$select(c("Sepal.Length", "Sepal.Width")),
-    regr_1d = mlr3::tsk("boston_housing")$select("age"),
-    regr_2d = mlr3::tsk("boston_housing")$select(c("age", "chas"))
+    regr_1d = mlr3::tsk("mtcars")$select("am"),
+    regr_2d = mlr3::tsk("mtcars")$select(c("am", "carb"))
   )
 
   predict_sets = list(character(), "train", "test", c("train", "test"))
@@ -75,7 +75,7 @@ test_that("autoplot ResampleResult type=prediction", {
     store_models = TRUE)
   expect_error(autoplot(rr, type = "prediction"),
     regexp = "only works for tasks with two features")
-  rr = resample(mlr3::tsk("boston_housing"), lrn("regr.featureless"), resampling,
+  rr = resample(mlr3::tsk("mtcars"), lrn("regr.featureless"), resampling,
     store_models = TRUE)
   expect_error(autoplot(rr, type = "prediction"),
     regexp = "Plot learner prediction only works with one or two features for
