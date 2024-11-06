@@ -65,6 +65,7 @@ Suggests:
     survminer,
     mlr3proba (>= 0.6.3)
 Remotes:
+    mlr-org/mlr3,
     mlr-org/mlr3proba,
     mlr-org/mlr3inferr
 Additional_repositories:

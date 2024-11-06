@@ -53,7 +53,7 @@ skip_if_not_installed("mlr3inferr")
 skip_if_not_installed("rpart")
 
 test_that("CI plot", {
-  bmr = benchmark(benchmark_grid(tsks(c("mtcars", "boston_housing")),
+  bmr = benchmark(benchmark_grid(tsks(c("mtcars", "mtcars")),
     lrns(c("regr.featureless", "regr.rpart")), rsmp("holdout")))
 
   p = autoplot(bmr, "ci", msr("ci", "regr.mse"))

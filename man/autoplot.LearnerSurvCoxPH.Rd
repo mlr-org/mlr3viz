@@ -7,7 +7,7 @@
 \method{autoplot}{LearnerSurvCoxPH}(object, type = "ggforest", ...)
 }
 \arguments{
-\item{object}{(\link[mlr3proba:LearnerSurvCoxPH]{mlr3proba::LearnerSurvCoxPH}).}
+\item{object}{(\link[mlr3proba:mlr_learners_surv.coxph]{mlr3proba::LearnerSurvCoxPH}).}
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
@@ -18,7 +18,7 @@ Type of the plot. See description.}
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Visualizations for \link[mlr3proba:LearnerSurvCoxPH]{mlr3proba::LearnerSurvCoxPH}.
+Visualizations for \link[mlr3proba:mlr_learners_surv.coxph]{mlr3proba::LearnerSurvCoxPH}.
 
 The argument \code{type} controls what kind of plot is drawn.
 The only possible choice right now is \code{"ggforest"} (default) which is a
