@@ -55,7 +55,7 @@ if (requireNamespace("mlr3")) {
   library(mlr3)
   library(mlr3viz)
 
-  task = tsk("boston_housing")
+  task = tsk("mtcars")
   learner = lrn("regr.rpart")
   object = learner$train(task)$predict(task)
 

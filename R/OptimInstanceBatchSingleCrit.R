@@ -346,5 +346,5 @@ autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols
 
 #' @export
 fortify.OptimInstanceBatchSingleCrit = function(model, data = NULL, ...) { # nolint
-  as.data.table(model$archive)
+  as.data.table(model$archive, unnest = "x_domain")
 }

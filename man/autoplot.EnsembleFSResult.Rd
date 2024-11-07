@@ -15,7 +15,7 @@
 )
 }
 \arguments{
-\item{object}{(\link[mlr3fselect:EnsembleFSResult]{mlr3fselect::EnsembleFSResult}).}
+\item{object}{(\link[mlr3fselect:ensemble_fs_result]{mlr3fselect::EnsembleFSResult}).}
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
@@ -41,7 +41,7 @@ The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by defaul
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Visualizations for \link[mlr3fselect:EnsembleFSResult]{EnsembleFSResult}.
+Visualizations for \link[mlr3fselect:ensemble_fs_result]{EnsembleFSResult}.
 The argument \code{type} determines the type of plot generated.
 The available options are:
 \itemize{
