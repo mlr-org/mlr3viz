@@ -10,7 +10,7 @@ Requires package precrec.
 "prc": Precision recall curve.
 See "roc".
 "prediction": Plots the learner prediction for a grid of points.
-Needs models to be stored. Set store_models = TRUE for [mlr3::resample].
+Needs models to be stored. Set store_models = TRUE for mlr3::resample().
 For classification, we support tasks with exactly two features and learners with predict_type= set to "response" or "prob".
 For regression, we support tasks with one or two features.
 For tasks with one feature we can print confidence bounds if the predict type of the learner was set to "se".
@@ -27,7 +27,7 @@ Requires package precrec.
 "prc": Precision recall curve.
 See "roc".
 "prediction": Plots the learner prediction for a grid of points.
-Needs models to be stored. Set store_models = TRUE for [mlr3::resample].
+Needs models to be stored. Set store_models = TRUE for mlr3::resample().
 For classification, we support tasks with exactly two features and learners with predict_type= set to "response" or "prob".
 For regression, we support tasks with one or two features.
 For tasks with one feature we can print confidence bounds if the predict type of the learner was set to "se".
@@ -87,7 +87,7 @@ Requires package <a href="https://CRAN.R-project.org/package=precrec" class="ext
 <li><p><code>"prc"</code>: Precision recall curve.
 See <code>"roc"</code>.</p></li>
 <li><p><code>"prediction"</code>: Plots the learner prediction for a grid of points.
-Needs models to be stored. Set <code>store_models = TRUE</code> for <code>[mlr3::resample]</code>.
+Needs models to be stored. Set <code>store_models = TRUE</code> for <code><a href="https://mlr3.mlr-org.com/reference/resample.html" class="external-link">mlr3::resample()</a></code>.
 For classification, we support tasks with exactly two features and learners with <code>predict_type=</code> set to <code>"response"</code> or <code>"prob"</code>.
 For regression, we support tasks with one or two features.
 For tasks with one feature we can print confidence bounds if the predict type of the learner was set to <code>"se"</code>.
@@ -144,7 +144,8 @@ The <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>(ignored).</p></dd>
+<dd><p>arguments passed on to <code><a href="https://rdrr.io/pkg/precrec/man/autoplot.html" class="external-link">precrec::autoplot()</a></code> for <code>type = "roc"</code> or <code>"prc"</code>.
+Useful to e.g. remove confidence bands with <code>show_cb = FALSE</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
