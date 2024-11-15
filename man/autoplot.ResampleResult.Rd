@@ -34,7 +34,8 @@ Width of the bins for the histogram.}
 \item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
 The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
 
-\item{...}{(ignored).}
+\item{...}{arguments passed on to \code{\link[precrec:autoplot]{precrec::autoplot()}} for \code{type = "roc"} or \code{"prc"}.
+Useful to e.g. remove confidence bands with \code{show_cb = FALSE}.}
 }
 \value{
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
@@ -52,7 +53,7 @@ Requires package \CRANpkg{precrec}.
 \item \code{"prc"}: Precision recall curve.
 See \code{"roc"}.
 \item \code{"prediction"}: Plots the learner prediction for a grid of points.
-Needs models to be stored. Set \code{store_models = TRUE} for \verb{[mlr3::resample]}.
+Needs models to be stored. Set \code{store_models = TRUE} for \code{\link[mlr3:resample]{mlr3::resample()}}.
 For classification, we support tasks with exactly two features and learners with \verb{predict_type=} set to \code{"response"} or \code{"prob"}.
 For regression, we support tasks with one or two features.
 For tasks with one feature we can print confidence bounds if the predict type of the learner was set to \code{"se"}.
