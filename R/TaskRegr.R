@@ -30,7 +30,7 @@
 #'   autoplot(task, type = "pairs")
 #' }
 autoplot.TaskRegr = function(object, type = "target", theme = theme_minimal(), ...) { # nolint
-  assert_string(type)
+  assert_choice(type, choices = c("target", "pairs"), null.ok = FALSE)
 
   switch(type,
     "target" = {

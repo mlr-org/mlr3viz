@@ -46,7 +46,7 @@
 #'   autoplot(learner, type = "scree")
 #' }
 autoplot.LearnerClustHierarchical = function(object, type = "dend", task = NULL, theme = theme_minimal(), theme_dendro = TRUE, ...) { # nolint
-  assert_string(type)
+  assert_choice(type, choices = c("dend", "scree"), null.ok = FALSE)
 
   if (is.null(object$model)) {
     stopf("Learner '%s' must be trained first", object$id)

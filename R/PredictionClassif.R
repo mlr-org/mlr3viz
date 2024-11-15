@@ -41,7 +41,7 @@
 #' }
 #' }
 autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, theme = theme_minimal(), ...) { # nolint
-  assert_string(type)
+  assert_choice(type, choices = c("stacked", "roc", "prc", "threshold"), null.ok = FALSE)
 
   switch(type,
     "stacked" = {

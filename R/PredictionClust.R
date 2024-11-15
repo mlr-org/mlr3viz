@@ -39,7 +39,7 @@
 #'   autoplot(object, task)
 #' }
 autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatter", theme = theme_minimal(), ...) { # nolint
-  assert_string(type)
+  assert_choice(type, choices = c("scatter", "sil", "pca"), null.ok = FALSE)
 
   switch(type,
     "scatter" = {
