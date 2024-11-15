@@ -77,7 +77,7 @@ autoplot.EnsembleFSResult = function(
   theme = theme_minimal(),
   ...
   ) {
-  assert_string(type)
+  assert_choice(type, choices = c("pareto", "performance", "n_features", "stability"), null.ok = FALSE)
   assert_choice(pareto_front, choices = c("stepwise", "estimated", "none"))
   result = object$result
   measure_id = object$measure

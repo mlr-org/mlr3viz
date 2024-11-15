@@ -38,6 +38,7 @@
 #'   autoplot(learner, type = "ggparty")
 #' }
 autoplot.LearnerClassifRpart = function(object, type = "prediction", task = NULL, grid_points = 100L, expand_range = 0, theme = theme_minimal(), ...) { # nolint
+  assert_choice(type, choices = c("prediction", "ggparty"), null.ok = FALSE)
   assert_has_model(object)
 
   switch(type,

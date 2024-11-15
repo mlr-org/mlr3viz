@@ -13,7 +13,7 @@
 #' * `"prc"`: Precision recall curve.
 #'    See `"roc"`.
 #' * `"prediction"`: Plots the learner prediction for a grid of points.
-#'    Needs models to be stored. Set `store_models = TRUE` for `[mlr3::resample]`.
+#'    Needs models to be stored. Set `store_models = TRUE` for [mlr3::resample()].
 #'    For classification, we support tasks with exactly two features and learners with `predict_type=` set to `"response"` or `"prob"`.
 #'    For regression, we support tasks with one or two features.
 #'    For tasks with one feature we can print confidence bounds if the predict type of the learner was set to `"se"`.
@@ -74,7 +74,7 @@
 #' }
 #' }
 autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, predict_sets = "test", binwidth = NULL, theme = theme_minimal(), ...) {
-  assert_string(type)
+  assert_choice(type, choices = c("boxplot", "histogram", "prediction", "roc", "prc"), null.ok = FALSE)
 
   task = object$task
   measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)

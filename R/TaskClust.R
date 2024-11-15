@@ -27,7 +27,7 @@
 #'   autoplot(task)
 #' }
 autoplot.TaskClust = function(object, type = "pairs", theme = theme_minimal(), ...) { # nolint
-  assert_string(type)
+  assert_choice(type, choices = c("pairs"), null.ok = FALSE)
 
   switch(type,
     "pairs" = {

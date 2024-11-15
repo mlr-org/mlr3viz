@@ -50,7 +50,7 @@
 #'  }
 #' }
 autoplot.PredictionRegr = function(object, type = "xy", binwidth = NULL, theme = theme_minimal(), quantile = 1.96, ...) {
-  checkmate::assert_string(type)
+  assert_choice(type, choices = c("xy", "histogram", "residual", "confidence"), null.ok = FALSE)
 
   switch(type,
     "xy" = {
