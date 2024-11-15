@@ -29,7 +29,8 @@
 #' @param binwidth (`integer(1)`)\cr
 #'  Width of the bins for the histogram.
 #' @template param_theme
-#' @param ... (ignored).
+#' @param ... arguments passed on to [precrec::autoplot()] for `type = "roc"` or `"prc"`.
+#' Useful to e.g. remove confidence bands with `show_cb = FALSE`.
 #'
 #' @return [ggplot2::ggplot()].
 #'
@@ -122,7 +123,7 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, pre
     },
 
     "prc" = {
-      p = plot_precrec(object, curvetype = "PRC")
+      p = plot_precrec(object, curvetype = "PRC", ...)
       # fill confidence bounds
       p$layers[[1]]$mapping = aes(color = modname, fill = modname)
       p +

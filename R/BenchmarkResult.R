@@ -17,7 +17,8 @@
 #' @template param_type
 #' @template param_measure
 #' @template param_theme
-#' @param ... (ignored).
+#' @param ... arguments passed on to [precrec::autoplot()] for `type = "roc"` or `"prc"`.
+#' Useful to e.g. remove confidence bands with `show_cb = FALSE`.
 #'
 #' @return [ggplot2::ggplot()].
 #'
@@ -74,7 +75,7 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, th
     },
 
     "roc" = {
-      p = plot_precrec(object, curvetype = "ROC")
+      p = plot_precrec(object, curvetype = "ROC", ...)
       p$layers[[1]]$mapping = aes(color = modname, fill = modname)
       # fill confidence bounds
       p +
@@ -84,7 +85,7 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, th
     },
 
     "prc" = {
-      p = plot_precrec(object, curvetype = "PRC")
+      p = plot_precrec(object, curvetype = "PRC", ...)
       # fill confidence bounds
       p$layers[[1]]$mapping = aes(color = modname, fill = modname)
       p +
