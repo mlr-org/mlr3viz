@@ -1,5 +1,7 @@
 test_that("autoplot ResampleResult", {
+  skip_if_not_installed("mlr3fselect")
   requireNamespace("mlr3fselect")
+
   result = data.table(
     resampling_iteration = c(1, 1, 1, 2, 2, 2, 3, 3, 3),
     learner_id = rep(c("classif.xgboost", "classif.rpart", "classif.ranger"), 3),
@@ -17,7 +19,8 @@ test_that("autoplot ResampleResult", {
     classif.ce = c(0.13, 0.24, 0.16, 0.11, 0.25, 0.18, 0.15, 0.1, 0.16)
   )
 
-  efsr = mlr3fselect::EnsembleFSResult$new(result = result, features = paste0("V", 1:20), measure_id = "classif.ce")
+  efsr = mlr3fselect::EnsembleFSResult$new(result = result, features = paste0("V", 1:20),
+                                           measure = msr("classif.ce"))
 
   # wrong type gives hint of types a user can input
   expect_error(autoplot(efsr, type = "XYZ"), regexp = "Must be element of set")
