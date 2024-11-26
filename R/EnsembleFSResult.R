@@ -80,7 +80,10 @@ autoplot.EnsembleFSResult = function(
   assert_choice(type, choices = c("pareto", "performance", "n_features", "stability"), null.ok = FALSE)
   assert_choice(pareto_front, choices = c("stepwise", "estimated", "none"))
   result = object$result
-  measure_id = object$measure
+  measure = object$measure # get active measure
+  measure_id = ifelse(object$active_measure == "inner",
+                      sprintf("%s_inner", measure$id),
+                      measure$id)
 
   switch(type,
     "pareto" = {
