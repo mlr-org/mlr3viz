@@ -22,7 +22,7 @@ test_that("autoplot ResampleResult", {
   )
 
   efsr = mlr3fselect::EnsembleFSResult$new(result = result, features = paste0("V", 1:20),
-                                           measure = msr("classif.ce"))
+                                           measure = mlr3::msr("classif.ce"))
 
   # wrong type gives hint of types a user can input
   expect_error(autoplot(efsr, type = "XYZ"), regexp = "Must be element of set")
