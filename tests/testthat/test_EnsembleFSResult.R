@@ -1,6 +1,8 @@
+skip_if_not_installed("mlr3")
+skip_if_not_installed("mlr3fselect")
+
 test_that("autoplot ResampleResult", {
-  skip_if_not_installed("mlr3fselect")
-  requireNamespace("mlr3fselect")
+  require_namespaces(c("mlr3", "mlr3fselect"))
 
   result = data.table(
     resampling_iteration = c(1, 1, 1, 2, 2, 2, 3, 3, 3),
