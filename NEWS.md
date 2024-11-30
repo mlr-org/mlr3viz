@@ -1,9 +1,8 @@
 # mlr3viz (development version)
 
-- Allow passing parameters to `precrec::autoplot()` (eg `show_cb`) when plotting 
-`BenchmarkResult` and `ResampleResult` objects, using `type` = `roc` or `prc`.
-- Refactor: wrong `type` in `autoplot`s now gives hints of which ones to use.
-- Update `EnsembleFSResult.autoplot` to use the `active_measure` field
+- feat: Allow passing parameters to `precrec::autoplot()` (eg `show_cb`) when plotting `BenchmarkResult` and `ResampleResult` objects, using `type` = `roc` or `prc`.
+- refactor: Wrong `type` in `autoplot`s now gives hints of which ones to use.
+- refactor: Update `EnsembleFSResult.autoplot` to use the `active_measure` field.
 
 # mlr3viz 0.10.0
 
