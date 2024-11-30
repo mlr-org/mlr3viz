@@ -48,7 +48,7 @@ Suggests:
     mlr3 (>= 0.6.0),
     mlr3cluster,
     mlr3filters,
-    mlr3fselect (>= 1.0.0),
+    mlr3fselect (>= 1.2.1.9000),
     mlr3learners,
     mlr3tuning (>= 1.0.0),
     paradox,
@@ -64,7 +64,8 @@ Suggests:
     survminer,
     mlr3proba (>= 0.6.3)
 Remotes:
-    mlr-org/mlr3proba
+    mlr-org/mlr3proba,
+    mlr-org/mlr3fselect
 Additional_repositories:
   https://mlr-org.r-universe.dev
 Config/testthat/edition: 3
