@@ -43,7 +43,7 @@
 #'   autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "roc")
 #' }
 autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, theme = theme_minimal(), ...) {
-  assert_choice(type, choices = c("boxplot", "roc", "prc"), null.ok = FALSE)
+  assert_choice(type, choices = c("boxplot", "roc", "prc", "ci"), null.ok = FALSE)
 
   task = object$tasks$task[[1L]]
   measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
