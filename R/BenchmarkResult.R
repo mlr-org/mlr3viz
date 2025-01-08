@@ -18,7 +18,8 @@
 #' @template param_type
 #' @template param_measure
 #' @template param_theme
-#' @param ... (ignored).
+#' @param ... arguments passed on to [precrec::autoplot()] for `type = "roc"` or `"prc"`.
+#' Useful to e.g. remove confidence bands with `show_cb = FALSE`.
 #'
 #' @return [ggplot2::ggplot()].
 #'
@@ -42,7 +43,7 @@
 #'   autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "roc")
 #' }
 autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, theme = theme_minimal(), ...) {
-  assert_string(type)
+  assert_choice(type, choices = c("boxplot", "roc", "prc"), null.ok = FALSE)
 
   task = object$tasks$task[[1L]]
   measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
@@ -111,7 +112,7 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, th
     },
 
     "roc" = {
-      p = plot_precrec(object, curvetype = "ROC")
+      p = plot_precrec(object, curvetype = "ROC", ...)
       p$layers[[1]]$mapping = aes(color = modname, fill = modname)
       # fill confidence bounds
       p +
@@ -121,7 +122,7 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, th
     },
 
     "prc" = {
-      p = plot_precrec(object, curvetype = "PRC")
+      p = plot_precrec(object, curvetype = "PRC", ...)
       # fill confidence bounds
       p$layers[[1]]$mapping = aes(color = modname, fill = modname)
       p +

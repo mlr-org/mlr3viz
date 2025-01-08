@@ -33,7 +33,7 @@
 #'   autoplot(task, type = "duo")
 #' }
 autoplot.TaskClassif = function(object, type = "target", theme = theme_minimal(), ...) { # nolint
-  assert_string(type)
+  assert_choice(type, choices = c("target", "duo", "pairs"), null.ok = FALSE)
 
   target = object$target_names
 

@@ -85,6 +85,8 @@
 #'   print(autoplot(instance, type = "incumbent"))
 #' }
 autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, batch = NULL, theme = theme_minimal(), ...) { # nolint
+  assert_choice(type, choices = c("marginal", "performance", "parameter", "parallel",
+                                  "points", "surface", "pairs", "incumbent"), null.ok = FALSE)
   assert_subset(cols_x, c(object$archive$cols_x, paste0("x_domain_", object$archive$cols_x)))
   assert_flag(trafo)
 

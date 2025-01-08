@@ -31,7 +31,7 @@
 #'   autoplot(f, n = 5)
 #' }
 autoplot.Filter = function(object, type = "boxplot", n = Inf, theme = theme_minimal(), ...) { # nolint
-  assert_string(type)
+  assert_choice(type, choices = c("boxplot"), null.ok = FALSE)
 
   data = head(fortify(object), n)
 

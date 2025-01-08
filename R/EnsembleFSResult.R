@@ -47,7 +47,8 @@
 #'     learners = lrns(c("classif.rpart", "classif.featureless")),
 #'     init_resampling = rsmp("subsampling", repeats = 5),
 #'     inner_resampling = rsmp("cv", folds = 3),
-#'     measure = msr("classif.ce"),
+#'     inner_measure = msr("classif.ce"),
+#'     measure = msr("classif.acc"),
 #'     terminator = trm("evals", n_evals = 5)
 #'   )
 #'
@@ -65,6 +66,12 @@
 #'
 #'   # stability
 #'   autoplot(efsr, type = "stability")
+#'
+#'   # use inner measure
+#'   efsr$set_active_measure("inner")
+#'
+#'   # Pareto front uses now the classification error
+#'   autoplot(efsr)
 #' }
 #' }
 #' @export
@@ -77,10 +84,13 @@ autoplot.EnsembleFSResult = function(
   theme = theme_minimal(),
   ...
   ) {
-  assert_string(type)
+  assert_choice(type, choices = c("pareto", "performance", "n_features", "stability"), null.ok = FALSE)
   assert_choice(pareto_front, choices = c("stepwise", "estimated", "none"))
   result = object$result
-  measure_id = object$measure
+  measure = object$measure # get active measure
+  measure_id = ifelse(object$active_measure == "inner",
+                      sprintf("%s_inner", measure$id),
+                      measure$id)
 
   switch(type,
     "pareto" = {

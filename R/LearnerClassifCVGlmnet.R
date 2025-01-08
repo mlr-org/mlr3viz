@@ -1,6 +1,8 @@
 #' @rdname autoplot.LearnerClassifGlmnet
 #' @export
 autoplot.LearnerClassifCVGlmnet = function(object, type = "prediction", task = NULL, grid_points = 100L, expand_range = 0, theme = theme_minimal(), ...) { # nolint
+  assert_choice(type, choices = c("prediction", "ggfortify"), null.ok = FALSE)
+
   switch(type,
     "prediction" = {
       NextMethod()

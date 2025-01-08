@@ -30,6 +30,7 @@
 #' }
 #' }
 autoplot.LearnerSurvCoxPH = function(object, type = "ggforest", ...) {
+  assert_choice(type, choices = c("ggforest"), null.ok = FALSE)
   assert_class(object, classes = "LearnerSurvCoxPH", null.ok = FALSE)
   assert_has_model(object)
 
