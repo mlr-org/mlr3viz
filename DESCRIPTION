@@ -49,6 +49,7 @@ Suggests:
     mlr3cluster,
     mlr3filters,
     mlr3fselect (>= 1.2.1.9000),
+	mlr3inferr,
     mlr3learners,
     mlr3tuning (>= 1.0.0),
     paradox,
