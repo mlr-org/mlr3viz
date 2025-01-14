@@ -1,4 +1,4 @@
-# mlr3viz (development version)
+# mlr3viz 0.10.1
 
 - feat: Allow passing parameters to `precrec::autoplot()` (eg `show_cb`) when plotting `BenchmarkResult` and `ResampleResult` objects, using `type` = `roc` or `prc`.
 - refactor: Wrong `type` in `autoplot`s now gives hints of which ones to use.
