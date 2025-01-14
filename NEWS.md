@@ -3,11 +3,11 @@
 - feat: Allow passing parameters to `precrec::autoplot()` (eg `show_cb`) when plotting `BenchmarkResult` and `ResampleResult` objects, using `type` = `roc` or `prc`.
 - refactor: Wrong `type` in `autoplot`s now gives hints of which ones to use.
 - refactor: Update `EnsembleFSResult.autoplot` to use the `active_measure` field.
+- feat: add plot for confidence intervals (`mlr3inferr`).
 
 # mlr3viz 0.10.0
 
 - Add plot for `LearnerSurvCoxPH`.
-- Add plot for confidence intervals (`mlr3inferr`)
 
 # mlr3viz 0.9.0
 
