@@ -29,26 +29,26 @@ test_that("autoplot ResampleResult", {
 
   # pareto (stepwise)
   p = autoplot(efsr)
-  expect_true(is.ggplot(p))
+  expect_true(is_ggplot(p))
   expect_doppelganger("pareto_stepwise", p)
 
   # pareto (estimated)
   p = autoplot(efsr, pareto_front = "estimated")
-  expect_true(is.ggplot(p))
+  expect_true(is_ggplot(p))
   expect_doppelganger("pareto_estimated", p)
 
   # Performance
   p = autoplot(efsr, type = "performance")
-  expect_true(is.ggplot(p))
+  expect_true(is_ggplot(p))
   expect_doppelganger("pareto_performance", p)
 
   # Number of features
   p = autoplot(efsr, type = "n_features")
-  expect_true(is.ggplot(p))
+  expect_true(is_ggplot(p))
   expect_doppelganger("pareto_n_features", p)
 
   # stability
   p = autoplot(efsr, type = "stability")
-  expect_true(is.ggplot(p))
+  expect_true(is_ggplot(p))
   expect_doppelganger("pareto_stability", p)
 })

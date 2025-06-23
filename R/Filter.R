@@ -47,8 +47,7 @@ autoplot.Filter = function(object, type = "boxplot", n = Inf, theme = theme_mini
           alpha = 0.8,
           color = "#000000") +
         scale_x_discrete(limits = data$feature) +
-        xlab("Feature") +
-        ylab("Score") +
+        labs(x = "Feature", y = "Score") +
         theme +
         theme(axis.text.x = element_text(angle = 45, hjust = 1))
     },

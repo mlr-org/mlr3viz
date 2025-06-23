@@ -89,7 +89,7 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, pre
           alpha = 0.8,
           show.legend = FALSE) +
         scale_x_discrete() +
-        ylab(measure$id) +
+        labs(y = measure$id) +
         theme +
         theme(axis.text.x.bottom = element_blank())
     },
@@ -103,8 +103,7 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, pre
           alpha = 0.8,
           color = "black",
           binwidth = binwidth) +
-        xlab(measure$id) +
-        ylab("Count") +
+        labs(x = measure$id, y = "Count") +
         theme
     },
 

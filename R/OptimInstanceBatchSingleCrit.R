@@ -155,7 +155,7 @@ autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols
           size = 3,
           stroke = 0.5,
           alpha = 0.8) +
-        xlab("Batch") +
+        labs(x = "Batch") +
         scale_y_continuous(breaks = pretty_breaks()) +
         scale_fill_manual(values = viridis::viridis(1, begin = 0.33)) +
         scale_color_manual(values = viridis::viridis(1, begin = 0.5)) +
@@ -336,8 +336,7 @@ autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols
         geom_step(
           linewidth = 1,
           color = viridis::viridis(1, begin = 0.5)) +
-        xlab("Number of Configurations") +
-        ylab(cols_y) +
+        labs(x = "Number of Configurations", y = cols_y) +
         scale_linetype(name = "Incumbent") +
         theme
     },

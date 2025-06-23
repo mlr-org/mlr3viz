@@ -34,7 +34,7 @@ test_that("fortify.OptimInstanceBatchSingleCrit", {
 
 test_that("autoplot.OptimInstanceBatchSingleCrit", {
   expect_single = function(id, plot) {
-    expect_true(is.ggplot(plot))
+    expect_true(is_ggplot(plot))
     expect_doppelganger(sprintf("tisc_%s", id), plot)
   }
 
@@ -43,7 +43,7 @@ test_that("autoplot.OptimInstanceBatchSingleCrit", {
     expect_class(plots, "DelayedPatchworkPlot")
     for (i in seq_along(plots)) {
       cur = plots[[i]]
-      expect_true(is.ggplot(cur))
+      expect_true(is_ggplot(cur))
       expect_doppelganger(sprintf("tisc_%s_%02i", id, i), cur)
     }
   }
