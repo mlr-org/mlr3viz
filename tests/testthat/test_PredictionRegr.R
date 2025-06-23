@@ -6,20 +6,20 @@ test_that("autoplot.PredictionRegr", {
   prediction = learner$predict(task)
 
   p = autoplot(prediction, type = "xy")
-  expect_true(is.ggplot(p))
+  expect_true(is_ggplot(p))
   expect_doppelganger("predictionregr_xy", p)
 
   p = autoplot(prediction, type = "histogram")
-  expect_true(is.ggplot(p))
+  expect_true(is_ggplot(p))
   expect_doppelganger("predictionregr_histogram", p)
 
   p = autoplot(prediction, type = "residual")
-  expect_true(is.ggplot(p))
+  expect_true(is_ggplot(p))
   expect_doppelganger("predictionregr_residual", p)
 
   learner = mlr3::lrn("regr.featureless", predict_type = "se")$train(task)
   prediction = learner$predict(task)
   p = autoplot(prediction, type = "confidence")
-  expect_true(is.ggplot(p))
+  expect_true(is_ggplot(p))
   expect_doppelganger("predictionregr_confidence", p)
 })
