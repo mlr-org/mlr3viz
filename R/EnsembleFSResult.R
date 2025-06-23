@@ -100,8 +100,7 @@ autoplot.EnsembleFSResult = function(
         color = .data[["learner_id"]])) +
         geom_point() +
         scale_color_viridis_d("Learner ID", end = 0.8, alpha = 0.8) +
-        xlab("Number of Features") +
-        ylab(measure_id) +
+        labs(x = "Number of Features", y = measure_id) +
         theme
 
       if (pareto_front == "stepwise") {
@@ -131,7 +130,7 @@ autoplot.EnsembleFSResult = function(
         fill = .data[["learner_id"]])) +
         geom_boxplot(show.legend = FALSE) +
         scale_fill_viridis_d(end = 0.8, alpha = 0.8) +
-        ylab(measure_id) +
+        labs(y = measure_id) +
         theme +
         theme(axis.title.x = element_blank())
     },
@@ -143,7 +142,7 @@ autoplot.EnsembleFSResult = function(
         fill = .data[["learner_id"]]))+
         geom_boxplot(show.legend = FALSE) +
         scale_fill_viridis_d(end = 0.8, alpha = 0.8) +
-        ylab("Number of Features") +
+        labs(y = "Number of Features") +
         theme +
         theme(axis.title.x = element_blank())
     },
@@ -163,7 +162,7 @@ autoplot.EnsembleFSResult = function(
         fill = .data[["learner_id"]])) +
         geom_bar(stat = "identity", alpha = 0.8, show.legend = FALSE) +
         scale_fill_viridis_d(end = 0.8, alpha = 0.8) +
-        ylab(stability_measure) +
+        labs(y = stability_measure) +
         theme +
         theme(axis.title.x = element_blank())
     },

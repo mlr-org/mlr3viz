@@ -61,7 +61,7 @@ autoplot.LearnerClassifRpart = function(object, type = "prediction", task = NULL
             color = "#000000",
             linewidth = 0.5,
             position = position_fill()),
-            xlab(target),
+            labs(x = target),
             scale_fill_viridis_d(end = 0.8),
             theme),
           ids = "terminal",
