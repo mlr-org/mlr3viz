@@ -1,7 +1,7 @@
 #' @title Plots for Cox Proportional Hazards Learner
 #'
 #' @description
-#' Visualizations for [mlr3proba::LearnerSurvCoxPH].
+#' Visualizations for `LearnerSurvCoxPH` of `mlr3proba`.
 #'
 #' The argument `type` controls what kind of plot is drawn.
 #' The only possible choice right now is `"ggforest"` (default) which is a
@@ -9,7 +9,7 @@
 #' This plot displays the estimated hazard ratios (HRs) and their confidence
 #' intervals (CIs) for different variables included in the (trained) model.
 #'
-#' @param object ([mlr3proba::LearnerSurvCoxPH]).
+#' @param object (`LearnerSurvCoxPH` of `mlr3proba`).
 #'
 #' @template param_type
 #' @param ... Additional parameters passed down to `ggforest`.

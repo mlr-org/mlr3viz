@@ -1,6 +1,6 @@
 Package: mlr3viz
 Title: Visualizations for 'mlr3'
-Version: 0.10.0.9000
+Version: 0.10.1
 Authors@R: c(
     person("Michel", "Lang", , "michellang@gmail.com", role = "aut",
            comment = c(ORCID = "0000-0001-9754-0393")),
@@ -48,7 +48,7 @@ Suggests:
     mlr3 (>= 0.6.0),
     mlr3cluster,
     mlr3filters,
-    mlr3fselect (>= 1.2.1.9000),
+    mlr3fselect (>= 1.3.0),
 	mlr3inferr,
     mlr3learners,
     mlr3tuning (>= 1.0.0),
@@ -65,8 +65,7 @@ Suggests:
     survminer,
     mlr3proba (>= 0.6.3)
 Remotes:
-    mlr-org/mlr3proba,
-    mlr-org/mlr3fselect
+    mlr-org/mlr3proba
 Additional_repositories:
   https://mlr-org.r-universe.dev
 Config/testthat/edition: 3
