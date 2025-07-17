@@ -1,4 +1,4 @@
-# r cmd check workflow of the mlr3 ecosystem v0.4.0
+# r cmd check workflow of the mlr3 ecosystem v0.5.0
 # https://github.com/mlr-org/actions
 # added extra-repositories: 'https://mlr-org.r-universe.dev'
 on:
@@ -48,7 +48,6 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
-          error-on: '"note"'
 
       - uses: mxschmitt/action-tmate@v3
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
@@ -57,4 +56,7 @@ jobs:
 
       - uses: r-lib/actions/check-r-package@v2
         with:
+          error-on: '"note"'
           args: 'c("--no-manual", "--as-cran")'
+
+

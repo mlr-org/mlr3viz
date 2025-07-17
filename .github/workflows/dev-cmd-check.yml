@@ -1,4 +1,4 @@
-# dev cmd check workflow of the mlr3 ecosystem v0.4.0
+# dev cmd check workflow of the mlr3 ecosystem v0.5.0
 # https://github.com/mlr-org/actions
 # added extra-repositories: 'https://community.r-multiverse.org'
 on:
@@ -49,7 +49,6 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
-          error-on: '"note"'
 
       - name: Install dev versions
         run: pak::pkg_install('${{ matrix.config.dev-package }}')
@@ -62,4 +61,5 @@ jobs:
 
       - uses: r-lib/actions/check-r-package@v2
         with:
+          error-on: '"note"'
           args: 'c("--no-manual", "--as-cran")'
