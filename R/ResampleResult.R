@@ -118,7 +118,8 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, pre
         scale_color_viridis_d("Learner", begin = 0.5) +
         scale_fill_viridis_d("Learner", begin = 0.5) +
         theme +
-        theme(plot.title = element_blank(), legend.position = "none")
+        theme(legend.position = "none") +
+        labs(title = NULL)
     },
 
     "prc" = {
@@ -132,7 +133,7 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, pre
         scale_color_viridis_d("Learner", begin = 0.5) +
         scale_fill_viridis_d("Learner", begin = 0.5) +
         theme +
-        theme(plot.title = element_blank())
+        labs(title = NULL)
     },
 
     "prediction" = plot_learner_prediction_resample_result(object, predict_sets, theme = theme, ...),

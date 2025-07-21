@@ -68,7 +68,8 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
       plot_precrec(object, curvetype = "ROC") +
         scale_color_viridis_d(begin = 0.5, guide = "none") +
         theme +
-        theme(plot.title = element_blank(), legend.position = "none")
+        theme(legend.position = "none") +
+        labs(title = NULL)
 
     },
 
@@ -76,7 +77,8 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
       plot_precrec(object, curvetype = "PRC") +
         scale_color_viridis_d(begin = 0.5, guide = "none") +
         theme +
-        theme(plot.title = element_blank(), legend.position = "none")
+        theme(legend.position = "none") +
+        labs(title = NULL)
     },
 
     "threshold" = {
