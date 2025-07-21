@@ -4,7 +4,7 @@ test_that("autoplot.TaskClassif", {
   task = mlr3::tsk("iris")
 
   p = autoplot(task, type = "target")
-  expect_true(is.ggplot(p))
+  expect_true(is_ggplot(p))
   expect_doppelganger("taskclassif_target", p)
 
   p = autoplot(task, type = "pairs")

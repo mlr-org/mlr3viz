@@ -83,8 +83,7 @@ autoplot.PredictionRegr = function(object, type = "xy", binwidth = NULL, theme =
           alpha = 0.8,
           color = "black",
           binwidth = binwidth) +
-        xlab("Residuals") +
-        ylab("Density") +
+        labs(x = "Residuals", y = "Density") +
         theme
     },
 
@@ -102,8 +101,7 @@ autoplot.PredictionRegr = function(object, type = "xy", binwidth = NULL, theme =
           method = "lm",
           fill = viridis::viridis(1, begin = 0.5),
           color = viridis::viridis(1, begin = 0.5)) +
-        xlab("Response") +
-        ylab("Residuals") +
+        labs(x = "Response", y = "Residuals") +
         theme
     },
 
@@ -131,8 +129,7 @@ autoplot.PredictionRegr = function(object, type = "xy", binwidth = NULL, theme =
         geom_point(
           color = viridis::viridis(1, begin = 0.5),
           alpha = 0.8) +
-        xlab(sprintf("Response \u00B1 %sse", quantile)) +
-        ylab("Truth") +
+        labs(x = sprintf("Response \u00B1 %sse", quantile), y = "Truth") +
         theme
     },
 

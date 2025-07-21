@@ -59,8 +59,7 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
           stat = "count",
           position = position_stack(vjust = 0.5),
           color = "#000000") +
-        xlab("Feature") +
-        ylab("Count") +
+        labs(x = "Feature", y = "Count") +
         scale_fill_viridis_d("Feature", end = 0.8) +
         theme
     },
@@ -90,8 +89,7 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
           x = .data[["prob"]],
           y = .data[["score"]])) +
         geom_line(color = viridis::viridis(1, begin = 0.5)) +
-        xlab("Probability Threshold") +
-        ylab(measure$id) +
+        labs(x = "Probability Threshold", y = measure$id) +
         scale_color_viridis_d() +
         theme
     },

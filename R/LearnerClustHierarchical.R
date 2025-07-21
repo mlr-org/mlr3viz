@@ -76,8 +76,7 @@ autoplot.LearnerClustHierarchical = function(object, type = "dend", task = NULL,
           size = 3,
           color = viridis::viridis(1, begin = 0.5),
           alpha = 0.8) +
-        xlab("Clusters") +
-        ylab("Height") +
+        labs(x = "Clusters", y = "Height") +
         theme
     }
   )
