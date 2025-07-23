@@ -118,7 +118,7 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, th
       p +
         scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill")) +
         theme +
-        theme(plot.title = element_blank())
+        labs(title = NULL)
     },
 
     "prc" = {
@@ -128,7 +128,7 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, th
       p +
         scale_color_viridis_d("Learner", end = 0.8, aesthetics = c("color", "fill")) +
         theme +
-        theme(plot.title = element_blank())
+        labs(title = NULL)
     },
 
     stopf("Unknown plot type '%s'", type)
