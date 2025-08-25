@@ -5,13 +5,13 @@ output: github_document
 ```{r, include = FALSE}
 lgr::get_logger("mlr3")$set_threshold("warn")
 knitr::opts_chunk$set(fig.path = "man/figures/README-")
-knitr::opts_chunk$set(fig.path = "man/figures/README-")
 set.seed(1)
 options(
   datatable.print.nrows = 10,
   datatable.print.class = FALSE,
   datatable.print.keys = FALSE,
-  width = 100)
+  width = 100
+)
 # mute load messages
 library("mlr3tuning")
 ```
@@ -45,7 +45,8 @@ install.packages("mlr3")
 Install the development version from GitHub:
 
 ```{r, eval = FALSE}
-remotes::install_github("mlr-org/mlr3viz")
+# install.packages("pak")
+pak::pak("mlr-org/mlr3viz")
 ```
 
 ## Resources

@@ -37,7 +37,8 @@ install.packages("mlr3")
 Install the development version from GitHub:
 
 ``` r
-remotes::install_github("mlr-org/mlr3viz")
+# install.packages("pak")
+pak::pak("mlr-org/mlr3viz")
 ```
 
 ## Resources
