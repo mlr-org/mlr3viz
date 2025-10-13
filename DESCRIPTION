@@ -59,7 +59,6 @@ Suggests:
     ranger,
     rpart,
     stats,
-    survminer,
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.2),
     xgboost
