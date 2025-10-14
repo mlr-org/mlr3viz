@@ -18,6 +18,7 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
+<rect x='0.00' y='0.00' width='720.00' height='576.00' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 </g>
 <defs>
   <clipPath id='cpMzUuMjR8NjMyLjE4fDIyLjc4fDU0NS4xMQ=='>
@@ -213,11 +214,11 @@
 <circle cx='657.26' cy='247.07' r='1.95' style='stroke-width: 0.71;' />
 <text x='671.38' y='250.10' style='font-size: 8.80px; font-family: sans;' textLength='17.12px' lengthAdjust='spacingAndGlyphs'>train</text>
 <text x='648.62' y='286.34' style='font-size: 11.00px; font-family: sans;' textLength='49.55px' lengthAdjust='spacingAndGlyphs'>Response</text>
-<rect x='648.62' y='292.96' width='17.28' height='17.28' style='stroke-width: 0.75; stroke: none; fill: #440154;' />
+<rect x='648.62' y='292.96' width='17.28' height='17.28' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #440154;' />
 <circle cx='657.26' cy='301.60' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<rect x='648.62' y='310.24' width='17.28' height='17.28' style='stroke-width: 0.75; stroke: none; fill: #2A788E;' />
+<rect x='648.62' y='310.24' width='17.28' height='17.28' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2A788E;' />
 <circle cx='657.26' cy='318.88' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<rect x='648.62' y='327.52' width='17.28' height='17.28' style='stroke-width: 0.75; stroke: none; fill: #7AD151;' />
+<rect x='648.62' y='327.52' width='17.28' height='17.28' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AD151;' />
 <circle cx='657.26' cy='336.16' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
 <text x='671.38' y='304.63' style='font-size: 8.80px; font-family: sans;' textLength='25.94px' lengthAdjust='spacingAndGlyphs'>setosa</text>
 <text x='671.38' y='321.91' style='font-size: 8.80px; font-family: sans;' textLength='37.66px' lengthAdjust='spacingAndGlyphs'>versicolor</text>

@@ -18,6 +18,7 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
+<rect x='0.00' y='0.00' width='720.00' height='576.00' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 </g>
 <defs>
   <clipPath id='cpMzUuMjR8NjQzLjA2fDIyLjc4fDU0NS4xMQ=='>
@@ -827,9 +828,9 @@
 <text x='339.15' y='568.24' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='18.35px' lengthAdjust='spacingAndGlyphs'>age</text>
 <text transform='translate(13.05,283.95) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='42.81px' lengthAdjust='spacingAndGlyphs'>pedigree</text>
 <text x='659.49' y='267.71' style='font-size: 11.00px; font-family: sans;' textLength='49.55px' lengthAdjust='spacingAndGlyphs'>Response</text>
-<rect x='659.49' y='274.33' width='17.28' height='17.28' style='stroke-width: 0.75; stroke: none; fill: #440154;' />
+<rect x='659.49' y='274.33' width='17.28' height='17.28' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #440154;' />
 <circle cx='668.13' cy='282.97' r='1.95' style='stroke-width: 0.71; fill: #440154;' />
-<rect x='659.49' y='291.61' width='17.28' height='17.28' style='stroke-width: 0.75; stroke: none; fill: #7AD151;' />
+<rect x='659.49' y='291.61' width='17.28' height='17.28' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AD151;' />
 <circle cx='668.13' cy='300.25' r='1.95' style='stroke-width: 0.71; fill: #7AD151;' />
 <text x='682.25' y='286.00' style='font-size: 8.80px; font-family: sans;' textLength='14.19px' lengthAdjust='spacingAndGlyphs'>pos</text>
 <text x='682.25' y='303.28' style='font-size: 8.80px; font-family: sans;' textLength='14.68px' lengthAdjust='spacingAndGlyphs'>neg</text>
