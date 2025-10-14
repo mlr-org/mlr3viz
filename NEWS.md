@@ -1,5 +1,7 @@
 # mlr3viz (development version)
 
+- refactor: plot for `LearnerSurvCoxPH` will be moved to `mlr3proba@0.8.4`
+
 # mlr3viz 0.10.1
 
 - feat: Allow passing parameters to `precrec::autoplot()` (eg `show_cb`) when plotting `BenchmarkResult` and `ResampleResult` objects, using `type` = `roc` or `prc`.
