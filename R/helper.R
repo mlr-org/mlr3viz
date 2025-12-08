@@ -19,7 +19,7 @@ plot_precrec = function(object, curvetype = "ROC", cb_alpha = 0.05, show_cb = TR
     cb_alpha = NULL
   }
 
-  autoplot(precrec::evalmod(x, calc_avg = calc_avg, cb_alpha = cb_alpha), curvetype = curvetype, show_cb = show_cb, ...)
+  suppressWarnings(autoplot(precrec::evalmod(x, calc_avg = calc_avg, cb_alpha = cb_alpha), curvetype = curvetype, show_cb = show_cb, ...))
 }
 
 delayed_patchwork = function(li, ...) {

@@ -1,5 +1,6 @@
 # mlr3viz (development version)
 
+- fix: Suppress warnings about unused arguments in `ggplot2::fortify()` when plotting ROC/PRC curves with newer versions of ggplot2.
 - refactor: plot for `LearnerSurvCoxPH` will be moved to `mlr3proba@0.8.4`
 
 # mlr3viz 0.10.1
