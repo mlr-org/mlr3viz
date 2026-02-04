@@ -45,7 +45,6 @@ Suggests:
     glmnet,
     knitr,
     lgr,
-    mlr3 (>= 0.6.0),
     mlr3cluster,
     mlr3filters,
     mlr3fselect (>= 1.3.0),

@@ -1,3 +1,5 @@
+skip_if_not_installed("mlr3")
+
 test_that("autoplot.PredictionClassif decision boundary probability", {
   set.seed(42)
   task = mlr3::tsk("pima")$select(c("age", "pedigree"))

@@ -1,3 +1,5 @@
+skip_if_not_installed("mlr3")
+
 test_that("autoplot.PredictionRegr decision boundary 1D", {
   set.seed(42)
   task = mlr3::tsk("mtcars")$select("am")
