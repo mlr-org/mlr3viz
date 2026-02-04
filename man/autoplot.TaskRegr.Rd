@@ -31,15 +31,15 @@ Color is set to target column.
 }
 }
 \examples{
-if (requireNamespace("mlr3")) {
-  library(mlr3)
-  library(mlr3viz)
+\dontshow{if (mlr3misc::require_namespaces("mlr3", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+library(mlr3)
+library(mlr3viz)
 
-  task = tsk("mtcars")
-  task$select(c("am", "carb"))
+task = tsk("mtcars")
+task$select(c("am", "carb"))
 
-  head(fortify(task))
-  autoplot(task)
-  autoplot(task, type = "pairs")
-}
+head(fortify(task))
+autoplot(task)
+autoplot(task, type = "pairs")
+\dontshow{\}) # examplesIf}
 }

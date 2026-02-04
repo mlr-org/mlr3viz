@@ -25,19 +25,17 @@
 #' `r format_bib("ggfortify")`
 #'
 #' @export
-#' @examples
-#' if (requireNamespace("mlr3")) {
-#'   library(mlr3)
-#'   library(mlr3cluster)
-#'   library(mlr3viz)
+#' @examplesIf mlr3misc::require_namespaces("mlr3", quietly = TRUE)
+#' library(mlr3)
+#' library(mlr3cluster)
+#' library(mlr3viz)
 #'
-#'   task = tsk("usarrests")
-#'   learner = lrn("clust.kmeans", centers = 3)
-#'   object = learner$train(task)$predict(task)
+#' task = tsk("usarrests")
+#' learner = lrn("clust.kmeans", centers = 3)
+#' object = learner$train(task)$predict(task)
 #'
-#'   head(fortify(object))
-#'   autoplot(object, task)
-#' }
+#' head(fortify(object))
+#' autoplot(object, task)
 autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatter", theme = theme_minimal(), ...) { # nolint
   assert_choice(type, choices = c("scatter", "sil", "pca"), null.ok = FALSE)
 

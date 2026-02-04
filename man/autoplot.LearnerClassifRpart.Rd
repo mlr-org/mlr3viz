@@ -58,20 +58,20 @@ Possible choices are:
 }
 }
 \examples{
-if (requireNamespace("mlr3")) {
-  library(mlr3)
-  library(mlr3viz)
+\dontshow{if (mlr3misc::require_namespaces("mlr3", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+library(mlr3)
+library(mlr3viz)
 
-  # classification
-  task = tsk("iris")
-  learner = lrn("classif.rpart", keep_model = TRUE)
-  learner$train(task)
-  autoplot(learner, type = "ggparty")
+# classification
+task = tsk("iris")
+learner = lrn("classif.rpart", keep_model = TRUE)
+learner$train(task)
+autoplot(learner, type = "ggparty")
 
-  # regression
-  task = tsk("mtcars")
-  learner = lrn("regr.rpart", keep_model = TRUE)
-  learner$train(task)
-  autoplot(learner, type = "ggparty")
-}
+# regression
+task = tsk("mtcars")
+learner = lrn("regr.rpart", keep_model = TRUE)
+learner$train(task)
+autoplot(learner, type = "ggparty")
+\dontshow{\}) # examplesIf}
 }

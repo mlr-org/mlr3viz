@@ -17,18 +17,16 @@
 #' @return [ggplot2::ggplot()].
 #'
 #' @export
-#' @examples
-#' if (requireNamespace("mlr3")) {
-#'   library(mlr3)
-#'   library(mlr3viz)
+#' @examplesIf mlr3misc::require_namespaces("mlr3", quietly = TRUE)
+#' library(mlr3)
+#' library(mlr3viz)
 #'
-#'   task = tsk("mtcars")
-#'   task$select(c("am", "carb"))
+#' task = tsk("mtcars")
+#' task$select(c("am", "carb"))
 #'
-#'   head(fortify(task))
-#'   autoplot(task)
-#'   autoplot(task, type = "pairs")
-#' }
+#' head(fortify(task))
+#' autoplot(task)
+#' autoplot(task, type = "pairs")
 autoplot.TaskRegr = function(object, type = "target", theme = theme_minimal(), ...) { # nolint
   assert_choice(type, choices = c("target", "pairs"), null.ok = FALSE)
 

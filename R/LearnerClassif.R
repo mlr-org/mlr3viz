@@ -19,9 +19,8 @@
 #' @return [ggplot2::ggplot()].
 #'
 #' @export
-#' @examples
+#' @examplesIf mlr3misc::require_namespaces("mlr3", quietly = TRUE)
 #' \donttest{
-#' if (requireNamespace("mlr3")) {
 #' library(mlr3)
 #' library(mlr3viz)
 #'
@@ -30,7 +29,6 @@
 #' learner$train(task)
 #'
 #' autoplot(learner, type = "prediction", task)
-#' }
 #' }
 autoplot.LearnerClassif = function(object, type = "prediction", task, grid_points = 100L, expand_range = 0, theme = theme_minimal(), ...) { # nolint
   assert_choice(type, choices = c("prediction"), null.ok = FALSE)

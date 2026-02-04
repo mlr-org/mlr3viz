@@ -19,19 +19,16 @@
 #' @return [ggplot2::ggplot()].
 #'
 #' @export
-#' @examples
-#' if (requireNamespace("mlr3")) {
-#'   library(mlr3)
-#'   library(mlr3viz)
+#' @examplesIf mlr3misc::require_namespaces("mlr3", quietly = TRUE)
+#' library(mlr3)
+#' library(mlr3viz)
 #'
-#'   task = tsk("iris")
+#' task = tsk("iris")
 #'
-#'   head(fortify(task))
-#'   autoplot(task)
-#'   autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")),
-#'     type = "pairs")
-#'   autoplot(task, type = "duo")
-#' }
+#' head(fortify(task))
+#' autoplot(task)
+#' autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")), type = "pairs")
+#' autoplot(task, type = "duo")
 autoplot.TaskClassif = function(object, type = "target", theme = theme_minimal(), ...) { # nolint
   assert_choice(type, choices = c("target", "duo", "pairs"), null.ok = FALSE)
 

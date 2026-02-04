@@ -46,8 +46,8 @@ Possible choices are:
 }
 }
 \examples{
+\dontshow{if (mlr3misc::require_namespaces("mlr3", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 \donttest{
-if (requireNamespace("mlr3")) {
 library(mlr3)
 library(mlr3viz)
 
@@ -57,5 +57,5 @@ learner$train(task)
 
 autoplot(learner, type = "prediction", task)
 }
-}
+\dontshow{\}) # examplesIf}
 }

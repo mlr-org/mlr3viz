@@ -24,21 +24,19 @@
 #' `r format_bib("precrec")`
 #'
 #' @export
-#' @examples
+#' @examplesIf mlr3misc::require_namespaces("mlr3", quietly = TRUE)
 #' \donttest{
-#' if (requireNamespace("mlr3")) {
-#'   library(mlr3)
-#'   library(mlr3viz)
+#' library(mlr3)
+#' library(mlr3viz)
 #'
-#'   task = tsk("spam")
-#'   learner = lrn("classif.rpart", predict_type = "prob")
-#'   object = learner$train(task)$predict(task)
+#' task = tsk("spam")
+#' learner = lrn("classif.rpart", predict_type = "prob")
+#' object = learner$train(task)$predict(task)
 #'
-#'   head(fortify(object))
-#'   autoplot(object)
-#'   autoplot(object, type = "roc")
-#'   autoplot(object, type = "prc")
-#' }
+#' head(fortify(object))
+#' autoplot(object)
+#' autoplot(object, type = "roc")
+#' autoplot(object, type = "prc")
 #' }
 autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, theme = theme_minimal(), ...) { # nolint
   assert_choice(type, choices = c("stacked", "roc", "prc", "threshold"), null.ok = FALSE)

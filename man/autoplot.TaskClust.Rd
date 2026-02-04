@@ -29,14 +29,14 @@ Possible choices are:
 }
 }
 \examples{
-if (requireNamespace("mlr3")) {
-  library(mlr3)
-  library(mlr3cluster)
-  library(mlr3viz)
+\dontshow{if (mlr3misc::require_namespaces("mlr3", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+library(mlr3)
+library(mlr3cluster)
+library(mlr3viz)
 
-  task = mlr_tasks$get("usarrests")
+task = mlr_tasks$get("usarrests")
 
-  head(fortify(task))
-  autoplot(task)
-}
+head(fortify(task))
+autoplot(task)
+\dontshow{\}) # examplesIf}
 }

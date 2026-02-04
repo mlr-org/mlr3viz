@@ -45,18 +45,18 @@ Inspired by and uses \link[ggfortify:autoplot.kmeans]{ggfortify::autoplot.kmeans
 }
 }
 \examples{
-if (requireNamespace("mlr3")) {
-  library(mlr3)
-  library(mlr3cluster)
-  library(mlr3viz)
+\dontshow{if (mlr3misc::require_namespaces("mlr3", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+library(mlr3)
+library(mlr3cluster)
+library(mlr3viz)
 
-  task = tsk("usarrests")
-  learner = lrn("clust.kmeans", centers = 3)
-  object = learner$train(task)$predict(task)
+task = tsk("usarrests")
+learner = lrn("clust.kmeans", centers = 3)
+object = learner$train(task)$predict(task)
 
-  head(fortify(object))
-  autoplot(object, task)
-}
+head(fortify(object))
+autoplot(object, task)
+\dontshow{\}) # examplesIf}
 }
 \references{
 Tang Y, Horikoshi M, Li W (2016).

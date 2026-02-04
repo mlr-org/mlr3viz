@@ -15,17 +15,15 @@
 #' @return [ggplot2::ggplot()].
 #'
 #' @export
-#' @examples
-#' if (requireNamespace("mlr3")) {
-#'   library(mlr3)
-#'   library(mlr3cluster)
-#'   library(mlr3viz)
+#' @examplesIf mlr3misc::require_namespaces("mlr3", quietly = TRUE)
+#' library(mlr3)
+#' library(mlr3cluster)
+#' library(mlr3viz)
 #'
-#'   task = mlr_tasks$get("usarrests")
+#' task = mlr_tasks$get("usarrests")
 #'
-#'   head(fortify(task))
-#'   autoplot(task)
-#' }
+#' head(fortify(task))
+#' autoplot(task)
 autoplot.TaskClust = function(object, type = "pairs", theme = theme_minimal(), ...) { # nolint
   assert_choice(type, choices = c("pairs"), null.ok = FALSE)
 
