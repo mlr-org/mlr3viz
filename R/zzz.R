@@ -2,6 +2,7 @@
 #' @import checkmate
 #' @import data.table
 #' @import ggplot2
+#' @import mlr3
 #' @importFrom utils head
 #' @importFrom graphics plot
 #' @importFrom stats sd as.dendrogram
