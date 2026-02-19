@@ -45,7 +45,7 @@ Inspired by and uses \link[ggfortify:autoplot.kmeans]{ggfortify::autoplot.kmeans
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces(c("clue", "mlr3cluster"), quietly = TRUE)) withAutoprint(\{ # examplesIf}
+if (mlr3misc::require_namespaces(c("clue", "mlr3cluster"), quietly = TRUE)) {
 library(mlr3cluster)
 
 task = tsk("usarrests")
@@ -54,7 +54,7 @@ object = learner$train(task)$predict(task)
 
 head(fortify(object))
 autoplot(object, task)
-\dontshow{\}) # examplesIf}
+}
 }
 \references{
 Tang Y, Horikoshi M, Li W (2016).

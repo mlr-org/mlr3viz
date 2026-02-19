@@ -70,7 +70,7 @@ The y values are interpolated with the supplied \link[mlr3:Learner]{mlr3::Learne
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces(c("paradox", "bbotk", "patchwork"), quietly = TRUE)) withAutoprint(\{ # examplesIf}
+if (mlr3misc::require_namespaces(c("paradox", "bbotk", "patchwork"), quietly = TRUE)) {
 library(bbotk)
 
 fun = function(xs) {
@@ -108,5 +108,5 @@ print(autoplot(instance, type = "pairs"))
 
 # plot incumbent
 print(autoplot(instance, type = "incumbent"))
-\dontshow{\}) # examplesIf}
+}
 }

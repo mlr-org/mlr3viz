@@ -28,7 +28,8 @@
 #' @return [ggplot2::ggplot()].
 #'
 #' @export
-#' @examplesIf mlr3misc::require_namespaces("mlr3learners", quietly = TRUE)
+#' @examples
+#' if (mlr3misc::require_namespaces("mlr3learners", quietly = TRUE)) {
 #' library(mlr3learners)
 #'
 #' task = tsk("mtcars")
@@ -43,6 +44,7 @@
 #' learner = lrn("regr.ranger", predict_type = "se")
 #' object = learner$train(task)$predict(task)
 #' autoplot(object, type = "confidence")
+#' }
 autoplot.PredictionRegr = function(object, type = "xy", binwidth = NULL, theme = theme_minimal(), quantile = 1.96, ...) {
   assert_choice(type, choices = c("xy", "histogram", "residual", "confidence"), null.ok = FALSE)
 

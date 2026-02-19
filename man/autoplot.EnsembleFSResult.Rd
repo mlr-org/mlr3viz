@@ -61,8 +61,7 @@ sets from each learner across the different resamplings.
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces("mlr3fselect", quietly = TRUE)) withAutoprint(\{ # examplesIf}
-\dontshow{\}) # examplesIf}
+if (mlr3misc::require_namespaces("mlr3fselect", quietly = TRUE)) {
 \donttest{
   set.seed (42)
   library(mlr3fselect)
@@ -98,5 +97,6 @@ sets from each learner across the different resamplings.
 
   # Pareto front uses now the classification error
   autoplot(efsr)
+}
 }
 }

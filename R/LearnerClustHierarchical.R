@@ -22,7 +22,8 @@
 #' @return [ggplot2::ggplot()].
 #'
 #' @export
-#' @examplesIf mlr3misc::require_namespaces("mlr3cluster", quietly = TRUE)
+#' @examples
+#' if (mlr3misc::require_namespaces("mlr3cluster", quietly = TRUE)) {
 #' library(mlr3cluster)
 #'
 #' task = tsk("usarrests")
@@ -41,6 +42,7 @@
 #' learner = lrn("clust.hclust")
 #' learner$train(task)
 #' autoplot(learner, type = "scree")
+#' }
 autoplot.LearnerClustHierarchical = function(object, type = "dend", task = NULL, theme = theme_minimal(), theme_dendro = TRUE, ...) { # nolint
   assert_choice(type, choices = c("dend", "scree"), null.ok = FALSE)
 

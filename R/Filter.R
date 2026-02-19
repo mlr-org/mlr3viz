@@ -17,7 +17,8 @@
 #'
 #' @return [ggplot2::ggplot()].
 #' @export
-#' @examplesIf mlr3misc::require_namespaces("mlr3filters", quietly = TRUE)
+#' @examples
+#' if (mlr3misc::require_namespaces("mlr3filters", quietly = TRUE)) {
 #' library(mlr3filters)
 #'
 #' task = tsk("mtcars")
@@ -26,6 +27,7 @@
 #'
 #' head(fortify(f))
 #' autoplot(f, n = 5)
+#' }
 autoplot.Filter = function(object, type = "boxplot", n = Inf, theme = theme_minimal(), ...) { # nolint
   assert_choice(type, choices = c("boxplot"), null.ok = FALSE)
 

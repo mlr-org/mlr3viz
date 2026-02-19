@@ -38,8 +38,8 @@
 #' @return [ggplot2::ggplot()].
 #'
 #' @export
-#' @examplesIf mlr3misc::require_namespaces(c("mlr3tuning", "patchwork", "paradox"), quietly = TRUE)
 #' @examples
+#' if (mlr3misc::require_namespaces(c("mlr3tuning", "patchwork", "paradox"), quietly = TRUE)) {
 #' library(mlr3tuning)
 #'
 #' learner = lrn("classif.rpart")
@@ -71,6 +71,7 @@
 #'
 #' # plot pairs
 #' autoplot(instance, type = "pairs")
+#' }
 autoplot.TuningInstanceBatchSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, theme = theme_minimal(), ...) {
   autoplot.OptimInstanceBatchSingleCrit(object = object, type = type, cols_x = cols_x, trafo = trafo, learner = learner, grid_resolution = grid_resolution, theme = theme, ...)
 }

@@ -34,8 +34,8 @@
 #' @param ... (ignored).
 #'
 #' @return [ggplot2::ggplot()].
-#' @examplesIf mlr3misc::require_namespaces("mlr3fselect", quietly = TRUE)
 #' @examples
+#' if (mlr3misc::require_namespaces("mlr3fselect", quietly = TRUE)) {
 #' \donttest{
 #'   set.seed (42)
 #'   library(mlr3fselect)
@@ -71,6 +71,7 @@
 #'
 #'   # Pareto front uses now the classification error
 #'   autoplot(efsr)
+#' }
 #' }
 #' @export
 autoplot.EnsembleFSResult = function(

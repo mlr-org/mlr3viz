@@ -45,7 +45,7 @@ Possible choices are:
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces("mlr3cluster", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+if (mlr3misc::require_namespaces("mlr3cluster", quietly = TRUE)) {
 library(mlr3cluster)
 
 task = tsk("usarrests")
@@ -64,5 +64,5 @@ autoplot(learner)
 learner = lrn("clust.hclust")
 learner$train(task)
 autoplot(learner, type = "scree")
-\dontshow{\}) # examplesIf}
+}
 }

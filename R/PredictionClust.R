@@ -25,7 +25,8 @@
 #' `r format_bib("ggfortify")`
 #'
 #' @export
-#' @examplesIf mlr3misc::require_namespaces(c("clue", "mlr3cluster"), quietly = TRUE)
+#' @examples
+#' if (mlr3misc::require_namespaces(c("clue", "mlr3cluster"), quietly = TRUE)) {
 #' library(mlr3cluster)
 #'
 #' task = tsk("usarrests")
@@ -34,6 +35,7 @@
 #'
 #' head(fortify(object))
 #' autoplot(object, task)
+#' }
 autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatter", theme = theme_minimal(), ...) { # nolint
   assert_choice(type, choices = c("scatter", "sil", "pca"), null.ok = FALSE)
 

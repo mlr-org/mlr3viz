@@ -81,8 +81,7 @@ Possible choices are:
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces("mlr3learners", quietly = TRUE)) withAutoprint(\{ # examplesIf}
-\dontshow{\}) # examplesIf}
+if (mlr3misc::require_namespaces("mlr3learners", quietly = TRUE)) {
 \dontrun{
 library(mlr3learners)
 
@@ -97,6 +96,7 @@ task = tsk("mtcars")
 learner = lrn("regr.glmnet")
 learner$train(task)
 autoplot(learner, type = "ggfortify")
+}
 }
 }
 \references{

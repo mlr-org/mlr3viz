@@ -33,7 +33,7 @@ Possible choices are:
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces("mlr3filters", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+if (mlr3misc::require_namespaces("mlr3filters", quietly = TRUE)) {
 library(mlr3filters)
 
 task = tsk("mtcars")
@@ -42,5 +42,5 @@ f$calculate(task)
 
 head(fortify(f))
 autoplot(f, n = 5)
-\dontshow{\}) # examplesIf}
+}
 }
