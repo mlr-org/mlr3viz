@@ -309,7 +309,7 @@ task_data = function(object, predict_sets) {
   return(remove_named(data, ".row_id"))
 }
 
-# Generates a evenly distributed sequence of the same type as the input vector.
+# Generates an evenly distributed sequence of the same type as the input vector.
 # x: vector of any type (column of a task)
 # n (int): desired resolution
 # expand_range (num): expand the outer limits (only for numerics)

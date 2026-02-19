@@ -39,7 +39,7 @@ The [gallery](https://mlr-org.com/gallery/technical/2022-12-22-mlr3viz/) feature
 Install the last release from CRAN:
 
 ```{r, eval = FALSE}
-install.packages("mlr3")
+install.packages("mlr3viz")
 ```
 
 Install the development version from GitHub:
