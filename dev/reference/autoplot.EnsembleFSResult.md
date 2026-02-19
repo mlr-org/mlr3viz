@@ -15,7 +15,7 @@ options are:
   the distribution of scores across different resampling iterations for
   a particular learner.
 
-- `"n_features`: Boxplot of the number of features selected by each
+- `"n_features"`: Boxplot of the number of features selected by each
   learner in the different resampling iterations.
 
 - `"stability"`: Barplot of stability score for each learner used in the

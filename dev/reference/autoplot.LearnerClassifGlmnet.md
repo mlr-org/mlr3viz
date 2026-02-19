@@ -67,7 +67,7 @@ autoplot(
   \|
   [mlr3learners::LearnerRegrGlmnet](https://mlr3learners.mlr-org.com/reference/mlr_learners_regr.glmnet.html)
   \|
-  [mlr3learners::LearnerRegrCVGlmnet](https://mlr3learners.mlr-org.com/reference/mlr_learners_regr.cv_glmnet.html)
+  [mlr3learners::LearnerClassifCVGlmnet](https://mlr3learners.mlr-org.com/reference/mlr_learners_classif.cv_glmnet.html)
   \|
   [mlr3learners::LearnerRegrCVGlmnet](https://mlr3learners.mlr-org.com/reference/mlr_learners_regr.cv_glmnet.html)).
 

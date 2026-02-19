@@ -16,8 +16,8 @@ choices are:
 - `"parallel"`: Parallel coordinates plot. hyperparameters are rescaled
   by `(x - mean(x)) / sd(x)`.
 
-- `"points"`: Scatter plot of two x dimensions versus. The color of the
-  points shows the y values.
+- `"points"`: Scatter plot of two x dimensions versus y values. The
+  color of the points shows the y values.
 
 - `"surface"`: Surface plot of two x dimensions versus y values. The y
   values are interpolated with the supplied

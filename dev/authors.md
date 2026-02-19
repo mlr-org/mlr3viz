@@ -23,14 +23,14 @@
 Source:
 [`DESCRIPTION`](https://github.com/mlr-org/mlr3viz/blob/main/DESCRIPTION)
 
-Lang M, Schratz P, Sonabend R, Becker M, Richter J, Zobolas J (2025).
+Lang M, Schratz P, Sonabend R, Becker M, Richter J, Zobolas J (2026).
 *mlr3viz: Visualizations for 'mlr3'*. R package version 0.10.1.9000,
 <https://mlr3viz.mlr-org.com>.
 
     @Manual{,
       title = {mlr3viz: Visualizations for 'mlr3'},
       author = {Michel Lang and Patrick Schratz and Raphael Sonabend and Marc Becker and Jakob Richter and John Zobolas},
-      year = {2025},
+      year = {2026},
       note = {R package version 0.10.1.9000},
       url = {https://mlr3viz.mlr-org.com},
     }
