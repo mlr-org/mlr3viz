@@ -26,6 +26,7 @@
 #' @export
 #' @examples
 #' \donttest{
+#' if (mlr3misc::require_namespaces("precrec", quietly = TRUE)) {
 #' task = tsk("spam")
 #' learner = lrn("classif.rpart", predict_type = "prob")
 #' object = learner$train(task)$predict(task)
@@ -34,6 +35,7 @@
 #' autoplot(object)
 #' autoplot(object, type = "roc")
 #' autoplot(object, type = "prc")
+#' }
 #' }
 autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, theme = theme_minimal(), ...) { # nolint
   assert_choice(type, choices = c("stacked", "roc", "prc", "threshold"), null.ok = FALSE)

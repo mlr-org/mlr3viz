@@ -33,10 +33,12 @@ Color is set to target column.
 }
 }
 \examples{
+if (mlr3misc::require_namespaces("GGally", quietly = TRUE)) {
 task = tsk("iris")
 
 head(fortify(task))
 autoplot(task)
 autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")), type = "pairs")
 autoplot(task, type = "duo")
+}
 }

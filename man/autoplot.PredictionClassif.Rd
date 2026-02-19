@@ -44,6 +44,7 @@ Requires package \CRANpkg{precrec}.
 }
 \examples{
 \donttest{
+if (mlr3misc::require_namespaces("precrec", quietly = TRUE)) {
 task = tsk("spam")
 learner = lrn("classif.rpart", predict_type = "prob")
 object = learner$train(task)$predict(task)
@@ -52,6 +53,7 @@ head(fortify(object))
 autoplot(object)
 autoplot(object, type = "roc")
 autoplot(object, type = "prc")
+}
 }
 }
 \references{
