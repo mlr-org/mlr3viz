@@ -58,6 +58,7 @@ Possible choices are:
 }
 }
 \examples{
+if (mlr3misc::require_namespaces(c("partykit", "ggparty"), quietly = TRUE)) {
 # classification
 task = tsk("iris")
 learner = lrn("classif.rpart", keep_model = TRUE)
@@ -69,4 +70,5 @@ task = tsk("mtcars")
 learner = lrn("regr.rpart", keep_model = TRUE)
 learner$train(task)
 autoplot(learner, type = "ggparty")
+}
 }
