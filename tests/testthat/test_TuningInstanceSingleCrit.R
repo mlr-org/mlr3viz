@@ -92,7 +92,7 @@ test_that("autoplot.TuningInstanceBatchSingleCrit", {
   p = autoplot(instance, type = "incumbent")
   expect_single("incumbent", p)
 
-  # with categoircal params
+  # with categorical params
 
   # learner = mlr3::lrn("classif.xgboost")
   # learner$param_set$values$eta = paradox::to_tune(0.01, 0.1)

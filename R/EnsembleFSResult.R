@@ -13,7 +13,7 @@
 #' used in the ensemble feature selection process.
 #' Each box represents the distribution of scores across different resampling
 #' iterations for a particular learner.
-#' * `"n_features`: Boxplot of the number of features selected by each learner
+#' * `"n_features"`: Boxplot of the number of features selected by each learner
 #' in the different resampling iterations.
 #' * `"stability"`: Barplot of stability score for each learner used in the
 #' ensemble feature selection. This plot shows how similar are the output feature

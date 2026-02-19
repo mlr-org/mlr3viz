@@ -56,7 +56,7 @@ The color of the points shows the batch number.
 The color of the points shows the y values.
 \item \code{"parallel"}: Parallel coordinates plot.
 hyperparameters are rescaled by \code{(x - mean(x)) / sd(x)}.
-\item \code{"points"}: Scatter plot of two x dimensions versus.
+\item \code{"points"}: Scatter plot of two x dimensions versus y values.
 The color of the points shows the y values.
 \item \code{"surface"}: Surface plot of two x dimensions versus y values.
 The y values are interpolated with the supplied \link[mlr3:Learner]{mlr3::Learner}.

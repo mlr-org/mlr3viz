@@ -14,7 +14,7 @@
 #'      The color of the points shows the y values.
 #'   * `"parallel"`: Parallel coordinates plot.
 #'      x values are rescaled by `(x - mean(x)) / sd(x)`.
-#'   * `"points"`: Scatter plot of two x dimensions versus.
+#'   * `"points"`: Scatter plot of two x dimensions versus y values.
 #'      The color of the points shows the y values.
 #'   * `"surface"`: Surface plot of two x dimensions versus y values.
 #'     The y values are interpolated with the supplied [mlr3::Learner].
