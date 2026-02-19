@@ -46,6 +46,8 @@ See \code{"roc"}.
 }
 }
 \examples{
+\dontshow{if (mlr3misc::require_namespaces("precrec", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{\}) # examplesIf}
 tasks = tsks(c("pima", "sonar"))
 learner = lrns(c("classif.featureless", "classif.rpart"),
   predict_type = "prob")

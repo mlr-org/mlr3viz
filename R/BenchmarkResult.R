@@ -27,6 +27,7 @@
 #' `r format_bib("precrec")`
 #'
 #' @export
+#' @examplesIf mlr3misc::require_namespaces("precrec", quietly = TRUE)
 #' @examples
 #' tasks = tsks(c("pima", "sonar"))
 #' learner = lrns(c("classif.featureless", "classif.rpart"),
