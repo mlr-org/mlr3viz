@@ -23,27 +23,25 @@
 #'
 #' @export
 #' @examples
-#' if (requireNamespace("mlr3")) {
-#'   library(mlr3)
-#'   library(mlr3cluster)
-#'   library(mlr3viz)
+#' if (mlr3misc::require_namespaces("mlr3cluster", quietly = TRUE)) {
+#' library(mlr3cluster)
 #'
-#'   task = tsk("usarrests")
+#' task = tsk("usarrests")
 #'
-#'   # agnes clustering
-#'   learner = lrn("clust.agnes")
-#'   learner$train(task)
-#'   autoplot(learner)
+#' # agnes clustering
+#' learner = lrn("clust.agnes")
+#' learner$train(task)
+#' autoplot(learner)
 #'
-#'   # diana clustering
-#'   learner = lrn("clust.diana")
-#'   learner$train(task)
-#'   autoplot(learner)
+#' # diana clustering
+#' learner = lrn("clust.diana")
+#' learner$train(task)
+#' autoplot(learner)
 #'
-#'   # hclust clustering
-#'   learner = lrn("clust.hclust")
-#'   learner$train(task)
-#'   autoplot(learner, type = "scree")
+#' # hclust clustering
+#' learner = lrn("clust.hclust")
+#' learner$train(task)
+#' autoplot(learner, type = "scree")
 #' }
 autoplot.LearnerClustHierarchical = function(object, type = "dend", task = NULL, theme = theme_minimal(), theme_dendro = TRUE, ...) { # nolint
   assert_choice(type, choices = c("dend", "scree"), null.ok = FALSE)

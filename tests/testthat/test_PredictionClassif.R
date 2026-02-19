@@ -10,6 +10,7 @@ test_that("autoplot.PredictionClassif", {
   expect_true(is_ggplot(p))
   expect_doppelganger("predictionclassif_stacked", p)
 
+  skip_if_not_installed("precrec")
   p = autoplot(prediction, type = "roc")
   expect_true(is_ggplot(p))
   expect_doppelganger("predictionclassif_roc", p)

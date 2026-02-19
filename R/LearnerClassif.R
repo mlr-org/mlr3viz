@@ -21,16 +21,11 @@
 #' @export
 #' @examples
 #' \donttest{
-#' if (requireNamespace("mlr3")) {
-#' library(mlr3)
-#' library(mlr3viz)
-#'
 #' task = tsk("pima")$select(c("age", "pedigree"))
 #' learner = lrn("classif.rpart", predict_type = "prob")
 #' learner$train(task)
 #'
 #' autoplot(learner, type = "prediction", task)
-#' }
 #' }
 autoplot.LearnerClassif = function(object, type = "prediction", task, grid_points = 100L, expand_range = 0, theme = theme_minimal(), ...) { # nolint
   assert_choice(type, choices = c("prediction"), null.ok = FALSE)

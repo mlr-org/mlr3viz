@@ -29,25 +29,21 @@
 #'
 #' @export
 #' @examples
-#' if (requireNamespace("mlr3")) {
-#'   library(mlr3)
-#'   library(mlr3viz)
+#' if (mlr3misc::require_namespaces("mlr3learners", quietly = TRUE)) {
+#' library(mlr3learners)
 #'
-#'   task = tsk("mtcars")
-#'   learner = lrn("regr.rpart")
-#'   object = learner$train(task)$predict(task)
+#' task = tsk("mtcars")
+#' learner = lrn("regr.rpart")
+#' object = learner$train(task)$predict(task)
 #'
-#'   head(fortify(object))
-#'   autoplot(object)
-#'   autoplot(object, type = "histogram", binwidth = 1)
-#'   autoplot(object, type = "residual")
+#' head(fortify(object))
+#' autoplot(object)
+#' autoplot(object, type = "histogram", binwidth = 1)
+#' autoplot(object, type = "residual")
 #'
-#'  if (requireNamespace("mlr3learners")) {
-#'   library(mlr3learners)
-#'   learner = lrn("regr.ranger", predict_type = "se")
-#'   object = learner$train(task)$predict(task)
-#'   autoplot(object, type = "confidence")
-#'  }
+#' learner = lrn("regr.ranger", predict_type = "se")
+#' object = learner$train(task)$predict(task)
+#' autoplot(object, type = "confidence")
 #' }
 autoplot.PredictionRegr = function(object, type = "xy", binwidth = NULL, theme = theme_minimal(), quantile = 1.96, ...) {
   assert_choice(type, choices = c("xy", "histogram", "residual", "confidence"), null.ok = FALSE)

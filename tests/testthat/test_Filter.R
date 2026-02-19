@@ -1,4 +1,4 @@
-skip_if_not_installed("mlr3")
+skip_if_not_installed("mlr3filters")
 
 test_that("autoplot.Filter", {
   task = mlr3::tsk("iris")

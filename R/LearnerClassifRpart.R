@@ -21,21 +21,18 @@
 #'
 #' @export
 #' @examples
-#' if (requireNamespace("mlr3")) {
-#'   library(mlr3)
-#'   library(mlr3viz)
+#' if (mlr3misc::require_namespaces(c("partykit", "ggparty"), quietly = TRUE)) {
+#' # classification
+#' task = tsk("iris")
+#' learner = lrn("classif.rpart", keep_model = TRUE)
+#' learner$train(task)
+#' autoplot(learner, type = "ggparty")
 #'
-#'   # classification
-#'   task = tsk("iris")
-#'   learner = lrn("classif.rpart", keep_model = TRUE)
-#'   learner$train(task)
-#'   autoplot(learner, type = "ggparty")
-#'
-#'   # regression
-#'   task = tsk("mtcars")
-#'   learner = lrn("regr.rpart", keep_model = TRUE)
-#'   learner$train(task)
-#'   autoplot(learner, type = "ggparty")
+#' # regression
+#' task = tsk("mtcars")
+#' learner = lrn("regr.rpart", keep_model = TRUE)
+#' learner$train(task)
+#' autoplot(learner, type = "ggparty")
 #' }
 autoplot.LearnerClassifRpart = function(object, type = "prediction", task = NULL, grid_points = 100L, expand_range = 0, theme = theme_minimal(), ...) { # nolint
   assert_choice(type, choices = c("prediction", "ggparty"), null.ok = FALSE)

@@ -35,12 +35,11 @@
 #'
 #' @return [ggplot2::ggplot()].
 #' @examples
+#' if (mlr3misc::require_namespaces("mlr3fselect", quietly = TRUE)) {
 #' \donttest{
-#' if (requireNamespace("mlr3")) {
-#'   library(mlr3)
+#'   set.seed (42)
 #'   library(mlr3fselect)
 #'
-#'   set.seed (42)
 #'   efsr = ensemble_fselect(
 #'     fselector = fs("random_search"),
 #'     task = tsk("sonar"),

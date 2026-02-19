@@ -19,6 +19,7 @@ test_that("autoplot BenchmarkResult", {
   expect_true(is_ggplot(p))
   expect_doppelganger("bmr_boxplot", p)
 
+  skip_if_not_installed("precrec")
   expect_error(autoplot(bmr, type = "roc"), "multiple")
 
   object = bmr$clone(deep = TRUE)$filter(task_ids = "sonar")
@@ -33,6 +34,7 @@ test_that("autoplot BenchmarkResult", {
 })
 
 test_that("holdout roc plot (#54)", {
+  skip_if_not_installed("precrec")
   tasks = tsks("german_credit")
 
   learners = c("classif.featureless", "classif.rpart")

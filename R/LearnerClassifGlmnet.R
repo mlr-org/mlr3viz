@@ -24,9 +24,8 @@
 #'
 #' @export
 #' @examples
+#' if (mlr3misc::require_namespaces("mlr3learners", quietly = TRUE)) {
 #' \dontrun{
-#' library(mlr3)
-#' library(mlr3viz)
 #' library(mlr3learners)
 #'
 #' # classification
@@ -40,6 +39,7 @@
 #' learner = lrn("regr.glmnet")
 #' learner$train(task)
 #' autoplot(learner, type = "ggfortify")
+#' }
 #' }
 autoplot.LearnerClassifGlmnet = function(object, type = "prediction", task = NULL, grid_points = 100L, expand_range = 0, theme = theme_minimal(), ...) { # nolint
   assert_choice(type, choices = c("prediction", "ggfortify"), null.ok = FALSE)

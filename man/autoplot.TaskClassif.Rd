@@ -33,16 +33,12 @@ Color is set to target column.
 }
 }
 \examples{
-if (requireNamespace("mlr3")) {
-  library(mlr3)
-  library(mlr3viz)
+if (mlr3misc::require_namespaces("GGally", quietly = TRUE)) {
+task = tsk("iris")
 
-  task = tsk("iris")
-
-  head(fortify(task))
-  autoplot(task)
-  autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")),
-    type = "pairs")
-  autoplot(task, type = "duo")
+head(fortify(task))
+autoplot(task)
+autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")), type = "pairs")
+autoplot(task, type = "duo")
 }
 }

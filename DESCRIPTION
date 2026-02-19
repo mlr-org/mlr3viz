@@ -26,7 +26,8 @@ License: LGPL-3
 URL: https://mlr3viz.mlr-org.com, https://github.com/mlr-org/mlr3viz
 BugReports: https://github.com/mlr-org/mlr3viz/issues
 Depends:
-    R (>= 3.3.0)
+    R (>= 3.3.0),
+    mlr3 (>= 1.3.0)
 Imports:
     checkmate,
     data.table,
@@ -37,6 +38,7 @@ Imports:
     viridis
 Suggests:
     bbotk (>= 1.0.0),
+    clue,
     cluster,
     GGally,
     ggdendro,
@@ -45,7 +47,6 @@ Suggests:
     glmnet,
     knitr,
     lgr,
-    mlr3 (>= 0.6.0),
     mlr3cluster,
     mlr3filters,
     mlr3fselect (>= 1.3.0),
