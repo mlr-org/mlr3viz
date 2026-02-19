@@ -102,47 +102,45 @@ autoplot(
 ## Examples
 
 ``` r
-if (requireNamespace("mlr3") && requireNamespace("bbotk") && requireNamespace("patchwork")) {
-  library(bbotk)
-  library(paradox)
+if (mlr3misc::require_namespaces(c("paradox", "bbotk", "patchwork"), quietly = TRUE)) {
+library(bbotk)
 
-  fun = function(xs) {
-    c(y = -(xs[[1]] - 2)^2 - (xs[[2]] + 3)^2 + 10)
-  }
-  domain = ps(
-    x1 = p_dbl(-10, 10),
-    x2 = p_dbl(-5, 5)
-  )
-  codomain = ps(
-    y = p_dbl(tags = "maximize")
-  )
-  obfun = ObjectiveRFun$new(
-    fun = fun,
-    domain = domain,
-    codomain = codomain
-  )
-
-  instance = oi(objective = obfun, terminator = trm("evals", n_evals = 20))
-
-  optimizer = opt("random_search", batch_size = 2)
-  optimizer$optimize(instance)
-
-  # plot y versus batch number
-  print(autoplot(instance, type = "performance"))
-
-  # plot x1 values versus performance
-  print(autoplot(instance, type = "marginal", cols_x = "x1"))
-
-  # plot parallel coordinates plot
-  print(autoplot(instance, type = "parallel"))
-
-  # plot pairs
-  print(autoplot(instance, type = "pairs"))
-
-  # plot incumbent
-  print(autoplot(instance, type = "incumbent"))
+fun = function(xs) {
+  c(y = -(xs[[1]] - 2)^2 - (xs[[2]] + 3)^2 + 10)
 }
-#> Loading required namespace: patchwork
+domain = ps(
+  x1 = p_dbl(-10, 10),
+  x2 = p_dbl(-5, 5)
+)
+codomain = ps(
+  y = p_dbl(tags = "maximize")
+)
+obfun = ObjectiveRFun$new(
+  fun = fun,
+  domain = domain,
+  codomain = codomain
+)
+
+instance = oi(objective = obfun, terminator = trm("evals", n_evals = 20))
+
+optimizer = opt("random_search", batch_size = 2)
+optimizer$optimize(instance)
+
+# plot y versus batch number
+print(autoplot(instance, type = "performance"))
+
+# plot x1 values versus performance
+print(autoplot(instance, type = "marginal", cols_x = "x1"))
+
+# plot parallel coordinates plot
+print(autoplot(instance, type = "parallel"))
+
+# plot pairs
+print(autoplot(instance, type = "pairs"))
+
+# plot incumbent
+print(autoplot(instance, type = "incumbent"))
+}
 #> Loading required package: paradox
 
 

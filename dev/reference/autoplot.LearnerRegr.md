@@ -68,16 +68,11 @@ autoplot(
 
 ``` r
 # \donttest{
-if (requireNamespace("mlr3")) {
-library(mlr3)
-library(mlr3viz)
-
 task = tsk("mtcars")$select(c("am", "carb"))
 learner = lrn("regr.rpart")
 learner$train(task)
 
 autoplot(learner, type = "prediction", task)
-}
 
 # }
 ```

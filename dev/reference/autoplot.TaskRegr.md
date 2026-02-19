@@ -47,15 +47,12 @@ autoplot(object, type = "target", theme = theme_minimal(), ...)
 ## Examples
 
 ``` r
-if (requireNamespace("mlr3")) {
-  library(mlr3)
-  library(mlr3viz)
+if (mlr3misc::require_namespaces("GGally", quietly = TRUE)) {
+task = tsk("mtcars")
+task$select(c("am", "carb"))
 
-  task = tsk("mtcars")
-  task$select(c("am", "carb"))
-
-  head(fortify(task))
-  autoplot(task)
-  autoplot(task, type = "pairs")
+head(fortify(task))
+autoplot(task)
+autoplot(task, type = "pairs")
 }
 ```

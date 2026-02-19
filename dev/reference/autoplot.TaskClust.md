@@ -44,14 +44,11 @@ autoplot(object, type = "pairs", theme = theme_minimal(), ...)
 ## Examples
 
 ``` r
-if (requireNamespace("mlr3")) {
-  library(mlr3)
-  library(mlr3cluster)
-  library(mlr3viz)
+if (mlr3misc::require_namespaces("mlr3cluster", quietly = TRUE)) {
+library(mlr3cluster)
+task = tsk("usarrests")
 
-  task = mlr_tasks$get("usarrests")
-
-  head(fortify(task))
-  autoplot(task)
+head(fortify(task))
+autoplot(task)
 }
 ```

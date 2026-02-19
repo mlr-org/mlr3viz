@@ -49,16 +49,14 @@ autoplot(object, type = "boxplot", n = Inf, theme = theme_minimal(), ...)
 ## Examples
 
 ``` r
-if (requireNamespace("mlr3")) {
-  library(mlr3)
-  library(mlr3viz)
-  library(mlr3filters)
+if (mlr3misc::require_namespaces("mlr3filters", quietly = TRUE)) {
+library(mlr3filters)
 
-  task = tsk("mtcars")
-  f = flt("correlation")
-  f$calculate(task)
+task = tsk("mtcars")
+f = flt("correlation")
+f$calculate(task)
 
-  head(fortify(f))
-  autoplot(f, n = 5)
+head(fortify(f))
+autoplot(f, n = 5)
 }
 ```

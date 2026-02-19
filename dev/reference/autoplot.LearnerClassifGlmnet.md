@@ -116,9 +116,8 @@ Visualize Statistical Result of Popular R Packages.” *The R Journal*,
 ## Examples
 
 ``` r
+if (mlr3misc::require_namespaces("mlr3learners", quietly = TRUE)) {
 if (FALSE) { # \dontrun{
-library(mlr3)
-library(mlr3viz)
 library(mlr3learners)
 
 # classification
@@ -133,4 +132,5 @@ learner = lrn("regr.glmnet")
 learner$train(task)
 autoplot(learner, type = "ggfortify")
 } # }
+}
 ```
