@@ -7,6 +7,7 @@ test_that("autoplot.TaskClassif", {
   expect_true(is_ggplot(p))
   expect_doppelganger("taskclassif_target", p)
 
+  skip_if_not_installed("GGally")
   p = autoplot(task, type = "pairs")
   expect_s3_class(p, "ggmatrix")
   expect_doppelganger("taskclassif_pairs", p)

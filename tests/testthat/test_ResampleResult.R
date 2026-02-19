@@ -24,6 +24,7 @@ test_that("autoplot ResampleResult", {
   expect_true(is_ggplot(p))
   expect_doppelganger("resampleresult_histogram", p)
 
+  skip_if_not_installed("precrec")
   p = autoplot(rr, type = "roc")
   expect_true(is_ggplot(p))
   expect_doppelganger("resampleresult_roc", p)
@@ -84,8 +85,8 @@ regression!")
 
 
 test_that("roc is not inverted", {
-  autoplot(rr, type = "roc")
   skip_if_not_installed("precrec")
+  autoplot(rr, type = "roc")
   tab = as.data.table(precrec::auc(precrec::evalmod(as_precrec(rr))))
   expect_number(mean(tab[curvetypes == "ROC", aucs]), lower = 0.5)
 })
