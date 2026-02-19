@@ -18,12 +18,14 @@
 #'
 #' @export
 #' @examples
+#' if (mlr3misc::require_namespaces("GGally", quietly = TRUE)) {
 #' task = tsk("mtcars")
 #' task$select(c("am", "carb"))
 #'
 #' head(fortify(task))
 #' autoplot(task)
 #' autoplot(task, type = "pairs")
+#' }
 autoplot.TaskRegr = function(object, type = "target", theme = theme_minimal(), ...) { # nolint
   assert_choice(type, choices = c("target", "pairs"), null.ok = FALSE)
 

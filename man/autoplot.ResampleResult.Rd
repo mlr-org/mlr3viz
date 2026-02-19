@@ -62,6 +62,7 @@ For tasks with two features the predict type will be ignored.
 }
 \examples{
 \donttest{
+if (mlr3misc::require_namespaces("precrec", quietly = TRUE)) {
 task = tsk("sonar")
 learner = lrn("classif.rpart", predict_type = "prob")
 resampling = rsmp("cv", folds = 3)
@@ -89,6 +90,7 @@ task = tsk("iris")$select(c("Sepal.Length", "Sepal.Width"))
 resampling = rsmp("cv", folds = 3)
 object = resample(task, learner, resampling, store_models = TRUE)
 autoplot(object, type = "prediction")
+}
 }
 }
 \references{
