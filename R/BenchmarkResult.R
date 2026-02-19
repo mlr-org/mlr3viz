@@ -27,10 +27,7 @@
 #' `r format_bib("precrec")`
 #'
 #' @export
-#' @examplesIf mlr3misc::require_namespaces("mlr3", quietly = TRUE)
-#' library(mlr3)
-#' library(mlr3viz)
-#'
+#' @examples
 #' tasks = tsks(c("pima", "sonar"))
 #' learner = lrns(c("classif.featureless", "classif.rpart"),
 #'   predict_type = "prob")

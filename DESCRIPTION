@@ -38,6 +38,7 @@ Imports:
     viridis
 Suggests:
     bbotk (>= 1.0.0),
+    clue,
     cluster,
     GGally,
     ggdendro,

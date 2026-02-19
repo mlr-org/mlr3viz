@@ -38,11 +38,8 @@
 #' `r format_bib("precrec")`
 #'
 #' @export
-#' @examplesIf mlr3misc::require_namespaces("mlr3", quietly = TRUE)
+#' @examples
 #' \donttest{
-#' library(mlr3)
-#' library(mlr3viz)
-#'
 #' task = tsk("sonar")
 #' learner = lrn("classif.rpart", predict_type = "prob")
 #' resampling = rsmp("cv", folds = 3)

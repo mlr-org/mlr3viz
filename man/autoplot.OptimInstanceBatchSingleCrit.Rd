@@ -70,9 +70,8 @@ The y values are interpolated with the supplied \link[mlr3:Learner]{mlr3::Learne
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces(c("mlr3", "bbotk", "patchwork"), quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (mlr3misc::require_namespaces(c("paradox", "bbotk", "patchwork"), quietly = TRUE)) withAutoprint(\{ # examplesIf}
 library(bbotk)
-library(paradox)
 
 fun = function(xs) {
   c(y = -(xs[[1]] - 2)^2 - (xs[[2]] + 3)^2 + 10)

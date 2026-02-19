@@ -65,7 +65,8 @@ The y values are interpolated with the supplied \link[mlr3:Learner]{mlr3::Learne
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces(c("mlr3tuning", "patchwork"), quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (mlr3misc::require_namespaces(c("mlr3tuning", "patchwork", "paradox"), quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{\}) # examplesIf}
 library(mlr3tuning)
 
 learner = lrn("classif.rpart")
@@ -97,5 +98,4 @@ autoplot(instance, type = "parallel")
 
 # plot pairs
 autoplot(instance, type = "pairs")
-\dontshow{\}) # examplesIf}
 }

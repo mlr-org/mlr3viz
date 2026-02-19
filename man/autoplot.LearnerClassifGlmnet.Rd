@@ -81,9 +81,9 @@ Possible choices are:
 }
 }
 \examples{
+\dontshow{if (mlr3misc::require_namespaces("mlr3learners", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{\}) # examplesIf}
 \dontrun{
-library(mlr3)
-library(mlr3viz)
 library(mlr3learners)
 
 # classification

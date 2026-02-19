@@ -19,11 +19,8 @@
 #' @return [ggplot2::ggplot()].
 #'
 #' @export
-#' @examplesIf mlr3misc::require_namespaces("mlr3", quietly = TRUE)
+#' @examples
 #' \donttest{
-#' library(mlr3)
-#' library(mlr3viz)
-#'
 #' task = tsk("mtcars")$select(c("am", "carb"))
 #' learner = lrn("regr.rpart")
 #' learner$train(task)

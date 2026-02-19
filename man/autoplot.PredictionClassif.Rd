@@ -43,11 +43,7 @@ Requires package \CRANpkg{precrec}.
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces("mlr3", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 \donttest{
-library(mlr3)
-library(mlr3viz)
-
 task = tsk("spam")
 learner = lrn("classif.rpart", predict_type = "prob")
 object = learner$train(task)$predict(task)
@@ -57,7 +53,6 @@ autoplot(object)
 autoplot(object, type = "roc")
 autoplot(object, type = "prc")
 }
-\dontshow{\}) # examplesIf}
 }
 \references{
 Saito T, Rehmsmeier M (2017).

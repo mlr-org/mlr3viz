@@ -15,12 +15,10 @@
 #' @return [ggplot2::ggplot()].
 #'
 #' @export
-#' @examplesIf mlr3misc::require_namespaces("mlr3", quietly = TRUE)
-#' library(mlr3)
+#' @examplesIf mlr3misc::require_namespaces("mlr3cluster", quietly = TRUE)
+#' @examples
 #' library(mlr3cluster)
-#' library(mlr3viz)
-#'
-#' task = mlr_tasks$get("usarrests")
+#' task = tsk("usarrests")
 #'
 #' head(fortify(task))
 #' autoplot(task)

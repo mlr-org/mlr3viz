@@ -17,10 +17,7 @@
 #' @return [ggplot2::ggplot()].
 #'
 #' @export
-#' @examplesIf mlr3misc::require_namespaces("mlr3", quietly = TRUE)
-#' library(mlr3)
-#' library(mlr3viz)
-#'
+#' @examples
 #' task = tsk("mtcars")
 #' task$select(c("am", "carb"))
 #'

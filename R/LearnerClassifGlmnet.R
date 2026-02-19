@@ -23,10 +23,9 @@
 #' `r format_bib("ggfortify")`
 #'
 #' @export
+#' @examplesIf mlr3misc::require_namespaces("mlr3learners", quietly = TRUE)
 #' @examples
 #' \dontrun{
-#' library(mlr3)
-#' library(mlr3viz)
 #' library(mlr3learners)
 #'
 #' # classification

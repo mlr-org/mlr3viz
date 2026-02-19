@@ -38,7 +38,8 @@
 #' @return [ggplot2::ggplot()].
 #'
 #' @export
-#' @examplesIf mlr3misc::require_namespaces(c("mlr3tuning", "patchwork"), quietly = TRUE)
+#' @examplesIf mlr3misc::require_namespaces(c("mlr3tuning", "patchwork", "paradox"), quietly = TRUE)
+#' @examples
 #' library(mlr3tuning)
 #'
 #' learner = lrn("classif.rpart")

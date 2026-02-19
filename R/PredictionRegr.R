@@ -28,9 +28,8 @@
 #' @return [ggplot2::ggplot()].
 #'
 #' @export
-#' @examplesIf mlr3misc::require_namespaces(c("mlr3", "mlr3learners"), quietly = TRUE)
-#' library(mlr3)
-#' library(mlr3viz)
+#' @examplesIf mlr3misc::require_namespaces("mlr3learners", quietly = TRUE)
+#' library(mlr3learners)
 #'
 #' task = tsk("mtcars")
 #' learner = lrn("regr.rpart")
@@ -41,7 +40,6 @@
 #' autoplot(object, type = "histogram", binwidth = 1)
 #' autoplot(object, type = "residual")
 #'
-#' library(mlr3learners)
 #' learner = lrn("regr.ranger", predict_type = "se")
 #' object = learner$train(task)$predict(task)
 #' autoplot(object, type = "confidence")

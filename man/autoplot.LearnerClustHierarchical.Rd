@@ -45,10 +45,8 @@ Possible choices are:
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces("mlr3", quietly = TRUE)) withAutoprint(\{ # examplesIf}
-library(mlr3)
+\dontshow{if (mlr3misc::require_namespaces("mlr3cluster", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 library(mlr3cluster)
-library(mlr3viz)
 
 task = tsk("usarrests")
 

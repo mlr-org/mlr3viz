@@ -51,9 +51,8 @@ possible with \code{predict_type = "se"}. \code{geom_abline()} with \code{slope 
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces(c("mlr3", "mlr3learners"), quietly = TRUE)) withAutoprint(\{ # examplesIf}
-library(mlr3)
-library(mlr3viz)
+\dontshow{if (mlr3misc::require_namespaces("mlr3learners", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+library(mlr3learners)
 
 task = tsk("mtcars")
 learner = lrn("regr.rpart")
@@ -64,7 +63,6 @@ autoplot(object)
 autoplot(object, type = "histogram", binwidth = 1)
 autoplot(object, type = "residual")
 
-library(mlr3learners)
 learner = lrn("regr.ranger", predict_type = "se")
 object = learner$train(task)$predict(task)
 autoplot(object, type = "confidence")

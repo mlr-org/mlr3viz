@@ -20,10 +20,7 @@
 #' @return [ggplot2::ggplot()].
 #'
 #' @export
-#' @examplesIf mlr3misc::require_namespaces("mlr3", quietly = TRUE)
-#' library(mlr3)
-#' library(mlr3viz)
-#'
+#' @examples
 #' # classification
 #' task = tsk("iris")
 #' learner = lrn("classif.rpart", keep_model = TRUE)

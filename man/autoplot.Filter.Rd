@@ -33,9 +33,7 @@ Possible choices are:
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces("mlr3", quietly = TRUE)) withAutoprint(\{ # examplesIf}
-library(mlr3)
-library(mlr3viz)
+\dontshow{if (mlr3misc::require_namespaces("mlr3filters", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 library(mlr3filters)
 
 task = tsk("mtcars")

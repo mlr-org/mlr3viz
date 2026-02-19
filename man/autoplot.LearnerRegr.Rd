@@ -46,16 +46,11 @@ Possible choices are:
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces("mlr3", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 \donttest{
-library(mlr3)
-library(mlr3viz)
-
 task = tsk("mtcars")$select(c("am", "carb"))
 learner = lrn("regr.rpart")
 learner$train(task)
 
 autoplot(learner, type = "prediction", task)
 }
-\dontshow{\}) # examplesIf}
 }

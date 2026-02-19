@@ -61,11 +61,7 @@ For tasks with two features the predict type will be ignored.
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces("mlr3", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 \donttest{
-library(mlr3)
-library(mlr3viz)
-
 task = tsk("sonar")
 learner = lrn("classif.rpart", predict_type = "prob")
 resampling = rsmp("cv", folds = 3)
@@ -94,7 +90,6 @@ resampling = rsmp("cv", folds = 3)
 object = resample(task, learner, resampling, store_models = TRUE)
 autoplot(object, type = "prediction")
 }
-\dontshow{\}) # examplesIf}
 }
 \references{
 Saito T, Rehmsmeier M (2017).

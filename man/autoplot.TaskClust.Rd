@@ -29,14 +29,11 @@ Possible choices are:
 }
 }
 \examples{
-\dontshow{if (mlr3misc::require_namespaces("mlr3", quietly = TRUE)) withAutoprint(\{ # examplesIf}
-library(mlr3)
+\dontshow{if (mlr3misc::require_namespaces("mlr3cluster", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{\}) # examplesIf}
 library(mlr3cluster)
-library(mlr3viz)
-
-task = mlr_tasks$get("usarrests")
+task = tsk("usarrests")
 
 head(fortify(task))
 autoplot(task)
-\dontshow{\}) # examplesIf}
 }

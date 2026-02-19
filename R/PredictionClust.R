@@ -25,10 +25,8 @@
 #' `r format_bib("ggfortify")`
 #'
 #' @export
-#' @examplesIf mlr3misc::require_namespaces("mlr3", quietly = TRUE)
-#' library(mlr3)
+#' @examplesIf mlr3misc::require_namespaces(c("clue", "mlr3cluster"), quietly = TRUE)
 #' library(mlr3cluster)
-#' library(mlr3viz)
 #'
 #' task = tsk("usarrests")
 #' learner = lrn("clust.kmeans", centers = 3)
