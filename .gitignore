@@ -176,3 +176,4 @@ renv.lock
 # revdep
 revdep/
 check/*
+.claude/

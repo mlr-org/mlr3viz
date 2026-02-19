@@ -15,7 +15,7 @@ test_that("autoplot.PredictionClust", {
   expect_true(is_ggplot(p))
   expect_doppelganger("predictionclust_scatter", p)
 
-  p = autoplot(prediction, task, type = "sil")
+  suppressWarnings({p = autoplot(prediction, task, type = "sil")})
   expect_true(is_ggplot(p))
   expect_doppelganger("predictionclust_sil", p)
 
