@@ -46,6 +46,7 @@ See \code{"roc"}.
 }
 }
 \examples{
+\donttest{
 if (mlr3misc::require_namespaces("precrec", quietly = TRUE)) {
 tasks = tsks(c("pima", "sonar"))
 learner = lrns(c("classif.featureless", "classif.rpart"), predict_type = "prob")
@@ -55,6 +56,7 @@ object = benchmark(benchmark_grid(tasks, learner, resampling))
 head(fortify(object))
 autoplot(object)
 autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "roc")
+}
 }
 }
 \references{
