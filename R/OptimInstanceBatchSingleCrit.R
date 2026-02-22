@@ -44,6 +44,7 @@
 #'
 #' @export
 #' @examples
+#' \donttest{
 #' if (mlr3misc::require_namespaces(c("paradox", "bbotk", "patchwork"), quietly = TRUE)) {
 #' library(bbotk)
 #'
@@ -82,6 +83,7 @@
 #'
 #' # plot incumbent
 #' print(autoplot(instance, type = "incumbent"))
+#' }
 #' }
 autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, batch = NULL, theme = theme_minimal(), ...) { # nolint
   assert_choice(type, choices = c("marginal", "performance", "parameter", "parallel",

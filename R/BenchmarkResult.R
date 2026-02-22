@@ -28,6 +28,7 @@
 #'
 #' @export
 #' @examples
+#' \donttest{
 #' if (mlr3misc::require_namespaces("precrec", quietly = TRUE)) {
 #' tasks = tsks(c("pima", "sonar"))
 #' learner = lrns(c("classif.featureless", "classif.rpart"), predict_type = "prob")
@@ -37,6 +38,7 @@
 #' head(fortify(object))
 #' autoplot(object)
 #' autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "roc")
+#' }
 #' }
 autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, theme = theme_minimal(), ...) {
   assert_choice(type, choices = c("boxplot", "roc", "prc", "ci"), null.ok = FALSE)
