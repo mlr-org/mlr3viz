@@ -1,135 +1,135 @@
-# mlr3viz (development version)
+# mlr3viz 0.11.0
 
-- fix: Suppress warnings about unused arguments in `ggplot2::fortify()` when plotting ROC/PRC curves with newer versions of ggplot2.
-- refactor: plot for `LearnerSurvCoxPH` will be moved to `mlr3proba@0.8.4`
+* fix: Suppress warnings about unused arguments in `ggplot2::fortify()` when plotting ROC/PRC curves with newer versions of ggplot2.
+* refactor: plot for `LearnerSurvCoxPH` will be moved to `mlr3proba@0.8.4`.
 
 # mlr3viz 0.10.1
 
-- feat: Allow passing parameters to `precrec::autoplot()` (eg `show_cb`) when plotting `BenchmarkResult` and `ResampleResult` objects, using `type` = `roc` or `prc`.
-- refactor: Wrong `type` in `autoplot`s now gives hints of which ones to use.
-- refactor: Update `EnsembleFSResult.autoplot` to use the `active_measure` field.
-- feat: add plot for confidence intervals (`mlr3inferr`).
+* feat: Allow passing parameters to `precrec::autoplot()` (eg `show_cb`) when plotting `BenchmarkResult` and `ResampleResult` objects, using `type` = `roc` or `prc`.
+* refactor: Wrong `type` in `autoplot`s now gives hints of which ones to use.
+* refactor: Update `EnsembleFSResult.autoplot` to use the `active_measure` field.
+* feat: add plot for confidence intervals (`mlr3inferr`).
 
 # mlr3viz 0.10.0
 
-- Add plot for `LearnerSurvCoxPH`.
+* Add plot for `LearnerSurvCoxPH`.
 
 # mlr3viz 0.9.0
 
-- Work with new bbotk 0.9.0 and mlr3tuning 0.21.0
-- Add plots for `EnsembleFSResult` object.
+* Work with new bbotk 0.9.0 and mlr3tuning 0.21.0
+* Add plots for `EnsembleFSResult` object.
 
 # mlr3viz 0.8.0
 
-- Work with new paradox version 1.0.0
+* Work with new paradox version 1.0.0
 
 # mlr3viz 0.7.0
 
-- Add `"prediction"` plots for classification and regression learners.
+* Add `"prediction"` plots for classification and regression learners.
 
 # mlr3viz 0.6.2
 
-- Fix snapshots for bbotk 0.7.3.
-- Add `"incumbent"` plot for `OptimInstanceSingleCrit`.
+* Fix snapshots for bbotk 0.7.3.
+* Add `"incumbent"` plot for `OptimInstanceSingleCrit`.
 
 # mlr3viz 0.6.1
 
-- Add `binwidth` argument to histogram plots.
-- The `"performance"` plot always connected the maximum performance values.
+* Add `binwidth` argument to histogram plots.
+* The `"performance"` plot always connected the maximum performance values.
   Now the minimum values are connected when the measure is minimized.
 
 # mlr3viz 0.6.0
 
-- Add `theme` option to `autoplot()` functions to supply a `ggplot2::theme()`.
+* Add `theme` option to `autoplot()` functions to supply a `ggplot2::theme()`.
   The default is `ggplot2::theme_minimal()`.
-- Remove `theme_mlr3()`.
-- Unify plot layouts.
-- Remove support for passing extra arguments to `geom_` functions via `...`.
+* Remove `theme_mlr3()`.
+* Unify plot layouts.
+* Remove support for passing extra arguments to `geom_` functions via `...`.
   This behavior was not consistent across the `autoplot()` functions.
 
 # mlr3viz 0.5.10
 
-- Improved documentation.
-- Make checks run without suggested packages.
+* Improved documentation.
+* Make checks run without suggested packages.
 
 # mlr3viz 0.5.9
 
-- Plots for survival objects moved to mlr3proba.
+* Plots for survival objects moved to mlr3proba.
 
 # mlr3viz 0.5.8
 
-- Compatibility fixes.
+* Compatibility fixes.
 
 # mlr3viz 0.5.7
 
-- Compatibility fix for testthat.
+* Compatibility fix for testthat.
 
 # mlr3viz 0.5.6
 
-- Compatibility fix for mlr3tuning.
-- Fixed position of labels in barplot for `PredictionClassif`.
+* Compatibility fix for mlr3tuning.
+* Fixed position of labels in barplot for `PredictionClassif`.
 
 
 # mlr3viz 0.5.5
 
-- Fixed another bug for ROC- and Precision-recall-curves (#79).
+* Fixed another bug for ROC- and Precision-recall-curves (#79).
 
 # mlr3viz 0.5.4
 
-- Fixed a bug for ROC- and Precision-recall-curves (#72, #75).
+* Fixed a bug for ROC- and Precision-recall-curves (#72, #75).
 
 # mlr3viz 0.5.3
 
-- New autoplot for `LearnerClustHclust`.
+* New autoplot for `LearnerClustHclust`.
 
 # mlr3viz 0.5.2
 
-- New autoplot for `TuningInstanceSingleCrit` from package `mlr3tuning`.
-- Fixed bugs in autoplot function for `BenchmarkResult` (#63, #65).
-- Fixed a bug in autoplot function for `PredictionClust` (#67).
+* New autoplot for `TuningInstanceSingleCrit` from package `mlr3tuning`.
+* Fixed bugs in autoplot function for `BenchmarkResult` (#63, #65).
+* Fixed a bug in autoplot function for `PredictionClust` (#67).
 
 # mlr3viz 0.5.1
 
-- Fix test on solaris.
+* Fix test on solaris.
 
 
 # mlr3viz 0.5.0
 
-- New autoplot for `PredictionSurv`.
-- New autoplots for learners from package `glmnet` via `ggfortify`.
-- Fixed ROC and PRC plots for resampling `"holdout"` (#54).
-- If possible, we now show confidence bounds for ROC and PRC plots (#55).
-- Fixed a bug in autoplot function `TaskDens` (#57).
+* New autoplot for `PredictionSurv`.
+* New autoplots for learners from package `glmnet` via `ggfortify`.
+* Fixed ROC and PRC plots for resampling `"holdout"` (#54).
+* If possible, we now show confidence bounds for ROC and PRC plots (#55).
+* Fixed a bug in autoplot function `TaskDens` (#57).
 
 
 # mlr3viz 0.4.0
 
-- All `autoplot.*()` functions now also have a generic S3 `plot()` sibling (#51).
-- New plots for cluster tasks, learners and predictions from `mlr3cluster`.
-- Fixed wrong labels for boxplots of `BenchmarkResult`.
+* All `autoplot.*()` functions now also have a generic S3 `plot()` sibling (#51).
+* New plots for cluster tasks, learners and predictions from `mlr3cluster`.
+* Fixed wrong labels for boxplots of `BenchmarkResult`.
 
 
 # mlr3viz 0.3.0
 
-- Compatibility with `mlr3` >= 0.6.0.
+* Compatibility with `mlr3` >= 0.6.0.
 
 
 # mlr3viz 0.2.0
 
-- Added plots for `TaskDens` and `TaskSurv` from package `mlr3proba`.
-- Update documentation of `PredictionRegr` (#23)
-- `autoplot.BenchmarkResult()`: Support for learners with identical IDs (#19)
-- Fixed a bug in `plot_learner_prediction()` (#47)
+* Added plots for `TaskDens` and `TaskSurv` from package `mlr3proba`.
+* Update documentation of `PredictionRegr` (#23)
+* `autoplot.BenchmarkResult()`: Support for learners with identical IDs (#19)
+* Fixed a bug in `plot_learner_prediction()` (#47)
 
 
 # mlr3viz 0.1.1
 
-- New plot: learner prediction for objects of class `ResampleResult`.
+* New plot: learner prediction for objects of class `ResampleResult`.
   Additionally, the helper function `plot_learner_prediction()` first performs a
   `resample()` and then plots the result.
-- New plot: residual plot for objects of class `PredictionRegr`.
+* New plot: residual plot for objects of class `PredictionRegr`.
 
 
 # mlr3viz 0.1.0
 
-- Initial CRAN release
+* Initial CRAN release
