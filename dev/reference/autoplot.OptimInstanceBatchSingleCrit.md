@@ -102,6 +102,7 @@ autoplot(
 ## Examples
 
 ``` r
+# \donttest{
 if (mlr3misc::require_namespaces(c("paradox", "bbotk", "patchwork"), quietly = TRUE)) {
 library(bbotk)
 
@@ -146,4 +147,6 @@ print(autoplot(instance, type = "incumbent"))
 
 
 
+
+# }
 ```
