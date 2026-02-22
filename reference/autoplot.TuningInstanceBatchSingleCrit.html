@@ -15,7 +15,7 @@ The color of the points shows the batch number.
 The color of the points shows the y values.
 "parallel": Parallel coordinates plot.
 hyperparameters are rescaled by (x - mean(x)) / sd(x).
-"points": Scatter plot of two x dimensions versus.
+"points": Scatter plot of two x dimensions versus y values.
 The color of the points shows the y values.
 "surface": Surface plot of two x dimensions versus y values.
 The y values are interpolated with the supplied mlr3::Learner.
@@ -32,7 +32,7 @@ The color of the points shows the batch number.
 The color of the points shows the y values.
 "parallel": Parallel coordinates plot.
 hyperparameters are rescaled by (x - mean(x)) / sd(x).
-"points": Scatter plot of two x dimensions versus.
+"points": Scatter plot of two x dimensions versus y values.
 The color of the points shows the y values.
 "surface": Surface plot of two x dimensions versus y values.
 The y values are interpolated with the supplied mlr3::Learner.
@@ -47,7 +47,7 @@ The y values are interpolated with the supplied mlr3::Learner.
 
     <a class="navbar-brand me-2" href="../index.html">mlr3viz</a>
 
-    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.10.1</small>
+    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.11.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,7 +92,7 @@ The color of the points shows the batch number.</p></li>
 The color of the points shows the y values.</p></li>
 <li><p><code>"parallel"</code>: Parallel coordinates plot.
 hyperparameters are rescaled by <code>(x - mean(x)) / sd(x)</code>.</p></li>
-<li><p><code>"points"</code>: Scatter plot of two x dimensions versus.
+<li><p><code>"points"</code>: Scatter plot of two x dimensions versus y values.
 The color of the points shows the y values.</p></li>
 <li><p><code>"surface"</code>: Surface plot of two x dimensions versus y values.
 The y values are interpolated with the supplied <a href="https://mlr3.mlr-org.com/reference/Learner.html" class="external-link">mlr3::Learner</a>.</p></li>
@@ -167,38 +167,38 @@ The <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"mlr3tuning"</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"patchwork"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3tuning.mlr-org.com" class="external-link">mlr3tuning</a></span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu">mlr3misc</span><span class="fu">::</span><span class="fu"><a href="https://mlr3misc.mlr-org.com/reference/require_namespaces.html" class="external-link">require_namespaces</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mlr3tuning"</span>, <span class="st">"patchwork"</span>, <span class="st">"paradox"</span><span class="op">)</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3tuning.mlr-org.com" class="external-link">mlr3tuning</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">learner</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">lrn</a></span><span class="op">(</span><span class="st">"classif.rpart"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">learner</span><span class="op">$</span><span class="va">param_set</span><span class="op">$</span><span class="va">values</span><span class="op">$</span><span class="va">cp</span> <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/to_tune.html" class="external-link">to_tune</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.1</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">learner</span><span class="op">$</span><span class="va">param_set</span><span class="op">$</span><span class="va">values</span><span class="op">$</span><span class="va">minsplit</span> <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/to_tune.html" class="external-link">to_tune</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">learner</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">lrn</a></span><span class="op">(</span><span class="st">"classif.rpart"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">learner</span><span class="op">$</span><span class="va">param_set</span><span class="op">$</span><span class="va">values</span><span class="op">$</span><span class="va">cp</span> <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/to_tune.html" class="external-link">to_tune</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">learner</span><span class="op">$</span><span class="va">param_set</span><span class="op">$</span><span class="va">values</span><span class="op">$</span><span class="va">minsplit</span> <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/to_tune.html" class="external-link">to_tune</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">instance</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3tuning.mlr-org.com/reference/ti.html" class="external-link">ti</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    task <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">tsk</a></span><span class="op">(</span><span class="st">"iris"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    learner <span class="op">=</span> <span class="va">learner</span>,</span></span>
-<span class="r-in"><span>    resampling <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">rsmp</a></span><span class="op">(</span><span class="st">"holdout"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    measure <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">msr</a></span><span class="op">(</span><span class="st">"classif.ce"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    terminator <span class="op">=</span> <span class="fu"><a href="https://bbotk.mlr-org.com/reference/trm.html" class="external-link">trm</a></span><span class="op">(</span><span class="st">"evals"</span>, n_evals <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">instance</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3tuning.mlr-org.com/reference/ti.html" class="external-link">ti</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  task <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">tsk</a></span><span class="op">(</span><span class="st">"iris"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  learner <span class="op">=</span> <span class="va">learner</span>,</span></span>
+<span class="r-in"><span>  resampling <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">rsmp</a></span><span class="op">(</span><span class="st">"holdout"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  measure <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">msr</a></span><span class="op">(</span><span class="st">"classif.ce"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  terminator <span class="op">=</span> <span class="fu"><a href="https://bbotk.mlr-org.com/reference/trm.html" class="external-link">trm</a></span><span class="op">(</span><span class="st">"evals"</span>, n_evals <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">tuner</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3tuning.mlr-org.com/reference/tnr.html" class="external-link">tnr</a></span><span class="op">(</span><span class="st">"random_search"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">tuner</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3tuning.mlr-org.com/reference/tnr.html" class="external-link">tnr</a></span><span class="op">(</span><span class="st">"random_search"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">tuner</span><span class="op">$</span><span class="fu">optimize</span><span class="op">(</span><span class="va">instance</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">tuner</span><span class="op">$</span><span class="fu">optimize</span><span class="op">(</span><span class="va">instance</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># plot performance versus batch number</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"performance"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># plot performance versus batch number</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"performance"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># plot cp values versus performance</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"marginal"</span>, cols_x <span class="op">=</span> <span class="st">"cp"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># plot cp values versus performance</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"marginal"</span>, cols_x <span class="op">=</span> <span class="st">"cp"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># plot transformed parameter values versus batch number</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"parameter"</span>, trafo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># plot transformed parameter values versus batch number</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"parameter"</span>, trafo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># plot parallel coordinates plot</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"parallel"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># plot parallel coordinates plot</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"parallel"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># plot pairs</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"pairs"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># plot pairs</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"pairs"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>the standard deviation is zero</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>the standard deviation is zero</span>
@@ -215,7 +215,7 @@ The <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

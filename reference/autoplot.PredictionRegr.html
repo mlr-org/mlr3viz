@@ -15,8 +15,8 @@ Note that geom_smooth() and geom_abline() may overlap, depending on the given da
 "histogram": Histogram of residuals: \(r = y - \hat{y}\).
 "residual": Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on the "y" axis.
 By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y (by default colored blue).
-"confidence: Scatterplot of "true" response vs. "predicted" response with
-confidence intervals. Error bars calculated as object$reponse +- quantile * object$se and so only
+"confidence": Scatterplot of "true" response vs. "predicted" response with
+confidence intervals. Error bars calculated as object$response +- quantile * object$se and so only
 possible with predict_type = "se". geom_abline() with slope = 1 is added to the plot.
 
 '><meta property="og:description" content='Visualizations for mlr3::PredictionRegr.
@@ -29,8 +29,8 @@ Note that geom_smooth() and geom_abline() may overlap, depending on the given da
 "histogram": Histogram of residuals: \(r = y - \hat{y}\).
 "residual": Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on the "y" axis.
 By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y (by default colored blue).
-"confidence: Scatterplot of "true" response vs. "predicted" response with
-confidence intervals. Error bars calculated as object$reponse +- quantile * object$se and so only
+"confidence": Scatterplot of "true" response vs. "predicted" response with
+confidence intervals. Error bars calculated as object$response +- quantile * object$se and so only
 possible with predict_type = "se". geom_abline() with slope = 1 is added to the plot.
 
 '><meta property="og:image" content="https://mlr3viz.mlr-org.com/logo.png"></head><body>
@@ -41,7 +41,7 @@ possible with predict_type = "se". geom_abline() with slope = 1 is added to the 
 
     <a class="navbar-brand me-2" href="../index.html">mlr3viz</a>
 
-    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.10.1</small>
+    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.11.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,8 +86,8 @@ Note that <code>geom_smooth()</code> and <code>geom_abline()</code> may overlap,
 <li><p><code>"histogram"</code>: Histogram of residuals: \(r = y - \hat{y}\).</p></li>
 <li><p><code>"residual"</code>: Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on the "y" axis.
 By default a linear model is fitted via <code>geom_smooth(method = "lm")</code> to visualize the trend between x and y (by default colored blue).</p></li>
-<li><p><code>"confidence</code>: Scatterplot of "true" response vs. "predicted" response with
-confidence intervals. Error bars calculated as object$reponse +- quantile * object$se and so only
+<li><p><code>"confidence"</code>: Scatterplot of "true" response vs. "predicted" response with
+confidence intervals. Error bars calculated as object$response +- quantile * object$se and so only
 possible with <code>predict_type = "se"</code>. <code>geom_abline()</code> with <code>slope = 1</code> is added to the plot.</p></li>
 </ul></div>
 
@@ -143,25 +143,21 @@ Quantile multiplier for standard errors for <code>type="confidence"</code>. Defa
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"mlr3"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3.mlr-org.com" class="external-link">mlr3</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3viz.mlr-org.com">mlr3viz</a></span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu">mlr3misc</span><span class="fu">::</span><span class="fu"><a href="https://mlr3misc.mlr-org.com/reference/require_namespaces.html" class="external-link">require_namespaces</a></span><span class="op">(</span><span class="st">"mlr3learners"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3learners.mlr-org.com" class="external-link">mlr3learners</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">task</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">tsk</a></span><span class="op">(</span><span class="st">"mtcars"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">learner</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">lrn</a></span><span class="op">(</span><span class="st">"regr.rpart"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">object</span> <span class="op">=</span> <span class="va">learner</span><span class="op">$</span><span class="fu">train</span><span class="op">(</span><span class="va">task</span><span class="op">)</span><span class="op">$</span><span class="fu">predict</span><span class="op">(</span><span class="va">task</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">task</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">tsk</a></span><span class="op">(</span><span class="st">"mtcars"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">learner</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">lrn</a></span><span class="op">(</span><span class="st">"regr.rpart"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">object</span> <span class="op">=</span> <span class="va">learner</span><span class="op">$</span><span class="fu">train</span><span class="op">(</span><span class="va">task</span><span class="op">)</span><span class="op">$</span><span class="fu">predict</span><span class="op">(</span><span class="va">task</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/fortify.html" class="external-link">fortify</a></span><span class="op">(</span><span class="va">object</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, type <span class="op">=</span> <span class="st">"histogram"</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, type <span class="op">=</span> <span class="st">"residual"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/fortify.html" class="external-link">fortify</a></span><span class="op">(</span><span class="va">object</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, type <span class="op">=</span> <span class="st">"histogram"</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, type <span class="op">=</span> <span class="st">"residual"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"mlr3learners"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3learners.mlr-org.com" class="external-link">mlr3learners</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">learner</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">lrn</a></span><span class="op">(</span><span class="st">"regr.ranger"</span>, predict_type <span class="op">=</span> <span class="st">"se"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">object</span> <span class="op">=</span> <span class="va">learner</span><span class="op">$</span><span class="fu">train</span><span class="op">(</span><span class="va">task</span><span class="op">)</span><span class="op">$</span><span class="fu">predict</span><span class="op">(</span><span class="va">task</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, type <span class="op">=</span> <span class="st">"confidence"</span><span class="op">)</span></span></span>
-<span class="r-in"><span> <span class="op">}</span></span></span>
+<span class="r-in"><span><span class="va">learner</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html" class="external-link">lrn</a></span><span class="op">(</span><span class="st">"regr.ranger"</span>, predict_type <span class="op">=</span> <span class="st">"se"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">object</span> <span class="op">=</span> <span class="va">learner</span><span class="op">$</span><span class="fu">train</span><span class="op">(</span><span class="va">task</span><span class="op">)</span><span class="op">$</span><span class="fu">predict</span><span class="op">(</span><span class="va">task</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, type <span class="op">=</span> <span class="st">"confidence"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-plt img"><img src="autoplot.PredictionRegr-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
@@ -175,7 +171,7 @@ Quantile multiplier for standard errors for <code>type="confidence"</code>. Defa
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

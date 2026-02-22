@@ -15,7 +15,7 @@ The color of the points shows the batch number.
 The color of the points shows the y values.
 "parallel": Parallel coordinates plot.
 x values are rescaled by (x - mean(x)) / sd(x).
-"points": Scatter plot of two x dimensions versus.
+"points": Scatter plot of two x dimensions versus y values.
 The color of the points shows the y values.
 "surface": Surface plot of two x dimensions versus y values.
 The y values are interpolated with the supplied mlr3::Learner.
@@ -32,7 +32,7 @@ The color of the points shows the batch number.
 The color of the points shows the y values.
 "parallel": Parallel coordinates plot.
 x values are rescaled by (x - mean(x)) / sd(x).
-"points": Scatter plot of two x dimensions versus.
+"points": Scatter plot of two x dimensions versus y values.
 The color of the points shows the y values.
 "surface": Surface plot of two x dimensions versus y values.
 The y values are interpolated with the supplied mlr3::Learner.
@@ -47,7 +47,7 @@ The y values are interpolated with the supplied mlr3::Learner.
 
     <a class="navbar-brand me-2" href="../index.html">mlr3viz</a>
 
-    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.10.1</small>
+    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.11.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,7 +92,7 @@ The color of the points shows the batch number.</p></li>
 The color of the points shows the y values.</p></li>
 <li><p><code>"parallel"</code>: Parallel coordinates plot.
 x values are rescaled by <code>(x - mean(x)) / sd(x)</code>.</p></li>
-<li><p><code>"points"</code>: Scatter plot of two x dimensions versus.
+<li><p><code>"points"</code>: Scatter plot of two x dimensions versus y values.
 The color of the points shows the y values.</p></li>
 <li><p><code>"surface"</code>: Surface plot of two x dimensions versus y values.
 The y values are interpolated with the supplied <a href="https://mlr3.mlr-org.com/reference/Learner.html" class="external-link">mlr3::Learner</a>.</p></li>
@@ -174,56 +174,53 @@ The <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"mlr3"</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"bbotk"</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"patchwork"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bbotk.mlr-org.com" class="external-link">bbotk</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://paradox.mlr-org.com" class="external-link">paradox</a></span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu">mlr3misc</span><span class="fu">::</span><span class="fu"><a href="https://mlr3misc.mlr-org.com/reference/require_namespaces.html" class="external-link">require_namespaces</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"paradox"</span>, <span class="st">"bbotk"</span>, <span class="st">"patchwork"</span><span class="op">)</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bbotk.mlr-org.com" class="external-link">bbotk</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">fun</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">xs</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>y <span class="op">=</span> <span class="op">-</span><span class="op">(</span><span class="va">xs</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">-</span> <span class="fl">2</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="op">(</span><span class="va">xs</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="fl">3</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">10</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">}</span></span></span>
-<span class="r-in"><span>  <span class="va">domain</span> <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/ps.html" class="external-link">ps</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    x1 <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/Domain.html" class="external-link">p_dbl</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    x2 <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/Domain.html" class="external-link">p_dbl</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">codomain</span> <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/ps.html" class="external-link">ps</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    y <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/Domain.html" class="external-link">p_dbl</a></span><span class="op">(</span>tags <span class="op">=</span> <span class="st">"maximize"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">obfun</span> <span class="op">=</span> <span class="va"><a href="https://bbotk.mlr-org.com/reference/ObjectiveRFun.html" class="external-link">ObjectiveRFun</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    fun <span class="op">=</span> <span class="va">fun</span>,</span></span>
-<span class="r-in"><span>    domain <span class="op">=</span> <span class="va">domain</span>,</span></span>
-<span class="r-in"><span>    codomain <span class="op">=</span> <span class="va">codomain</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">instance</span> <span class="op">=</span> <span class="fu"><a href="https://bbotk.mlr-org.com/reference/oi.html" class="external-link">oi</a></span><span class="op">(</span>objective <span class="op">=</span> <span class="va">obfun</span>, terminator <span class="op">=</span> <span class="fu"><a href="https://bbotk.mlr-org.com/reference/trm.html" class="external-link">trm</a></span><span class="op">(</span><span class="st">"evals"</span>, n_evals <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">optimizer</span> <span class="op">=</span> <span class="fu"><a href="https://bbotk.mlr-org.com/reference/opt.html" class="external-link">opt</a></span><span class="op">(</span><span class="st">"random_search"</span>, batch_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">optimizer</span><span class="op">$</span><span class="fu">optimize</span><span class="op">(</span><span class="va">instance</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># plot y versus batch number</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"performance"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># plot x1 values versus performance</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"marginal"</span>, cols_x <span class="op">=</span> <span class="st">"x1"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># plot parallel coordinates plot</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"parallel"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># plot pairs</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"pairs"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># plot incumbent</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"incumbent"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fun</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">xs</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>y <span class="op">=</span> <span class="op">-</span><span class="op">(</span><span class="va">xs</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">-</span> <span class="fl">2</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="op">(</span><span class="va">xs</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="fl">3</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required namespace: patchwork</span>
+<span class="r-in"><span><span class="va">domain</span> <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/ps.html" class="external-link">ps</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  x1 <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/Domain.html" class="external-link">p_dbl</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  x2 <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/Domain.html" class="external-link">p_dbl</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">codomain</span> <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/ps.html" class="external-link">ps</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  y <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/Domain.html" class="external-link">p_dbl</a></span><span class="op">(</span>tags <span class="op">=</span> <span class="st">"maximize"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">obfun</span> <span class="op">=</span> <span class="va"><a href="https://bbotk.mlr-org.com/reference/ObjectiveRFun.html" class="external-link">ObjectiveRFun</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  fun <span class="op">=</span> <span class="va">fun</span>,</span></span>
+<span class="r-in"><span>  domain <span class="op">=</span> <span class="va">domain</span>,</span></span>
+<span class="r-in"><span>  codomain <span class="op">=</span> <span class="va">codomain</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">instance</span> <span class="op">=</span> <span class="fu"><a href="https://bbotk.mlr-org.com/reference/oi.html" class="external-link">oi</a></span><span class="op">(</span>objective <span class="op">=</span> <span class="va">obfun</span>, terminator <span class="op">=</span> <span class="fu"><a href="https://bbotk.mlr-org.com/reference/trm.html" class="external-link">trm</a></span><span class="op">(</span><span class="st">"evals"</span>, n_evals <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">optimizer</span> <span class="op">=</span> <span class="fu"><a href="https://bbotk.mlr-org.com/reference/opt.html" class="external-link">opt</a></span><span class="op">(</span><span class="st">"random_search"</span>, batch_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">optimizer</span><span class="op">$</span><span class="fu">optimize</span><span class="op">(</span><span class="va">instance</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># plot y versus batch number</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"performance"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># plot x1 values versus performance</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"marginal"</span>, cols_x <span class="op">=</span> <span class="st">"x1"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># plot parallel coordinates plot</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"parallel"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># plot pairs</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"pairs"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># plot incumbent</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">instance</span>, type <span class="op">=</span> <span class="st">"incumbent"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: paradox</span>
 <span class="r-plt img"><img src="autoplot.OptimInstanceBatchSingleCrit-1.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="autoplot.OptimInstanceBatchSingleCrit-2.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="autoplot.OptimInstanceBatchSingleCrit-3.png" alt="" width="700" height="433"></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Registered S3 method overwritten by 'GGally':</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   method from   </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   +.gg   ggplot2</span>
 <span class="r-plt img"><img src="autoplot.OptimInstanceBatchSingleCrit-4.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="autoplot.OptimInstanceBatchSingleCrit-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -235,7 +232,7 @@ The <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
