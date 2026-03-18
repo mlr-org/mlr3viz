@@ -17,12 +17,16 @@ test_that("autoplot ResampleResult", {
       c("V11", "V18", "V9", "V2"),
       c("V2"),
       c("V4", "V12"),
-      c("V6", "V15", "V19", "V7")),
+      c("V6", "V15", "V19", "V7")
+    ),
     classif.ce = c(0.13, 0.24, 0.16, 0.11, 0.25, 0.18, 0.15, 0.1, 0.16)
   )
 
-  efsr = mlr3fselect::EnsembleFSResult$new(result = result, features = paste0("V", 1:20),
-                                           measure = mlr3::msr("classif.ce"))
+  efsr = mlr3fselect::EnsembleFSResult$new(
+    result = result,
+    features = paste0("V", 1:20),
+    measure = mlr3::msr("classif.ce")
+  )
 
   # wrong type gives hint of types a user can input
   expect_error(autoplot(efsr, type = "XYZ"), regexp = "Must be element of set")

@@ -36,10 +36,12 @@
 #' head(fortify(object))
 #' autoplot(object, task)
 #' }
-autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatter", theme = theme_minimal(), ...) { # nolint
+#nolint next
+autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatter", theme = theme_minimal(), ...) {
   assert_choice(type, choices = c("scatter", "sil", "pca"), null.ok = FALSE)
 
-  switch(type,
+  switch(
+    type,
     "scatter" = {
       require_namespaces("GGally")
 
@@ -77,7 +79,8 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
       require_namespaces("ggfortify")
       d = data.frame(
         row_ids = object$data$row_id,
-        cluster = as.factor(object$data$partition))
+        cluster = as.factor(object$data$partition)
+      )
 
       if (is.null(row_ids)) {
         task_data = data.table(task$data(), row_ids = task$row_ids)
@@ -86,10 +89,7 @@ autoplot.PredictionClust = function(object, task, row_ids = NULL, type = "scatte
       }
 
       plot_data = merge(task_data, d, by = "row_ids")
-      ggplot2::autoplot(stats::prcomp(task_data[, -"row_ids"]),
-        data = plot_data,
-        colour = "cluster",
-        size = 3) +
+      ggplot2::autoplot(stats::prcomp(task_data[, -"row_ids"]), data = plot_data, colour = "cluster", size = 3) +
         scale_color_viridis_d("Cluster", end = 0.8, alpha = 0.8) +
         theme
     },

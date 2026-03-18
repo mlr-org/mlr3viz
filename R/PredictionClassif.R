@@ -10,7 +10,8 @@
 #'   Requires package \CRANpkg{precrec}.
 #' * `"prc"`: Precision recall curve.
 #'   Requires package \CRANpkg{precrec}.
-#' * `"threshold"`: Systematically varies the threshold of the [mlr3::PredictionClassif] object and plots the resulting performance as returned by `measure`.
+#' * `"threshold"`: Systematically varies the threshold of the [mlr3::PredictionClassif] object and plots the
+#'   resulting performance as returned by `measure`.
 #'
 #' @param object ([mlr3::PredictionClassif]).
 #' @template param_type
@@ -37,25 +38,32 @@
 #' autoplot(object, type = "prc")
 #' }
 #' }
-autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, theme = theme_minimal(), ...) { # nolint
+#nolint next
+autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, theme = theme_minimal(), ...) {
   assert_choice(type, choices = c("stacked", "roc", "prc", "threshold"), null.ok = FALSE)
 
-  switch(type,
+  switch(
+    type,
     "stacked" = {
       tab = melt(fortify(object)[, c("truth", "response")], measure.vars = c("truth", "response"))
-      ggplot(tab,
+      ggplot(
+        tab,
         mapping = aes(
           fill = .data[["value"]],
-          x = .data[["variable"]])) +
+          x = .data[["variable"]]
+        )
+      ) +
         geom_bar(
           width = 0.5,
           color = "#000000",
-          alpha = 0.8) +
+          alpha = 0.8
+        ) +
         geom_text(
           mapping = aes(label = after_stat(count)),
           stat = "count",
           position = position_stack(vjust = 0.5),
-          color = "#000000") +
+          color = "#000000"
+        ) +
         labs(x = "Feature", y = "Count") +
         scale_fill_viridis_d("Feature", end = 0.8) +
         theme
@@ -67,7 +75,6 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
         theme +
         theme(legend.position = "none") +
         labs(title = NULL)
-
     },
 
     "prc" = {
@@ -83,10 +90,13 @@ autoplot.PredictionClassif = function(object, type = "stacked", measure = NULL, 
       pred = object$clone(deep = TRUE)
       tab = data.table(prob = seq(from = 0, to = 1, by = 0.01))
       tab$score = map_dbl(tab$prob, function(p) pred$set_threshold(p)$score(measure))
-      ggplot(tab,
+      ggplot(
+        tab,
         mapping = aes(
           x = .data[["prob"]],
-          y = .data[["score"]])) +
+          y = .data[["score"]]
+        )
+      ) +
         geom_line(color = viridis::viridis(1, begin = 0.5)) +
         labs(x = "Probability Threshold", y = measure$id) +
         scale_color_viridis_d() +

@@ -5,7 +5,8 @@
 #' The argument `type` controls what kind of plot is drawn.
 #' Possible choices are:
 #'
-#' * `"boxplot"` (default): Boxplots of performance measures, one box per [mlr3::Learner] and one facet per [mlr3::Task].
+#' * `"boxplot"` (default): Boxplots of performance measures,
+#'   one box per [mlr3::Learner] and one facet per [mlr3::Task].
 #' * `"roc"`: ROC curve (1 - specificity on x, sensitivity on y).
 #'   The [mlr3::BenchmarkResult] may only have a single [mlr3::Task] and a single [mlr3::Resampling].
 #'   Note that you can subset any [mlr3::BenchmarkResult] with its `$filter()`  method (see examples).
@@ -70,9 +71,9 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, th
       geom_errorbar(aes(ymin = .data[[paste0(mid, ".lower")]], ymax = .data[[paste0(mid, ".upper")]]), width = 0.2) +
       facet_wrap(vars(task_id), scales = "free_y") +
       labs(
-      title = sprintf("Confidence Intervals for alpha = %s", measure$param_set$values$alpha),
-      x = "Learner",
-      y = paste0(measure$measure$id)
+        title = sprintf("Confidence Intervals for alpha = %s", measure$param_set$values$alpha),
+        x = "Learner",
+        y = paste0(measure$measure$id)
       ) +
       theme +
       theme(
@@ -89,15 +90,20 @@ autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, th
   learner_labels = learner_label_map$learner_id
   names(learner_labels) = learner_label_map$nr
 
-  switch(type,
+  switch(
+    type,
     "boxplot" = {
-      ggplot(tab,
+      ggplot(
+        tab,
         mapping = aes(
           x = .data$nr,
-          y = .data[[measure_id]])) +
+          y = .data[[measure_id]]
+        )
+      ) +
         geom_boxplot(
           mapping = aes(fill = .data[["learner_id"]]),
-          show.legend = FALSE) +
+          show.legend = FALSE
+        ) +
         scale_x_discrete(labels = learner_labels) +
         # we need "free_x" to drop empty learners for certain tasks - because we apply over .data$nr
         facet_wrap(vars(.data$task_id), scales = "free_x") +
@@ -139,7 +145,8 @@ plot.BenchmarkResult = function(x, ...) {
 }
 
 #' @export
-fortify.BenchmarkResult = function(model, data = NULL, measure = NULL, ...) { # nolint
+#nolint next
+fortify.BenchmarkResult = function(model, data = NULL, measure = NULL, ...) {
   task = model$tasks$task[[1L]]
   measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
   model$score(measures = measure)[, c("nr", "task_id", "learner_id", "resampling_id", measure$id), with = FALSE]

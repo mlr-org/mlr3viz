@@ -8,7 +8,8 @@
 #' * `"prediction"` (default): Decision boundary of the learner and the true class labels.
 #' * `"ggfortify"`: Visualizes the model using the package \CRANpkg{ggfortify}.
 #'
-#' @param object ([mlr3learners::LearnerClassifGlmnet] | [mlr3learners::LearnerRegrGlmnet] | [mlr3learners::LearnerClassifCVGlmnet] | [mlr3learners::LearnerRegrCVGlmnet]).
+#' @param object ([mlr3learners::LearnerClassifGlmnet] | [mlr3learners::LearnerRegrGlmnet] |
+#'   [mlr3learners::LearnerClassifCVGlmnet] | [mlr3learners::LearnerRegrCVGlmnet]).
 #'
 #' @template param_type
 #' @template param_task
@@ -41,11 +42,21 @@
 #' autoplot(learner, type = "ggfortify")
 #' }
 #' }
-autoplot.LearnerClassifGlmnet = function(object, type = "prediction", task = NULL, grid_points = 100L, expand_range = 0, theme = theme_minimal(), ...) { # nolint
+#nolint next
+autoplot.LearnerClassifGlmnet = function(
+  object,
+  type = "prediction",
+  task = NULL,
+  grid_points = 100L,
+  expand_range = 0,
+  theme = theme_minimal(),
+  ...
+) {
   assert_choice(type, choices = c("prediction", "ggfortify"), null.ok = FALSE)
   assert_has_model(object)
 
-  switch(type,
+  switch(
+    type,
     "prediction" = {
       NextMethod()
     },

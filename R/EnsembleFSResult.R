@@ -82,21 +82,24 @@ autoplot.EnsembleFSResult = function(
   stability_args = NULL,
   theme = theme_minimal(),
   ...
-  ) {
+) {
   assert_choice(type, choices = c("pareto", "performance", "n_features", "stability"), null.ok = FALSE)
   assert_choice(pareto_front, choices = c("stepwise", "estimated", "none"))
   result = object$result
   measure = object$measure # get active measure
-  measure_id = ifelse(object$active_measure == "inner",
-                      sprintf("%s_inner", measure$id),
-                      measure$id)
+  measure_id = ifelse(object$active_measure == "inner", sprintf("%s_inner", measure$id), measure$id)
 
-  switch(type,
+  switch(
+    type,
     "pareto" = {
-      p = ggplot(result, mapping = aes(
-        x = .data[["n_features"]],
-        y = .data[[measure_id]],
-        color = .data[["learner_id"]])) +
+      p = ggplot(
+        result,
+        mapping = aes(
+          x = .data[["n_features"]],
+          y = .data[[measure_id]],
+          color = .data[["learner_id"]]
+        )
+      ) +
         geom_point() +
         scale_color_viridis_d("Learner ID", end = 0.8, alpha = 0.8) +
         labs(x = "Number of Features", y = measure_id) +
@@ -106,27 +109,42 @@ autoplot.EnsembleFSResult = function(
         pf = object$pareto_front(type = "empirical")
         pf_step = stepwise_pf(pf)
         p = p +
-          geom_line(data = pf_step, mapping = aes(
-            x = .data[["n_features"]],
-            y = .data[[measure_id]]),
-            color = "black", linewidth = 0.7)
+          geom_line(
+            data = pf_step,
+            mapping = aes(
+              x = .data[["n_features"]],
+              y = .data[[measure_id]]
+            ),
+            color = "black",
+            linewidth = 0.7
+          )
       } else if (pareto_front == "estimated") {
         pfe = object$pareto_front(type = "estimated")
         p = p +
-          geom_line(data = pfe, mapping = aes(
-            x = .data[["n_features"]],
-            y = .data[[measure_id]]),
-            color = "black", linetype = "dashed", linewidth = 0.7)
+          geom_line(
+            data = pfe,
+            mapping = aes(
+              x = .data[["n_features"]],
+              y = .data[[measure_id]]
+            ),
+            color = "black",
+            linetype = "dashed",
+            linewidth = 0.7
+          )
       }
 
       p
     },
 
     "performance" = {
-      ggplot(result, aes(
-        x = .data[["learner_id"]],
-        y = .data[[measure_id]],
-        fill = .data[["learner_id"]])) +
+      ggplot(
+        result,
+        aes(
+          x = .data[["learner_id"]],
+          y = .data[[measure_id]],
+          fill = .data[["learner_id"]]
+        )
+      ) +
         geom_boxplot(show.legend = FALSE) +
         scale_fill_viridis_d(end = 0.8, alpha = 0.8) +
         labs(y = measure_id) +
@@ -135,10 +153,14 @@ autoplot.EnsembleFSResult = function(
     },
 
     "n_features" = {
-      ggplot(result, aes(
-        x = .data[["learner_id"]],
-        y = .data[["n_features"]],
-        fill = .data[["learner_id"]]))+
+      ggplot(
+        result,
+        aes(
+          x = .data[["learner_id"]],
+          y = .data[["n_features"]],
+          fill = .data[["learner_id"]]
+        )
+      ) +
         geom_boxplot(show.legend = FALSE) +
         scale_fill_viridis_d(end = 0.8, alpha = 0.8) +
         labs(y = "Number of Features") +
@@ -152,13 +174,18 @@ autoplot.EnsembleFSResult = function(
         stability_measure = stability_measure,
         stability_args = stability_args,
         global = FALSE,
-        reset_cache = FALSE)
+        reset_cache = FALSE
+      )
       data = data.table(learner_id = names(stab_res), value = stab_res)
 
-      ggplot(data, mapping = aes(
-        x = .data[["learner_id"]],
-        y = .data[["value"]],
-        fill = .data[["learner_id"]])) +
+      ggplot(
+        data,
+        mapping = aes(
+          x = .data[["learner_id"]],
+          y = .data[["value"]],
+          fill = .data[["learner_id"]]
+        )
+      ) +
         geom_bar(stat = "identity", alpha = 0.8, show.legend = FALSE) +
         scale_fill_viridis_d(end = 0.8, alpha = 0.8) +
         labs(y = stability_measure) +
@@ -186,11 +213,11 @@ stepwise_pf = function(pf) {
 
     # add intermediate point if applicable
     if (i < nrow(pf)) {
-      ok = pf[["n_features"]][i+1] > pf[["n_features"]][i]
+      ok = pf[["n_features"]][i + 1] > pf[["n_features"]][i]
 
       if (ok) {
         # more features, previous performance score
-        intermediate_point = data.table(n_features = pf[["n_features"]][i+1])
+        intermediate_point = data.table(n_features = pf[["n_features"]][i + 1])
         intermediate_point[, (measure_id) := pf[[measure_id]][i]]
         pf_step = rbind(pf_step, intermediate_point)
       }

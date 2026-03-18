@@ -9,9 +9,14 @@ rr = mlr3::resample(task, learner, resampling)
 test_that("fortify ResampleResult", {
   f = fortify(rr, measure = msr("classif.ce"))
   expect_data_table(f, nrows = 10, ncols = 3)
-  expect_names(names(f), identical.to = c(
-    "iteration", "measure_id",
-    "performance"))
+  expect_names(
+    names(f),
+    identical.to = c(
+      "iteration",
+      "measure_id",
+      "performance"
+    )
+  )
 })
 
 test_that("autoplot ResampleResult", {
@@ -68,19 +73,21 @@ test_that("autoplot ResampleResult type=prediction", {
   }
 
   # check errors
-  rr = resample(mlr3::tsk("iris")$select(c("Sepal.Length", "Sepal.Width")),
-    lrn("classif.featureless"), resampling,
-    store_models = FALSE)
+  rr = resample(
+    mlr3::tsk("iris")$select(c("Sepal.Length", "Sepal.Width")),
+    lrn("classif.featureless"),
+    resampling,
+    store_models = FALSE
+  )
   expect_error(autoplot(rr, type = "prediction"), regexp = "store_models")
-  rr = resample(mlr3::tsk("iris"), lrn("classif.featureless"), resampling,
-    store_models = TRUE)
-  expect_error(autoplot(rr, type = "prediction"),
-    regexp = "only works for tasks with two features")
-  rr = resample(mlr3::tsk("mtcars"), lrn("regr.featureless"), resampling,
-    store_models = TRUE)
-  expect_error(autoplot(rr, type = "prediction"),
+  rr = resample(mlr3::tsk("iris"), lrn("classif.featureless"), resampling, store_models = TRUE)
+  expect_error(autoplot(rr, type = "prediction"), regexp = "only works for tasks with two features")
+  rr = resample(mlr3::tsk("mtcars"), lrn("regr.featureless"), resampling, store_models = TRUE)
+  expect_error(
+    autoplot(rr, type = "prediction"),
     regexp = "Plot learner prediction only works with one or two features for
-regression!")
+regression!"
+  )
 })
 
 

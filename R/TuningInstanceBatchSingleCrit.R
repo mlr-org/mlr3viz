@@ -72,6 +72,24 @@
 #' # plot pairs
 #' autoplot(instance, type = "pairs")
 #' }
-autoplot.TuningInstanceBatchSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, theme = theme_minimal(), ...) {
-  autoplot.OptimInstanceBatchSingleCrit(object = object, type = type, cols_x = cols_x, trafo = trafo, learner = learner, grid_resolution = grid_resolution, theme = theme, ...)
+autoplot.TuningInstanceBatchSingleCrit = function(
+  object,
+  type = "marginal",
+  cols_x = NULL,
+  trafo = FALSE,
+  learner = mlr3::lrn("regr.ranger"),
+  grid_resolution = 100,
+  theme = theme_minimal(),
+  ...
+) {
+  autoplot.OptimInstanceBatchSingleCrit(
+    object = object,
+    type = type,
+    cols_x = cols_x,
+    trafo = trafo,
+    learner = learner,
+    grid_resolution = grid_resolution,
+    theme = theme,
+    ...
+  )
 }

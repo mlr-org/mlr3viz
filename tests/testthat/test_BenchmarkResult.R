@@ -9,9 +9,16 @@ bmr = mlr3::benchmark(mlr3::benchmark_grid(tasks, learner, resampling))
 test_that("fortify BenchmarkResult", {
   f = fortify(bmr, measure = msr("classif.ce"))
   expect_data_table(f, nrows = 18, ncols = 5)
-  expect_names(names(f), permutation.of = c(
-    "nr", "task_id", "learner_id",
-    "resampling_id", "classif.ce"))
+  expect_names(
+    names(f),
+    permutation.of = c(
+      "nr",
+      "task_id",
+      "learner_id",
+      "resampling_id",
+      "classif.ce"
+    )
+  )
 })
 
 test_that("autoplot BenchmarkResult", {
@@ -38,8 +45,7 @@ test_that("holdout roc plot (#54)", {
   tasks = tsks("german_credit")
 
   learners = c("classif.featureless", "classif.rpart")
-  learners = lapply(learners, lrn,
-    predict_type = "prob")
+  learners = lapply(learners, lrn, predict_type = "prob")
 
   resamplings = rsmp("holdout", ratio = .8) # holdout instead of cv
 
@@ -55,14 +61,16 @@ skip_if_not_installed("mlr3inferr")
 skip_if_not_installed("rpart")
 
 test_that("CI plot", {
-  bmr = benchmark(benchmark_grid(tsks(c("mtcars", "mtcars")),
-    lrns(c("regr.featureless", "regr.rpart")), rsmp("holdout")))
+  bmr = benchmark(benchmark_grid(
+    tsks(c("mtcars", "mtcars")),
+    lrns(c("regr.featureless", "regr.rpart")),
+    rsmp("holdout")
+  ))
 
   p = autoplot(bmr, "ci", msr("ci", "regr.mse"))
   expect_true(is_ggplot(p))
   expect_doppelganger("bmr_holdout_ci", p)
 
-  bmr = benchmark(benchmark_grid(tsk("iris"), lrn("classif.rpart"),
-    rsmps(c("holdout", "cv"))))
+  bmr = benchmark(benchmark_grid(tsk("iris"), lrn("classif.rpart"), rsmps(c("holdout", "cv"))))
   expect_error(autoplot(bmr, "ci", msr("ci", "classif.acc")), "one resampling method")
 })

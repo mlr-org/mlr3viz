@@ -6,4 +6,3 @@ if (requireNamespace("lgr")) {
 
 old_dt_threads = data.table::getDTthreads()
 setDTthreads(1)
-

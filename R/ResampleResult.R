@@ -8,13 +8,15 @@
 #' * `"boxplot"` (default): Boxplot of performance measures.
 #' * `"histogram"`: Histogram of performance measures.
 #' * `"roc"`: ROC curve (1 - specificity on x, sensitivity on y).
-#'    The predictions of the individual [mlr3::Resampling]s are merged prior to calculating the ROC curve (micro averaged).
+#'    The predictions of the individual [mlr3::Resampling]s are merged prior to calculating the ROC curve
+#'    (micro averaged).
 #'    Requires package \CRANpkg{precrec}.
 #' * `"prc"`: Precision recall curve.
 #'    See `"roc"`.
 #' * `"prediction"`: Plots the learner prediction for a grid of points.
 #'    Needs models to be stored. Set `store_models = TRUE` for [mlr3::resample()].
-#'    For classification, we support tasks with exactly two features and learners with `predict_type=` set to `"response"` or `"prob"`.
+#'    For classification, we support tasks with exactly two features and learners with `predict_type=` set to
+#'    `"response"` or `"prob"`.
 #'    For regression, we support tasks with one or two features.
 #'    For tasks with one feature we can print confidence bounds if the predict type of the learner was set to `"se"`.
 #'    For tasks with two features the predict type will be ignored.
@@ -70,21 +72,29 @@
 #' autoplot(object, type = "prediction")
 #' }
 #' }
-autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, predict_sets = "test", binwidth = NULL, theme = theme_minimal(), ...) {
+autoplot.ResampleResult = function(
+  object,
+  type = "boxplot",
+  measure = NULL,
+  predict_sets = "test",
+  binwidth = NULL,
+  theme = theme_minimal(),
+  ...
+) {
   assert_choice(type, choices = c("boxplot", "histogram", "prediction", "roc", "prc"), null.ok = FALSE)
 
   task = object$task
   measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
 
-  switch(type,
+  switch(
+    type,
     "boxplot" = {
-      ggplot(object,
-        measure = measure,
-        mapping = aes(y = .data[["performance"]])) +
+      ggplot(object, measure = measure, mapping = aes(y = .data[["performance"]])) +
         geom_boxplot(
           fill = viridis::viridis(1, begin = 0.5),
           alpha = 0.8,
-          show.legend = FALSE) +
+          show.legend = FALSE
+        ) +
         scale_x_discrete() +
         labs(y = measure$id) +
         theme +
@@ -92,14 +102,13 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, pre
     },
 
     "histogram" = {
-      ggplot(object,
-        measure = measure,
-        aes(x = .data[["performance"]])) +
+      ggplot(object, measure = measure, aes(x = .data[["performance"]])) +
         geom_histogram(
           fill = viridis::viridis(1, begin = 0.5),
           alpha = 0.8,
           color = "black",
-          binwidth = binwidth) +
+          binwidth = binwidth
+        ) +
         labs(x = measure$id, y = "Count") +
         theme
     },
@@ -111,7 +120,8 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, pre
       p +
         guides(
           color = "none",
-          fill = "none") +
+          fill = "none"
+        ) +
         scale_color_viridis_d("Learner", begin = 0.5) +
         scale_fill_viridis_d("Learner", begin = 0.5) +
         theme +
@@ -126,7 +136,8 @@ autoplot.ResampleResult = function(object, type = "boxplot", measure = NULL, pre
       p +
         guides(
           color = "none",
-          fill = "none") +
+          fill = "none"
+        ) +
         scale_color_viridis_d("Learner", begin = 0.5) +
         scale_fill_viridis_d("Learner", begin = 0.5) +
         theme +
@@ -145,17 +156,22 @@ plot.ResampleResult = function(x, ...) {
 }
 
 #' @export
-fortify.ResampleResult = function(model, data, measure = NULL, ...) { # nolint
+#nolint next
+fortify.ResampleResult = function(model, data, measure = NULL, ...) {
   task = model$task
   measure = mlr3::assert_measure(mlr3::as_measure(measure, task_type = task$task_type), task = task)
   data = model$score(measure)[, c("iteration", measure$id), with = FALSE]
-  melt(data,
-    measure.vars = measure$id,
-    variable.name = "measure_id", value.name = "performance")
+  melt(data, measure.vars = measure$id, variable.name = "measure_id", value.name = "performance")
 }
 
-plot_learner_prediction_resample_result = function(object, predict_sets, grid_points = 100L, expand_range = 0, theme = theme_minimal()) {
-
+#nolint next
+plot_learner_prediction_resample_result = function(
+  object,
+  predict_sets,
+  grid_points = 100L,
+  expand_range = 0,
+  theme = theme_minimal()
+) {
   task = object$task
   task_type = task$task_type
   features = task$feature_names
@@ -177,7 +193,7 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
     mlr3misc::stopf("Plot learner prediction only works with one or two features for regression!", wrap = TRUE)
   }
 
-  grid = predict_grid(learners, task, grid_points = grid_points,  expand_range = expand_range)
+  grid = predict_grid(learners, task, grid_points = grid_points, expand_range = expand_range)
 
   # facets for multiple resampling iterations
   if (length(learners) > 1L) {
@@ -193,29 +209,38 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
   if (task_type == "regr" && dim == 1L) {
     if (learners[[1L]]$predict_type == "se") {
       se_geom = geom_ribbon(
-          mapping = aes(
-            ymin = .data[["response"]] - .data[["se"]],
-            ymax = .data[["response"]] + .data[["se"]]),
-          alpha = 0.2,
-          fill = viridis::viridis(1, begin = 0.5))
+        mapping = aes(
+          ymin = .data[["response"]] - .data[["se"]],
+          ymax = .data[["response"]] + .data[["se"]]
+        ),
+        alpha = 0.2,
+        fill = viridis::viridis(1, begin = 0.5)
+      )
     } else {
       se_geom = NULL
     }
 
-    g = ggplot(grid,
+    g = ggplot(
+      grid,
       mapping = aes(
         x = .data[[features]],
-        y = .data[["response"]])) +
+        y = .data[["response"]]
+      )
+    ) +
       se_geom +
       geom_line(color = viridis::viridis(1, begin = 0.5)) +
-      geom_point(data = task_data(object, predict_sets),
+      geom_point(
+        data = task_data(object, predict_sets),
         mapping = aes(
           y = .data[[task$target_names]],
           shape = .data[[".predict_set"]],
-          color = .data[[".predict_set"]])) +
+          color = .data[[".predict_set"]]
+        )
+      ) +
       scale_shape_manual(
         values = c(train = 16, test = 15, both = 17),
-        name = "Set") +
+        name = "Set"
+      ) +
       labs(color = "Set") +
       scale_color_viridis_d(end = 0.8) +
       theme +
@@ -227,10 +252,12 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
       # classif, probs
       raster_aes = aes(
         fill = .data[["response"]],
-        alpha = .data[[".prob.response"]])
+        alpha = .data[[".prob.response"]]
+      )
       scale_alpha = scale_alpha_continuous(
         name = "Probability",
-        guide = guide_legend(override.aes = list(fill = viridis::viridis(1))))
+        guide = guide_legend(override.aes = list(fill = viridis::viridis(1)))
+      )
       scale_fill = scale_fill_viridis_d(end = 0.8)
       guides = NULL
     } else if (task_type == "classif" && learners[[1L]]$predict_type == "response") {
@@ -251,22 +278,27 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
       theme = theme + theme(axis.text.x = element_text(angle = 45, hjust = 1))
     }
 
-    g = ggplot(grid,
+    g = ggplot(
+      grid,
       mapping = aes(
         x = .data[[features[1L]]],
-        y = .data[[features[2L]]])) +
+        y = .data[[features[2L]]]
+      )
+    ) +
       geom_raster(raster_aes) +
       geom_point(
         mapping = aes(fill = .data[[task$target_names]], shape = .data[[".predict_set"]]),
         data = task_data(object, predict_sets),
-        color = "black") +
+        color = "black"
+      ) +
       scale_fill +
       guides +
       theme +
       theme(legend.position = "right") +
       scale_shape_manual(
         values = c(train = 21, test = 22, both = 23),
-        name = "Set") +
+        name = "Set"
+      ) +
       scale_alpha +
       labs(fill = "Response") +
       folds_facet
@@ -282,7 +314,6 @@ plot_learner_prediction_resample_result = function(object, predict_sets, grid_po
 # object: ResampleResult
 # predict_sets: see above
 task_data = function(object, predict_sets) {
-
   # if train and test is in predict_sets, allow "both" to be plotted
 
   if (all(c("train", "test") %in% predict_sets) && "both" %nin% predict_sets) {
@@ -294,8 +325,9 @@ task_data = function(object, predict_sets) {
 
   types = lapply(seq_along(object$learners), function(i) {
     ids = seq_len(object$task$nrow)
-    type = (ids %in% object$resampling$train_set(i)) + 2L *
-      (ids %in% object$resampling$test_set(i))
+    type = (ids %in% object$resampling$train_set(i)) +
+      2L *
+        (ids %in% object$resampling$test_set(i))
     type = type_char[type + 1L]
     select_ids = !is.na(type)
     data.table(.row_id = ids[select_ids], .predict_set = type[select_ids])
@@ -303,7 +335,7 @@ task_data = function(object, predict_sets) {
 
   types = rbindlist(types, idcol = TRUE, use.names = FALSE)
   data = cbind(types, object$task$data()[types$.row_id, ])
-  return(remove_named(data, ".row_id"))
+  remove_named(data, ".row_id")
 }
 
 # Generates an evenly distributed sequence of the same type as the input vector.
@@ -316,8 +348,10 @@ sequenize = function(x, n, expand_range = 0) {
     r = range(x, na.rm = TRUE)
     d = diff(r)
     res = seq(
-      from = r[1L] - expand_range * d, to = r[2L] + expand_range * d,
-      length.out = n)
+      from = r[1L] - expand_range * d,
+      to = r[2L] + expand_range * d,
+      length.out = n
+    )
     if (is.integer(x)) {
       res = unique(as.integer(round(res)))
     }
@@ -350,18 +384,32 @@ predict_grid = function(learners, task, grid_points, expand_range) {
     grid = cross_join(grid, sorted = FALSE)
     grid = cbind(
       grid,
-      remove_named(as.data.table(learner$predict_newdata(
-        newdata = grid,
-        task = task)), c("row_id", "truth")))
+      remove_named(
+        as.data.table(learner$predict_newdata(
+          newdata = grid,
+          task = task
+        )),
+        c("row_id", "truth")
+      )
+    )
   })
   grid = rbindlist(grids, idcol = TRUE, use.names = FALSE)
 
   # reduce to prob columns to one column for the predicted class
   if (learners[[1]]$predict_type == "prob") {
-    grid[, ".prob.response" := .SD[, paste0(
-      "prob.", # nolint
-      get("response")), with = FALSE], by = "response"]
+    grid[,
+      #nolint next
+      ".prob.response" := .SD[,
+        paste0(
+          #nolint next
+          "prob.",
+          get("response")
+        ),
+        with = FALSE
+      ],
+      by = "response"
+    ]
   }
 
-  return(grid)
+  grid
 }

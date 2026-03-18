@@ -1,4 +1,5 @@
 #' @export
-fortify.Task = function(model, data = NULL, ...) { # nolint
+#nolint next
+fortify.Task = function(model, data = NULL, ...) {
   as.data.table(model)
 }
