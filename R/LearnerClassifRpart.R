@@ -34,11 +34,21 @@
 #' learner$train(task)
 #' autoplot(learner, type = "ggparty")
 #' }
-autoplot.LearnerClassifRpart = function(object, type = "prediction", task = NULL, grid_points = 100L, expand_range = 0, theme = theme_minimal(), ...) { # nolint
+#nolint next
+autoplot.LearnerClassifRpart = function(
+  object,
+  type = "prediction",
+  task = NULL,
+  grid_points = 100L,
+  expand_range = 0,
+  theme = theme_minimal(),
+  ...
+) {
   assert_choice(type, choices = c("prediction", "ggparty"), null.ok = FALSE)
   assert_has_model(object)
 
-  switch(type,
+  switch(
+    type,
     "prediction" = {
       NextMethod()
     },
@@ -53,20 +63,25 @@ autoplot.LearnerClassifRpart = function(object, type = "prediction", task = NULL
         ggparty::geom_node_splitvar() +
         ggparty::geom_node_plot(
           gglist = list(
-            geom_bar(aes(x = "", fill = .data[[target]]),
-            alpha = 0.8,
-            color = "#000000",
-            linewidth = 0.5,
-            position = position_fill()),
+            geom_bar(
+              aes(x = "", fill = .data[[target]]),
+              alpha = 0.8,
+              color = "#000000",
+              linewidth = 0.5,
+              position = position_fill()
+            ),
             labs(x = target),
             scale_fill_viridis_d(end = 0.8),
-            theme),
+            theme
+          ),
           ids = "terminal",
-          shared_axis_labels= TRUE) +
+          shared_axis_labels = TRUE
+        ) +
         ggparty::geom_node_label(
           mapping = aes(label = paste0("n=", .data[["nodesize"]])),
           nudge_y = 0.03,
-          ids = "terminal")
+          ids = "terminal"
+        )
     },
 
     stopf("Unknown plot type '%s'", type)

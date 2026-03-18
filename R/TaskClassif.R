@@ -28,21 +28,27 @@
 #' autoplot(task$clone()$select(c("Sepal.Length", "Sepal.Width")), type = "pairs")
 #' autoplot(task, type = "duo")
 #' }
-autoplot.TaskClassif = function(object, type = "target", theme = theme_minimal(), ...) { # nolint
+#nolint next
+autoplot.TaskClassif = function(object, type = "target", theme = theme_minimal(), ...) {
   assert_choice(type, choices = c("target", "duo", "pairs"), null.ok = FALSE)
 
   target = object$target_names
 
-  switch(type,
+  switch(
+    type,
     "target" = {
-      ggplot(object,
+      ggplot(
+        object,
         mapping = aes(
           x = .data[[target]],
-          fill = .data[[target]])) +
+          fill = .data[[target]]
+        )
+      ) +
         geom_bar(
           stat = "count",
           color = "#000000",
-          linewidth = 0.5) +
+          linewidth = 0.5
+        ) +
         scale_fill_viridis_d(end = 0.8, alpha = 0.8, ) +
         scale_color_viridis_d(end = 0.8) +
         theme
@@ -51,10 +57,12 @@ autoplot.TaskClassif = function(object, type = "target", theme = theme_minimal()
     "duo" = {
       # Line width!!!
       require_namespaces("GGally")
-      GGally::ggduo(object,
+      GGally::ggduo(
+        object,
         columnsX = target,
         columnsY = object$feature_names,
-        mapping = aes(color = .data[[target]])) +
+        mapping = aes(color = .data[[target]])
+      ) +
         scale_fill_viridis_d(end = 0.8, alpha = 0.8) +
         scale_color_viridis_d(end = 0.8) +
         theme +
@@ -67,11 +75,27 @@ autoplot.TaskClassif = function(object, type = "target", theme = theme_minimal()
     "pairs" = {
       require_namespaces("GGally")
 
-      GGally::ggpairs(object,
+      GGally::ggpairs(
+        object,
         mapping = aes(color = .data[[target]]),
-        upper = list(continuous = "cor",  combo = GGally::wrap("box_no_facet", color = "#000000", linewidth = 0.5), discrete = "count", na = "na"),
-        lower = list(continuous = GGally::wrap("points", size = 3, alpha = 0.8) , combo = GGally::wrap("facethist", color = "#000000", linewidth = 0.5), discrete = GGally::wrap("facetbar", color = "#000000", linewidth = 0.5), na = "na"),
-        diag = list(continuous = GGally::wrap("densityDiag", color = "#000000", linewidth = 0.5), discrete = GGally::wrap("barDiag",  color = "#000000", linewidth = 0.5), na = "naDiag")) +
+        upper = list(
+          continuous = "cor",
+          combo = GGally::wrap("box_no_facet", color = "#000000", linewidth = 0.5),
+          discrete = "count",
+          na = "na"
+        ),
+        lower = list(
+          continuous = GGally::wrap("points", size = 3, alpha = 0.8),
+          combo = GGally::wrap("facethist", color = "#000000", linewidth = 0.5),
+          discrete = GGally::wrap("facetbar", color = "#000000", linewidth = 0.5),
+          na = "na"
+        ),
+        diag = list(
+          continuous = GGally::wrap("densityDiag", color = "#000000", linewidth = 0.5),
+          discrete = GGally::wrap("barDiag", color = "#000000", linewidth = 0.5),
+          na = "naDiag"
+        )
+      ) +
         scale_fill_viridis_d(end = 0.8, alpha = 0.8) +
         scale_color_viridis_d(end = 0.8, alpha = 0.8) +
         theme

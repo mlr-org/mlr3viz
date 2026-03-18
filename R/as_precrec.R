@@ -32,7 +32,8 @@ roc_data = function(prediction) {
 
 #' @rdname as_precrec
 #' @export
-as_precrec.PredictionClassif = function(object) { # nolint
+#nolint next
+as_precrec.PredictionClassif = function(object) {
   require_namespaces("precrec")
   data = roc_data(object)
   precrec::mmdata(
@@ -46,7 +47,8 @@ as_precrec.PredictionClassif = function(object) { # nolint
 
 #' @rdname as_precrec
 #' @export
-as_precrec.ResampleResult = function(object) { # nolint
+#nolint next
+as_precrec.ResampleResult = function(object) {
   require_namespaces("precrec")
   predictions = object$predictions()
   data = transpose_list(map(predictions, roc_data))
@@ -62,7 +64,8 @@ as_precrec.ResampleResult = function(object) { # nolint
 
 #' @rdname as_precrec
 #' @export
-as_precrec.BenchmarkResult = function(object) { # nolint
+#nolint next
+as_precrec.BenchmarkResult = function(object) {
   require_namespaces("precrec")
   scores = object$score(measures = list())
 

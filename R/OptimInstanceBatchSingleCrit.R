@@ -85,9 +85,23 @@
 #' print(autoplot(instance, type = "incumbent"))
 #' }
 #' }
-autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols_x = NULL, trafo = FALSE, learner = mlr3::lrn("regr.ranger"), grid_resolution = 100, batch = NULL, theme = theme_minimal(), ...) { # nolint
-  assert_choice(type, choices = c("marginal", "performance", "parameter", "parallel",
-                                  "points", "surface", "pairs", "incumbent"), null.ok = FALSE)
+#nolint next
+autoplot.OptimInstanceBatchSingleCrit = function(
+  object,
+  type = "marginal",
+  cols_x = NULL,
+  trafo = FALSE,
+  learner = mlr3::lrn("regr.ranger"),
+  grid_resolution = 100,
+  batch = NULL,
+  theme = theme_minimal(),
+  ...
+) {
+  assert_choice(
+    type,
+    choices = c("marginal", "performance", "parameter", "parallel", "points", "surface", "pairs", "incumbent"),
+    null.ok = FALSE
+  )
   assert_subset(cols_x, c(object$archive$cols_x, paste0("x_domain_", object$archive$cols_x)))
   assert_flag(trafo)
 
@@ -100,11 +114,14 @@ autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols
   }
   cols_y = object$archive$cols_y
   data = fortify(object)
-  if (is.null(batch)) batch = seq_len(object$archive$n_batch)
+  if (is.null(batch)) {
+    batch = seq_len(object$archive$n_batch)
+  }
   assert_subset(batch, seq_len(object$archive$n_batch))
   data = data[list(batch), , on = "batch_nr"]
 
-  switch(type,
+  switch(
+    type,
     "marginal" = {
       # each parameter versus performance
       plots = map(cols_x, function(x) {
@@ -114,16 +131,14 @@ autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols
         breaks[length(breaks)] = max(data_i$batch_nr)
         data_i[, "batch_nr" := as.factor(get("batch_nr"))]
 
-        ggplot(data_i,
-          mapping = aes(x = .data[[x]],
-          y = .data[[cols_y]])
-          ) +
+        ggplot(data_i, mapping = aes(x = .data[[x]], y = .data[[cols_y]])) +
           geom_point(
             mapping = aes(fill = .data$batch_nr),
             shape = 21,
             size = 3,
             stroke = 0.5,
-            alpha = 0.8) +
+            alpha = 0.8
+          ) +
           scale_fill_viridis_d("Batch", breaks = breaks) +
           theme
       })
@@ -140,22 +155,28 @@ autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols
       top_batch[, "group" := factor(1, labels = "Best value")]
 
       ggplot() +
-        geom_line(top_batch,
+        geom_line(
+          top_batch,
           mapping = aes(
             x = .data[["batch_nr"]],
             y = .data[[cols_y]],
-            color = .data[["group"]]),
+            color = .data[["group"]]
+          ),
           group = 1,
-          linewidth = 1) +
-        geom_point(data,
+          linewidth = 1
+        ) +
+        geom_point(
+          data,
           mapping = aes(
             x = .data[["batch_nr"]],
             y = .data[[cols_y]],
-            fill = .data[["group"]]),
+            fill = .data[["group"]]
+          ),
           shape = 21,
           size = 3,
           stroke = 0.5,
-          alpha = 0.8) +
+          alpha = 0.8
+        ) +
         labs(x = "Batch") +
         scale_y_continuous(breaks = pretty_breaks()) +
         scale_fill_manual(values = viridis::viridis(1, begin = 0.33)) +
@@ -167,17 +188,22 @@ autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols
     "parameter" = {
       # each parameter versus iteration
       plots = map(cols_x, function(x) {
-        ggplot(data,
+        ggplot(
+          data,
           mapping = aes(
             x = .data$batch_nr,
-            y = .data[[x]])) +
+            y = .data[[x]]
+          )
+        ) +
           geom_point(
             mapping = aes(
-              fill = .data[[cols_y]]),
-              shape = 21,
-              size = 3,
-              stroke = 0.5,
-              alpha = 0.8) +
+              fill = .data[[cols_y]]
+            ),
+            shape = 21,
+            size = 3,
+            stroke = 0.5,
+            alpha = 0.8
+          ) +
           guides(fill = guide_colorbar(barwidth = 0.5, barheight = 10)) +
           scale_fill_viridis_c(breaks = scales::pretty_breaks()) +
           theme
@@ -204,7 +230,9 @@ autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols
 
       # rescale
       data_n = data_n[, lapply(.SD, function(x) if (sd(x) > 0) (x - mean(x)) / sd(x) else rep(0, length(x)))]
-      data_c = data_c[, lapply(.SD, function(x) if (sd(x) > 0) (x - mean(unique(x))) / sd(unique(x)) else rep(0, length(x)))]
+      data_c = data_c[, lapply(.SD, function(x) {
+        if (sd(x) > 0) (x - mean(unique(x))) / sd(unique(x)) else rep(0, length(x))
+      })]
 
       # to long format
       set(data_n, j = "id", value = seq_row(data_n))
@@ -226,20 +254,29 @@ autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols
       data = merge(data, data_y, by = "id")
       setorderv(data, "x")
 
-      ggplot(data,
+      ggplot(
+        data,
         mapping = aes(
           x = .data[["x"]],
-          y = .data[["value"]])) +
+          y = .data[["value"]]
+        )
+      ) +
         geom_line(
           mapping = aes(
             group = .data$id,
-            color = .data[[cols_y]]),
-          linewidth = 1) +
+            color = .data[[cols_y]]
+          ),
+          linewidth = 1
+        ) +
         geom_vline(aes(xintercept = x)) +
+        #nolint next
         {
-          if (nrow(data_c)) geom_label(
-            mapping = aes(label = .data$label),
-            data = data[!is.na(data$label), ])
+          if (nrow(data_c)) {
+            geom_label(
+              mapping = aes(label = .data$label),
+              data = data[!is.na(data$label), ]
+            )
+          }
         } +
         scale_x_continuous(breaks = x_axis$x, labels = x_axis$variable) +
         scale_color_viridis_c() +
@@ -253,16 +290,20 @@ autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols
         stop("Scatter plots can only be drawn with 2 parameters.")
       }
 
-      ggplot(data,
+      ggplot(
+        data,
         mapping = aes(
           x = .data[[cols_x[1]]],
-          y = .data[[cols_x[2]]])) +
+          y = .data[[cols_x[2]]]
+        )
+      ) +
         geom_point(
           mapping = aes(fill = .data[[cols_y]]),
           data = data,
           shape = 21,
           size = 3,
-          stroke = 1) +
+          stroke = 1
+        ) +
         scale_fill_viridis_c() +
         guides(fill = guide_colorbar(barwidth = 0.5, barheight = 10)) +
         theme
@@ -292,19 +333,24 @@ autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols
 
       setDT(data_i)[, (cols_y) := learner$predict_newdata(data_i)$response]
 
-      ggplot(data_i,
+      ggplot(
+        data_i,
         mapping = aes(
           x = .data[[cols_x[1]]],
-          y = .data[[cols_x[2]]])) +
+          y = .data[[cols_x[2]]]
+        )
+      ) +
         geom_raster(
-          mapping = aes(fill = .data[[cols_y]])) +
+          mapping = aes(fill = .data[[cols_y]])
+        ) +
         geom_point(
           mapping = aes(fill = .data[[cols_y]]),
           data = data,
           shape = 21,
           size = 3,
           stroke = 0.5,
-          alpha = 0.8) +
+          alpha = 0.8
+        ) +
         scale_x_continuous(expand = c(0.01, 0.01)) +
         scale_y_continuous(expand = c(0.01, 0.01)) +
         guides(fill = guide_colorbar(barwidth = 0.5, barheight = 10)) +
@@ -318,25 +364,45 @@ autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols
       color = viridis::viridis(1, begin = 0.5)
       alpha = 0.8
 
-      GGally::ggpairs(data[, c(cols_x, cols_y, "batch_nr"), with = FALSE],
+      GGally::ggpairs(
+        data[, c(cols_x, cols_y, "batch_nr"), with = FALSE],
         switch = "both",
-        upper = list(continuous = "cor",  combo = GGally::wrap("box_no_facet", fill = color, alpha = alpha), discrete = "count", na = "na"),
-        lower = list(continuous = GGally::wrap("points", color = color), combo = GGally::wrap("facethist", fill = color, alpha = alpha), discrete = GGally::wrap("facetbar", fill = color, alpha = alpha), na = "na"),
-        diag = list(continuous = GGally::wrap("densityDiag", color = color), discrete = GGally::wrap("barDiag", fill = color, alpha = alpha), na = "naDiag")) +
+        upper = list(
+          continuous = "cor",
+          combo = GGally::wrap("box_no_facet", fill = color, alpha = alpha),
+          discrete = "count",
+          na = "na"
+        ),
+        lower = list(
+          continuous = GGally::wrap("points", color = color),
+          combo = GGally::wrap("facethist", fill = color, alpha = alpha),
+          discrete = GGally::wrap("facetbar", fill = color, alpha = alpha),
+          na = "na"
+        ),
+        diag = list(
+          continuous = GGally::wrap("densityDiag", color = color),
+          discrete = GGally::wrap("barDiag", fill = color, alpha = alpha),
+          na = "naDiag"
+        )
+      ) +
         theme
     },
 
     "incumbent" = {
       data[, "incumbent" := cummin(.SD[[1]]), .SDcols = cols_y]
 
-      ggplot(data,
+      ggplot(
+        data,
         mapping = aes(
           x = seq_row(data),
           y = .data[["incumbent"]],
-          lty = cols_y)) +
+          lty = cols_y
+        )
+      ) +
         geom_step(
           linewidth = 1,
-          color = viridis::viridis(1, begin = 0.5)) +
+          color = viridis::viridis(1, begin = 0.5)
+        ) +
         labs(x = "Number of Configurations", y = cols_y) +
         scale_linetype(name = "Incumbent") +
         theme
@@ -347,6 +413,7 @@ autoplot.OptimInstanceBatchSingleCrit = function(object, type = "marginal", cols
 }
 
 #' @export
-fortify.OptimInstanceBatchSingleCrit = function(model, data = NULL, ...) { # nolint
+#nolint next
+fortify.OptimInstanceBatchSingleCrit = function(model, data = NULL, ...) {
   as.data.table(model$archive, unnest = "x_domain")
 }

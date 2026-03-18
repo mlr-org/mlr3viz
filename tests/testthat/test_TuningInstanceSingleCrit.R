@@ -18,7 +18,8 @@ instance = TuningInstanceBatchSingleCrit$new(
   learner = learner,
   resampling = mlr3::rsmp("cv", folds = 3),
   measure = mlr3::msr("classif.ce"),
-  terminator = trm("evals", n_evals = 100))
+  terminator = trm("evals", n_evals = 100)
+)
 
 tuner = tnr("random_search", batch_size = 10)
 invoke(tuner$optimize, instance, .seed = 123)

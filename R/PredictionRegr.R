@@ -6,12 +6,15 @@
 #' Possible choices are:
 #'
 #' * `"xy"` (default): Scatterplot of "true" response vs. "predicted" response.
-#'    By default a linear model is fitted via `geom_smooth(method = "lm")` to visualize the trend between x and y (by default colored blue).
+#'    By default a linear model is fitted via `geom_smooth(method = "lm")` to visualize the trend between x and y
+#'    (by default colored blue).
 #'    In addition `geom_abline()` with `slope = 1` is added to the plot.
 #'    Note that `geom_smooth()` and `geom_abline()` may overlap, depending on the given data.
 #' * `"histogram"`: Histogram of residuals: \eqn{r = y - \hat{y}}{r = y - y.hat}.
-#' * `"residual"`: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat} on the "x" and the residuals on the "y" axis.
-#'    By default a linear model is fitted via `geom_smooth(method = "lm")` to visualize the trend between x and y (by default colored blue).
+#' * `"residual"`: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat} on the "x" and the residuals on
+#'    the "y" axis.
+#'    By default a linear model is fitted via `geom_smooth(method = "lm")` to visualize the trend between x and y
+#'    (by default colored blue).
 #' * `"confidence"`: Scatterplot of "true" response vs. "predicted" response with
 #'    confidence intervals. Error bars calculated as object$response +- quantile * object$se and so only
 #'    possible with `predict_type = "se"`. `geom_abline()` with `slope = 1` is added to the plot.
@@ -45,58 +48,81 @@
 #' object = learner$train(task)$predict(task)
 #' autoplot(object, type = "confidence")
 #' }
-autoplot.PredictionRegr = function(object, type = "xy", binwidth = NULL, theme = theme_minimal(), quantile = 1.96, ...) {
+autoplot.PredictionRegr = function(
+  object,
+  type = "xy",
+  binwidth = NULL,
+  theme = theme_minimal(),
+  quantile = 1.96,
+  ...
+) {
   assert_choice(type, choices = c("xy", "histogram", "residual", "confidence"), null.ok = FALSE)
 
-  switch(type,
+  switch(
+    type,
     "xy" = {
-      ggplot(object,
+      ggplot(
+        object,
         mapping = aes(
           x = .data[["response"]],
-          y = .data[["truth"]])) +
+          y = .data[["truth"]]
+        )
+      ) +
         geom_abline(
           slope = 1,
-          alpha = 0.5) +
+          alpha = 0.5
+        ) +
         geom_point(
           color = viridis::viridis(1, begin = 0.33),
-          alpha = 0.8) +
+          alpha = 0.8
+        ) +
         geom_rug(sides = "bl") +
         geom_smooth(
           formula = y ~ x,
           method = "lm",
-          color = viridis::viridis(1, begin = 0.5)) +
+          color = viridis::viridis(1, begin = 0.5)
+        ) +
         theme
     },
 
     "histogram" = {
       object = ggplot2::fortify(object)
-      ggplot(object,
+      ggplot(
+        object,
         mapping = aes(
           x = .data[["truth"]] - .data[["response"]],
-          y = after_stat(.data[["density"]]))) +
+          y = after_stat(.data[["density"]])
+        )
+      ) +
         geom_histogram(
           fill = viridis::viridis(1, begin = 0.5),
           alpha = 0.8,
           color = "black",
-          binwidth = binwidth) +
+          binwidth = binwidth
+        ) +
         labs(x = "Residuals", y = "Density") +
         theme
     },
 
     "residual" = {
-      ggplot(object,
+      ggplot(
+        object,
         mapping = aes(
           x = .data[["response"]],
-          y = .data[["truth"]] - .data[["response"]])) +
+          y = .data[["truth"]] - .data[["response"]]
+        )
+      ) +
         geom_point(
           color = viridis::viridis(1, begin = 0.33),
-          alpha = 0.8) +
+          alpha = 0.8
+        ) +
         geom_rug(sides = "bl") +
         geom_smooth(
           formula = y ~ x,
           method = "lm",
           fill = viridis::viridis(1, begin = 0.5),
-          color = viridis::viridis(1, begin = 0.5)) +
+          color = viridis::viridis(1, begin = 0.5)
+        ) +
         labs(x = "Response", y = "Residuals") +
         theme
     },
@@ -109,22 +135,29 @@ autoplot.PredictionRegr = function(object, type = "xy", binwidth = NULL, theme =
       df = data.frame(
         lower = object$response - quantile * object$se,
         central = object$response,
-        upper =  object$response + quantile * object$se, truth = object$truth)
+        upper = object$response + quantile * object$se,
+        truth = object$truth
+      )
 
-      ggplot(df,
+      ggplot(
+        df,
         mapping = aes(
           x = .data[["central"]],
           xmin = .data[["lower"]],
           xmax = .data[["upper"]],
-          y = .data[["truth"]])) +
+          y = .data[["truth"]]
+        )
+      ) +
         geom_abline(
           slope = 1,
           colour = "grey",
-          linetype = 3) +
+          linetype = 3
+        ) +
         geom_linerange(color = viridis::viridis(1, begin = 0.33)) +
         geom_point(
           color = viridis::viridis(1, begin = 0.5),
-          alpha = 0.8) +
+          alpha = 0.8
+        ) +
         labs(x = sprintf("Response \u00B1 %sse", quantile), y = "Truth") +
         theme
     },

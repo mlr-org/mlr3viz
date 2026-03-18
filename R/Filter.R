@@ -28,22 +28,28 @@
 #' head(fortify(f))
 #' autoplot(f, n = 5)
 #' }
-autoplot.Filter = function(object, type = "boxplot", n = Inf, theme = theme_minimal(), ...) { # nolint
+#nolint next
+autoplot.Filter = function(object, type = "boxplot", n = Inf, theme = theme_minimal(), ...) {
   assert_choice(type, choices = c("boxplot"), null.ok = FALSE)
 
   data = head(fortify(object), n)
 
-  switch(type,
+  switch(
+    type,
     "boxplot" = {
-      ggplot(data,
+      ggplot(
+        data,
         mapping = aes(
           x = .data[["feature"]],
-          y = .data[["score"]])) +
+          y = .data[["score"]]
+        )
+      ) +
         geom_bar(
           stat = "identity",
           fill = viridis::viridis(1, begin = 0.5),
           alpha = 0.8,
-          color = "#000000") +
+          color = "#000000"
+        ) +
         scale_x_discrete(limits = data$feature) +
         labs(x = "Feature", y = "Score") +
         theme +
@@ -60,6 +66,7 @@ plot.Filter = function(x, ...) {
 }
 
 #' @export
-fortify.Filter = function(model, data = NULL, ...) { # nolint
+#nolint next
+fortify.Filter = function(model, data = NULL, ...) {
   as.data.table(model)
 }

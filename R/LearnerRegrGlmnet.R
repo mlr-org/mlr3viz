@@ -1,9 +1,19 @@
 #' @rdname autoplot.LearnerClassifGlmnet
 #' @export
-autoplot.LearnerRegrGlmnet = function(object, type = "prediction", task = NULL, grid_points = 100L, expand_range = 0, theme = theme_minimal(), ...) { # nolint
+#nolint next
+autoplot.LearnerRegrGlmnet = function(
+  object,
+  type = "prediction",
+  task = NULL,
+  grid_points = 100L,
+  expand_range = 0,
+  theme = theme_minimal(),
+  ...
+) {
   assert_has_model(object)
 
-  switch(type,
+  switch(
+    type,
     "prediction" = {
       NextMethod()
     },

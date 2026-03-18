@@ -27,10 +27,20 @@
 #'
 #' autoplot(learner, type = "prediction", task)
 #' }
-autoplot.LearnerRegr = function(object, type = "prediction", task, grid_points = 100L, expand_range = 0, theme = theme_minimal(), ...) { # nolint
+#nolint next
+autoplot.LearnerRegr = function(
+  object,
+  type = "prediction",
+  task,
+  grid_points = 100L,
+  expand_range = 0,
+  theme = theme_minimal(),
+  ...
+) {
   assert_choice(type, choices = c("prediction"), null.ok = FALSE)
 
-  switch(type,
+  switch(
+    type,
     "prediction" = {
       mlr3::assert_task(task)
       features = task$feature_names
@@ -46,17 +56,22 @@ autoplot.LearnerRegr = function(object, type = "prediction", task, grid_points =
           se_geom = geom_ribbon(
             mapping = aes(
               ymin = .data[["response"]] - .data[["se"]],
-              ymax = .data[["response"]] + .data[["se"]]),
+              ymax = .data[["response"]] + .data[["se"]]
+            ),
             alpha = 0.2,
-            fill = viridis::viridis(1, begin = 0.5))
+            fill = viridis::viridis(1, begin = 0.5)
+          )
         } else {
           se_geom = NULL
         }
 
-        ggplot(grid,
+        ggplot(
+          grid,
           mapping = aes(
             x = .data[[features]],
-            y = .data[["response"]])) +
+            y = .data[["response"]]
+          )
+        ) +
           se_geom +
           geom_line(color = viridis::viridis(1, begin = 0.5)) +
           geom_point(
@@ -64,25 +79,30 @@ autoplot.LearnerRegr = function(object, type = "prediction", task, grid_points =
             shape = 21,
             color = "black",
             mapping = aes(
-              y = .data[[task$target_names]])) +
+              y = .data[[task$target_names]]
+            )
+          ) +
           scale_color_viridis_d(end = 0.8) +
           theme
       } else {
-
         if (!is.numeric(grid[[features[1L]]])) {
           theme = theme + theme(axis.text.x = element_text(angle = 45, hjust = 1))
         }
 
-        ggplot(grid,
+        ggplot(
+          grid,
           mapping = aes(
             x = .data[[features[1L]]],
-            y = .data[[features[2L]]])) +
+            y = .data[[features[2L]]]
+          )
+        ) +
           geom_raster(aes(fill = .data[["response"]])) +
           geom_point(
             mapping = aes(fill = .data[[task$target_names]]),
             data = task$data(),
             shape = 21,
-            color = "black") +
+            color = "black"
+          ) +
           scale_fill_viridis_c(end = 0.8) +
           guides(fill = guide_colorbar(barwidth = 0.5, barheight = 10)) +
           theme +

@@ -8,7 +8,8 @@
 #' * `"dend"` (default): Dendrograms using \CRANpkg{ggdendro} package.
 #' * `"scree"`: Scree plot that shows the number of possible clusters on the x-axis and the height on the y-axis.
 #'
-#' @param object ([mlr3cluster::LearnerClustAgnes] | [mlr3cluster::LearnerClustDiana] | [mlr3cluster::LearnerClustHclust]).
+#' @param object ([mlr3cluster::LearnerClustAgnes] | [mlr3cluster::LearnerClustDiana] |
+#'   [mlr3cluster::LearnerClustHclust]).
 #' @param task ([mlr3::Task])\cr
 #'  Optionally, pass the task to add labels of observations to a `hclust` dendrogram.
 #'  Labels are set via the row names of the task.
@@ -43,7 +44,15 @@
 #' learner$train(task)
 #' autoplot(learner, type = "scree")
 #' }
-autoplot.LearnerClustHierarchical = function(object, type = "dend", task = NULL, theme = theme_minimal(), theme_dendro = TRUE, ...) { # nolint
+#nolint next
+autoplot.LearnerClustHierarchical = function(
+  object,
+  type = "dend",
+  task = NULL,
+  theme = theme_minimal(),
+  theme_dendro = TRUE,
+  ...
+) {
   assert_choice(type, choices = c("dend", "scree"), null.ok = FALSE)
 
   if (is.null(object$model)) {
@@ -53,7 +62,8 @@ autoplot.LearnerClustHierarchical = function(object, type = "dend", task = NULL,
     stopf("Learner '%s' must be hierarchical", object$id)
   }
 
-  switch(type,
+  switch(
+    type,
     "dend" = {
       require_namespaces("ggdendro")
 
@@ -67,13 +77,13 @@ autoplot.LearnerClustHierarchical = function(object, type = "dend", task = NULL,
 
     "scree" = {
       data = data.table(Height = object$model$height, Clusters = seq(length(object$model$height), 1))
-      ggplot(data,
-        mapping = aes(x = data$Clusters, y = data$Height)) +
+      ggplot(data, mapping = aes(x = data$Clusters, y = data$Height)) +
         geom_line(color = viridis::viridis(1, begin = 0.5)) +
         geom_point(
           size = 3,
           color = viridis::viridis(1, begin = 0.5),
-          alpha = 0.8) +
+          alpha = 0.8
+        ) +
         labs(x = "Clusters", y = "Height") +
         theme
     }

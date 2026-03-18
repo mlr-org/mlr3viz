@@ -29,4 +29,3 @@ test_that("autoplot.PredictionClassif decision boundary 2D", {
   expect_true(is_ggplot(p))
   expect_doppelganger("learner_regression_2D_se", p)
 })
-
