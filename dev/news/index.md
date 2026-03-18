@@ -4,6 +4,8 @@
 
 ## mlr3viz 0.11.0
 
+CRAN release: 2026-02-22
+
 - fix: Suppress warnings about unused arguments in
   [`ggplot2::fortify()`](https://ggplot2.tidyverse.org/reference/fortify.html)
   when plotting ROC/PRC curves with newer versions of ggplot2.
