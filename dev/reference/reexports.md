@@ -5,5 +5,5 @@ to see their documentation.
 
 - ggplot2:
 
-  [`autoplot`](https://ggplot2.tidyverse.org/reference/autoplot.html),
-  [`fortify`](https://ggplot2.tidyverse.org/reference/fortify.html)
+  [`autoplot()`](https://ggplot2.tidyverse.org/reference/autoplot.html),
+  [`fortify()`](https://ggplot2.tidyverse.org/reference/fortify.html)

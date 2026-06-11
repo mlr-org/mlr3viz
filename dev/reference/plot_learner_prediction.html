@@ -6,20 +6,24 @@
     }
   };
 </script><script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet"><link href="../deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet"><link href="../deps/Roboto_Slab-0.4.10/font.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Plots for Learner Predictions — plot_learner_prediction"><meta name="description" content='Visualizations for the mlr3::Prediction of a single mlr3::Learner on a single mlr3::Task.
-For classification we support tasks with exactly two features and learners with predict_type set to "response" or "prob".
+For classification we support tasks with exactly two features and learners with predict_type set to
+"response" or "prob".
 For regression we support tasks with one or two features.
 For tasks with one feature we print confidence bounds if the predict type of the learner was set to "se".
 For tasks with two features the predict type will be ignored.
 
 
-Note that this function is a wrapper around autoplot.ResampleResult() for a temporary mlr3::ResampleResult using mlr3::mlr_resamplings_holdout with ratio 1 (all observations in the training set).'><meta property="og:description" content='Visualizations for the mlr3::Prediction of a single mlr3::Learner on a single mlr3::Task.
-For classification we support tasks with exactly two features and learners with predict_type set to "response" or "prob".
+Note that this function is a wrapper around autoplot.ResampleResult() for a temporary mlr3::ResampleResult
+using mlr3::mlr_resamplings_holdout with ratio 1 (all observations in the training set).'><meta property="og:description" content='Visualizations for the mlr3::Prediction of a single mlr3::Learner on a single mlr3::Task.
+For classification we support tasks with exactly two features and learners with predict_type set to
+"response" or "prob".
 For regression we support tasks with one or two features.
 For tasks with one feature we print confidence bounds if the predict type of the learner was set to "se".
 For tasks with two features the predict type will be ignored.
 
 
-Note that this function is a wrapper around autoplot.ResampleResult() for a temporary mlr3::ResampleResult using mlr3::mlr_resamplings_holdout with ratio 1 (all observations in the training set).'><meta property="og:image" content="https://mlr3viz.mlr-org.com/logo.png"><meta name="robots" content="noindex"></head><body>
+Note that this function is a wrapper around autoplot.ResampleResult() for a temporary mlr3::ResampleResult
+using mlr3::mlr_resamplings_holdout with ratio 1 (all observations in the training set).'><meta property="og:image" content="https://mlr3viz.mlr-org.com/logo.png"><meta name="robots" content="noindex"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -63,11 +67,13 @@ Note that this function is a wrapper around autoplot.ResampleResult() for a temp
     </div>
 
     <div class="ref-description section level2">
-    <p>Visualizations for the <a href="https://mlr3.mlr-org.com/reference/Prediction.html" class="external-link">mlr3::Prediction</a> of a single <a href="https://mlr3.mlr-org.com/reference/Learner.html" class="external-link">mlr3::Learner</a> on a single <a href="https://mlr3.mlr-org.com/reference/Task.html" class="external-link">mlr3::Task</a>.</p><ul><li><p>For classification we support tasks with exactly two features and learners with <code>predict_type</code> set to <code>"response"</code> or <code>"prob"</code>.</p></li>
+    <p>Visualizations for the <a href="https://mlr3.mlr-org.com/reference/Prediction.html" class="external-link">mlr3::Prediction</a> of a single <a href="https://mlr3.mlr-org.com/reference/Learner.html" class="external-link">mlr3::Learner</a> on a single <a href="https://mlr3.mlr-org.com/reference/Task.html" class="external-link">mlr3::Task</a>.</p><ul><li><p>For classification we support tasks with exactly two features and learners with <code>predict_type</code> set to
+<code>"response"</code> or <code>"prob"</code>.</p></li>
 <li><p>For regression we support tasks with one or two features.
 For tasks with one feature we print confidence bounds if the predict type of the learner was set to <code>"se"</code>.
 For tasks with two features the predict type will be ignored.</p></li>
-</ul><p>Note that this function is a wrapper around <code><a href="autoplot.ResampleResult.html">autoplot.ResampleResult()</a></code> for a temporary <a href="https://mlr3.mlr-org.com/reference/ResampleResult.html" class="external-link">mlr3::ResampleResult</a> using <a href="https://mlr3.mlr-org.com/reference/mlr_resamplings_holdout.html" class="external-link">mlr3::mlr_resamplings_holdout</a> with ratio 1 (all observations in the training set).</p>
+</ul><p>Note that this function is a wrapper around <code><a href="autoplot.ResampleResult.html">autoplot.ResampleResult()</a></code> for a temporary <a href="https://mlr3.mlr-org.com/reference/ResampleResult.html" class="external-link">mlr3::ResampleResult</a>
+using <a href="https://mlr3.mlr-org.com/reference/mlr_resamplings_holdout.html" class="external-link">mlr3::mlr_resamplings_holdout</a> with ratio 1 (all observations in the training set).</p>
     </div>
 
     <div class="section level2">

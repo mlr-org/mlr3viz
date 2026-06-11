@@ -11,13 +11,15 @@ Possible choices are:
 "boxplot" (default): Boxplot of performance measures.
 "histogram": Histogram of performance measures.
 "roc": ROC curve (1 - specificity on x, sensitivity on y).
-The predictions of the individual mlr3::Resamplings are merged prior to calculating the ROC curve (micro averaged).
+The predictions of the individual mlr3::Resamplings are merged prior to calculating the ROC curve
+(micro averaged).
 Requires package precrec.
 "prc": Precision recall curve.
 See "roc".
 "prediction": Plots the learner prediction for a grid of points.
 Needs models to be stored. Set store_models = TRUE for mlr3::resample().
-For classification, we support tasks with exactly two features and learners with predict_type= set to "response" or "prob".
+For classification, we support tasks with exactly two features and learners with predict_type= set to
+"response" or "prob".
 For regression, we support tasks with one or two features.
 For tasks with one feature we can print confidence bounds if the predict type of the learner was set to "se".
 For tasks with two features the predict type will be ignored.
@@ -28,13 +30,15 @@ Possible choices are:
 "boxplot" (default): Boxplot of performance measures.
 "histogram": Histogram of performance measures.
 "roc": ROC curve (1 - specificity on x, sensitivity on y).
-The predictions of the individual mlr3::Resamplings are merged prior to calculating the ROC curve (micro averaged).
+The predictions of the individual mlr3::Resamplings are merged prior to calculating the ROC curve
+(micro averaged).
 Requires package precrec.
 "prc": Precision recall curve.
 See "roc".
 "prediction": Plots the learner prediction for a grid of points.
 Needs models to be stored. Set store_models = TRUE for mlr3::resample().
-For classification, we support tasks with exactly two features and learners with predict_type= set to "response" or "prob".
+For classification, we support tasks with exactly two features and learners with predict_type= set to
+"response" or "prob".
 For regression, we support tasks with one or two features.
 For tasks with one feature we can print confidence bounds if the predict type of the learner was set to "se".
 For tasks with two features the predict type will be ignored.
@@ -88,13 +92,15 @@ The argument <code>type</code> controls what kind of plot is drawn.
 Possible choices are:</p><ul><li><p><code>"boxplot"</code> (default): Boxplot of performance measures.</p></li>
 <li><p><code>"histogram"</code>: Histogram of performance measures.</p></li>
 <li><p><code>"roc"</code>: ROC curve (1 - specificity on x, sensitivity on y).
-The predictions of the individual <a href="https://mlr3.mlr-org.com/reference/Resampling.html" class="external-link">mlr3::Resampling</a>s are merged prior to calculating the ROC curve (micro averaged).
+The predictions of the individual <a href="https://mlr3.mlr-org.com/reference/Resampling.html" class="external-link">mlr3::Resampling</a>s are merged prior to calculating the ROC curve
+(micro averaged).
 Requires package <a href="https://CRAN.R-project.org/package=precrec" class="external-link"><span class="pkg">precrec</span></a>.</p></li>
 <li><p><code>"prc"</code>: Precision recall curve.
 See <code>"roc"</code>.</p></li>
 <li><p><code>"prediction"</code>: Plots the learner prediction for a grid of points.
 Needs models to be stored. Set <code>store_models = TRUE</code> for <code><a href="https://mlr3.mlr-org.com/reference/resample.html" class="external-link">mlr3::resample()</a></code>.
-For classification, we support tasks with exactly two features and learners with <code>predict_type=</code> set to <code>"response"</code> or <code>"prob"</code>.
+For classification, we support tasks with exactly two features and learners with <code>predict_type=</code> set to
+<code>"response"</code> or <code>"prob"</code>.
 For regression, we support tasks with one or two features.
 For tasks with one feature we can print confidence bounds if the predict type of the learner was set to <code>"se"</code>.
 For tasks with two features the predict type will be ignored.</p></li>

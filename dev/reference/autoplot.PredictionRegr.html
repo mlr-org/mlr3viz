@@ -9,12 +9,15 @@
 The argument type controls what kind of plot is drawn.
 Possible choices are:
 "xy" (default): Scatterplot of "true" response vs. "predicted" response.
-By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y (by default colored blue).
+By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y
+(by default colored blue).
 In addition geom_abline() with slope = 1 is added to the plot.
 Note that geom_smooth() and geom_abline() may overlap, depending on the given data.
 "histogram": Histogram of residuals: \(r = y - \hat{y}\).
-"residual": Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on the "y" axis.
-By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y (by default colored blue).
+"residual": Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on
+the "y" axis.
+By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y
+(by default colored blue).
 "confidence": Scatterplot of "true" response vs. "predicted" response with
 confidence intervals. Error bars calculated as object$response +- quantile * object$se and so only
 possible with predict_type = "se". geom_abline() with slope = 1 is added to the plot.
@@ -23,12 +26,15 @@ possible with predict_type = "se". geom_abline() with slope = 1 is added to the 
 The argument type controls what kind of plot is drawn.
 Possible choices are:
 "xy" (default): Scatterplot of "true" response vs. "predicted" response.
-By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y (by default colored blue).
+By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y
+(by default colored blue).
 In addition geom_abline() with slope = 1 is added to the plot.
 Note that geom_smooth() and geom_abline() may overlap, depending on the given data.
 "histogram": Histogram of residuals: \(r = y - \hat{y}\).
-"residual": Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on the "y" axis.
-By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y (by default colored blue).
+"residual": Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on
+the "y" axis.
+By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y
+(by default colored blue).
 "confidence": Scatterplot of "true" response vs. "predicted" response with
 confidence intervals. Error bars calculated as object$response +- quantile * object$se and so only
 possible with predict_type = "se". geom_abline() with slope = 1 is added to the plot.
@@ -80,12 +86,15 @@ possible with predict_type = "se". geom_abline() with slope = 1 is added to the 
     <p>Visualizations for <a href="https://mlr3.mlr-org.com/reference/PredictionRegr.html" class="external-link">mlr3::PredictionRegr</a>.
 The argument <code>type</code> controls what kind of plot is drawn.
 Possible choices are:</p><ul><li><p><code>"xy"</code> (default): Scatterplot of "true" response vs. "predicted" response.
-By default a linear model is fitted via <code>geom_smooth(method = "lm")</code> to visualize the trend between x and y (by default colored blue).
+By default a linear model is fitted via <code>geom_smooth(method = "lm")</code> to visualize the trend between x and y
+(by default colored blue).
 In addition <code>geom_abline()</code> with <code>slope = 1</code> is added to the plot.
 Note that <code>geom_smooth()</code> and <code>geom_abline()</code> may overlap, depending on the given data.</p></li>
 <li><p><code>"histogram"</code>: Histogram of residuals: \(r = y - \hat{y}\).</p></li>
-<li><p><code>"residual"</code>: Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on the "y" axis.
-By default a linear model is fitted via <code>geom_smooth(method = "lm")</code> to visualize the trend between x and y (by default colored blue).</p></li>
+<li><p><code>"residual"</code>: Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on
+the "y" axis.
+By default a linear model is fitted via <code>geom_smooth(method = "lm")</code> to visualize the trend between x and y
+(by default colored blue).</p></li>
 <li><p><code>"confidence"</code>: Scatterplot of "true" response vs. "predicted" response with
 confidence intervals. Error bars calculated as object$response +- quantile * object$se and so only
 possible with <code>predict_type = "se"</code>. <code>geom_abline()</code> with <code>slope = 1</code> is added to the plot.</p></li>
