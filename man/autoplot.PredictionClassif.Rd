@@ -22,7 +22,7 @@ Type of the plot. See description.}
 Performance measure to use.}
 
 \item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
-The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+The \code{\link[ggplot2:theme_minimal]{ggplot2::theme_minimal()}} is applied by default to all plots.}
 
 \item{...}{(ignored).}
 }
@@ -39,7 +39,8 @@ Possible choices are:
 Requires package \CRANpkg{precrec}.
 \item \code{"prc"}: Precision recall curve.
 Requires package \CRANpkg{precrec}.
-\item \code{"threshold"}: Systematically varies the threshold of the \link[mlr3:PredictionClassif]{mlr3::PredictionClassif} object and plots the resulting performance as returned by \code{measure}.
+\item \code{"threshold"}: Systematically varies the threshold of the \link[mlr3:PredictionClassif]{mlr3::PredictionClassif} object and plots the
+resulting performance as returned by \code{measure}.
 }
 }
 \examples{

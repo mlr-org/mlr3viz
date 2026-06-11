@@ -22,7 +22,7 @@ Type of the plot. See description.}
 Performance measure to use.}
 
 \item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
-The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+The \code{\link[ggplot2:theme_minimal]{ggplot2::theme_minimal()}} is applied by default to all plots.}
 
 \item{...}{arguments passed on to \code{\link[precrec:autoplot]{precrec::autoplot()}} for \code{type = "roc"} or \code{"prc"}.
 Useful to e.g. remove confidence bands with \code{show_cb = FALSE}.}
@@ -35,7 +35,8 @@ Visualizations for \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult}.
 The argument \code{type} controls what kind of plot is drawn.
 Possible choices are:
 \itemize{
-\item \code{"boxplot"} (default): Boxplots of performance measures, one box per \link[mlr3:Learner]{mlr3::Learner} and one facet per \link[mlr3:Task]{mlr3::Task}.
+\item \code{"boxplot"} (default): Boxplots of performance measures,
+one box per \link[mlr3:Learner]{mlr3::Learner} and one facet per \link[mlr3:Task]{mlr3::Task}.
 \item \code{"roc"}: ROC curve (1 - specificity on x, sensitivity on y).
 The \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} may only have a single \link[mlr3:Task]{mlr3::Task} and a single \link[mlr3:Resampling]{mlr3::Resampling}.
 Note that you can subset any \link[mlr3:BenchmarkResult]{mlr3::BenchmarkResult} with its \verb{$filter()}  method (see examples).

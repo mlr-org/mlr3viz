@@ -23,7 +23,7 @@ Type of the plot. See description.}
 Width of the bins for the histogram.}
 
 \item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
-The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+The \code{\link[ggplot2:theme_minimal]{ggplot2::theme_minimal()}} is applied by default to all plots.}
 
 \item{quantile}{(\code{numeric(1)})\cr
 Quantile multiplier for standard errors for \code{type="confidence"}. Default 1.96.}
@@ -39,12 +39,15 @@ The argument \code{type} controls what kind of plot is drawn.
 Possible choices are:
 \itemize{
 \item \code{"xy"} (default): Scatterplot of "true" response vs. "predicted" response.
-By default a linear model is fitted via \code{geom_smooth(method = "lm")} to visualize the trend between x and y (by default colored blue).
+By default a linear model is fitted via \code{geom_smooth(method = "lm")} to visualize the trend between x and y
+(by default colored blue).
 In addition \code{geom_abline()} with \code{slope = 1} is added to the plot.
 Note that \code{geom_smooth()} and \code{geom_abline()} may overlap, depending on the given data.
 \item \code{"histogram"}: Histogram of residuals: \eqn{r = y - \hat{y}}{r = y - y.hat}.
-\item \code{"residual"}: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat} on the "x" and the residuals on the "y" axis.
-By default a linear model is fitted via \code{geom_smooth(method = "lm")} to visualize the trend between x and y (by default colored blue).
+\item \code{"residual"}: Plot of the residuals, with the response \eqn{\hat{y}}{y.hat} on the "x" and the residuals on
+the "y" axis.
+By default a linear model is fitted via \code{geom_smooth(method = "lm")} to visualize the trend between x and y
+(by default colored blue).
 \item \code{"confidence"}: Scatterplot of "true" response vs. "predicted" response with
 confidence intervals. Error bars calculated as object$response +- quantile * object$se and so only
 possible with \code{predict_type = "se"}. \code{geom_abline()} with \code{slope = 1} is added to the plot.
