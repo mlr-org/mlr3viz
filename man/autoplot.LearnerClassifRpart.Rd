@@ -26,7 +26,7 @@
 )
 }
 \arguments{
-\item{object}{(\link[mlr3:mlr_learners_classif.rpart]{mlr3::LearnerClassifRpart} | \link[mlr3:mlr_learners_regr.rpart]{mlr3::LearnerRegrRpart}).}
+\item{object}{(\link[mlr3:LearnerClassifRpart]{mlr3::LearnerClassifRpart} | \link[mlr3:LearnerRegrRpart]{mlr3::LearnerRegrRpart}).}
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
@@ -41,7 +41,7 @@ Number of grid points per feature dimension.}
 Expand the range of the grid.}
 
 \item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
-The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+The \code{\link[ggplot2:theme_minimal]{ggplot2::theme_minimal()}} is applied by default to all plots.}
 
 \item{...}{(ignored).}
 }
@@ -49,7 +49,7 @@ The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by defaul
 \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Visualizations for \link[mlr3:mlr_learners_classif.rpart]{mlr3::LearnerClassifRpart}.
+Visualizations for \link[mlr3:LearnerClassifRpart]{mlr3::LearnerClassifRpart}.
 The argument \code{type} controls what kind of plot is drawn.
 Possible choices are:
 \itemize{

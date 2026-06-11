@@ -14,7 +14,8 @@
 )
 }
 \arguments{
-\item{object}{(\link[mlr3cluster:mlr_learners_clust.agnes]{mlr3cluster::LearnerClustAgnes} | \link[mlr3cluster:mlr_learners_clust.diana]{mlr3cluster::LearnerClustDiana} | \link[mlr3cluster:mlr_learners_clust.hclust]{mlr3cluster::LearnerClustHclust}).}
+\item{object}{(\link[mlr3cluster:LearnerClustAgnes]{mlr3cluster::LearnerClustAgnes} | \link[mlr3cluster:LearnerClustDiana]{mlr3cluster::LearnerClustDiana} |
+\link[mlr3cluster:LearnerClustHclust]{mlr3cluster::LearnerClustHclust}).}
 
 \item{type}{(character(1)):\cr
 Type of the plot. See description.}
@@ -24,7 +25,7 @@ Optionally, pass the task to add labels of observations to a \code{hclust} dendr
 Labels are set via the row names of the task.}
 
 \item{theme}{(\code{\link[ggplot2:theme]{ggplot2::theme()}})\cr
-The \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}} is applied by default to all plots.}
+The \code{\link[ggplot2:theme_minimal]{ggplot2::theme_minimal()}} is applied by default to all plots.}
 
 \item{theme_dendro}{(\code{logical(1)})\cr
 If \code{TRUE} (default), the special dendrogram theme from \CRANpkg{ggdendro} package is used in plot \code{"dend"}.

@@ -68,7 +68,6 @@ Config/testthat/parallel: true
 Encoding: UTF-8
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Collate:
     'BenchmarkResult.R'
     'Filter.R'
@@ -99,3 +98,4 @@ Collate:
     'plot_learner_prediction.R'
     'reexports.R'
     'zzz.R'
+Config/roxygen2/version: 8.0.0.9000

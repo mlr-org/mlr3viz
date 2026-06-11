@@ -12,6 +12,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{ggplot2}{\code{\link[ggplot2]{autoplot}}, \code{\link[ggplot2]{fortify}}}
+  \item{ggplot2}{\code{\link[ggplot2:autoplot]{autoplot()}}, \code{\link[ggplot2:fortify]{fortify()}}}
 }}
 
