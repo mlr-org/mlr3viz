@@ -52,7 +52,7 @@ features a showcase post of the visualization functions `mlr3viz`.
 library(mlr3)
 library(mlr3viz)
 
-task = tsk("pima")
+task = tsk("sonar")
 learner = lrn("classif.rpart", predict_type = "prob")
 rr = resample(task, learner, rsmp("cv", folds = 3), store_models = TRUE)
 

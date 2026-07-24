@@ -59,7 +59,7 @@ The [gallery](https://mlr-org.com/gallery/technical/2022-12-22-mlr3viz/) feature
 library(mlr3)
 library(mlr3viz)
 
-task = tsk("pima")
+task = tsk("sonar")
 learner = lrn("classif.rpart", predict_type = "prob")
 rr = resample(task, learner, rsmp("cv", folds = 3), store_models = TRUE)
 
