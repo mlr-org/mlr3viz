@@ -61,13 +61,11 @@ if (requireNamespace("mlr3")) {
   library(mlr3)
   library(mlr3viz)
 
-  task = mlr3::tsk("pima")$select(c("age", "glucose"))
+  task = mlr3::tsk("sonar")$select(c("V1", "V11"))
   learner = lrn("classif.rpart", predict_type = "prob")
   p = plot_learner_prediction(learner, task)
   print(p)
 }
-#> Warning: Removed 5 rows containing missing values or values outside the scale range
-#> (`geom_point()`).
 
 # }
 ```

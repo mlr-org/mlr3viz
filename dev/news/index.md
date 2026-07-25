@@ -2,6 +2,13 @@
 
 ## mlr3viz (development version)
 
+- fix: Pin the legend order in the prediction plots of
+  [`plot_learner_prediction()`](https://mlr3viz.mlr-org.com/dev/reference/plot_learner_prediction.md)
+  and the performance plots of `autoplot.TuningInstance()` and
+  `autoplot.OptimInstance()` so it is deterministic across ggplot2
+  environments.
+- compatibility: mlr3 1.7.2
+
 ## mlr3viz 0.11.0
 
 CRAN release: 2026-02-22

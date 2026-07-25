@@ -68,7 +68,7 @@ autoplot(
 
 ``` r
 # \donttest{
-task = tsk("pima")$select(c("age", "pedigree"))
+task = tsk("sonar")$select(c("V1", "V11"))
 learner = lrn("classif.rpart", predict_type = "prob")
 learner$train(task)
 
