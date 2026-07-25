@@ -256,22 +256,26 @@ plot_learner_prediction_resample_result = function(
       )
       scale_alpha = scale_alpha_continuous(
         name = "Probability",
-        guide = guide_legend(override.aes = list(fill = viridis::viridis(1)))
+        guide = guide_legend(order = 3, override.aes = list(fill = viridis::viridis(1)))
       )
       scale_fill = scale_fill_viridis_d(end = 0.8)
-      guides = NULL
+      # pin the legend order so it is deterministic across ggplot2 environments
+      guides = guides(shape = guide_legend(order = 1), fill = guide_legend(order = 2))
     } else if (task_type == "classif" && learners[[1L]]$predict_type == "response") {
       # classif, no probs
       raster_aes = aes(fill = .data[["response"]])
       scale_alpha = NULL
       scale_fill = scale_fill_viridis_d(end = 0.8)
-      guides = NULL
+      guides = guides(shape = guide_legend(order = 1), fill = guide_legend(order = 2))
     } else {
       # regr
       raster_aes = aes(fill = .data[["response"]])
       scale_alpha = NULL
       scale_fill = scale_fill_viridis_c(end = 0.8)
-      guides = guides(fill = guide_colorbar(barwidth = 0.5, barheight = 10))
+      guides = guides(
+        shape = guide_legend(order = 1),
+        fill = guide_colorbar(order = 2, barwidth = 0.5, barheight = 10)
+      )
     }
 
     if (!is.numeric(grid[[features[1L]]])) {

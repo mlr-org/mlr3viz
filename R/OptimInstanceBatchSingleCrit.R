@@ -181,6 +181,11 @@ autoplot.OptimInstanceBatchSingleCrit = function(
         scale_y_continuous(breaks = pretty_breaks()) +
         scale_fill_manual(values = viridis::viridis(1, begin = 0.33)) +
         scale_color_manual(values = viridis::viridis(1, begin = 0.5)) +
+        # pin the legend order so it is deterministic across ggplot2 environments
+        guides(
+          color = guide_legend(order = 1),
+          fill = guide_legend(order = 2)
+        ) +
         theme +
         theme(legend.title = element_blank())
     },
