@@ -31,14 +31,14 @@
 #' @examples
 #' \donttest{
 #' if (mlr3misc::require_namespaces("precrec", quietly = TRUE)) {
-#' tasks = tsks(c("pima", "sonar"))
+#' tasks = tsks(c("breast_cancer", "sonar"))
 #' learner = lrns(c("classif.featureless", "classif.rpart"), predict_type = "prob")
 #' resampling = rsmps("cv")
 #' object = benchmark(benchmark_grid(tasks, learner, resampling))
 #'
 #' head(fortify(object))
 #' autoplot(object)
-#' autoplot(object$clone(deep = TRUE)$filter(task_ids = "pima"), type = "roc")
+#' autoplot(object$clone(deep = TRUE)$filter(task_ids = "sonar"), type = "roc")
 #' }
 #' }
 autoplot.BenchmarkResult = function(object, type = "boxplot", measure = NULL, theme = theme_minimal(), ...) {

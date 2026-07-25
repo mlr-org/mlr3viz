@@ -1,7 +1,7 @@
 skip_if_not_installed("mlr3")
 
 set.seed(42)
-tasks = mlr3::tsks(c("iris", "pima", "sonar"))
+tasks = mlr3::tsks(c("iris", "breast_cancer", "sonar"))
 learner = mlr3::lrns(c("classif.featureless", "classif.rpart"), predict_type = "prob")
 resampling = mlr3::rsmp("cv", folds = 3)
 bmr = mlr3::benchmark(mlr3::benchmark_grid(tasks, learner, resampling))
@@ -34,7 +34,7 @@ test_that("autoplot BenchmarkResult", {
   expect_true(is_ggplot(p))
   expect_doppelganger("bmr_roc", p)
 
-  object = bmr$clone(deep = TRUE)$filter(task_ids = "pima")
+  object = bmr$clone(deep = TRUE)$filter(task_ids = "breast_cancer")
   p = autoplot(object, type = "prc")
   expect_true(is_ggplot(p))
   expect_doppelganger("bmr_prc", p)

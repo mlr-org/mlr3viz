@@ -1,5 +1,8 @@
 # mlr3viz (development version)
 
+* fix: Pin the legend order in the prediction plots of `plot_learner_prediction()` and the performance plots of `autoplot.TuningInstance()` and `autoplot.OptimInstance()` so it is deterministic across ggplot2 environments.
+* compatibility: mlr3 1.7.2
+
 # mlr3viz 0.11.0
 
 * fix: Suppress warnings about unused arguments in `ggplot2::fortify()` when plotting ROC/PRC curves with newer versions of ggplot2.
