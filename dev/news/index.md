@@ -2,6 +2,10 @@
 
 ## mlr3viz (development version)
 
+## mlr3viz 0.11.1
+
+CRAN release: 2026-07-26
+
 - fix: Pin the legend order in the prediction plots of
   [`plot_learner_prediction()`](https://mlr3viz.mlr-org.com/dev/reference/plot_learner_prediction.md)
   and the performance plots of `autoplot.TuningInstance()` and
