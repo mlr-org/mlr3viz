@@ -23,12 +23,14 @@ features a **showcase post** of the plots in `mlr3viz`.
 Install the last release from CRAN:
 
 ``` r
+
 install.packages("mlr3viz")
 ```
 
 Install the development version from GitHub:
 
 ``` r
+
 # install.packages("pak")
 pak::pak("mlr-org/mlr3viz")
 ```
@@ -41,10 +43,11 @@ features a showcase post of the visualization functions `mlr3viz`.
 ## Short Demo
 
 ``` r
+
 library(mlr3)
 library(mlr3viz)
 
-task = tsk("pima")
+task = tsk("sonar")
 learner = lrn("classif.rpart", predict_type = "prob")
 rr = resample(task, learner, rsmp("cv", folds = 3), store_models = TRUE)
 
@@ -55,6 +58,7 @@ autoplot(task, type = "target")
 ![](reference/figures/README-demo-1.png)
 
 ``` r
+
 # ROC curve for resample result
 autoplot(rr, type = "roc")
 ```

@@ -5,16 +5,19 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet"><link href="../deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet"><link href="../deps/Roboto_Slab-0.4.10/font.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Plots for Regression Predictions — autoplot.PredictionRegr"><meta name="description" content='Visualizations for mlr3::PredictionRegr.
+</script><script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet"><link href="../deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet"><link href="../deps/Roboto_Slab-0.4.10/font.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Plots for Regression Predictions — autoplot.PredictionRegr"><meta name="description" content='Visualizations for mlr3::PredictionRegr.
 The argument type controls what kind of plot is drawn.
 Possible choices are:
 "xy" (default): Scatterplot of "true" response vs. "predicted" response.
-By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y (by default colored blue).
+By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y
+(by default colored blue).
 In addition geom_abline() with slope = 1 is added to the plot.
 Note that geom_smooth() and geom_abline() may overlap, depending on the given data.
 "histogram": Histogram of residuals: \(r = y - \hat{y}\).
-"residual": Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on the "y" axis.
-By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y (by default colored blue).
+"residual": Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on
+the "y" axis.
+By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y
+(by default colored blue).
 "confidence": Scatterplot of "true" response vs. "predicted" response with
 confidence intervals. Error bars calculated as object$response +- quantile * object$se and so only
 possible with predict_type = "se". geom_abline() with slope = 1 is added to the plot.
@@ -23,12 +26,15 @@ possible with predict_type = "se". geom_abline() with slope = 1 is added to the 
 The argument type controls what kind of plot is drawn.
 Possible choices are:
 "xy" (default): Scatterplot of "true" response vs. "predicted" response.
-By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y (by default colored blue).
+By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y
+(by default colored blue).
 In addition geom_abline() with slope = 1 is added to the plot.
 Note that geom_smooth() and geom_abline() may overlap, depending on the given data.
 "histogram": Histogram of residuals: \(r = y - \hat{y}\).
-"residual": Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on the "y" axis.
-By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y (by default colored blue).
+"residual": Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on
+the "y" axis.
+By default a linear model is fitted via geom_smooth(method = "lm") to visualize the trend between x and y
+(by default colored blue).
 "confidence": Scatterplot of "true" response vs. "predicted" response with
 confidence intervals. Error bars calculated as object$response +- quantile * object$se and so only
 possible with predict_type = "se". geom_abline() with slope = 1 is added to the plot.
@@ -41,7 +47,7 @@ possible with predict_type = "se". geom_abline() with slope = 1 is added to the 
 
     <a class="navbar-brand me-2" href="../index.html">mlr3viz</a>
 
-    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.11.0</small>
+    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.11.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,12 +86,15 @@ possible with predict_type = "se". geom_abline() with slope = 1 is added to the 
     <p>Visualizations for <a href="https://mlr3.mlr-org.com/reference/PredictionRegr.html" class="external-link">mlr3::PredictionRegr</a>.
 The argument <code>type</code> controls what kind of plot is drawn.
 Possible choices are:</p><ul><li><p><code>"xy"</code> (default): Scatterplot of "true" response vs. "predicted" response.
-By default a linear model is fitted via <code>geom_smooth(method = "lm")</code> to visualize the trend between x and y (by default colored blue).
+By default a linear model is fitted via <code>geom_smooth(method = "lm")</code> to visualize the trend between x and y
+(by default colored blue).
 In addition <code>geom_abline()</code> with <code>slope = 1</code> is added to the plot.
 Note that <code>geom_smooth()</code> and <code>geom_abline()</code> may overlap, depending on the given data.</p></li>
 <li><p><code>"histogram"</code>: Histogram of residuals: \(r = y - \hat{y}\).</p></li>
-<li><p><code>"residual"</code>: Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on the "y" axis.
-By default a linear model is fitted via <code>geom_smooth(method = "lm")</code> to visualize the trend between x and y (by default colored blue).</p></li>
+<li><p><code>"residual"</code>: Plot of the residuals, with the response \(\hat{y}\) on the "x" and the residuals on
+the "y" axis.
+By default a linear model is fitted via <code>geom_smooth(method = "lm")</code> to visualize the trend between x and y
+(by default colored blue).</p></li>
 <li><p><code>"confidence"</code>: Scatterplot of "true" response vs. "predicted" response with
 confidence intervals. Error bars calculated as object$response +- quantile * object$se and so only
 possible with <code>predict_type = "se"</code>. <code>geom_abline()</code> with <code>slope = 1</code> is added to the plot.</p></li>
@@ -171,7 +180,7 @@ Quantile multiplier for standard errors for <code>type="confidence"</code>. Defa
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>
