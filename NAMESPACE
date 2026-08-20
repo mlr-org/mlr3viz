@@ -56,11 +56,17 @@ import(data.table)
 import(ggplot2)
 import(mlr3)
 import(mlr3misc)
-importFrom(ggplot2,autoplot)
-importFrom(ggplot2,fortify)
+importFrom(ggplot2,
+  autoplot,
+  fortify
+)
 importFrom(graphics,plot)
 importFrom(scales,pretty_breaks)
-importFrom(stats,as.dendrogram)
-importFrom(stats,sd)
-importFrom(utils,bibentry)
-importFrom(utils,head)
+importFrom(stats,
+  as.dendrogram,
+  sd
+)
+importFrom(utils,
+  bibentry,
+  head
+)
