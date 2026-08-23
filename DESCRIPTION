@@ -49,7 +49,7 @@ Suggests:
     lgr,
     mlr3cluster,
     mlr3filters,
-    mlr3fselect (>= 1.3.0),
+    mlr3fselect (>= 1.7.0),
     mlr3inferr,
     mlr3learners,
     mlr3tuning (>= 1.0.0),
