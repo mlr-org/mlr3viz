@@ -34,6 +34,7 @@ Imports:
     ggplot2 (>= 3.3.0),
     mlr3misc (>= 0.7.0),
     scales,
+    stats,
     utils,
     viridis
 Suggests:
@@ -59,7 +60,6 @@ Suggests:
     precrec (>= 0.24.0),
     ranger,
     rpart,
-    stats,
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.2),
     xgboost
