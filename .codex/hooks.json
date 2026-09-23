@@ -1,16 +1,12 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(gh run view:*)"
-    ]
-  },
   "hooks": {
     "SessionStart": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "sh tools/load-agents-d.sh"
+            "command": "sh tools/load-agents-d.sh",
+            "statusMessage": "Loading AGENTS.d rules"
           }
         ]
       }
