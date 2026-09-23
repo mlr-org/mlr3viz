@@ -28,7 +28,7 @@ CRAN release: 2026-02-22
 CRAN release: 2025-01-16
 
 - feat: Allow passing parameters to
-  [`precrec::autoplot()`](https://rdrr.io/pkg/precrec/man/autoplot.html)
+  [`precrec::autoplot()`](https://evalclass.github.io/precrec/reference/autoplot.html)
   (eg `show_cb`) when plotting `BenchmarkResult` and `ResampleResult`
   objects, using `type` = `roc` or `prc`.
 - refactor: Wrong `type` in `autoplot`s now gives hints of which ones to

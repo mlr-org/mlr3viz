@@ -65,7 +65,7 @@ autoplot(
 - ...:
 
   arguments passed on to
-  [`precrec::autoplot()`](https://rdrr.io/pkg/precrec/man/autoplot.html)
+  [`precrec::autoplot()`](https://evalclass.github.io/precrec/reference/autoplot.html)
   for `type = "roc"` or `"prc"`. Useful to e.g. remove confidence bands
   with `show_cb = FALSE`.
 
