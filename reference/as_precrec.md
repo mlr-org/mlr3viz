@@ -1,8 +1,8 @@
 # Convert to 'precrec' Format
 
 Converts to a format which is understood by
-[`precrec::evalmod()`](https://rdrr.io/pkg/precrec/man/evalmod.html) of
-package [precrec](https://CRAN.R-project.org/package=precrec).
+[`precrec::evalmod()`](https://evalclass.github.io/precrec/reference/evalmod.html)
+of package [precrec](https://CRAN.R-project.org/package=precrec).
 
 ## Usage
 
@@ -29,7 +29,7 @@ as_precrec(object)
 ## Value
 
 Object as created by
-[`precrec::mmdata()`](https://rdrr.io/pkg/precrec/man/mmdata.html).
+[`precrec::mmdata()`](https://evalclass.github.io/precrec/reference/mmdata.html).
 
 ## References
 

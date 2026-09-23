@@ -90,4 +90,9 @@ learner = lrn("clust.hclust")
 learner$train(task)
 autoplot(learner, type = "scree")
 }
+#> 
+#> Attaching package: ‘mlr3cluster’
+#> The following object is masked from ‘package:mlr3’:
+#> 
+#>     TaskGeneratorMoons
 ```
