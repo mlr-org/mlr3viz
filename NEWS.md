@@ -1,5 +1,7 @@
 # mlr3viz (development version)
 
+* compatibility: precrec 0.24.0
+
 # mlr3viz 0.11.1
 
 * fix: Pin the legend order in the prediction plots of `plot_learner_prediction()` and the performance plots of `autoplot.TuningInstance()` and `autoplot.OptimInstance()` so it is deterministic across ggplot2 environments.

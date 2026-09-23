@@ -56,7 +56,7 @@ Suggests:
     paradox,
     partykit,
     patchwork (>= 1.1.1),
-    precrec,
+    precrec (>= 0.24.0),
     ranger,
     rpart,
     stats,
