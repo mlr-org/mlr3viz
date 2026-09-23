@@ -2,6 +2,8 @@
 
 ## mlr3viz (development version)
 
+- compatibility: precrec 0.24.0
+
 ## mlr3viz 0.11.1
 
 CRAN release: 2026-07-26
