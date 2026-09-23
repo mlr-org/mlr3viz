@@ -1,6 +1,7 @@
 # mlr3viz (development version)
 
 * compatibility: precrec 0.24.0
+* compatibility: mlr3fselect 1.7.0
 
 # mlr3viz 0.11.1
 
