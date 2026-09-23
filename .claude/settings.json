@@ -1,9 +1,4 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(gh run view:*)"
-    ]
-  },
   "hooks": {
     "SessionStart": [
       {
